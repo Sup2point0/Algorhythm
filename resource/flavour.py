@@ -92,5 +92,6 @@ flavours = WeightedList(
   (2, "Is this background true black? Hmmm..."),
   (2, "This loading music’s pretty dope, I wonder who made it?"),
   (2, "Everything is a human construct...?"),
+  (0, "testing"),
 
 )
