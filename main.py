@@ -170,5 +170,5 @@ while game.state is not None:
 py.quit()
 
 # keep window open in IDLE for testing
-if not "idlelib.run" in sys.modules:
+if "idlelib.run" not in sys.modules:
   sys.exit()
