@@ -80,7 +80,7 @@ class main:
 
         # remove pressed keys from history to prevent further unintentional combos
         game.keys.pop(idx + 1)
-        game.keys.remove(ctrl)
+        game.keys.pop(idx)
 
         if action == K_w:
           game.state = None
