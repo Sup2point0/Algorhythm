@@ -14,8 +14,21 @@ class Element(py.sprite.Sprite):
   This provides utility in show/hide functionality.
   '''
 
-  def __init__(self, *args, **kwargs):
+  def __init__(self, id, pos = None, layer = 1, display = None, fade = False, *args, **kwargs):
     super().__init__(*args, **kwargs)
+
+    self.id = id
+    self.layer = layer
+    self.display = display or []
+
+    xy = pos or [0, 0]
+    self.x = xy[0]
+    self.y = xy[1]
+
+    class anim:
+      fade = fade
+
+    self.anim = anim
 
   def visible(self):
     '''Show or hide sprite depending on current screen state.'''
@@ -30,6 +43,12 @@ class Element(py.sprite.Sprite):
 
     # TODO use self.layer
     if visible:
-      sprites.active.add(self, layer = 0)
+      sprites.active.add(self, layer = self.layer)
     else:
       sprites.active.remove(self)
+
+  @ property
+  def pos(self):
+    '''X and Y position of the element.'''
+
+    return [self.x, self.y]
