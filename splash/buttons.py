@@ -53,16 +53,13 @@ class Button(Element):
     | `style` | `splash.buttons.Style` | Dictionary of style settings for button. |
     '''
 
-    super().__init__(sprites.splash)
+    super().__init__(id = id, pos = pos, display = display, groups = sprites.splash)
 
-    self.pos = pos
     self.size = size
     self.text = text
     self.root = root
     self.style = style
 
-    self.id = id
-    self.display = display
     self.hover = False
     self.click = False
 
