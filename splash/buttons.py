@@ -14,21 +14,26 @@ from splash import text
 class Style:
   '''A button style.'''
 
-  def __init__(self, col: int | dict = dict()):
-    '''Create a button style.'''
-
-    if isinstance(col, dict):
-      cols = col
-
-      class col:
-        idle = cols["idle"] if "idle" in cols else ui.col.button.idle
-        hover = cols["hover"] if "hover" in cols else ui.col.button.hover
-        click = cols["click"] if "click" in cols else ui.col.button.click
-      
-      self.col = col
+  def __init__(self, col: dict = None, edge = "round"):
+    '''Create a button style.
     
-    else:
-      self.col = col
+    | argument | type | description |
+    | :------- | :--- | :---------- |
+    | `col` | `dict` | The colours for the different states of the button. |
+    | `edge` | `str` | Edge style – can be `round`, `sharp` or `angular`. |
+    '''
+
+    cols = col or {}
+
+    class states:
+      idle = cols["idle"] if "idle" in cols else ui.col.button.idle
+      hover = cols["hover"] if "hover" in cols else ui.col.button.hover
+      click = cols["click"] if "click" in cols else ui.col.button.click
+      click = cols["lock"] if "lock" in cols else ui.col.button.lock
+      
+    self.col = states
+
+    self.edge = edge
 
 
 class Button(Element):
