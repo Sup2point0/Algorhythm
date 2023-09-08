@@ -62,6 +62,13 @@ def slide(var, target, speed = 2):
   # alt = (target - var) / speed
   # return (var + alt) if abs(alt) >= 0.5 else target
 
+def overwrite(file, content: str):
+  '''Overwrite a JSON file with `content`.'''
+
+  file.seek(0)
+  file.write(json.dumps(content, indent = 0))
+  file.truncate()
+
 
 ## niche
 def findrow(key) -> str:
