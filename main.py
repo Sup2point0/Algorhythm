@@ -117,6 +117,12 @@ class main:
   def hold():
     '''Control game while paused.'''
 
+    if game.state:
+      game.state -= 1
+    if game.state < 1:
+      game.state = True
+      py.mixer.music.unpause()
+
     sprites.fade.update()
     sprites.pause.update()
 
@@ -137,7 +143,6 @@ class main:
         py.mixer.music.pause()
       else:
         game.state = 180
-        py.mixer.music.unpause()  # FIXME
 
 
 ## setup
@@ -152,10 +157,10 @@ splash.loadsequence(display)
 while game.state is not None:
   main.events()
   
-  if not game.state:
-    main.hold()
-  else:
+  if game.state is True:
     main.control()
+  else:
+    main.hold()
   
   # game.pulse.tick(config.framerate)
   main.render()
