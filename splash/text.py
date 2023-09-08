@@ -45,17 +45,13 @@ class Text(Element):
     | `style` | `splash.text.Style` | Dictionary of style settings for text. |
     '''
 
-    super().__init__(sprites.splash)
+    super().__init__(id = id, pos = pos, display = display, groups = sprites.splash)
 
-    self.pos = pos
     self.text = text
     self.style = style
     
     if self.text:
       self.image, self.rect = Text.render(text = self.text, style = self.style)
-
-    self.id = id
-    self.display = display
 
   def update(self):
     self.visible()
