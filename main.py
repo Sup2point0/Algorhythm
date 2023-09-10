@@ -155,9 +155,12 @@ splash.loadsequence(display)
 
 ## loop
 while game.state is not None:
+  print(sprites.splash)
   main.events()
   
-  if game.state is True:
+  if game.state is None:
+    break
+  elif game.state is True:
     main.control()
   else:
     main.hold()

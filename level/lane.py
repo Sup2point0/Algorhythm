@@ -23,7 +23,7 @@ class Lane(py.sprite.Sprite):
     self.index = index
     self.key = key or ...  # TODO algorithm for random key selection
     self.hit = False
-    self.col = ui.col.lane
+    self.col = ...
 
     self.x = screen.cx - 1
     self.y = 0

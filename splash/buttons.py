@@ -53,7 +53,7 @@ class Button(Element):
     | `style` | `splash.buttons.Style` | Dictionary of style settings for button. |
     '''
 
-    super().__init__(id = id, pos = pos, display = display, groups = sprites.splash)
+    super().__init__(id = id, pos = pos, display = display, groups = [sprites.splash])
 
     self.size = size
     self.text = text
@@ -64,7 +64,7 @@ class Button(Element):
     self.click = False
 
   def update(self):
-    self.visible()
+    super().visible()
     
     self.image = py.Surface(self.size, py.SRCALPHA)
     self.rect = self.image.get_rect()

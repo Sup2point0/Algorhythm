@@ -14,11 +14,18 @@ class Element(py.sprite.Sprite):
   This provides utility in show/hide functionality.
   '''
 
-  def __init__(self, id, pos = None, layer = 1, display = None, fade = False, groups = None, *args, **kwargs):
-    super().__init__(*groups, *args, **kwargs)
+  def __init__(self,
+    id: str,
+    pos = None,
+    layer: int = 1,
+    display = None,
+    fade = False,
+    groups: list = None
+  ):
+    super().__init__(*groups)
 
     self.id = id
-    self.layer = layer
+    self.slayer = layer
     self.display = display or []
 
     xy = pos or [0, 0]
@@ -45,7 +52,7 @@ class Element(py.sprite.Sprite):
 
     # TODO use self.layer
     if visible:
-      sprites.active.add(self, layer = self.layer)
+      sprites.active.add(self, layer = self.slayer)
     else:
       sprites.active.remove(self)
 
