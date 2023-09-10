@@ -14,8 +14,8 @@ class Element(py.sprite.Sprite):
   This provides utility in show/hide functionality.
   '''
 
-  def __init__(self, id, pos = None, layer = 1, display = None, fade = False, *args, **kwargs):
-    super().__init__(*args, **kwargs)
+  def __init__(self, id, pos = None, layer = 1, display = None, fade = False, groups = None, *args, **kwargs):
+    super().__init__(*groups, *args, **kwargs)
 
     self.id = id
     self.layer = layer
@@ -25,8 +25,10 @@ class Element(py.sprite.Sprite):
     self.x = xy[0]
     self.y = xy[1]
 
+    fades = fade
+
     class anim:
-      fade = fade
+      fade = fades
 
     self.anim = anim
 
