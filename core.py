@@ -2,10 +2,10 @@
 Global variables and constants
 '''
 
-# This module is imported by almost every file. As such,
-# it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
 import pygame as py
 
+# This module is imported by almost every file. As such,
+# it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
 from resource.group import LayeredGroup
 from resource.difficulty import Difficulty
 # These resource modules are an exception, since no other files import them.
@@ -132,13 +132,15 @@ class ui:
     back = [0, 23, 42]
     text = [255, 255, 255]
 
-    lane = [0, 32, 64]
-
     class button:
-      idle = [20, 80, 144, 255]
-      hover = [255, 255, 255, 255]
-      click = [255, 255, 255, 144]
-      lock = [128, 128, 128, 255]
+      idle = [0, 0, 0, 128]
+      hover = [255, 255, 255, 128]
+      click = [192, 192, 192, 128]
+      lock = [0, 0, 0, 192]
+      # idle = [20, 80, 144, 255]
+      # hover = [255, 255, 255, 255]
+      # click = [255, 255, 255, 144]
+      # lock = [128, 128, 128, 255]
 
 
 class config:
