@@ -2,26 +2,33 @@
 Base splash element
 '''
 
-
 import pygame as py
 
 from core import sprites, screen
 
 
 class Element(py.sprite.Sprite):
-  '''A base class from which all splash sprites derive.
-  
-  This provides utility in show/hide functionality.
-  '''
+  '''Base class from which all splash sprites derive.'''
 
   def __init__(self,
     id: str,
     pos = None,
-    layer: int = 1,
-    display = None,
-    fade = False,
+    layer = 1,
+    display: list = None,
+    fade: bool = False,
     groups: list = None
   ):
+    '''
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `id` | `str` | Unique ID to identify element. |
+    | `pos` | `[num, num]` | Coordinates to position element. |
+    | `layer` | `int` | Which layer to render element. |
+    | `display` | `list[str]` | List of screen states where element should be displayed. |
+    | `fade` | `bool` | Shows or hides element with a fade animation. |
+    | `groups` | `list[py.sprite.Group]` | Groups to add element to. |
+    '''
+    
     super().__init__(*groups)
 
     self.id = id
