@@ -14,9 +14,9 @@ class Element(py.sprite.Sprite):
     id: str,
     pos = None,
     layer = 1,
-    display: list = None,
-    fade: bool = False,
-    groups: list = None
+    display = set(),
+    fade = False,
+    groups = None,
   ):
     '''
     | parameter | type | description |
@@ -24,7 +24,7 @@ class Element(py.sprite.Sprite):
     | `id` | `str` | Unique ID to identify element. |
     | `pos` | `[num, num]` | Coordinates to position element. |
     | `layer` | `int` | Which layer to render element. |
-    | `display` | `list[str]` | List of screen states where element should be displayed. |
+    | `display` | `set[str], dict[str, bool]` | List or dictionary of screen states where element should be displayed. |
     | `fade` | `bool` | Shows or hides element with a fade animation. |
     | `groups` | `list[py.sprite.Group]` | Groups to add element to. |
     '''
@@ -32,15 +32,14 @@ class Element(py.sprite.Sprite):
     super().__init__(*groups)
 
     self.id = id
-    self.slayer = layer
-    self.display = display or []
+    self._layer_ = layer
+    self.display = display
 
     xy = pos or [0, 0]
     self.x = xy[0]
     self.y = xy[1]
 
     fades = fade
-
     class anim:
       fade = fades
 
@@ -59,12 +58,12 @@ class Element(py.sprite.Sprite):
 
     # TODO use self.layer
     if visible:
-      sprites.active.add(self, layer = self.slayer)
+      sprites.active.add(self, layer = self._layer_)
     else:
       sprites.active.remove(self)
 
   @ property
   def pos(self):
-    '''X and Y position of the element.'''
+    '''Coordinates of the element.'''
 
     return [self.x, self.y]
