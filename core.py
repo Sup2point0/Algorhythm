@@ -2,6 +2,7 @@
 Global variables and constants
 '''
 
+
 import pygame as py
 
 # This module is imported by almost every file. As such,
