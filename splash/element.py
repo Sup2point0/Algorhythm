@@ -24,7 +24,7 @@ class Element(py.sprite.Sprite):
     | `id` | `str` | Unique ID to identify element. |
     | `pos` | `[num, num]` | Coordinates to position element. |
     | `layer` | `int` | Which layer to render element. |
-    | `display` | `set[str], dict[str, bool]` | List or dictionary of screen states where element should be displayed. |
+    | `display` | `set[str], dict[str, bool]` | Set or dictionary of screen states where element should be displayed. If a dictionary is provided, the element will display by default on all screen states. |
     | `fade` | `bool` | Shows or hides element with a fade animation. |
     | `groups` | `list[py.sprite.Group]` | Groups to add element to. |
     '''
