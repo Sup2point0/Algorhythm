@@ -42,18 +42,24 @@ def setup():
   ]
 
   start = [
+    Asset(
+      id = "start.back",
+      pos = [screen.cx, screen.cy],
+      image = "violet-cortex.png",
+      display = {"start", "settings"},
+    ),
     ## NOTE: code for image asset
     # Asset(
     #   id = "start.title",
     #   pos = [screen.cx, screen.cy * 0.5],
     #   image = "Algorhythm.png",
-    #   display = ["start"],
+    #   display = {"start"},
     # ),
     Text(
       id = "start.title",
       pos = [screen.cx, screen.cy * 0.5],
       text = "ALGORHYTHM",
-      display = ["start"],
+      display = {"start"},
       style = Text.Style(
         typeface = "Orbitron-Semibold",
         size = 100,
@@ -65,7 +71,7 @@ def setup():
       size = ui.button.size,
       text = "PLAY",
       root = roots.switch.state("home"),
-      display = ["start"],
+      display = {"start"},
     ),
     Button(
       id = "start.tutorial",
@@ -73,7 +79,7 @@ def setup():
       size = ui.button.size,
       text = "TUTORIAL",
       root = roots.switch.tutorial,
-      display = ["start"],
+      display = {"start"},
     ),
     Button(
       id = "start.settings",
@@ -81,16 +87,16 @@ def setup():
       size = ui.button.size,
       text = "SETTINGS",
       root = roots.switch.state("settings"),
-      display = ["start"],
+      display = {"start"},
     ),
     Text(
       id = "start.version",
       pos = [screen.x - 50, screen.y - 50],
       text = "v" + game.version,
-      display = ["start"],
       style = Text.Style(
         align = (1, 1),
-      )
+      ),
+      display = {"start"},
     ),
   ]
 
@@ -99,11 +105,11 @@ def setup():
       id = "settings.title",
       pos = [screen.cx, screen.cy * 0.5],
       text = "SETTINGS",
-      display = ["settings"],
       style = Text.Style(
         typeface = "Orbitron-Semibold",
         size = 100,
       ),
+      display = {"settings"},
     ),
   ]
 
@@ -116,21 +122,21 @@ def setup():
       id = "level.score",
       pos = [screen.x - 40, 40],
       source = lambda: util.setscore(round(level.scored)),
-      display = ["play"],
       style = Text.Style(
         size = 69,
         align = (1, -1),
-      )
+      ),
+      display = {"play"},
     ),
     ActiveText(
       id = "level.chain",
       pos = [screen.cx, 40],
       source = lambda: str(level.chain),
-      display = ["play"],
       style = Text.Style(
         size = 69,
         align = (0, -1)
-      )
+      ),
+      display = {"play"},
     ),
   ]
 
