@@ -1,5 +1,5 @@
 '''
-Graphic interface elements
+Graphic interface functionality
 '''
 
 import math
@@ -11,7 +11,7 @@ from core import game, level, screen, ui, config
 import util
 from resource import flavour
 
-from splash import text, buttons, roots
+from splash import roots
 from splash.covers import Cover
 from splash.asset import Asset
 from splash.text import Text, ActiveText
@@ -54,7 +54,7 @@ def setup():
       pos = [screen.cx, screen.cy * 0.5],
       text = "ALGORHYTHM",
       display = ["start"],
-      style = text.Style(
+      style = Text.Style(
         typeface = "Orbitron-Semibold",
         size = 100,
       ),
@@ -88,7 +88,7 @@ def setup():
       pos = [screen.x - 50, screen.y - 50],
       text = "v" + game.version,
       display = ["start"],
-      style = text.Style(
+      style = Text.Style(
         align = (1, 1),
       )
     ),
@@ -100,7 +100,7 @@ def setup():
       pos = [screen.cx, screen.cy * 0.5],
       text = "SETTINGS",
       display = ["settings"],
-      style = text.Style(
+      style = Text.Style(
         typeface = "Orbitron-Semibold",
         size = 100,
       ),
@@ -117,7 +117,7 @@ def setup():
       pos = [screen.x - 40, 40],
       source = lambda: util.setscore(round(level.scored)),
       display = ["play"],
-      style = text.Style(
+      style = Text.Style(
         size = 69,
         align = (1, -1),
       )
@@ -127,7 +127,7 @@ def setup():
       pos = [screen.cx, 40],
       source = lambda: str(level.chain),
       display = ["play"],
-      style = text.Style(
+      style = Text.Style(
         size = 69,
         align = (0, -1)
       )
@@ -146,7 +146,7 @@ def loadsequence(display):
 
     flavour = flavour.flavours.select()
 
-    py.mixer.music.load("assets/tracks/dawn.wav")
+    py.mixer.music.load(f"assets/tracks/dawn{ran.randint(1, 3)}.m4a")
     py.mixer.music.set_volume(0.69)
     py.mixer.music.play()
 
@@ -170,7 +170,7 @@ def loadsequence(display):
       load.alpha.alt(-4)
 
     # render
-    rendered = Text.render("2.0 Studios", text.Style(size = 169, col = py.Color(255, 0, 144, load.alpha.value)))
+    rendered = Text.render("2.0 Studios", Text.Style(size = 169, col = py.Color(255, 0, 144, load.alpha.value)))
     display.blit(rendered[0], util.root(rendered[1]))
 
     game.pulse.tick(config.framerate)
@@ -207,12 +207,12 @@ def loadsequence(display):
       load.state = load.tick
 
     # render
-    rendered = Text.render("LOADING...", style = text.Style(
+    rendered = Text.render("LOADING...", style = Text.Style(
       col = 3 * [load.alpha.value * abs(math.cos(load.tick / 42 - 60))],
     ))
     display.blit(rendered[0], util.root(rendered[1], y = screen.cy - 50))
 
-    rendered = Text.render(load.flavour, style = text.Style(
+    rendered = Text.render(load.flavour, style = Text.Style(
       size = 20,
       col = 3 * [load.alpha.value],
     ))
