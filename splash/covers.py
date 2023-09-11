@@ -2,7 +2,6 @@
 Screen transition cover
 '''
 
-
 import pygame as py
 
 from core import sprites, screen, config
@@ -12,7 +11,14 @@ class Cover(py.sprite.Sprite):
   '''A screen cover to create fade transitions.'''
 
   def __init__(self, alpha = 0, *, root = None, bounds = None):
-    '''Create a screen cover.'''
+    '''Create a screen cover.
+    
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `alpha` | `num` | Starting alpha value of cover. |
+    | `root` | `Callable` | Function replacing `self.update()`. |
+    | `bounds` | `[int, int]` | Lower and upper bounds of alpha value. (Cannot go outside 0–255 regardless.) |
+    '''
 
     super().__init__(sprites.fade)
     
