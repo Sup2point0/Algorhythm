@@ -4,53 +4,50 @@ Buttons
 
 import pygame as py
 
-from splash.element import Element
 from core import sprites, ui
 import util
 
-from splash import text
-
-
-class Style:
-  '''A button style.'''
-
-  def __init__(self, col: dict = None, edge = "round"):
-    '''Create a button style.
-    
-    | argument | type | description |
-    | :------- | :--- | :---------- |
-    | `col` | `dict` | The colours for the different states of the button. |
-    | `edge` | `str` | Edge style – can be `round`, `sharp` or `angular`. |
-    '''
-
-    cols = col or {}
-
-    class states:
-      idle = cols["idle"] if "idle" in cols else ui.col.button.idle
-      hover = cols["hover"] if "hover" in cols else ui.col.button.hover
-      click = cols["click"] if "click" in cols else ui.col.button.click
-      click = cols["lock"] if "lock" in cols else ui.col.button.lock
-      
-    self.col = states
-
-    self.edge = edge
+from splash.element import Element
+from splash.text import Text
 
 
 class Button(Element):
-  '''A clickable button.'''
+  '''A clickable button that invokes an action.'''
 
-  def __init__(self, id, pos, size, text, root, display = list(), style = Style()):
+  class Style:
+    '''A button style.'''
+  
+    def __init__(self, col: dict = None, edge = "round"):
+      '''Create a button style.
+      
+      | argument | type | description |
+      | :------- | :--- | :---------- |
+      | `col` | `dict` | The colours for the different states of the button. |
+      | `edge` | `str` | Edge style – can be `round`, `sharp` or `angular`. |
+      '''
+  
+      cols = col or {}
+      class states:
+        idle = cols["idle"] if "idle" in cols else ui.col.button.idle
+        hover = cols["hover"] if "hover" in cols else ui.col.button.hover
+        click = cols["click"] if "click" in cols else ui.col.button.click
+        click = cols["lock"] if "lock" in cols else ui.col.button.lock
+        
+      self.col = states
+  
+      self.edge = edge
+
+  def __init__(self, id, pos, size, text, root, style = None, display = None):
     '''Create a clickable button.
     
-    | argument | type | description |
-    | :------- | :--- | :---------- |
-    | `id` | | Unique attribute to identify button. |
-    | `pos` | `[int, int]` | Coordinate where button is positioned. |
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
     | `size` | `[int, int]` | Dimensions of button. |
     | `text` | `str` | Text to display on button. |
-    | `root` | `Callable` | Function to call when button is clicked. |
-    | `display` | `list[str]`, `dict[str, bool]` | List of screen states where button will be shown, or a dictionary specifying which screen states to hide on. |
-    | `style` | `splash.buttons.Style` | Dictionary of style settings for button. |
+    | `root` | `Callable` | Function called when button is clicked. |
+    | `style` | `Button.Style` | Style settings for button. |
+
+    Other base parameters are inherited from `splash.Element`.
     '''
 
     super().__init__(id = id, pos = pos, display = display, groups = [sprites.splash])
@@ -58,7 +55,7 @@ class Button(Element):
     self.size = size
     self.text = text
     self.root = root
-    self.style = style
+    self.style = style or Style()
 
     self.hover = False
     self.click = False
@@ -101,9 +98,9 @@ class Button(Element):
       border_radius = min(self.size) // 3,  # FIXME value
     )
     
-    rendered = text.Text.render(
+    rendered = Text.render(
       text = self.text,
-      style = text.Style(col = self.style.col.idle if self.hover else None)
+      style = Text.Style(col = self.style.col.idle if self.hover else None)
     )
     self.image.blit(
       source = rendered[0],
