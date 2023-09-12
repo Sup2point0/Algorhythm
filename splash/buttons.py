@@ -51,15 +51,12 @@ class Button(Element):
     Other base parameters are inherited from `splash.Element`.
     '''
 
-    super().__init__(id, pos, display = display, groups = [sprites.splash])
+    super().__init__(id, pos, interact = True, display = display, groups = [sprites.splash])
 
     self.size = size
     self.text = text
     self.root = root
     self.style = style or Style()
-
-    self.hover = False
-    self.click = False
 
   def update(self):
     super().visible()
@@ -69,26 +66,28 @@ class Button(Element):
     self.rect.x, self.rect.y = util.root(self.rect, *self.pos)
     
     ## hover and click
-    down = any(py.mouse.get_pressed())
-    if self.rect.collidepoint(py.mouse.get_pos()):
-      if not down:  # hovered
-        if self.click:  # clicked and released
-          self.root()
-        self.hover = True
-        self.click = False
-        col = self.style.col.hover
+    interaction = super().interact()
+    col = vars(self.style.col)[interaction]
+    # down = any(py.mouse.get_pressed())
+    # if self.rect.collidepoint(py.mouse.get_pos()):
+    #   if not down:  # hovered
+    #     if self.click:  # clicked and released
+    #       self.root()
+    #     self.hover = True
+    #     self.click = False
+    #     col = self.style.col.hover
       
-      elif down and self.hover:  # clicked
-        self.click = True
-        col = self.style.col.click
+    #   elif down and self.hover:  # clicked
+    #     self.click = True
+    #     col = self.style.col.click
 
-      else:
-        col = self.style.col.idle
+    #   else:
+    #     col = self.style.col.idle
     
-    else:  # not hovering
-      self.hover = False
-      self.click = False
-      col = self.style.col.idle
+    # else:  # not hovering
+    #   self.hover = False
+    #   self.click = False
+    #   col = self.style.col.idle
     
     ## render button
     py.draw.rect(
