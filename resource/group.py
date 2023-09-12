@@ -2,7 +2,6 @@
 Layered pygame sprite group
 '''
 
-
 import pygame as py
 
 
@@ -20,7 +19,8 @@ class LayeredGroup:
   def add(self, *sprites, layer: int = None):
     '''Add sprites to a layer of the group.
     
-    If `layer` is not specified, a new layer will be created below the existing layers. If `layer` exceeds the current number of layers, new layers will be created to accomodate.'''
+    If `layer` is not specified, a new layer will be created below the existing layers. If `layer` exceeds the current number of layers, new layers will be created to accomodate.
+    '''
 
     if layer is None:
       layer = self.layers
