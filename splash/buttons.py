@@ -56,7 +56,7 @@ class Button(Element):
     self.size = size
     self.text = text
     self.root = root
-    self.style = style or Style()
+    self.style = style or Button.Style()
 
   def update(self):
     super().visible()

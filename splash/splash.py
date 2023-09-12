@@ -49,7 +49,8 @@ def setup():
     Asset(
       id = "start.back",
       pos = [screen.cx, screen.cy],
-      image = "violet-cortex.png",
+      image = "scarlet-cortex.jpg",
+      size = screen.size,
       display = Displayed(
         show = {"start", "settings"},
         layer = 1,
@@ -176,7 +177,7 @@ def loadsequence(display):
 
     flavour = flavour.flavours.select()
 
-    py.mixer.music.load(f"assets/tracks/dawn{ran.randint(1, 3)}.m4a")
+    py.mixer.music.load(f"assets/tracks/dawn{ran.randint(1, 3)}.mp3")
     py.mixer.music.set_volume(0.69)
     py.mixer.music.play()
 
