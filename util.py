@@ -2,7 +2,6 @@
 Utility classes and functions
 '''
 
-
 import colorsys
 
 from core import screen, config

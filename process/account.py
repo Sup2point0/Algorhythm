@@ -2,7 +2,6 @@
 Player account
 '''
 
-
 import json
 import hashlib
 

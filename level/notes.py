@@ -2,7 +2,6 @@
 Note kinds
 '''
 
-
 import random as ran
 
 import pygame as py

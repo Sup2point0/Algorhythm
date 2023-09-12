@@ -2,7 +2,6 @@
 Animation effects
 '''
 
-
 import pygame as py
 
 from core import sprites, ui, opt

@@ -2,7 +2,6 @@
 Note lanes
 '''
 
-
 import random as ran
 
 import pygame as py

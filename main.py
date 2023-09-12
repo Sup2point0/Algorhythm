@@ -4,7 +4,6 @@ A rhythm game made in pygame!
 v0.0.0
 '''
 
-
 import sys
 
 import pygame as py

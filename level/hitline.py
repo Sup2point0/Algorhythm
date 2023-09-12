@@ -2,7 +2,6 @@
 Hitline
 '''
 
-
 import pygame as py
 
 from core import level, sprites, screen, config
