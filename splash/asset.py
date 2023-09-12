@@ -2,10 +2,9 @@
 Image assets
 '''
 
-
 import pygame as py
 
-from splash.element import Element
+from splash.elements import Element
 from core import sprites
 
 
@@ -22,7 +21,7 @@ class Asset(Element):
     Other base parameters are inherited from `splash.Element`.
     '''
 
-    super().__init__(id = id, pos = pos, display = display, groups = sprites.splash)
+    super().__init__(id, pos, display = display, groups = [sprites.splash])
 
     self.image = py.image.load(f"assets/{image}").convert()
     self.rect = self.image.get_rect()

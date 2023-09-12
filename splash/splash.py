@@ -12,6 +12,7 @@ import util
 from resource import flavour
 
 from splash import roots
+from splash.elements import Displayed
 from splash.covers import Cover
 from splash.asset import Asset
 from splash.text import Text, ActiveText
@@ -33,7 +34,10 @@ def setup():
       size = [150, ui.button.size[1]],
       text = "BACK",
       root = roots.switch.back,
-      display = {"start": False, "play": False, "score": False},
+      display = Displayed(
+        hide = {"start", "play", "score"},
+        layer = 15,
+      ),
     ),
   ]
 
@@ -46,23 +50,22 @@ def setup():
       id = "start.back",
       pos = [screen.cx, screen.cy],
       image = "violet-cortex.png",
-      display = {"start", "settings"},
+      display = Displayed(
+        show = {"start", "settings"},
+        layer = 1,
+      ),
     ),
-    ## NOTE: code for image asset
-    # Asset(
-    #   id = "start.title",
-    #   pos = [screen.cx, screen.cy * 0.5],
-    #   image = "Algorhythm.png",
-    #   display = {"start"},
-    # ),
     Text(
       id = "start.title",
       pos = [screen.cx, screen.cy * 0.5],
       text = "ALGORHYTHM",
-      display = {"start"},
       style = Text.Style(
         typeface = "Orbitron-Semibold",
         size = 100,
+      ),
+      display = Displayed(
+        show = {"start"},
+        layer = 15,
       ),
     ),
     Button(
@@ -71,7 +74,10 @@ def setup():
       size = ui.button.size,
       text = "PLAY",
       root = roots.switch.state("home"),
-      display = {"start"},
+      display = Displayed(
+        show = {"start"},
+        layer = 15,
+      ),
     ),
     Button(
       id = "start.tutorial",
@@ -79,7 +85,10 @@ def setup():
       size = ui.button.size,
       text = "TUTORIAL",
       root = roots.switch.tutorial,
-      display = {"start"},
+      display = Displayed(
+        show = {"start"},
+        layer = 15,
+      ),
     ),
     Button(
       id = "start.settings",
@@ -87,7 +96,10 @@ def setup():
       size = ui.button.size,
       text = "SETTINGS",
       root = roots.switch.state("settings"),
-      display = {"start"},
+      display = Displayed(
+        show = {"start"},
+        layer = 15,
+      ),
     ),
     Text(
       id = "start.version",
@@ -96,7 +108,10 @@ def setup():
       style = Text.Style(
         align = (1, 1),
       ),
-      display = {"start"},
+      display = Displayed(
+        show = {"start"},
+        layer = 15,
+      ),
     ),
   ]
 
@@ -109,7 +124,10 @@ def setup():
         typeface = "Orbitron-Semibold",
         size = 100,
       ),
-      display = {"settings"},
+      display = Displayed(
+        show = {"settings"},
+        layer = 15,
+      ),
     ),
   ]
 
@@ -126,7 +144,10 @@ def setup():
         size = 69,
         align = (1, -1),
       ),
-      display = {"play"},
+      display = Displayed(
+        show = {"play"},
+        layer = 15,
+      ),
     ),
     ActiveText(
       id = "level.chain",
@@ -136,7 +157,10 @@ def setup():
         size = 69,
         align = (0, -1)
       ),
-      display = {"play"},
+      display = Displayed(
+        show = {"play"},
+        layer = 15,
+      ),
     ),
   ]
 

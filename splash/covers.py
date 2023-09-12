@@ -17,7 +17,7 @@ class Cover(py.sprite.Sprite):
     | :-------- | :--- | :---------- |
     | `alpha` | `num` | Starting alpha value of cover. |
     | `root` | `Callable` | Function replacing `self.update()`. |
-    | `bounds` | `[int, int]` | Lower and upper bounds of alpha value. (Cannot go outside 0–255 regardless.) |
+    | `bounds` | `[int, int]` | Lower and upper bounds of alpha value. |
     '''
 
     super().__init__(sprites.fade)

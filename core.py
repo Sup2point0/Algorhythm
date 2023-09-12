@@ -7,7 +7,6 @@ import pygame as py
 # This module is imported by almost every file. As such,
 # it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
 # These resource modules are an exception, since no other files import them.
-from resource.group import LayeredGroup
 from resource.difficulty import Difficulty
 
 
@@ -66,17 +65,19 @@ class sprites:
   lanes = py.sprite.Group()
   notes = py.sprite.Group()
   
-  active = LayeredGroup(layers = 9)  # rendered sprites
+  active = py.sprite.LayeredUpdates()  # rendered sprites
   '''
   | layer | description |
   | :---- | :---------- |
-  | 0 | Overlay |
-  | 1 | Screen cover |
-  | 2~4 | Splash interface |
-  | 5 | Animations |
+  | 21 | Overlay |
+  | 20 | Screen cover |
+  | 10~19 | Splash interface |
+  | 9 | Animations |
+  | 7~8 | ... |
   | 6 | Notes |
-  | 7 | Hitline |
-  | 8 | Lanes |
+  | 5 | Hitline |
+  | 4 | Lanes |
+  | 1~3 | Background |
   '''
 
 

@@ -7,7 +7,7 @@ import pygame as py
 from core import sprites, ui
 import util
 
-from splash.element import Element
+from splash.elements import Element
 from splash.text import Text
 
 
@@ -37,6 +37,7 @@ class Button(Element):
   
       self.edge = edge
 
+  
   def __init__(self, id, pos, size, text, root, style = None, display = None):
     '''Create a clickable button.
     
@@ -50,7 +51,7 @@ class Button(Element):
     Other base parameters are inherited from `splash.Element`.
     '''
 
-    super().__init__(id = id, pos = pos, display = display, groups = [sprites.splash])
+    super().__init__(id, pos, display = display, groups = [sprites.splash])
 
     self.size = size
     self.text = text

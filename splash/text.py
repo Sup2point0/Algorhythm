@@ -8,7 +8,7 @@ from pygame import freetype
 from core import sprites, ui
 import util
 
-from splash.element import Element
+from splash.elements import Element
 
 
 freetype.init()
@@ -33,6 +33,7 @@ class Text(Element):
       self.col = col or ui.col.text
       self.align = align or (0, 0)
 
+  
   def __init__(self, id, pos, text, style = None, display = None):
     '''Create a text element.
     
@@ -69,18 +70,16 @@ class ActiveText(Text):
   def __init__(self, id, pos, source, *args, **kwargs):
     '''Create a dynamic text element.
     
-    | argument | type | description |
-    | :------- | :--- | :---------- |
-    | `id` | | Unique attribute to identify text element. |
-    | `pos` | `[int, int]` | Coordinate where text element is positioned. |
-    | `source` | `Callable` | Function to call to fetch text to display. |
-    | `display` | `list[str]` | List of screen states where button will be shown. |
-    | `style` | `splash.text.Style` | Dictionary of style settings for text. |
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `source` | `Callable` | Function called to fetch displayed text. |
+
+    Other base parameters are inherited from `splash.Text` and `splash.Element`.
     '''
 
     self.source = source
 
-    super().__init__(id = id, pos = pos, text = None, *args, **kwargs)
+    super().__init__(id, pos, text = None, *args, **kwargs)
 
   def update(self):
     self.image, self.rect = Text.render(text = self.source(), style = self.style)
