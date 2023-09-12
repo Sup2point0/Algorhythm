@@ -38,6 +38,7 @@ class main:
     for event in game.events:
       if event.type == QUIT:
         game.state = None
+        return
       
       elif event.type == KEYDOWN:
         key = event.key
@@ -84,6 +85,8 @@ class main:
 
         if action == K_w:
           game.state = None
+          return
+        
         elif action == K_SPACE:
           main.pause()
 
@@ -155,7 +158,6 @@ splash.loadsequence(display)
 
 ## loop
 while game.state is not None:
-  print(sprites.splash)
   main.events()
   
   if game.state is None:
