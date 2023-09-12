@@ -1,15 +1,14 @@
 '''
-Global variables and constants
+Global variables and constants for all modules to access
 '''
-
 
 import pygame as py
 
 # This module is imported by almost every file. As such,
 # it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
+# These resource modules are an exception, since no other files import them.
 from resource.group import LayeredGroup
 from resource.difficulty import Difficulty
-# These resource modules are an exception, since no other files import them.
 
 
 ## globals
@@ -29,7 +28,7 @@ class game:
   player = None
   level = None
 
-  events = []
+  events = []  # tracks events in frame
   keys = []  # tracks current pressed keys
   pulse = py.time.Clock()  # game timer
 
@@ -67,15 +66,17 @@ class sprites:
   lanes = py.sprite.Group()
   notes = py.sprite.Group()
   
-  active = LayeredGroup(layers = 4)  # rendered sprites
+  active = LayeredGroup(layers = 9)  # rendered sprites
   '''
   | layer | description |
   | :---- | :---------- |
-  | 0 | Core splash elements (navigation buttons and the like) |
-  | 1 | Animations |
-  | 2 | Notes |
-  | 3 | Hitline |
-  | 4 | Lanes |
+  | 0 | Overlay |
+  | 1 | Screen cover |
+  | 2~4 | Splash interface |
+  | 5 | Animations |
+  | 6 | Notes |
+  | 7 | Hitline |
+  | 8 | Lanes |
   '''
 
 
