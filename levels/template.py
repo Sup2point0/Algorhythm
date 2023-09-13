@@ -2,7 +2,6 @@
 Artist – Track
 '''
 
-
 from level.level import Chart
 from level.notes import TapNote, HoldNote
 from level.action import Action
