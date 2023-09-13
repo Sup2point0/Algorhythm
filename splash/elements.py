@@ -26,7 +26,7 @@ class Displayed:
     self.hide = hide or set()
     self.layer = layer
     self.fade = fade
-    self.lock = lock or lambda: False
+    self.lock = lock or (lambda: False)
 
 
 class Element(py.sprite.Sprite):
@@ -35,7 +35,7 @@ class Element(py.sprite.Sprite):
   class Style:
     '''Base style class from which all style classes derive.'''
 
-    def update(self, *kwargs):
+    def update(self, **kwargs):
       '''Update style settings.
 
       Useful for dynamically altering a style setting.
@@ -43,7 +43,7 @@ class Element(py.sprite.Sprite):
 
       for kwarg in kwargs:
         if hasattr(self, kwarg):
-          self[kwarg] = kwargs[kwarg]
+          self.__setattr__(kwarg, kwargs[kwarg])
   
 
   def __init__(self,

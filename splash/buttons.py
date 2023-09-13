@@ -30,11 +30,11 @@ class Button(Element):
       self.edge = edge
   
       cols = col or {}
-      self.colstates = {
-        state: col.get(state, vars(ui.col.button)[state])
+      self.cols = {
+        state: cols.get(state, vars(ui.col.button)[state])
         for state in ["idle", "hover", "click", "lock"]
       }
-      self.col = self.colstates["idle"]
+      self.col = self.cols["idle"]
       self.text = textstyle or Text.Style()
 
   
@@ -73,7 +73,7 @@ class Button(Element):
     self.rect.x, self.rect.y = util.root(self.rect, *self.pos)
     
     interaction = super().interact()
-    self.style.text.update(col = self.style.text.colstates[interaction])
+    self.style.text.update(col = self.style.text.cols[interaction])
     if interaction in {"idle", "hover"}:  # NOTE is set faster?
       if interaction == "idle":
         if self.anim.coltick > 0:
@@ -83,13 +83,13 @@ class Button(Element):
           self.anim.coltick += 0.1
       
       self.anim.col = util.interpolate.col(
-        start = self.style.colstates["idle"],
-        stop = self.style.colstates["hover"],
+        start = self.style.cols["idle"],
+        stop = self.style.cols["hover"],
         percent = self.anim.coltick,
       )
     
     else:
-      self.anim.col = self.style.colstates[interaction]
+      self.anim.col = self.style.cols[interaction]
     
     ## render
     py.draw.rect(

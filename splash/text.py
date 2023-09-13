@@ -20,7 +20,7 @@ class Text(Element):
   class Style(Element.Style):
     '''A text style.'''
   
-    def __init__(self, *, typeface = None, size = None, col: dict = None, align = None):
+    def __init__(self, *, typeface = None, size = None, col: ... = dict(), align = None):
       '''Create a text style.
   
       Arguments are set to internal defaults if unspecified.
@@ -32,11 +32,14 @@ class Text(Element):
       self.size = size or ui.font.size
       self.align = align or (0, 0)
 
-      self.colstates = {
-        state: col.get(state, vars(ui.col.text)[state])
-        for state in ["idle", "hover", "click", "lock"]
-      }
-      self.col = self.colstates["idle"]
+      if isinstance(col, dict):
+        self.cols = {
+          state: col.get(state, vars(ui.col.text)[state])
+          for state in ["idle", "hover", "click", "lock"]
+        }
+        self.col = self.cols["idle"]
+      else:
+        self.col = col
 
   
   def __init__(self, id, pos, text, style = None, display = None):

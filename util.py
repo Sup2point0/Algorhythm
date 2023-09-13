@@ -2,9 +2,11 @@
 Utility classes and functions
 '''
 
+import random as ran
+import json
 import colorsys
 
-from core import screen, config
+from core import screen, sprites, config
 
 
 ## generic
@@ -120,7 +122,7 @@ class find:
   def col(key):
     '''Find suitable colour for a game key.'''
     
-    return globals()[f"opt.col.keys.{util.find.row(key)}"]
+    return globals()[f"opt.col.keys.{find.row(key)}"]
 
 
 class interpolate:
@@ -134,8 +136,8 @@ class interpolate:
   def col(start, stop, percent: float = 0.5):
     '''Interpolate between 2 colours. Alpha is not taken into account.'''
 
-    lower = colorsys.rgb_to_hsv(*start)
-    upper = colorsys.rgb_to_hsv(*stop)
+    lower = colorsys.rgb_to_hsv(*start[:3])
+    upper = colorsys.rgb_to_hsv(*stop[:3])
 
     return colorsys.hsv_to_rgb(
       lower[0] + percent * (upper[0] - lower[0]),
