@@ -28,7 +28,7 @@ class Text(Element):
       `align` should be a tuple of 2 `int`s, representing x and y alignment, respectively. `0` for centre, `1` for right / bottom, `-1` for left / top.
       '''
   
-      self.typeface = typeface or ui.font.typeface
+      self.typeface = typeface or ui.font.body
       self.size = size or ui.font.size
       self.col = col or ui.col.text
       self.align = align or (0, 0)
