@@ -16,7 +16,6 @@ from splash import splash
 from levels import levels
 
 ## NOTE testing
-from random import choice
 from time import time
 tick = time()
 diffs = []
@@ -47,10 +46,6 @@ class main:
           main.pause()
 
         ## NOTE testing
-        elif key == K_RETURN:
-          lanes = sprites.lanes.sprites()
-          choice(lanes).switch()
-
         elif key == K_SPACE:
           print(level.beat); break
           global tick, diffs
