@@ -125,7 +125,8 @@ class screen:
 ## settings
 class ui:
   class font:
-    typeface = "Abel-Regular"
+    body = "Abel-Regular"
+    title = "Orbitron-Semibold"
     size = 25
 
   class button:
