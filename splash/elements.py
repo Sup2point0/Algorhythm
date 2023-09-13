@@ -10,7 +10,7 @@ from core import sprites, screen
 class Displayed:
   '''Settings for displaying a sprite.'''
 
-  def __init__(self, *, show = None, hide = None, layer = None, fade = False):
+  def __init__(self, *, show = None, hide = None, layer = None, fade = False, lock = None):
     '''Create a display settings configuration.
     
     | parameter | type | description |
@@ -19,12 +19,14 @@ class Displayed:
     | `hide` | `set[str]` | Set of screen states to hide the sprite. |
     | `false` | `bool` | Show or hide the sprite with a fade animation. |
     | `layer` | `int` | Layer to render sprite. |
+    | `lock` | `Callable` | Function called to check if sprite should be locked from interaction. |
     '''
 
     self.show = show or set()
     self.hide = hide or set()
     self.layer = layer
     self.fade = fade
+    self.lock = lock or lambda: False
 
 
 class Element(py.sprite.Sprite):
@@ -57,13 +59,17 @@ class Element(py.sprite.Sprite):
     self.y = xy[1]
 
     if interact:
+      self.lock = display.lock
       self.hover = False
       self.click = False
 
   def visible(self):
     '''Show or hide sprite depending on current screen state.'''
 
-    if (screen.state in self.display.show) and (screen.state not in self.display.hide):
+    if (
+      screen.state in self.display.show or
+      self.display.hide and screen.state not in self.display.hide
+    ):
       sprites.active.add(self, layer = self.display.layer)
     else:
       sprites.active.remove(self)
@@ -73,6 +79,9 @@ class Element(py.sprite.Sprite):
 
     If element is clicked, call `root` if passed in, or `self.root` if available.
     '''
+
+    if self.lock():
+      return "lock"
 
     down = py.mouse.get_pressed()[0]
 
@@ -90,6 +99,8 @@ class Element(py.sprite.Sprite):
       elif down and self.hover:  # clicked
         self.click = True
         return "click"
+      
+      return "idle"
 
     else:  # not hovering
       self.hover = False

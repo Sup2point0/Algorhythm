@@ -65,29 +65,8 @@ class Button(Element):
     self.rect = self.image.get_rect()
     self.rect.x, self.rect.y = util.root(self.rect, *self.pos)
     
-    ## hover and click
     interaction = super().interact()
     col = vars(self.style.col)[interaction]
-    # down = any(py.mouse.get_pressed())
-    # if self.rect.collidepoint(py.mouse.get_pos()):
-    #   if not down:  # hovered
-    #     if self.click:  # clicked and released
-    #       self.root()
-    #     self.hover = True
-    #     self.click = False
-    #     col = self.style.col.hover
-      
-    #   elif down and self.hover:  # clicked
-    #     self.click = True
-    #     col = self.style.col.click
-
-    #   else:
-    #     col = self.style.col.idle
-    
-    # else:  # not hovering
-    #   self.hover = False
-    #   self.click = False
-    #   col = self.style.col.idle
     
     ## render button
     py.draw.rect(
