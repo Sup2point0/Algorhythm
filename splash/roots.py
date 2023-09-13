@@ -6,7 +6,10 @@ Often, sprites will take a `root` argument when instantiated. This is a `Callabl
 This file centralises the functionality of various sprites, as well as providing functions to dynamically generate other functions. This is useful for sprites that have similar but slightly differing functionality – such as a button switching to a particular screen.
 '''
 
-from core import game, screen, config
+import random as ran
+
+from core import game, sprites, screen, config
+import util
 
 from levels import levels
 
