@@ -43,14 +43,14 @@ class Note(py.sprite.Sprite):
         lane.notes.add(self)
         sprites.notes.add(self)
         self.col = vars(opt.col)[util.findrow(lane.key)]
-        # TODO colour selection should be dynamic
+        break
 
     self.speed = self.speed or config.difficulties[level.chart.difficulty].speed
 
   def update(self):
     sprites.active.add(self, layer = 2)
 
-    ## position      
+    ## process      
     self.rect.topleft = util.root(
       rect = self.rect,
       x = self.lane.cx,
@@ -59,6 +59,10 @@ class Note(py.sprite.Sprite):
       
     if self.rect.y >= screen.y:
       self.pop()
+
+    ## render
+    self.col = vars(opt.col)[util.findrow(self.lane.key)]
+    self.image.fill(py.Color(self.col))
 
   def accuracy(self, beat) -> str | None:
     '''Return accuracy of note hit.'''
