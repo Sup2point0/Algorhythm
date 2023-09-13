@@ -17,7 +17,7 @@ freetype.init()
 class Text(Element):
   '''A static text element.'''
 
-  class Style:
+  class Style(Element.Style):
     '''A text style.'''
   
     def __init__(self, *, typeface = None, size = None, col: dict = None, align = None):
