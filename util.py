@@ -71,18 +71,6 @@ def overwrite(file, content: str):
 
 
 ## niche
-def findrow(key) -> str:
-  '''Find which row of the keyboard a key belongs to.'''
-
-  if key in config.keys.upper:
-    return "upper"
-  elif key in config.keys.home:
-    return "home"
-  elif key in config.keys.lower:
-    return "lower"
-  else:
-    return "spec"
-  
 def setscore(score, digits: int = None) -> str:
   '''Add zeroes to the front of a value such that it is `digits` long.'''
 
@@ -92,7 +80,48 @@ def setscore(score, digits: int = None) -> str:
     digits = len(str(config.score.apex))
 
   return (f"{'0' * (digits - places)}{score}") if places < digits else points
+
+def randkey(rows: list[str] = None):
+  '''Randomly select a key from the game keys.
   
+  The row(s) from which the key is selected can be restricted by specifying `rows`.
+  '''
+  
+  def taken(key):
+    return has((lane.key for lane in sprites.lanes), key, every = False)
+  
+  if rows is None:
+    keys = [key for key in config.keys.all if not taken(key)]
+  else:
+    keys = [
+      key for row in rows
+      for key in globals()[f"config.keys.{row}"]
+      if not taken(key)
+    ]
+  
+  return ran.choice(keys)
+
+
+class find:
+  '''Functions involving finding.'''
+
+  def row(key) -> str:
+    '''Find which row of the keyboard a key belongs to.'''
+  
+    if key in config.keys.upper:
+      return "upper"
+    elif key in config.keys.home:
+      return "home"
+    elif key in config.keys.lower:
+      return "lower"
+    else:
+      return "spec"
+
+  def col(key):
+    '''Find suitable colour for a game key.'''
+    
+    return globals()[f"opt.col.keys.{util.find.row(key)}"]
+
 
 class interpolate:
   '''Functions involving interpolation.'''
