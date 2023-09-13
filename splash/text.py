@@ -32,11 +32,11 @@ class Text(Element):
       self.size = size or ui.font.size
       self.align = align or (0, 0)
 
-      self.states = {
+      self.colstates = {
         state: col.get(state, vars(ui.col.text)[state])
         for state in ["idle", "hover", "click", "lock"]
       }
-      self.col = states["idle"]
+      self.col = self.colstates["idle"]
 
   
   def __init__(self, id, pos, text, style = None, display = None):
