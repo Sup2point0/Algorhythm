@@ -43,7 +43,7 @@ class Element(py.sprite.Sprite):
 
       for kwarg in kwargs:
         if hasattr(self, kwarg):
-          self[kwarg] = kwargs[kwarg])
+          self[kwarg] = kwargs[kwarg]
   
 
   def __init__(self,
