@@ -60,6 +60,7 @@ class Button(Element):
 
     class anim:
       col = self.style.col
+      coltick = 0
 
     self.anim = anim
 
@@ -72,8 +73,23 @@ class Button(Element):
     self.rect.x, self.rect.y = util.root(self.rect, *self.pos)
     
     interaction = super().interact()
-    self.anim.col = self.style.colstates[interaction]
     self.style.text.update(col = self.style.text.colstates[interaction])
+    if interaction in {"idle", "hover"}:  # NOTE is set faster?
+      if interaction == "idle":
+        if self.anim.coltick > 0:
+          self.anim.coltick -= 0.1
+      else:
+        if self.anim.coltick < 1:
+          self.anim.coltick += 0.1
+      
+      self.anim.col = util.interpolate.col(
+        start = self.style.colstates["idle"],
+        stop = self.style.colstates["hover"],
+        percent = self.anim.coltick,
+      )
+    
+    else:
+      self.anim.col = self.style.colstates[interaction]
     
     ## render
     py.draw.rect(
