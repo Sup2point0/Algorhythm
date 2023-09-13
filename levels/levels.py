@@ -1,12 +1,13 @@
 '''
 Algorhythm levels
-'''
 
+This module collects all the levels defined in individual files in `levels/` into a single list `charts`.
+'''
 
 from level.level import Track
 
 from levels import (
-  EndOfTime
+  EndOfTime,
 )
 
 
@@ -17,7 +18,7 @@ charts = [
     offset = 0,
     vol = 1.0,
     charts = [
-      EndOfTime.tutorial
+      EndOfTime.tutorial,
     ]
   ),
   # Track("Playmaker – Victory Theme",
