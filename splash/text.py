@@ -32,9 +32,9 @@ class Text(Element):
       self.size = size or ui.font.size
       self.align = align or (0, 0)
 
-      states = {
-        state: col.get(state, vars(ui.col.text)[state]
-        for state in ["idle", "hover", "click", "lock"])
+      self.states = {
+        state: col.get(state, vars(ui.col.text)[state])
+        for state in ["idle", "hover", "click", "lock"]
       }
       self.col = states["idle"]
 
