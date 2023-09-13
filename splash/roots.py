@@ -35,6 +35,44 @@ class switch:
     levels.charts[0].start(difficulty = 0)
 
 
+class shock:
+  '''Functions for shock notes. The shock note calling the root should pass itself in as an argument.'''
+  
+  def key(key: str | list[str] = None):
+    '''Change key of lane.'''
+    
+    def root(self):
+      if not isinstance(key, str):
+        key = util.randkey(key)
+      
+      self.lane.key = key
+    
+    return root
+  
+  def lane(index = None):
+    '''Change index of lane.'''
+    
+    def root(self):
+      self.lane.switch(index)
+    
+    return root
+  
+  def lanes(lanes: list[int] = None):
+    '''Shuffle all lanes around.'''
+    
+    def root(self):
+      if lanes is None:
+        lanes = list(range(len(sprites.lanes)))
+      
+      pend = [lane for lane in sprites.lanes if lane.index in lanes]
+      ran.shuffle(pend)
+      
+      for i, lane in enumerate(pend):
+        lane.index = lanes[i]
+    
+    return root
+
+
 class fade:
   '''Functions for screen covers.'''
 
