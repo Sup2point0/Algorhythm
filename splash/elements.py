@@ -32,6 +32,20 @@ class Displayed:
 class Element(py.sprite.Sprite):
   '''Base class from which all splash sprites derive.'''
 
+  class Style:
+    '''Base style class from which all style classes derive.'''
+
+    def update(self, *kwargs):
+      '''Update style settings.
+
+      Useful for dynamically altering a style setting.
+      '''
+
+      for kwarg in kwargs:
+        if hasattr(self, kwarg):
+          self[kwarg] = kwargs[kwarg])
+  
+
   def __init__(self,
     id: str,
     pos = None,
