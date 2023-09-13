@@ -61,7 +61,7 @@ def setup():
       pos = [screen.cx, screen.cy * 0.5],
       text = "ALGORHYTHM",
       style = Text.Style(
-        typeface = "Orbitron-Semibold",
+        typeface = ui.font.title,
         size = 100,
       ),
       display = Displayed(
@@ -102,6 +102,17 @@ def setup():
         layer = 15,
       ),
     ),
+    Button(
+      id = "start.about",
+      pos = [screen.cx, screen.cy * 1.75],
+      size = ui.button.size,
+      text = "ABOUT",
+      root = roots.switch.state("about"),
+      display = Displayed(
+        show = {"start"},
+        layer = 15,
+      ),
+    ),
     Text(
       id = "start.version",
       pos = [screen.x - 50, screen.y - 50],
@@ -122,11 +133,27 @@ def setup():
       pos = [screen.cx, screen.cy * 0.5],
       text = "SETTINGS",
       style = Text.Style(
-        typeface = "Orbitron-Semibold",
+        typeface = ui.font.title,
         size = 100,
       ),
       display = Displayed(
         show = {"settings"},
+        layer = 15,
+      ),
+    ),
+  ]
+
+  about = [
+    Text(
+      id = "about.title",
+      pos = [screen.cx, screen.cy * 0.5],
+      text = "ABOUT",
+      style = Text.Style(
+        typeface = ui.font.title,
+        size = 100,
+      ),
+      display = Displayed(
+        show = {"about"},
         layer = 15,
       ),
     ),
