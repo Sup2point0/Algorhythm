@@ -20,7 +20,7 @@ class Text(Element):
   class Style(Element.Style):
     '''A text style.'''
   
-    def __init__(self, *, typeface = None, size = None, col: ... = dict(), align = None):
+    def __init__(self, *, typeface = None, size = None, col = dict(), align = None):
       '''Create a text style.
   
       Arguments are set to internal defaults if unspecified.
@@ -66,7 +66,7 @@ class Text(Element):
     self.rect.x, self.rect.y = util.root(self.rect, *self.pos, align = self.style.align)
 
   @ classmethod
-  def render(cls, text, style = Style()) -> (py.Surface, py.Rect):
+  def render(cls, text, style = Style()) -> tuple[py.Surface, py.Rect]:
     '''Generates a surface and its rect with rendered text.'''
 
     return freetype.Font(f"assets/fonts/{style.typeface}.ttf", style.size).render(text, style.col)

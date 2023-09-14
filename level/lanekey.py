@@ -24,7 +24,7 @@ class LaneKey(py.sprite.Sprite):
     self.alpha = util.Alpha(0)
     self.style = Text.Style(
       typeface = "Orbitron-Semibold",
-      size = 20,
+      size = 69,
       col = util.find.col(self.key),
     )
     
@@ -35,15 +35,14 @@ class LaneKey(py.sprite.Sprite):
   
   def update(self):
     if not self.lane.alive():
-      print("killed")
       self.kill()
     else:
-      sprites.active.add(self, layer = sprites.layers["lanekeys"])
+      sprites.active.add(self, layer = sprites.active.layer["lanekeys"])
   
     ## animate
-    if level.tick < 600:
-      if level.tick > 15 + self.lane.index * 15:
-        self.alpha.alt(-4)
+    if level.tick < 120:
+      if level.tick > 15 + self.lane.index * 6:
+        self.alpha.alt(4)
         self.anim.size = util.slide(self.anim.size, self.style.size, speed = 10)
     
     else:
@@ -62,8 +61,9 @@ class LaneKey(py.sprite.Sprite):
         col = util.find.col(self.key),
       )
     )
-    
+
+    self.image.set_alpha(self.alpha.value)
     self.rect.topleft = util.root(self.rect,
-      x = self.lane.x,
+      x = self.lane.cx,
       y = screen.y - config.lanespace * 2,
     )

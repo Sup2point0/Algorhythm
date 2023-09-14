@@ -86,6 +86,8 @@ class Lane(py.sprite.Sprite):
 
     self.rect.topleft = [self.x, self.y]
 
+    self.lanekey.update()
+
   def pop(self):
     '''Attempt to hit the closest note in the lane.'''
 
