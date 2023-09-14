@@ -113,21 +113,19 @@ class sprites:
   notes = py.sprite.Group()
   
   active = py.sprite.LayeredUpdates()
-  '''Rendered sprites.
-  
-  | layer | description |
-  | :---- | :---------- |
-  | 21 | Overlay |
-  | 20 | Screen cover |
-  | 10~19 | Splash interface |
-  | 8~9 | Effects |
-  | 7 | ... |
-  | 6 | Notes |
-  | 5 | Hitline |
-  | 4 | Lane key indicators |
-  | 3 | Lanes |
-  | 0~2 | Background |
-  '''
+  layers = {  # NOTE set as attribute?
+    "fade": 21,
+    "overlay": 20,
+    "covers": 19,
+    "splash": 10,
+    "hints": 9,
+    "effects": 8,
+    "notes": 7,
+    "hitline": 6,
+    "lanekeys": 5,
+    "lanes": 4,
+    "back": 1,
+  }
 
 
 ## settings
