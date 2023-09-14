@@ -95,8 +95,13 @@ class screen:
   cy = y / 2
 
   class shake:
+    # magnitude
     x = 0
     y = 0
+    
+    # vector
+    dx = 0
+    dy = 0
 
 
 class sprites:
