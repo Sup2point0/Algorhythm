@@ -6,7 +6,7 @@ import pygame as py
 
 # This module is imported by almost every file. As such,
 # it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
-# These resource modules are an exception, since no other files import them.
+# This resource module us an exception, since no other files imports it.
 from resource.difficulty import Difficulty
 
 
@@ -54,33 +54,6 @@ class level:
   lanespace = 0
 
 
-class sprites:
-  '''Sprite groups.'''
-
-  splash = py.sprite.Group()
-  pause = py.sprite.Group()
-  fade = py.sprite.Group()
-
-  lines = py.sprite.Group()
-  lanes = py.sprite.Group()
-  notes = py.sprite.Group()
-  
-  active = py.sprite.LayeredUpdates()  # rendered sprites
-  '''
-  | layer | description |
-  | :---- | :---------- |
-  | 21 | Overlay |
-  | 20 | Screen cover |
-  | 10~19 | Splash interface |
-  | 9 | Animations |
-  | 7~8 | ... |
-  | 6 | Notes |
-  | 5 | Hitline |
-  | 4 | Lanes |
-  | 1~3 | Background |
-  '''
-
-
 class screen:
   '''Variables relating to the screen.
   
@@ -120,6 +93,37 @@ class screen:
   size = [x, y]
   cx = x / 2
   cy = y / 2
+
+  class shake:
+    x = 0
+    y = 0
+
+
+class sprites:
+  '''Sprite groups.'''
+
+  splash = py.sprite.Group()
+  pause = py.sprite.Group()
+  fade = py.sprite.Group()
+
+  lines = py.sprite.Group()
+  lanes = py.sprite.Group()
+  notes = py.sprite.Group()
+  
+  active = py.sprite.LayeredUpdates()  # rendered sprites
+  '''
+  | layer | description |
+  | :---- | :---------- |
+  | 21 | Overlay |
+  | 20 | Screen cover |
+  | 10~19 | Splash interface |
+  | 9 | Animations |
+  | 7~8 | ... |
+  | 6 | Notes |
+  | 5 | Hitline |
+  | 4 | Lanes |
+  | 1~3 | Background |
+  '''
 
 
 ## settings
