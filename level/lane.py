@@ -7,7 +7,7 @@ import random as ran
 import pygame as py
 from pygame.locals import *
 
-from core import game, level, sprites, screen, ui, config, opt
+from core import game, level, screen, sprites, ui, config, opt
 import util
 
 

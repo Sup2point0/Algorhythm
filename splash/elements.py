@@ -4,7 +4,7 @@ Base splash element
 
 import pygame as py
 
-from core import sprites, screen
+from core import screen, sprites
 
 
 class Displayed:

@@ -9,7 +9,7 @@ import sys
 import pygame as py
 from pygame.locals import *
 
-from core import game, level, sprites, screen, ui, config
+from core import game, level, screen, sprites, ui, config
 import util
 
 from splash import splash

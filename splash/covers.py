@@ -4,7 +4,7 @@ Screen transition cover
 
 import pygame as py
 
-from core import sprites, screen, config
+from core import screen, sprites, config
 
 
 class Cover(py.sprite.Sprite):

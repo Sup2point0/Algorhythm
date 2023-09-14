@@ -5,7 +5,7 @@ Level handling
 
 from pygame import mixer
 
-from core import game, level, sprites, screen, config, opt
+from core import game, level, screen, sprites, config, opt
 import util
 
 from level.hitline import Hitline

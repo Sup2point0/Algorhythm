@@ -8,7 +8,7 @@ This file centralises the functionality of various sprites, as well as providing
 
 import random as ran
 
-from core import game, sprites, screen, config
+from core import game, screen, sprites, config
 import util
 
 from levels import levels

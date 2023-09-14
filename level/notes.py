@@ -6,7 +6,7 @@ import random as ran
 
 import pygame as py
 
-from core import level, sprites, screen, config, opt
+from core import level, screen, sprites, config, opt
 import util
 
 
