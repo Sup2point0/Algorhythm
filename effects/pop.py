@@ -1,5 +1,5 @@
 '''
-Animation effects
+Note hit effects
 '''
 
 import pygame as py
@@ -58,7 +58,7 @@ class PopEffect(py.sprite.Sprite):
     self.rect.topleft = self.pos
     py.draw.circle(
       surface = self.image,
-      radius = self.anim.pop
+      radius = self.anim.pop,
       ...,
       width = 0,
     )
