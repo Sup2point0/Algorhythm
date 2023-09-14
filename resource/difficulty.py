@@ -1,5 +1,7 @@
 '''
 Game difficulties
+
+This module does not import any other in-game modules.
 '''
 
 
