@@ -6,7 +6,7 @@ Often, sprites will take a `root` argument when instantiated. This is a `Callabl
 This file centralises the functionality of various sprites, as well as providing functions to dynamically generate other functions. This is useful for sprites that have similar but slightly differing functionality – such as a button switching to a particular screen.
 '''
 
-import random as ran
+import random
 
 from core import game, screen, sprites, config
 import util
@@ -68,7 +68,7 @@ class shock:
         lanes = list(range(len(sprites.lanes)))
       
       pend = [lane for lane in sprites.lanes if lane.index in lanes]
-      ran.shuffle(pend)
+      random.shuffle(pend)
       
       for i, lane in enumerate(pend):
         lane.index = lanes[i]

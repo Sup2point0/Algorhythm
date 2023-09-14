@@ -2,7 +2,7 @@
 Note kinds
 '''
 
-import random as ran
+import random
 
 import pygame as py
 
@@ -33,9 +33,9 @@ class Note(py.sprite.Sprite):
     '''Spawn a note.'''
 
     if hasattr(self.lane, "__iter__"):
-      self.lane = ran.choice(self.lane)
+      self.lane = random.choice(self.lane)
     elif not isinstance(self.lane, int):
-      self.lane = ran.randint(0, len(sprites.lanes) - 1)
+      self.lane = random.randint(0, len(sprites.lanes) - 1)
     
     for lane in sprites.lanes:
       if lane.index == self.lane:

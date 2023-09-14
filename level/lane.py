@@ -2,7 +2,7 @@
 Note lanes
 '''
 
-import random as ran
+import random
 
 import pygame as py
 from pygame.locals import *
@@ -100,7 +100,7 @@ class Lane(py.sprite.Sprite):
     lanes = sorted(sprites.lanes.sprites(), key = lambda lane: lane.index)
     lanes.pop(self.index)
     if index is None:
-      index = ran.choice([i for i in range(len(lanes)) if i != self.index])
+      index = random.choice([i for i in range(len(lanes)) if i != self.index])
     lanes.insert(index, self)
     
     for lane in lanes:

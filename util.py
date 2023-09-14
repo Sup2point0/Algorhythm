@@ -2,7 +2,7 @@
 Utility classes and functions
 '''
 
-import random as ran
+import random
 import json
 import colorsys
 
@@ -106,7 +106,7 @@ def randkey(rows: list[str] = None):
       if not taken(key)
     ]
   
-  return ran.choice(keys)
+  return random.choice(keys)
 
 
 class find:

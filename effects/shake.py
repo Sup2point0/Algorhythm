@@ -5,12 +5,13 @@ This module does not import any other in-game modules.
 '''
 
 import random
+from enum import Enum
 
 
 class Shake:
   '''A class for handling shake effects in a particular axis.'''
 
-  style = enum("", ["pulse", "flux"])
+  style = Enum("", ["pulse", "flux"])
   '''Shake effect styles.
 
   | style | description |

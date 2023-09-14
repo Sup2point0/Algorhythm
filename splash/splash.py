@@ -3,7 +3,7 @@ Graphic interface functionality
 '''
 
 import math
-import random as ran
+import random
 
 import pygame as py
 
@@ -201,12 +201,12 @@ def loadsequence(display):
   class load:
     state = None
     tick = 0
-    percent = ran.randint(7, 20) / 100
+    percent = random.randint(7, 20) / 100
     alpha = util.Alpha(0)
 
     flavour = flavour.flavours.select()
 
-    py.mixer.music.load(f"assets/tracks/dawn{ran.randint(1, 3)}.mp3")
+    py.mixer.music.load(f"assets/tracks/dawn{random.randint(1, 3)}.mp3")
     py.mixer.music.set_volume(0.69)
     py.mixer.music.play()
 
@@ -248,13 +248,13 @@ def loadsequence(display):
         return
       elif event.type in [py.KEYDOWN, py.MOUSEBUTTONDOWN]:
         if load.percent < 1:
-          load.percent += ran.randint(2, 9) / 600
+          load.percent += random.randint(2, 9) / 600
 
     # tick variables
     if load.state is True:
       load.tick += 1
-      if ran.random() < load.percent:
-        load.percent += ran.randint(2, 9) / 600
+      if random.random() < load.percent:
+        load.percent += random.randint(2, 9) / 600
       load.alpha.alt(4)
     else:
       load.state -= 1
