@@ -97,8 +97,8 @@ class screen:
   origin = [cx, cy]
 
   class shake:
-    x = Shake("x")
-    y = Shake("y")
+    x = Shake()
+    y = Shake()
 
 
 class sprites:
