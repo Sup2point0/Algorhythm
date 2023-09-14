@@ -112,8 +112,9 @@ class sprites:
   lanes = py.sprite.Group()
   notes = py.sprite.Group()
   
-  active = py.sprite.LayeredUpdates()  # rendered sprites
-  '''
+  active = py.sprite.LayeredUpdates()
+  '''Rendered sprites.
+  
   | layer | description |
   | :---- | :---------- |
   | 21 | Overlay |
@@ -123,8 +124,9 @@ class sprites:
   | 7 | ... |
   | 6 | Notes |
   | 5 | Hitline |
-  | 4 | Lanes |
-  | 1~3 | Background |
+  | 4 | Lane key indicators |
+  | 3 | Lanes |
+  | 0~2 | Background |
   '''
 
 
