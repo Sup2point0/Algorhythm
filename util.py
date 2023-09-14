@@ -6,7 +6,7 @@ import random
 import json
 import colorsys
 
-from core import screen, sprites, config
+from core import screen, sprites, config, opt
 
 
 ## generic
@@ -127,7 +127,7 @@ class find:
   def col(key):
     '''Find suitable colour for a game key.'''
     
-    return globals()[f"opt.col.keys.{find.row(key)}"]
+    return vars(opt.col)[find.row(key)]
 
 
 class interpolate:

@@ -10,6 +10,8 @@ from pygame.locals import *
 from core import game, level, screen, sprites, ui, config, opt
 import util
 
+from level.lanekey import LaneKey
+
 
 class Lane(py.sprite.Sprite):
   '''A lane where notes fall.'''
@@ -20,15 +22,17 @@ class Lane(py.sprite.Sprite):
     super().__init__()
 
     self.index = index
-    self.key = key or ...  # TODO algorithm for random key selection
+    self.key = key or util.randkey()
     self.hit = False
-    self.col = ...
+    self.col = util.find.col(self.key)
 
     self.x = screen.cx - 1
     self.y = 0
     self.cx = screen.cx
     self.size = [config.lanewidth, screen.y - config.lanespace / 2]
     self.notes = py.sprite.Group()
+
+    self.lanekey = LaneKey(self)
 
     class anim:
       size = [2, 2]

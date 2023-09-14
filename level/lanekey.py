@@ -2,7 +2,9 @@
 Lane key indicators
 '''
 
-from core import sprites
+import pygame as py
+
+from core import level, screen, sprites, config
 import util
 
 from splash.text import Text
