@@ -6,8 +6,9 @@ import pygame as py
 
 # This module is imported by almost every file. As such,
 # it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
-# This resource module us an exception, since no other files imports it.
+# Tese resource modules are exceptions, since they are safe to import.
 from resource.difficulty import Difficulty
+from effects.shake import Shake
 
 
 ## globals
@@ -90,18 +91,14 @@ class screen:
 
   x = 1280
   y = 720
-  size = [x, y]
   cx = x / 2
   cy = y / 2
+  size = [x, y]
+  origin = [cx, cy]
 
   class shake:
-    # magnitude
-    x = 0
-    y = 0
-    
-    # vector
-    dx = 0
-    dy = 0
+    x = Shake("x")
+    y = Shake("y")
 
 
 class sprites:
