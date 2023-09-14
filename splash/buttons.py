@@ -87,6 +87,7 @@ class Button(Element):
         stop = self.style.cols["hover"],
         percent = self.anim.coltick,
       )
+      self.anim.col = self.style.cols[interaction]
     
     else:
       self.anim.col = self.style.cols[interaction]

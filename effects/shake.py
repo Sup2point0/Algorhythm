@@ -20,7 +20,7 @@ class Shake:
   | `flux` | Rapidly flux between both directions. |
   '''
 
-  def __init__(self, shake = 0, decay: int = 1, style = Shake.style.pulse):
+  def __init__(self, shake = 0, decay: int = 1, style = None):
     '''Create a shake effect in a specified `axis`.
     
     | parameter | type | description |
@@ -33,7 +33,7 @@ class Shake:
     self.shake = shake
     self.vect = 0
     self.decay = decay
-    self.style = shake
+    self.style = style or Shake.style.pulse
   
   def __call__(self):
     return self.vect

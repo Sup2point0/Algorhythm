@@ -110,8 +110,7 @@ class Track:
       note.spawn()
       sprites.notes.add(note)
     
-    mixer.music.load(f"assets/tracks/{self.file}")
-    mixer.music.set_volume(self.vol)
+    mixer.music.fadeout(1000)
 
     level.started = False  # only becomes True once music starts
 
@@ -124,6 +123,8 @@ class Track:
     if not mixer.music.get_busy():
       if not level.started:
         if level.tick > 60:
+          mixer.music.load(f"assets/tracks/{self.file}")
+          mixer.music.set_volume(self.vol)
           mixer.music.play()
           level.started = True
       else:

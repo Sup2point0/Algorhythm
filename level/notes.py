@@ -42,7 +42,7 @@ class Note(py.sprite.Sprite):
         self.lane = lane
         lane.notes.add(self)
         sprites.notes.add(self)
-        self.col = vars(opt.col)[util.findrow(lane.key)]
+        self.col = vars(opt.col)[util.find.row(lane.key)]
         break
 
     self.speed = self.speed or config.difficulties[level.chart.difficulty].speed
@@ -61,7 +61,7 @@ class Note(py.sprite.Sprite):
       self.pop()
 
     ## render
-    self.col = vars(opt.col)[util.findrow(self.lane.key)]
+    self.col = vars(opt.col)[util.find.row(self.lane.key)]
     self.image.fill(py.Color(self.col))
 
   def accuracy(self, beat) -> str | None:

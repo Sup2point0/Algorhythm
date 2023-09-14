@@ -8,6 +8,8 @@ This file centralises the functionality of various sprites, as well as providing
 
 import random
 
+import pygame as py
+
 from core import game, screen, sprites, config
 import util
 

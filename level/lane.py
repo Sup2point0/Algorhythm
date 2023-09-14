@@ -52,7 +52,7 @@ class Lane(py.sprite.Sprite):
     self.anim.size[0] = util.slide(self.anim.size[0], self.size[0], 5)
     self.anim.size[1] = util.slide(self.anim.size[1], self.size[1], 5)
 
-    self.col = vars(opt.col)[util.findrow(self.key)][:3]
+    self.col = vars(opt.col)[util.find.row(self.key)][:3]
     if self.anim.coltick > 0:
       self.anim.coltick -= 0.1
     self.col.append(round(util.interpolate.value(
