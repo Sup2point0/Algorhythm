@@ -41,6 +41,11 @@ def index(iterable, *values, check = False) -> int | tuple[int, any] | None:
 
 
 ## engine
+def scale(x = 0.5, y = 0.5):
+  '''Return coordinates normalised to screen size, where the screen centre is the origin.'''
+
+  return (screen.cx * (x + 1), screen.cy * (y + 1))
+
 def root(rect, x = None, y = None, *, align = (0, 0)):
   '''Return coordinates to place a rect at the given position (considering its size).
   

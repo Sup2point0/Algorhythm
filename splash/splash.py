@@ -58,7 +58,7 @@ def setup():
     ),
     Text(
       id = "start.title",
-      pos = [screen.cx, screen.cy * 0.5],
+      pos = util.scale(0, -0.5),
       text = "ALGORHYTHM",
       style = Text.Style(
         typeface = ui.font.title,
@@ -71,7 +71,7 @@ def setup():
     ),
     Button(
       id = "start.play",
-      pos = [screen.cx, screen.cy * 1.0],
+      pos = util.scale(-0.25, -0.25),
       size = ui.button.size,
       text = "PLAY",
       root = roots.switch.state("home"),
@@ -82,7 +82,7 @@ def setup():
     ),
     Button(
       id = "start.tutorial",
-      pos = [screen.cx, screen.cy * 1.25],
+      pos = util.scale(-0.25, 0),
       size = ui.button.size,
       text = "TUTORIAL",
       root = roots.switch.tutorial,
@@ -93,7 +93,7 @@ def setup():
     ),
     Button(
       id = "start.settings",
-      pos = [screen.cx, screen.cy * 1.5],
+      pos = util.scale(-0.25, 0.25),
       size = ui.button.size,
       text = "SETTINGS",
       root = roots.switch.state("settings"),
@@ -104,7 +104,7 @@ def setup():
     ),
     Button(
       id = "start.about",
-      pos = [screen.cx, screen.cy * 1.75],
+      pos = util.scale(-0.25, 0.5),
       size = ui.button.size,
       text = "ABOUT",
       root = roots.switch.state("about"),
@@ -159,9 +159,9 @@ def setup():
     ),
   ]
 
-  home = [
+  account = []
 
-  ]
+  home = []
 
   play = [
     ActiveText(
@@ -191,6 +191,8 @@ def setup():
       ),
     ),
   ]
+
+  score = []
 
 
 def loadsequence(display):
