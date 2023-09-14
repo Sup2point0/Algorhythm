@@ -23,7 +23,7 @@ class PopEffect(py.sprite.Sprite):
     '''
 
     super().__init__(sprites.effects)
-    sprites.active.add(self, layer = 8)
+    sprites.active.add(self, layer = sprites.active.layer["effects"])
 
     self.pos = pos
     self.col = ui.col.perfect if acc == "perfect" else ui.col.hit

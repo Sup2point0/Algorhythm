@@ -35,6 +35,7 @@ class LaneKey(py.sprite.Sprite):
   
   def update(self):
     if not self.lane.alive():
+      print("killed")
       self.kill()
     else:
       sprites.active.add(self, layer = sprites.layers["lanekeys"])

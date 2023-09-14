@@ -20,7 +20,7 @@ class Hitline(py.sprite.Sprite):
     self.size = [2, 5]
 
   def update(self):
-    sprites.active.add(self, layer = 3)
+    sprites.active.add(self, layer = sprites.active.layer["hitline"])
 
     if level.tick > 30:
       self.size[0] = util.slide(self.size[0], screen.x, 10)

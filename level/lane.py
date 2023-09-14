@@ -41,7 +41,7 @@ class Lane(py.sprite.Sprite):
     self.anim = anim
 
   def update(self):
-    sprites.active.add(self, layer = 4)
+    sprites.active.add(self, layer = sprites.active.layer["lanes"])
 
     ## handle notes
     for event in game.events:

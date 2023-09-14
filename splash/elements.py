@@ -24,7 +24,7 @@ class Displayed:
 
     self.show = show or set()
     self.hide = hide or set()
-    self.layer = layer
+    self.layer = layer or sprites.active.layer["splash"]
     self.fade = fade
     self.lock = lock or (lambda: False)
 

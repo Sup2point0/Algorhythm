@@ -113,7 +113,7 @@ class sprites:
   notes = py.sprite.Group()
   
   active = py.sprite.LayeredUpdates()
-  layers = {  # NOTE set as attribute?
+  active.layer = {
     "fade": 21,
     "overlay": 20,
     "covers": 19,

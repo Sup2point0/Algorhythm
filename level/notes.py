@@ -48,7 +48,7 @@ class Note(py.sprite.Sprite):
     self.speed = self.speed or config.difficulties[level.chart.difficulty].speed
 
   def update(self):
-    sprites.active.add(self, layer = 2)
+    sprites.active.add(self, layer = sprites.active.layer["notes"])
 
     ## process      
     self.rect.topleft = util.root(
