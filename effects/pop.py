@@ -23,7 +23,7 @@ class PopEffect(py.sprite.Sprite):
     '''
 
     super().__init__(sprites.effects)
-    sprites.active.add(self, layer = 2)  # NOTE?
+    sprites.active.add(self, layer = 8)
 
     self.pos = pos
     self.col = ui.col.perfect if acc == "perfect" else ui.col.hit
@@ -48,9 +48,9 @@ class PopEffect(py.sprite.Sprite):
     if self.alpha.value == 0:
       return self.kill()
 
-    self.anim.pop = util.slide(self.anim.pop, 1, 2)
-    self.anim.poof = util.slide(self.anim.poof, self.size, 2)
-    self.anim.boop = util.slide(self.anim.boop, self.anim.poof, 2)
+    self.anim.pop = util.slide(self.anim.pop, 1, speed = 2)
+    self.anim.poof = util.slide(self.anim.poof, self.size, speed = 2)
+    self.anim.boop = util.slide(self.anim.boop, self.anim.poof, speed = 2)
 
     ## render
     self.image = py.Surface([self.size] * 2, py.SRCALPHA)
@@ -58,13 +58,15 @@ class PopEffect(py.sprite.Sprite):
     self.rect.topleft = self.pos
     py.draw.circle(
       surface = self.image,
+      color = self.col[:3] + [self.alpha.value],
+      centre = [self.size] * 2,
       radius = self.anim.pop,
-      ...,
       width = 0,
     )
     py.draw.circle(
       surface = self.image,
+      color = self.col[:3] + [self.alpha.value],
+      centre = [self.size] * 2,
       radius = self.anim.poof,
-      ...,
       width = self.anim.poof - self.anim.boop,
     )

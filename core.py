@@ -119,8 +119,8 @@ class sprites:
   | 21 | Overlay |
   | 20 | Screen cover |
   | 10~19 | Splash interface |
-  | 9 | Animations |
-  | 7~8 | ... |
+  | 8~9 | Effects |
+  | 7 | ... |
   | 6 | Notes |
   | 5 | Hitline |
   | 4 | Lanes |
@@ -137,6 +137,9 @@ class ui:
 
   class button:
     size = [200, 60]
+
+  class effect:
+    popsize = 50
 
   class col:
     back = [0, 23, 42]
@@ -194,7 +197,13 @@ class opt:
 
   keys = ["z", "x", "c", "v"]
 
+  class effect:
+    speed = -2
+
   class col:
+    hit = [255, 255, 255, 255]
+    perfect = [255, 0, 144, 255]
+    
     upper = [144, 64, 255]
     home = [255, 144, 32]
     lower = [64, 224, 255]
