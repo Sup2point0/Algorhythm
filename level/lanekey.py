@@ -35,7 +35,7 @@ class LaneKey(py.sprite.Sprite):
     if not self.lane.alive():
       self.kill()
     else:
-      sprites.active.add(self, layer = ...)
+      sprites.active.add(self, layer = sprites.layers["lanekeys"])
   
     ## animate
     if level.tick < 600:
