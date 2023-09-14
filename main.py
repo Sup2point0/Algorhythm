@@ -116,9 +116,9 @@ class main:
 
     if game.state:
       game.state -= 1
-    if game.state < 1:
-      game.state = True
-      py.mixer.music.unpause()
+      if game.state < 1:
+        game.state = True
+        py.mixer.music.unpause()
 
     sprites.fade.update()
     sprites.pause.update()
@@ -139,7 +139,7 @@ class main:
         game.state = False
         py.mixer.music.pause()
       else:
-        game.state = 180
+        game.state = 120
 
 
 ## setup
