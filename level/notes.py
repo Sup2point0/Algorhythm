@@ -9,6 +9,8 @@ import pygame as py
 from core import level, screen, sprites, config, opt
 import util
 
+from effects.pop import PopEffect
+
 
 class Note(py.sprite.Sprite):
   '''A base class from which all notes derive.'''
@@ -51,8 +53,7 @@ class Note(py.sprite.Sprite):
     sprites.active.add(self, layer = sprites.active.layer["notes"])
 
     ## process      
-    self.rect.topleft = util.root(
-      rect = self.rect,
+    self.rect.topleft = util.root(self.rect,
       x = self.lane.cx,
       y = sprites.lines.sprites()[0].rect.y - self.speed * (self.hit - level.beat)
     )
@@ -91,6 +92,12 @@ class Note(py.sprite.Sprite):
         level.apex = level.chain
       if acc == "perfect":
         level.perfect += 1
+      
+      PopEffect(
+        pos = [self.lane.x, self.lane.y],
+        acc = acc,
+      )
+    
     else:
       level.chain = 0
 
