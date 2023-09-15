@@ -20,12 +20,17 @@ class Text(Element):
   class Style(Element.Style):
     '''A text style.'''
   
-    def __init__(self, *, typeface = None, size = None, col = dict(), align = None):
+    def __init__(self, *, typeface = None, size = None, col = None, align = None):
       '''Create a text style.
+
+      | parameter | type | description |
+      | :-------- | :--- | :---------- |
+      | `typeface` | `str` | Name of font file. |
+      | `size` | `num` | |
+      | `col` | `Color`, `dict` | Either a single text colour, or a dictionary specifying colours for various states. |
+      | `align` | `int, int` | Alignment in x and y axes, respectively. `0` for centre, `1` for right / bottom, `-1` for left / top. |
   
       Arguments are set to internal defaults if unspecified.
-  
-      `align` should be a tuple of 2 `int`s, representing x and y alignment, respectively. `0` for centre, `1` for right / bottom, `-1` for left / top.
       '''
   
       self.typeface = typeface or ui.font.body
@@ -39,7 +44,7 @@ class Text(Element):
         }
         self.col = self.cols["idle"]
       else:
-        self.col = col
+        self.col = col or ui.col.text
 
   
   def __init__(self, id, pos, text, style = None, display = None):
