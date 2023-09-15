@@ -4,6 +4,7 @@ Graphic interface functionality
 
 import math
 import random
+import json
 
 import pygame as py
 
@@ -206,9 +207,17 @@ def loadsequence(display):
 
     flavour = flavour.flavours.select()
 
-    py.mixer.music.load(f"assets/tracks/dawn{random.randint(1, 3)}.mp3")
-    py.mixer.music.set_volume(0.69)
-    py.mixer.music.play()
+  py.mixer.music.load(f"assets/tracks/dawn{random.randint(1, 3)}.mp3")
+  py.mixer.music.set_volume(0.69)
+  py.mixer.music.play()
+
+  with open("process/data.json", "w+") as file:
+    data = json.load(file)
+
+    data["game"]["runs"] += 1
+    data["game"]["version"] = game.version
+
+    util.overwrite(file, data)
 
   ## 2.0 Studios
   while load.tick < 240:
