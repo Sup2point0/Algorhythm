@@ -59,7 +59,7 @@ def setup():
     ),
     Text(
       id = "start.title",
-      pos = util.scale(0, -0.5),
+      pos = util.cord(0, -0.5),
       text = "ALGORHYTHM",
       style = Text.Style(
         typeface = ui.font.title,
@@ -72,7 +72,7 @@ def setup():
     ),
     Button(
       id = "start.play",
-      pos = util.scale(-0.25, -0.25),
+      pos = util.cord(-0.75, -0.25),
       size = ui.button.size,
       text = "PLAY",
       root = roots.switch.state("home"),
@@ -83,7 +83,7 @@ def setup():
     ),
     Button(
       id = "start.tutorial",
-      pos = util.scale(-0.25, 0),
+      pos = util.cord(-0.75, 0),
       size = ui.button.size,
       text = "TUTORIAL",
       root = roots.switch.tutorial,
@@ -94,7 +94,7 @@ def setup():
     ),
     Button(
       id = "start.settings",
-      pos = util.scale(-0.25, 0.25),
+      pos = util.cord(-0.75, 0.25),
       size = ui.button.size,
       text = "SETTINGS",
       root = roots.switch.state("settings"),
@@ -105,7 +105,7 @@ def setup():
     ),
     Button(
       id = "start.about",
-      pos = util.scale(-0.25, 0.5),
+      pos = util.cord(-0.75, 0.5),
       size = ui.button.size,
       text = "ABOUT",
       root = roots.switch.state("about"),
@@ -131,7 +131,7 @@ def setup():
   settings = [
     Text(
       id = "settings.title",
-      pos = [screen.cx, screen.cy * 0.5],
+      pos = util.cord(0, -0.5),
       text = "SETTINGS",
       style = Text.Style(
         typeface = ui.font.title,
@@ -147,7 +147,7 @@ def setup():
   about = [
     Text(
       id = "about.title",
-      pos = [screen.cx, screen.cy * 0.5],
+      pos = util.cord(0, -0.5),
       text = "ABOUT",
       style = Text.Style(
         typeface = ui.font.title,
@@ -155,8 +155,15 @@ def setup():
       ),
       display = Displayed(
         show = {"about"},
-        layer = 15,
       ),
+    ),
+    Text(
+      id = "about.body.1",
+      pos = util.cord(0, -0.5),
+      text = f"Algorhythm v{game.version}",
+      display = Displayed(
+        show = {"about"},
+      )
     ),
   ]
 

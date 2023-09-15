@@ -41,7 +41,7 @@ def index(iterable, *values, check = False) -> int | tuple[int, any] | None:
 
 
 ## engine
-def scale(x = 0.5, y = 0.5):
+def cord(x = 0.5, y = 0.5):
   '''Return coordinates normalised to screen size, where the screen centre is the origin.'''
 
   return (screen.cx * (x + 1), screen.cy * (y + 1))
