@@ -73,7 +73,7 @@ def overwrite(file, content: str):
   '''Overwrite a JSON file with `content`.'''
 
   file.seek(0)
-  file.write(json.dumps(content, indent = 0))
+  file.write(json.dumps(content))
   file.truncate()
 
 

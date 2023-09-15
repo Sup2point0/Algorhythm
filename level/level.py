@@ -142,6 +142,7 @@ class Track:
     sprites.lines.update()
     sprites.notes.update()
     sprites.lanes.update()
+    sprites.effects.update()
 
     ## calculate score
     level.score = round((

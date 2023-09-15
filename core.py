@@ -111,6 +111,7 @@ class sprites:
   lines = py.sprite.Group()
   lanes = py.sprite.Group()
   notes = py.sprite.Group()
+  effects = py.sprite.Group()
   
   active = py.sprite.LayeredUpdates()
   active.layer = {
@@ -143,7 +144,6 @@ class ui:
 
   class col:
     back = [0, 23, 42]
-    text = [255, 255, 255]
 
     class text:
       idle = [255, 255, 255, 255]
@@ -198,7 +198,7 @@ class opt:
   keys = ["z", "x", "c", "v"]
 
   class effect:
-    speed = -2
+    speed = (15, 2)
 
   class col:
     hit = [255, 255, 255, 255]

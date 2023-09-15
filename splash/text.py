@@ -37,14 +37,13 @@ class Text(Element):
       self.size = size or ui.font.size
       self.align = align or (0, 0)
 
+      self.cols = vars(ui.col.text)
       if isinstance(col, dict):
-        self.cols = {
-          state: col.get(state, vars(ui.col.text)[state])
-          for state in ["idle", "hover", "click", "lock"]
-        }
+        for each in col:
+          self.cols[each] = col[each]
         self.col = self.cols["idle"]
       else:
-        self.col = col or ui.col.text
+        self.col = col or self.cols["idle"]
 
   
   def __init__(self, id, pos, text, style = None, display = None):
