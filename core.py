@@ -198,11 +198,11 @@ class opt:
   keys = ["z", "x", "c", "v"]
 
   class effect:
-    speed = (15, 2)
+    speed = (15, 8)
 
   class col:
     hit = [255, 255, 255, 255]
-    perfect = [255, 0, 144, 255]
+    perfect = [64, 241, 144, 255]
     
     upper = [144, 64, 255, 255]
     home = [255, 144, 32, 255]

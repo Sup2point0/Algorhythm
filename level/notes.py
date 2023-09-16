@@ -94,7 +94,7 @@ class Note(py.sprite.Sprite):
         level.perfect += 1
       
       PopEffect(
-        pos = [self.lane.x, self.lane.y],
+        pos = [self.lane.x, sprites.lines.sprites()[0].pos[1]],
         acc = acc,
       )
     

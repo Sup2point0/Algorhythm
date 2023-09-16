@@ -54,9 +54,9 @@ class PopEffect(py.sprite.Sprite):
     self.anim.boop = util.slide(self.anim.boop, self.anim.poof, speed = 2)
 
     ## render
-    self.image = py.Surface([self.size] * 2, py.SRCALPHA)
+    self.image = py.Surface([self.size * 2] * 2, py.SRCALPHA)
     self.rect = self.image.get_rect()
-    self.rect.topleft = self.pos
+    self.rect.center = self.pos
     py.draw.circle(
       surface = self.image,
       color = self.col[:3] + [self.anim.alpha.value],

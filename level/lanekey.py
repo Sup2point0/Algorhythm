@@ -29,7 +29,7 @@ class LaneKey(py.sprite.Sprite):
     )
     
     class anim:
-      size = self.style.size * 4
+      size = self.style.size * 10
     
     self.anim = anim
   
@@ -43,7 +43,7 @@ class LaneKey(py.sprite.Sprite):
     if level.tick < 120:
       if level.tick > 15 + self.lane.index * 6:
         self.alpha.alt(4)
-        self.anim.size = util.slide(self.anim.size, self.style.size, speed = 10)
+        self.anim.size = util.slide(self.anim.size, self.style.size, speed = 5)
     
     else:
       self.anim.size = util.slide(self.anim.size, self.style.size, speed = 5)
