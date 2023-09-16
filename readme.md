@@ -3,4 +3,4 @@
 
 ## Tasks
 
-- Derive all game sprites from resource.Sprite?
+- Derive all game sprites from `resource.Sprite`?
