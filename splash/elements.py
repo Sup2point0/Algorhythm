@@ -5,6 +5,7 @@ Base splash element
 import pygame as py
 
 from core import screen, sprites
+from resource.sprite import Sprite
 
 
 class Displayed:
@@ -29,7 +30,7 @@ class Displayed:
     self.lock = lock or (lambda: False)
 
 
-class Element(py.sprite.Sprite):
+class SplashElement(Sprite):
   '''Base class from which all splash sprites derive.'''
 
   class Style:

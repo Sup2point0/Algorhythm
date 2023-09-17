@@ -11,7 +11,7 @@ from splash.elements import Element
 from splash.text import Text
 
 
-class Button(Element):
+class Button(SplashElement):
   '''A clickable button that invokes an action.'''
 
   class Style(Element.Style):

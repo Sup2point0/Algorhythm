@@ -8,7 +8,7 @@ from splash.elements import Element
 from core import sprites
 
 
-class Asset(Element):
+class Asset(SplashElement):
   '''An image asset.'''
 
   def __init__(self, id, pos, image: str, size = None, display = None):
