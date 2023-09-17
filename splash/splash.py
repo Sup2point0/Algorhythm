@@ -264,13 +264,13 @@ def loadsequence(display):
         return
       elif event.type in [py.KEYDOWN, py.MOUSEBUTTONDOWN]:
         if load.percent < 1:
-          load.percent += random.randint(2, 9) / 600
+          load.percent += random.randint(2, 11) / 600
 
     # tick variables
     if load.state is True:
       load.tick += 1
       if random.random() < load.percent:
-        load.percent += random.randint(2, 9) / 600
+        load.percent += random.randint(2, 11) / 600
       load.alpha.alt(4)
     else:
       load.state -= 1

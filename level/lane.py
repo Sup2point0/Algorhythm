@@ -8,27 +8,25 @@ import pygame as py
 from pygame.locals import *
 
 from core import game, level, screen, sprites, ui, config, opt
+from resource.sprite import Sprite
 import util
 
 from level.lanekey import LaneKey
 
 
-class Lane(py.sprite.Sprite):
+class Lane(Sprite):
   '''A lane where notes fall.'''
 
   def __init__(self, index = None, key = None):
     '''Create a lane.'''
 
-    super().__init__()
+    super().__init__(pos = [screen.cx, 0], align = (0, -1))
 
     self.index = index
     self.key = key or util.randkey()
     self.hit = False
     self.col = util.find.col(self.key)
 
-    self.x = screen.cx - 1
-    self.y = 0
-    self.cx = screen.cx
     self.size = [config.lanewidth, screen.y - config.lanespace / 2]
     self.notes = py.sprite.Group()
 
@@ -41,7 +39,7 @@ class Lane(py.sprite.Sprite):
     self.anim = anim
 
   def update(self):
-    sprites.active.add(self, layer = sprites.active.layer["lanes"])
+    super().show("lanes")
 
     ## handle notes
     for event in game.events:
@@ -80,11 +78,10 @@ class Lane(py.sprite.Sprite):
 
     # slide (smoothly) towards correct position
     offset = -(len(sprites.lanes) - 1) / 2 + self.index
-    self.cx = screen.cx + offset * (config.lanewidth + config.lanespace)
-    tx = util.root(self.rect, x = self.cx)[0]
-    self.x = round(util.slide(self.x, tx, 5))
+    tx = screen.cx + offset * (config.lanewidth + config.lanespace)
+    self.x = util.slide(self.x, tx, 5)
 
-    self.rect.topleft = [self.x, self.y]
+    super().position()
 
     self.lanekey.update()
 

@@ -7,13 +7,14 @@ import random
 import pygame as py
 
 from core import level, screen, sprites, config, opt
+from resource.sprite import Sprite
 import util
 
 from effects.pop import PopEffect
 
 
-class Note(py.sprite.Sprite):
-  '''A base class from which all notes derive.'''
+class Note(Sprite):
+  '''Base class from which all notes derive.'''
   
   def __init__(self, lane = None, speed = None, shock = None):
     '''Create a note.
@@ -25,7 +26,7 @@ class Note(py.sprite.Sprite):
     | `speed` | `float` | How fast the note approaches. Defaults to set speed of difficulty. |
     '''
 
-    super().__init__()
+    super().__init__(pos = None, align = (0, 1))  # FIXME
 
     self.lane = lane
     self.speed = speed
@@ -50,20 +51,20 @@ class Note(py.sprite.Sprite):
     self.speed = self.speed or config.difficulties[level.chart.difficulty].speed
 
   def update(self):
-    sprites.active.add(self, layer = sprites.active.layer["notes"])
+    super().show("notes")
 
     ## process      
-    self.rect.topleft = util.root(self.rect,
-      x = self.lane.cx,
-      y = sprites.lines.sprites()[0].rect.y - self.speed * (self.hit - level.beat)
-    )
-      
-    if self.rect.y >= screen.y:
+    self.x = self.lane.x,
+    self.y = sprites.lines.sprites()[0].y - self.speed * (self.hit - level.beat)
+    
+    if self.y >= screen.y:
       self.pop()
 
     ## render
     self.col = vars(opt.col)[util.find.row(self.lane.key)]
     self.surf.fill(py.Color(self.col))
+
+    super().position()
 
   def accuracy(self, beat) -> str | None:
     '''Return accuracy of note hit.'''
@@ -94,7 +95,7 @@ class Note(py.sprite.Sprite):
         level.perfect += 1
       
       PopEffect(
-        pos = [self.lane.x, sprites.lines.sprites()[0].pos[1]],
+        pos = [self.lane.x, sprites.lines.sprites()[0].y],
         acc = acc,
       )
     

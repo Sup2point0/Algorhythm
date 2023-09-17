@@ -5,18 +5,19 @@ Lane key indicators
 import pygame as py
 
 from core import level, screen, sprites, config
+from resource.sprite import Sprite
 import util
 
 from splash.text import Text
 
 
-class LaneKey(py.sprite.Sprite):
+class LaneKey(Sprite):
   '''A text element beneath each lane indicating its key.'''
   
   def __init__(self, lane):
     '''Create a lane key indicator.'''
     
-    super().__init__()
+    super().__init__()  # FIXME?
     
     self.lane = lane
     self.key = self.lane.key
@@ -37,7 +38,7 @@ class LaneKey(py.sprite.Sprite):
     if not self.lane.alive():
       self.kill()
     else:
-      sprites.active.add(self, layer = sprites.active.layer["lanekeys"])
+      super().show("lanekeys")
   
     ## animate
     if level.tick < 120:
@@ -63,7 +64,7 @@ class LaneKey(py.sprite.Sprite):
     )
 
     self.surf.set_alpha(self.alpha.value)
-    self.rect.topleft = util.root(self.rect,
-      x = self.lane.cx,
-      y = screen.y - config.lanespace * 2,
-    )
+    self.x = self.lane.cx,
+    self.y = screen.y - config.lanespace * 2
+
+    super().position()

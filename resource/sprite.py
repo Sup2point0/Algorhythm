@@ -4,7 +4,7 @@ Base sprite functionality
 
 import pygame as py
 
-from core import screen
+from core import screen, sprites
 
 
 class Sprite(py.sprite.Sprite):
@@ -13,7 +13,7 @@ class Sprite(py.sprite.Sprite):
   def __init__(self,
     pos = None,
     align = (0, 0),
-    groups = None,
+    groups = list(),
   ):
     '''
     | parameter | type | description |
@@ -25,19 +25,39 @@ class Sprite(py.sprite.Sprite):
 
     super().__init__(*groups)
 
-    xy = pos or screen.origin
-    self.x = xy[0]
-    self.y = xy[1]
-    self.align = align
+    self.x, self.y = pos or screen.origin
+    self.align: tuple[int, int] = align
 
     self.surf: py.Surface
     self.rect: py.Rect
 
-  def shake(self):
-    '''Adjust sprite position to screen shake.'''
+  def show(self, layer: str):
+    '''Add sprite to `sprites.active` to render in `layer`.'''
 
-    self.rect.x += screen.shake.x()
-    self.rect.y += screen.shake.y()
+    sprites.active.add(self, layer = sprites.active.layer[layer])
+
+  def position(self):
+    '''Update sprite `rect` position, adjusting for screen shake.'''
+
+    x = self.x + screen.shake.x()
+    y = self.y + screen.shake.y()
+    lx, ly = self.align
+
+    match lx:
+      case -1:
+        self.rect.left = x
+      case 0:
+        self.rect.centerx = x
+      case 1:
+        self.rect.right = x
+
+    match ly:
+      case -1:
+        self.rect.top = x
+      case 0:
+        self.rect.centery = x
+      case 1:
+        self.rect.bottom = x
 
   @ property
   def image(self):
