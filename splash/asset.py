@@ -24,7 +24,7 @@ class Asset(Element):
 
     super().__init__(id, pos, display = display, groups = [sprites.splash])
 
-    self.surf = py.surf.load(f"assets/{image}").convert()
+    self.surf = py.image.load(f"assets/{image}").convert()
     if size:
       self.surf = py.transform.scale(self.surf, size)
       
