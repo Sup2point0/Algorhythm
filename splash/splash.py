@@ -9,8 +9,8 @@ import json
 import pygame as py
 
 from core import game, level, screen, ui, config
-import util
 from resource import flavour
+import util
 
 from splash import roots
 from splash.elements import Displayed
