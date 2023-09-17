@@ -30,7 +30,7 @@ class Displayed:
     self.lock = lock or (lambda: False)
 
 
-class SplashElement(Sprite):
+class Element(Sprite):
   '''Base class from which all splash sprites derive.'''
 
   class Style:
@@ -58,20 +58,16 @@ class SplashElement(Sprite):
     | parameter | type | description |
     | :-------- | :--- | :---------- |
     | `id` | `str` | Unique ID to identify element. |
-    | `pos` | `[num, num]` | Coordinates to position element. |
     | `interact` | `bool` | Whether element can be hovered or clicked. |
     | `display` | `splash.Displayed` | Sprite display settings. |
-    | `groups` | `list[py.sprite.Group]` | Groups to add element to. |
+
+    Other base parameters are inherited from `resource.Sprite`.
     '''
     
-    super().__init__(*groups)
+    super().__init__(pos = pos, align = (0, 0), groups = groups)
 
     self.id = id
     self.display = display
-
-    xy = pos or [0, 0]
-    self.x = xy[0]
-    self.y = xy[1]
 
     if interact:
       self.lock = display.lock
@@ -121,9 +117,3 @@ class SplashElement(Sprite):
       self.hover = False
       self.click = False
       return "idle"
-
-  @ property
-  def pos(self):
-    '''Coordinates of the element.'''
-
-    return [self.x, self.y]

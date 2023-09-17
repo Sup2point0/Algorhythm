@@ -14,7 +14,7 @@ from splash.elements import Element
 freetype.init()
 
 
-class Text(SplashElement):
+class Text(Element):
   '''A static text element.'''
 
   class Style(Element.Style):
