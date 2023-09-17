@@ -4,10 +4,11 @@ Screen transition cover
 
 import pygame as py
 
-from core import screen, sprites, config
+from core import screen, sprites
+from resource.sprite import Sprite
 
 
-class Cover(py.sprite.Sprite):
+class Cover(Sprite):
   '''A screen cover to create fade transitions.'''
 
   def __init__(self, alpha = 0, *, root = None, bounds = None):
@@ -20,7 +21,7 @@ class Cover(py.sprite.Sprite):
     | `bounds` | `[int, int]` | Lower and upper bounds of alpha value. |
     '''
 
-    super().__init__(sprites.fade)
+    super().__init__(groups = [sprites.fade])
     
     self.root = root
     self.bounds = bounds or (0, 255)

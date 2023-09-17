@@ -25,7 +25,7 @@ class Sprite(py.sprite.Sprite):
 
     super().__init__(*groups)
 
-    xy = pos or [0, 0]
+    xy = pos or screen.origin
     self.x = xy[0]
     self.y = xy[1]
     self.align = align
