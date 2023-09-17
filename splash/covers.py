@@ -25,25 +25,25 @@ class Cover(py.sprite.Sprite):
     self.root = root
     self.bounds = bounds or (0, 255)
 
-    self.image = py.Surface(screen.size, py.SRCALPHA)
+    self.surf = py.Surface(screen.size, py.SRCALPHA)
     py.draw.rect(
-      surface = self.image,
+      surface = self.surf,
       color = py.Color(0x000000ff),
       rect = py.Rect(0, 0, *screen.size),
     )
     self.alpha = alpha
-    self.rect = self.image.get_rect()
+    self.rect = self.surf.get_rect()
 
   def update(self):
     self.root(self)
 
   @ property
   def alpha(self):
-    return self.image.get_alpha()
+    return self.surf.get_alpha()
   
   @ alpha.setter
   def alpha(self, value):
-    self.image.set_alpha(
+    self.surf.set_alpha(
       self.bounds[1] if value > self.bounds[1] else
       self.bounds[0] if value < self.bounds[0] else
       value

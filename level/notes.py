@@ -63,7 +63,7 @@ class Note(py.sprite.Sprite):
 
     ## render
     self.col = vars(opt.col)[util.find.row(self.lane.key)]
-    self.image.fill(py.Color(self.col))
+    self.surf.fill(py.Color(self.col))
 
   def accuracy(self, beat) -> str | None:
     '''Return accuracy of note hit.'''
@@ -125,9 +125,9 @@ class TapNote(Note):
     super().spawn()
 
     ## render
-    self.image = py.Surface([config.lanewidth, 25])
-    self.image.fill(py.Color(self.col))
-    self.rect = self.image.get_rect()
+    self.surf = py.Surface([config.lanewidth, 25])
+    self.surf.fill(py.Color(self.col))
+    self.rect = self.surf.get_rect()
 
   def pop(self, hit = False) -> str | None:
     '''Delete the note and return accuracy.

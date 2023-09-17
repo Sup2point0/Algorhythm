@@ -25,7 +25,7 @@ class Hitline(py.sprite.Sprite):
     if level.tick > 30:
       self.size[0] = util.slide(self.size[0], screen.x, 10)
     
-    self.image = py.Surface(self.size)
-    self.image.fill(0xffffff)
-    self.rect = self.image.get_rect()
+    self.surf = py.Surface(self.size)
+    self.surf.fill(0xffffff)
+    self.rect = self.surf.get_rect()
     self.rect.topleft = util.root(self.rect, y = self.pos[1])

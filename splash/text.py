@@ -62,7 +62,7 @@ class Text(Element):
     self.text = text
     self.style = style or Text.Style()
     
-    self.image, self.rect = Text.render(text = self.text, style = self.style)
+    self.surf, self.rect = Text.render(text = self.text, style = self.style)
 
   def update(self):
     self.visible()
@@ -94,6 +94,6 @@ class ActiveText(Text):
     super().__init__(id, pos, text = None, *args, **kwargs)
 
   def update(self):
-    self.image, self.rect = Text.render(text = self.source(), style = self.style)
+    self.surf, self.rect = Text.render(text = self.source(), style = self.style)
 
     super().update()

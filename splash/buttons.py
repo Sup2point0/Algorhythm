@@ -68,8 +68,8 @@ class Button(Element):
     super().visible()
     
     ## process
-    self.image = py.Surface(self.size, py.SRCALPHA)
-    self.rect = self.image.get_rect()
+    self.surf = py.Surface(self.size, py.SRCALPHA)
+    self.rect = self.surf.get_rect()
     self.rect.x, self.rect.y = util.root(self.rect, *self.pos)
     
     interaction = super().interact()
@@ -94,7 +94,7 @@ class Button(Element):
     
     ## render
     py.draw.rect(
-      surface = self.image,
+      surface = self.surf,
       color = py.Color(self.anim.col),
       rect = py.Rect(0, 0, *self.size),
       width = 0,
@@ -102,7 +102,7 @@ class Button(Element):
     )
     
     rendered = Text.render(self.text, self.style.text)
-    self.image.blit(
+    self.surf.blit(
       source = rendered[0],
       dest = util.root(
         rect = rendered[1],

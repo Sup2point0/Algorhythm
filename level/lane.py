@@ -66,17 +66,17 @@ class Lane(py.sprite.Sprite):
     )))
 
     ## render
-    self.image = py.Surface(self.size, py.SRCALPHA)
+    self.surf = py.Surface(self.size, py.SRCALPHA)
     radius = round(config.laneradius * (self.anim.size[0] / self.size[0]))
     py.draw.rect(
-      surface = self.image,
+      surface = self.surf,
       color = py.Color(self.col),
       rect = py.Rect(0, 0, *self.anim.size),
       width = 0,
       border_bottom_left_radius = radius,
       border_bottom_right_radius = radius,
     )
-    self.rect = self.image.get_rect()
+    self.rect = self.surf.get_rect()
 
     # slide (smoothly) towards correct position
     offset = -(len(sprites.lanes) - 1) / 2 + self.index

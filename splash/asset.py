@@ -24,11 +24,11 @@ class Asset(Element):
 
     super().__init__(id, pos, display = display, groups = [sprites.splash])
 
-    self.image = py.image.load(f"assets/{image}").convert()
+    self.surf = py.surf.load(f"assets/{image}").convert()
     if size:
-      self.image = py.transform.scale(self.image, size)
+      self.surf = py.transform.scale(self.surf, size)
       
-    self.rect = self.image.get_rect()
+    self.rect = self.surf.get_rect()
 
   def update(self):
     super().visible()

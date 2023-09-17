@@ -53,7 +53,7 @@ class LaneKey(py.sprite.Sprite):
       self.anim.size = self.style.size * 2
     
     ## render
-    self.image, self.rect = Text.render(
+    self.surf, self.rect = Text.render(
       text = self.lane.key.upper(),
       style = Text.Style(
         typeface = "Orbitron-Semibold",
@@ -62,7 +62,7 @@ class LaneKey(py.sprite.Sprite):
       )
     )
 
-    self.image.set_alpha(self.alpha.value)
+    self.surf.set_alpha(self.alpha.value)
     self.rect.topleft = util.root(self.rect,
       x = self.lane.cx,
       y = screen.y - config.lanespace * 2,
