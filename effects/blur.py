@@ -3,14 +3,14 @@ Blur effects
 '''
 
 import pygame as py
-import PIL as pil
+from PIL import Image, ImageFilter
 
 
 def load(file: str, blur: int) -> py.Surface:
   '''Load and blur a file into a pygame surface.'''
 
-  image = pil.Image.open(file)
-  image = image.filter(pil.ImageFilter.GaussianBlur(blur))
+  image = Image.open(file)
+  image = image.filter(ImageFilter.GaussianBlur(blur))
   image = py.image.fromstring(image.tobytes(), image.size, image.mode)
 
   return image

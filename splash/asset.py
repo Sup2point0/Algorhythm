@@ -7,11 +7,13 @@ import pygame as py
 from splash.elements import Element
 from core import sprites
 
+import effects.blur
+
 
 class Asset(Element):
   '''An image asset.'''
 
-  def __init__(self, id, pos, image: str, size = None, display = None):
+  def __init__(self, id, pos, image: str, size = None, blur = None, display = None):
     '''Create an image asset.
 
     ｜ parameter | type | description |
@@ -24,9 +26,13 @@ class Asset(Element):
 
     super().__init__(id, pos, display = display, groups = [sprites.splash])
 
-    self.surf = py.image.load(f"assets/{image}").convert()
+    if blur:
+      self.surf = effects.blur.load(f"assets/{image}", blur = blur)
+    else:
+      self.surf = py.image.load(f"assets/{image}")
+    
     if size:
-      self.surf = py.transform.scale(self.surf, size)
+      self.surf = py.transform.scale(self.surf, size).convert()
       
     self.rect = self.surf.get_rect()
 

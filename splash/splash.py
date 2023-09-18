@@ -29,6 +29,17 @@ def setup():
   ]
 
   common = [
+    Asset(
+      id = "start.back",
+      pos = [screen.cx, screen.cy],
+      image = "scarlet-cortex.jpg",
+      size = screen.size,
+      blur = 10,
+      display = Displayed(
+        hide = {"play", "score"},
+        layer = 1,
+      ),
+    ),
     Button(
       id = "common.back",
       pos = [100, 55],
@@ -47,16 +58,6 @@ def setup():
   ]
 
   start = [
-    Asset(
-      id = "start.back",
-      pos = [screen.cx, screen.cy],
-      image = "scarlet-cortex.jpg",
-      size = screen.size,
-      display = Displayed(
-        show = {"start", "settings"},
-        layer = 1,
-      ),
-    ),
     Text(
       id = "start.title",
       pos = util.cord(0, -0.5),
