@@ -166,6 +166,14 @@ class Alpha:
     self.value = value
     self.bounds = bounds
     self._check_()
+  
+  def _check_(self):
+    '''Internal method to ensure alpha value is within bounds.'''
+
+    if self.value < min(self.bounds):
+      self.value = min(self.bounds)
+    elif self.value > max(self.bounds):
+      self.value = max(self.bounds)
 
   def alt(self, value):
     '''Alter the alpha value.'''
@@ -179,11 +187,8 @@ class Alpha:
     self._check_()
 
     return self.value
-  
-  def _check_(self):
-    '''Internal method to ensure alpha value is within bounds.'''
 
-    if self.value < min(self.bounds):
-      self.value = min(self.bounds)
-    elif self.value > max(self.bounds):
-      self.value = max(self.bounds)
+  def bounded(self):
+    '''Check if alpha value is at bound.'''
+
+    return self.value in self.bounds
