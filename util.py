@@ -152,7 +152,10 @@ class interpolate:
 
 
 class Alpha:
-  '''An alpha value, restricted to a certain range.'''
+  '''An alpha value, restricted to a certain range.
+  
+  The value should be altered with `self.alt` to avoid going outside the bounds.
+  '''
 
   def __init__(self, value = 255, bounds = (0, 255)):
     '''Create an alpha value.
@@ -176,7 +179,7 @@ class Alpha:
       self.value = max(self.bounds)
 
   def alt(self, value):
-    '''Alter the alpha value.'''
+    '''Alter alpha value.'''
 
     if value is True:
       self.value = 255
