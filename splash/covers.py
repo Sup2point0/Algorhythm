@@ -6,25 +6,25 @@ import pygame as py
 
 from core import screen, sprites
 from resource.sprite import Sprite
+import util
 
 
 class Cover(Sprite):
   '''A screen cover to create fade transitions.'''
 
-  def __init__(self, alpha = 0, *, root = None, bounds = None):
+  def __init__(self, alpha = None, *, root = None):
     '''Create a screen cover.
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
-    | `alpha` | `num` | Starting alpha value of cover. |
+    | `alpha` | `num`, `util.Alpha` | Alpha value of cover. If a number is provided, a default `util.Alpha` value is used with the number as the initial value. |
     | `root` | `Callable` | Function replacing `self.update()`. |
-    | `bounds` | `[int, int]` | Lower and upper bounds of alpha value. |
     '''
 
     super().__init__(groups = [sprites.fade])
-    
+
+    self.alpha = alpha if isinstance(alpha, util.Alpha) else util.Alpha(alpha)
     self.root = root
-    self.bounds = bounds or (0, 255)
 
     self.surf = py.Surface(screen.size, py.SRCALPHA)
     py.draw.rect(
@@ -32,20 +32,8 @@ class Cover(Sprite):
       color = py.Color(0x000000ff),
       rect = py.Rect(0, 0, *screen.size),
     )
-    self.alpha = alpha
     self.rect = self.surf.get_rect()
 
   def update(self):
     self.root(self)
-
-  @ property
-  def alpha(self):
-    return self.surf.get_alpha()
-  
-  @ alpha.setter
-  def alpha(self, value):
-    self.surf.set_alpha(
-      self.bounds[1] if value > self.bounds[1] else
-      self.bounds[0] if value < self.bounds[0] else
-      value
-    )
+    self.surf.set_alpha(self.alpha.value)
