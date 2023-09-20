@@ -152,12 +152,19 @@ class interpolate:
 
 
 class Alpha:
-  '''An alpha value, bound between 0 and 255.'''
+  '''An alpha value, restricted to a certain range.'''
 
-  def __init__(self, value = 255):
-    '''Create an alpha value.'''
+  def __init__(self, value = 255, bounds = (0, 255)):
+    '''Create an alpha value.
+    
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `value` | `num` | Starting alpha value. |
+    | `bounds` | `num, num` | Lower and upper bounds of alpha value. |
+    '''
 
     self.value = value
+    self.bounds = bounds
     self._check_()
 
   def alt(self, value):
@@ -176,7 +183,7 @@ class Alpha:
   def _check_(self):
     '''Internal method to ensure alpha value is within bounds.'''
 
-    if self.value < 0:
-      self.value = 0
-    elif self.value > 255:
-      self.value = 255
+    if self.value < min(self.bounds):
+      self.value = min(self.bounds)
+    elif self.value > max(self.bounds):
+      self.value = max(self.bounds)
