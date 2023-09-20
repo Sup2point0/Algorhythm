@@ -3,7 +3,7 @@ Reusable sprite functionality
 
 Often, sprites will take a `root` argument when instantiated. This is a `Callable` (a function) that will be called to provide the sprite with functionality. For instance, a button would call its `root` when clicked.
 
-This file centralises the functionality of various sprites, as well as providing functions to dynamically generate other functions. This is useful for sprites that have similar but slightly differing functionality – such as a button switching to a particular screen.
+This module centralises the functionality of various sprites, as well as providing functions to dynamically generate other functions. This is useful for sprites that have similar but slightly differing functionality – such as a button switching to a particular screen.
 '''
 
 import random
@@ -84,18 +84,15 @@ class fade:
   def total(self):
     match screen.fade:
       case "out":
-        self.alpha += config.faderate
-        if self.alpha == 255:
+        self.alpha.alt(config.faderate)
+        if self.alpha.bounded():
           screen.fade = "dark"
       case "in":
-        self.alpha -= config.faderate
-        if self.alpha == 0:
+        self.alpha.alt(-config.faderate)
+        if self.alpha.bounded():
           screen.fade = None
       case None:
-        self.alpha = 0
+        self.alpha.value = 0
 
   def partial(self):
-    if not game.state:
-      self.alpha += config.faderate
-    else:
-      self.alpha -= config.faderate
+    self.alpha.alt(config.faderate * (-1 if game.state else 1))
