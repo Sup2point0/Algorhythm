@@ -2,6 +2,11 @@
 Level events
 '''
 
+import pygame as py
+
+from core import sprites
+import util
+
 
 class Action:
   '''An event that can be triggered within a level.'''
@@ -17,9 +22,16 @@ class Action:
     '''
 
     self.beat = beat
-    self.activate = action
+    self.activate = handler(action, loop)
     self.loop = loop
     self.looped = 0
+
+  def handler(action, loop):  # TODO
+    def root():
+      if level.beat > self.beat:
+        action()
+
+    return root
 
 
 class Hint(Action):
