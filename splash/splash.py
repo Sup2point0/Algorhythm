@@ -24,8 +24,14 @@ def setup():
   '''Load sprites for all screens in the game.'''
   
   covers = [
-    Cover(alpha = 255, root = roots.fade.total),
-    Cover(alpha = 0, root = roots.fade.partial, bounds = (0, 128)),
+    Cover(
+      alpha = util.Alpha(255),
+      root = roots.fade.total,
+    ),
+    Cover(
+      alpha = util.Alpha(0, bounds = (0, 128)),
+      root = roots.fade.partial,
+    ),
   ]
 
   common = [

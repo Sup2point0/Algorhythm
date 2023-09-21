@@ -140,7 +140,7 @@ class ui:
     size = [200, 60]
 
   class effect:
-    popsize = 50
+    popsize = 100
 
   class col:
     back = [0, 23, 42]
