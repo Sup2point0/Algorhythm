@@ -4,7 +4,7 @@ Level events
 
 import pygame as py
 
-from core import sprites
+from core import level, screen, sprites
 import util
 
 
@@ -22,12 +22,14 @@ class Action:
     '''
 
     self.beat = beat
-    self.activate = handler(action, loop)
+    self.activate = Action._handler_(action, loop)
     self.loop = loop
     self.looped = 0
 
-  def handler(action, loop):  # TODO
-    def root():
+  def _handler_(action, loop):  # TODO
+    '''Internal ...'''
+
+    def root(self):
       if level.beat > self.beat:
         action()
 
@@ -93,15 +95,15 @@ class Hint(Action):
           self.kill()
     else:  # fade in
       self.anim.alpha.alt(4)
-        if self.anim.alpha.bounds():
-          self.anim.tick = 1
+      if self.anim.alpha.bounds():
+        self.anim.tick = 1
 
     self.surf = py.Surface(screen.size, py.SRCALPHA)
     self.surf.fill(0xffffff)
     self.rect = self.surf.get_rect()
 
     if self.highlights and self.anim.tick > 30:
-      for each in highlight:
+      for each in self.highlights:
         each.update()
         self.surf.blit(
           source = py.Surface(each.anim.size, py.SRCALPHA),
