@@ -54,7 +54,7 @@ class Note(Sprite):
     super().show("notes")
 
     ## process      
-    self.x = self.lane.x,
+    self.x = self.lane.x
     self.y = sprites.lines.sprites()[0].y - self.speed * (self.hit - level.beat)
     
     if self.y >= screen.y:
