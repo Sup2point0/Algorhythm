@@ -8,6 +8,7 @@
   - Could add in-built screen shake offsetting
 
 ### Todo
+- Musical sound effects on button click
 - Dynamically spawn sprites
   - Sort list of notes
   - Each frame, iterate through notes and break if spawn not needed
