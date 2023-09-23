@@ -23,3 +23,8 @@
   - For easier spamming
 - Free mode
   - Press any keys
+
+### Tracks
+- Tutorial
+- Drop
+- Finish
