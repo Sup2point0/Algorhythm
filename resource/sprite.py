@@ -53,11 +53,11 @@ class Sprite(py.sprite.Sprite):
 
     match ly:
       case -1:
-        self.rect.top = x
+        self.rect.top = y
       case 0:
-        self.rect.centery = x
+        self.rect.centery = y
       case 1:
-        self.rect.bottom = x
+        self.rect.bottom = y
 
   @ property
   def image(self):

@@ -21,6 +21,7 @@ class Lane(Sprite):
     '''Create a lane.'''
 
     super().__init__(pos = [screen.cx, 0], align = (0, -1))
+    self.cx = screen.cx  # FIXME when notes are re-implemented
 
     self.index = index
     self.key = key or util.randkey()
