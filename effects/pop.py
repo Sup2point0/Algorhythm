@@ -5,10 +5,11 @@ Note hit effects
 import pygame as py
 
 from core import sprites, ui, opt
+from resource.sprite import Sprite
 import util
 
 
-class PopEffect(py.sprite.Sprite):
+class PopEffect(Sprite):
   '''A class to contain the component sprites that make up the animated effect when a note is hit.'''
 
   def __init__(self, pos, acc = "hit", size = None, speed = None):
@@ -22,11 +23,10 @@ class PopEffect(py.sprite.Sprite):
     | `speed` | `int, num` | How quickly the effect vanishes. The first value represents how many frames will pass before it starts fading, the second how much transparency will increase per frame. |
     '''
 
-    super().__init__(sprites.effects)
+    super().__init__(pos = pos, groups = [sprites.effects])
 
     sprites.active.add(self, layer = sprites.active.layer["effects"])
 
-    self.pos = pos
     self.col = opt.col.perfect if acc == "perfect" else opt.col.hit
     self.size = size or ui.effect.popsize
     self.speed = speed or opt.effect.speed
