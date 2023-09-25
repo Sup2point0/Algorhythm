@@ -65,22 +65,16 @@ class screen:
   When `screen.switch` is set, `screen.state` is updated to that at the start of the next frame (to avoid conflicting screen state processing within the same frame). While fading out, `screen.fade` becomes `'out'`, freezing sprites from updating. Once the screen entirely blacks out, `screen.fade` briefly becomes `'dark'`. In this time window (where the player cannot see anything), sprites update again, changing the rendered screen.
   '''
 
-  class states(Enum):
-    ... # TODO
-
   switch = None
   state = None
-  '''
-  | value | description |
-  | :---- | :---------- |
-  | `None` | Loading screen. |
-  | `start` | Start screen. |
-  | `settings` | Settings screen. |
-  | `login` | Accounts screen. |
-  | `home` | Level selection screen. |
-  | `play` | Playing a chart. |
-  | `score` | Viewing score after end of level. |
-  '''
+  
+  class states(Enum):
+    start = ""
+    home = ""
+    environ = ""
+    access = "accounts"
+    play = "playing a level"
+    score = "finished a level and displaying results"
   
   fade = None
   '''
@@ -128,9 +122,7 @@ class sprites:
     "lanes": 4,
     "back": 1,
   }
-  splash = {
-    each: py.sprite.Group() for each in active.layer  # FIXME
-  }
+  splash = {each: py.sprite.Group() for each in screen.states}
 
 
 ## settings
