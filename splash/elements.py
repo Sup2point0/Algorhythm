@@ -23,8 +23,11 @@ class Displayed:
     | `lock` | `Callable` | Function called to check if sprite should be locked from interaction. |
     '''
 
-    self.show = show or set()
-    self.hide = hide or set()
+    if hide:
+      self.show = set(state for state in screen.states if state not in hide)
+    else:
+      self.show = show or set()
+
     self.layer = layer or sprites.active.layer["splash"]
     self.fade = fade
     self.lock = lock or (lambda: False)
@@ -73,13 +76,18 @@ class Element(Sprite):
       self.lock = display.lock
       self.hover = False
       self.click = False
+    
+    # add to relevant splash sprite groups
+    for state in screen.states:
+      if state.name in display.show:
+        sprites.splash[state.name].add(self)
 
   def visible(self):
     '''Show or hide sprite depending on current screen state.'''
 
     if (
-      screen.state in self.display.show or
-      self.display.hide and screen.state not in self.display.hide
+      screen.state.name in self.display.show or
+      self.display.hide and screen.state.name not in self.display.hide
     ):
       sprites.active.add(self, layer = self.display.layer)
     else:

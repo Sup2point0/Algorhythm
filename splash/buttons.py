@@ -51,7 +51,7 @@ class Button(Element):
     Other base parameters are inherited from `splash.Element`.
     '''
 
-    super().__init__(id, pos, interact = True, display = display, groups = [sprites.splash])
+    super().__init__(id, pos, interact = True, display = display)
 
     self.size = size
     self.text = text

@@ -24,7 +24,7 @@ class Asset(Element):
     Other base parameters are inherited from `splash.Element`.
     '''
 
-    super().__init__(id, pos, display = display, groups = [sprites.splash])
+    super().__init__(id, pos, display = display)
 
     if blur:
       self.surf = effects.blur.load(f"assets/{image}", blur = blur)

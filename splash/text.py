@@ -57,7 +57,7 @@ class Text(Element):
     Other base parameters are inherited from `splash.Element`.
     '''
 
-    super().__init__(id, pos, display = display, groups = [sprites.splash])
+    super().__init__(id, pos, display = display)
 
     self.text = text
     self.style = style or Text.Style()

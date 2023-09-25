@@ -23,7 +23,7 @@ class switch:
     '''Change screen state to `state`.'''
 
     def root():
-      screen.switch = state
+      screen.switch = screen.states[state]
       screen.fade = "out"
 
     return root

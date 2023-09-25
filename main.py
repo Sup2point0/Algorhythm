@@ -99,13 +99,13 @@ class main:
         screen.track.append(screen.state)
 
     if not screen.fade:
-      sprites.splash[screen.state].update()
+      sprites.splash[screen.state.name].update()
       if game.level and not screen.switch:
         game.level.run()
     
     elif screen.fade == "dark":
       screen.fade = "in"
-      sprites.splash.update()
+      sprites.splash[screen.state.name].update()
     
     else:
       sprites.fade.update()
