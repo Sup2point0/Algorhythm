@@ -2,11 +2,13 @@
 Global variables and constants for all modules to access
 '''
 
+from enum import Enum
+
 import pygame as py
 
 # This module is imported by almost every file. As such,
 # it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
-# Tese resource modules are exceptions, since they are safe to import.
+# These resource modules are exceptions, since they are safe to import.
 from resource.difficulty import Difficulty
 from effects.shake import Shake
 
@@ -14,6 +16,8 @@ from effects.shake import Shake
 ## globals
 class game:
   '''Game-wide variables.'''
+
+  version = "0.0.0"
 
   state = True
   '''
@@ -31,8 +35,6 @@ class game:
   events = []  # tracks events in frame
   keys = []  # tracks current pressed keys
   pulse = py.time.Clock()  # game timer
-
-  version = "0.0.0"
 
 
 class level:
@@ -62,6 +64,9 @@ class screen:
   
   When `screen.switch` is set, `screen.state` is updated to that at the start of the next frame (to avoid conflicting screen state processing within the same frame). While fading out, `screen.fade` becomes `'out'`, freezing sprites from updating. Once the screen entirely blacks out, `screen.fade` briefly becomes `'dark'`. In this time window (where the player cannot see anything), sprites update again, changing the rendered screen.
   '''
+
+  class states(Enum):
+    ... # TODO
 
   switch = None
   state = None
@@ -104,15 +109,11 @@ class screen:
 class sprites:
   '''Sprite groups.'''
 
-  splash = py.sprite.Group()
-  pause = py.sprite.Group()
-  fade = py.sprite.Group()
+  lines = py.sprite.Group
+  lanes = py.sprite.Group
+  notes = py.sprite.Group
+  effects = py.sprite.Group
 
-  lines = py.sprite.Group()
-  lanes = py.sprite.Group()
-  notes = py.sprite.Group()
-  effects = py.sprite.Group()
-  
   active = py.sprite.LayeredUpdates()
   active.layer = {
     "fade": 21,
@@ -126,6 +127,9 @@ class sprites:
     "lanekeys": 5,
     "lanes": 4,
     "back": 1,
+  }
+  splash = {
+    each: py.sprite.Group() for each in active.layer  # FIXME
   }
 
 
