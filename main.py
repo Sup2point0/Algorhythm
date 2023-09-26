@@ -83,29 +83,32 @@ class main:
         elif action == K_SPACE:
           main.pause()
 
-
   def control():
     '''Control active game loop.'''
 
-    if screen.switch:
+    if not screen.fade:
+      sprites.splash[screen.state.name].update()
+      if game.level and not screen.switch:  # NOTE needed?
+        game.level.run()
+      
+      if screen.switch:
+        screen.fade = "out"
+    
+    elif screen.fade == "dark":
+      sprites.splash[screen.state.name].update()
+      sprites.splash[screen.switch].update()
+      
       screen.state = screen.switch
       screen.switch = None
-
+      
       # update screen change history
       if len(screen.track) > 1:
         if screen.state == screen.track[-2]:
           screen.track.pop()
       else:
         screen.track.append(screen.state)
-
-    if not screen.fade:
-      sprites.splash[screen.state.name].update()
-      if game.level and not screen.switch:
-        game.level.run()
-    
-    elif screen.fade == "dark":
+      
       screen.fade = "in"
-      sprites.splash[screen.state.name].update()
     
     else:
       sprites.fade.update()
@@ -127,7 +130,6 @@ class main:
 
     display.fill(ui.col.back)
     sprites.active.draw(display)
-    sprites.fade.draw(display)
     py.display.flip()
 
   def pause():
@@ -138,7 +140,7 @@ class main:
         game.state = False
         py.mixer.music.pause()
       else:
-        game.state = 120
+        game.state = round(256 / config.faderate) + 1
 
 
 ## setup
