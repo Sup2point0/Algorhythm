@@ -35,5 +35,6 @@ class Cover(Sprite):
     self.rect = self.surf.get_rect()
 
   def update(self):
+    super().show("fade")
     self.root(self)
     self.surf.set_alpha(self.alpha.value)
