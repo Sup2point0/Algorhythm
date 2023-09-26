@@ -19,13 +19,15 @@ class game:
 
   version = "0.0.0"
 
-  class states(Enum):
-    run = True
-    hold = False
-    quit = None
-
-  state = states.run
-  tick = 0
+  state = True
+  '''
+  | value | description |
+  | :---- | :---------- |
+  | `True` | Game is running. |
+  | `False` | Game is paused. |
+  | `int` | Game is unpausing. |
+  | `None` | Game should be closed. |
+  '''
 
   player = None
   level = None
