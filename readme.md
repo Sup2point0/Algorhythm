@@ -4,8 +4,7 @@
 ## Tasks
 
 ### Ongoing
-- Derive all game sprites from `resource.Sprite`?
-  - Could add in-built screen shake offsetting
+- Rework sprite display handling to avoid excessive iteration
 
 ### Todo
 - Musical sound effects on button click
@@ -23,8 +22,3 @@
   - For easier spamming
 - Free mode
   - Press any keys
-
-### Tracks
-- Tutorial
-- Drop
-- Finish
