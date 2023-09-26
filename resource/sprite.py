@@ -19,7 +19,7 @@ class Sprite(py.sprite.Sprite):
     | parameter | type | description |
     | :-------- | :--- | :---------- |
     | `pos` | `num, num` | Position coordinates. |
-    | `align` | `int, int` | Alignment of sprite... |
+    | `align` | `int, int` | Alignment of sprite in x and y directions, respectively. Can be `-1`, `0`, `1`. |
     | `groups` | `list[py.sprite.Group]` | Groups to add element to. |
     '''
 
@@ -65,6 +65,6 @@ class Sprite(py.sprite.Sprite):
 
   @ property
   def pos(self):
-    '''Coordinates of the element.'''
+    '''Coordinates of element.'''
 
     return [self.x, self.y]
