@@ -24,7 +24,6 @@ class switch:
 
     def root():
       screen.switch = screen.states[state]
-      screen.fade = "out"
 
     return root
 
