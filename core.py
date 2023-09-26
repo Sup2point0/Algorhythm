@@ -103,10 +103,13 @@ class screen:
 class sprites:
   '''Sprite groups.'''
 
-  lines = py.sprite.Group
-  lanes = py.sprite.Group
-  notes = py.sprite.Group
-  effects = py.sprite.Group
+  fade = py.sprite.Group()
+  pause = py.sprite.Group()
+
+  lines = py.sprite.Group()
+  lanes = py.sprite.Group()
+  notes = py.sprite.Group()
+  effects = py.sprite.Group()
 
   active = py.sprite.LayeredUpdates()
   active.layer = {
