@@ -37,7 +37,7 @@ class Account:
     elif len(key) > 40:
       raise PasswordError("Password cannot exceed 40 characters.")
 
-    with open("process/data.json", "r+") as file:
+    with open("access/data.json", "r+") as file:
       data = json.load(file)
 
       if user in data:
@@ -65,7 +65,7 @@ class Account:
     Should ideally be called after any modification(s) to ensure maximum synchronisation.
     '''
 
-    with open("process/data.json", "w+") as file:
+    with open("access/data.json", "w+") as file:
       data = json.load(file)
       data[self.data.user] = self.data
       util.overwrite(file, data)
@@ -81,7 +81,7 @@ class Account:
     if len(key) < 1:
       raise PasswordError("No password input.")
 
-    with open("process/data.json", "r") as file:
+    with open("access/data.json", "r") as file:
       data = json.load(file)
 
       if user not in data:

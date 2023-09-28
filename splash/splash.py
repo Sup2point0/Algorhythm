@@ -225,7 +225,7 @@ def loadsequence(display):
   py.mixer.music.set_volume(0.69)
   py.mixer.music.play()
 
-  with open("process/data.json", "r+") as file:
+  with open("access/data.json", "r+") as file:
     data = json.load(file)
 
     data["game"]["runs"] += 1

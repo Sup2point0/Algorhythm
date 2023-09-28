@@ -4,7 +4,7 @@ Achievements management
 
 from core import game
 
-from process.achievement import Achievement
+from access.achievement import Achievement
 
 
 def init():
