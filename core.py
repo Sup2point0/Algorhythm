@@ -125,7 +125,7 @@ class sprites:
     "lanes": 4,
     "back": 1,
   }
-  splash = {each: py.sprite.Group() for each in screen.states}
+  splash = {each.name: py.sprite.Group() for each in screen.states}
 
 
 ## settings
