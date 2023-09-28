@@ -69,9 +69,9 @@ class screen:
   state = None
   
   class states(Enum):
-    start = ""
-    home = ""
-    environ = ""
+    start = "start screen"
+    home = "song selection"
+    environ = "environment"
     access = "accounts"
     play = "playing a level"
     score = "finished a level and displaying results"
@@ -138,9 +138,6 @@ class ui:
   class button:
     size = [200, 60]
 
-  class effect:
-    popsize = 100
-
   class col:
     back = [0, 23, 42]
 
@@ -175,20 +172,21 @@ class config:
   ]
 
   class score:
-    apex = 100000
-    hit = 0.6
-    perfect = 1
+    apex: int = 100000
+    hit: float = 0.6
+    perfect: float = 1
 
   lanewidth = 160
   lanespace = 40
   laneradius = lanewidth // 4
 
   class keys:
-    apex = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     upper = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"]
     home = ["a", "s", "d", "f", "g", "h", "j", "k", "l"]
     lower = ["z", "x", "c", "v", "b", "n", "m"]
-    all = apex + upper + home + lower
+    arrows = ["T", "L", "D", "R"]
+    spec = {"space", "enter", "shift"}  ## TODO
+    all = upper + home + lower
 
 
 class opt:
@@ -196,7 +194,7 @@ class opt:
 
   keys = ["z", "x", "c", "v"]
 
-  class notes:
+  class note:
     size: float = 100.0
     glow: float = 100.0
 

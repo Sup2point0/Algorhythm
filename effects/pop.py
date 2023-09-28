@@ -28,7 +28,7 @@ class PopEffect(Sprite):
     sprites.active.add(self, layer = sprites.active.layer["effects"])
 
     self.col = opt.col.perfect if acc == "perfect" else opt.col.hit
-    self.size = size or ui.effect.popsize
+    self.size = size or opt.effect.size
     self.speed = speed or opt.effect.speed
 
     class anim:
