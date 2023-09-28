@@ -5,6 +5,8 @@ Player account
 import json
 import hashlib
 
+from core import opt
+
 
 class UsernameError(Exception):
   pass
@@ -48,11 +50,11 @@ class Account:
       self.data = {
         "user": user,
         "key": key,
-        "opt": {dict(?)},
+        "opt": {vars(opt)},
         "charts": {},
         "achievements": [each.id for each in game.achievements if each.unlocked],
         "stats": data["root"]["stats"],
-      }
+      }  ## TODO sync options
       
       data[user] = self.data
       util.overwrite(file, data)
