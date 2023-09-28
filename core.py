@@ -196,14 +196,25 @@ class opt:
 
   keys = ["z", "x", "c", "v"]
 
+  class notes:
+    size: float = 100.0
+    glow: float = 100.0
+
+  class sound:
+    offset: float = 0.0
+    vol: float = 100.0
+    music: float = 100.0
+    effects: float = 100.0
+
   class effect:
-    speed = (15, 8)
+    size: float = 100.0
+    speed = (15, 8)  ## NOTE simplify?
 
   class col:
     hit = [255, 255, 255, 255]
     perfect = [64, 241, 144, 255]
     
-    upper = [144, 64, 255, 255]
-    home = [255, 144, 32, 255]
+    upper = [255, 0, 144, 255]
+    home = [64, 241, 144, 255]
     lower = [64, 224, 255, 255]
     spec = [255, 255, 255, 255]
