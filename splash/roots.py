@@ -23,7 +23,7 @@ class switch:
     '''Change screen state to `state`.'''
 
     def root():
-      screen.switch = screen.states[state]
+      screen.switch = state
 
     return root
 
@@ -35,8 +35,8 @@ class switch:
   def tutorial():
     '''Play the tutorial.'''
 
-    switch.state("play")()
     levels.charts[0].start(difficulty = 0)
+    switch.state("play")()
 
 
 class shock:
@@ -82,11 +82,11 @@ class fade:
 
   def total(self):
     match screen.fade:
-      case "out":
+      case "OUT":
         self.alpha.alt(config.faderate)
         if self.alpha.bounded():
-          screen.fade = "dark"
-      case "in":
+          screen.fade = "DARK"
+      case "IN":
         self.alpha.alt(-config.faderate)
         if self.alpha.bounded():
           screen.fade = None
