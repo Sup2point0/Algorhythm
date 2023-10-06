@@ -67,6 +67,7 @@ class screen:
 
   switch = None
   state = None
+  states = ["START", "HOME", "ENVIRON", "SETTINGS", "ACCESS", "PLAY", "SCORE"]
   
   class states(Enum):
     start = "start screen"
@@ -81,9 +82,9 @@ class screen:
   | value | description |
   | :---- | :---------- |
   | `None` | No fading animation. |
-  | `out` | Fading out to dark. |
-  | `dark` | Screen is entirely black – safe to switch screens. |
-  | `in` | Fading in from black. |
+  | `OUT` | Fading out to dark. |
+  | `DARK` | Screen is entirely black – safe to switch screens. |
+  | `IN` | Fading in from black. |
   '''
 
   track = []
