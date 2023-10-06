@@ -18,7 +18,7 @@ class Sprite(py.sprite.Sprite):
     '''
     | parameter | type | description |
     | :-------- | :--- | :---------- |
-    | `pos` | `num, num` | Position coordinates. |
+    | `pos` | `num, num` | Coordinates of position of sprite. |
     | `align` | `int, int` | Alignment of sprite in x and y directions, respectively. Can be `-1`, `0`, `1`. |
     | `groups` | `list[py.sprite.Group]` | Groups to add element to. |
     '''
@@ -37,7 +37,7 @@ class Sprite(py.sprite.Sprite):
     sprites.active.add(self, layer = sprites.active.layer[layer])
 
   def position(self):
-    '''Update sprite `rect` position, adjusting for screen shake.'''
+    '''Update sprite `rect` position, adjusting for screen shake and rotation.'''
 
     x = self.x + screen.shake.x()
     y = self.y + screen.shake.y()
