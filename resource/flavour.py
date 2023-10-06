@@ -2,14 +2,17 @@
 What are you looking in here for?
 '''
 
-
 from resource.weightedlist import WeightedList
 
 
 # I don’t know why I categorised and ordered these, but for whoever’s looking, you’re welcome.
 flavours = WeightedList(
 
-  (50, "Feel."),
+  (25, "Feel."),
+  (25, "Look."),
+  (25, "Observe."),
+  (25, 'Analyze."),
+  (25, "Find."),
   (50, "Actually, there is no algorithm. Only rhythm."),
   (50, "Pro tip – do NOT play with liquid containers nearby."),
   (50, "Music is love, music is life."),
@@ -19,6 +22,7 @@ flavours = WeightedList(
   (50, "The colours of notes and lanes correspond to which row of the keyboard their key is in."),
   (50, "If a note’s colour is different to the lane’s, it’s probably a shock note."),
   (50, "Shock notes can be quite a shock."),
+  (50, "It may help to press the key with 2 fingers for roll notes."),
   (50, "Watch out for lane switcheroos."),
   (50, "Hitting a note way off results in a miss and breaks your chain."),
   
@@ -36,7 +40,8 @@ flavours = WeightedList(
   (25, "Development on Algorhythm began the day it was conceptualised."),
   (25, "This idle backing soundtrack is called ‘Dawn’."),
   (25, "The first chart added to Algorhythm was ‘End of Time’s instrumental version, as the tutorial chart."),
-  (25, "No, Algorhythm is not coded in ALGOL. It’s Python."),
+  (10, "No, Algorhythm is not coded in ALGOL. It’s Python."),
+  (10, "Algorhythm’s source code can be found on – wait, why would you want to see that?"),
   
   (25, "Oh, you want harder charts?"),
   (25, "So, what if there were another difficulty above Insane?"),
@@ -47,11 +52,14 @@ flavours = WeightedList(
   (25, "Hand acrobatics is fun, isn’t it?"),
   (25, "Anyone play better under pressure?"),
   (25, "Does music breathe you back to life?"),
+  (20, "Did you know there are secret achievements?"),
   (20, "I wonder just how many easter eggs are in this game..."),
   (10, "Anyone opening and closing this game repeatedly to discover these?"),
   
   (25, "Remember to go soft on the keyboard."),
   (25, "Algorhythm doesn’t actually need sound effects if the keyboard already makes clicky sounds. Genius."),
+  (25, "If you want hit sound effects, just use a mechanical keyboard :5head:"),
+  (25, "Rip to anyone not playing this on a QWERTY keyboard. But hey, that’s a cool challenge."),
   (25, "No matter how difficult we make this, it seems someone’s still going to Apex Perfect it."),
   (25, "Please don’t file a copyright complaint."),
   
@@ -62,15 +70,18 @@ flavours = WeightedList(
   (10, "Just because it’s open source doesn’t mean you should peak at the code. Shoo, you."),
   
   (20, "Creating a chart is tougher than it seems."),
-  (20, "Colour interpolation is surprisingly problematic."),
   (20, "A chart editor is an even more horrifying idea than coding this as your first game."),
   (20, "One day, the hitline will multiply."),
+  (20, "Just hear me out on this – what if notes could span multiple lanes?"),
   (20, "Adding click notes to this game would be evil. Maybe we should do it?"),
+  (20, "Colour interpolation is surprisingly problematic."),
+  (20, "What hue does black have in HSV and HSL?"),
   (20, "Rumour has it pressing a specific key combination here lets you skip the loading screen. No idea why you would want to do that though."),
   (20, "Legend has it all this typing while playing Algorhythm is executing an algorithm to hack into the mainframe."),
   (20, "If you’re really, really good, you might be able to reach a chain higher than the total number of notes in the chart."),
   
   (2, "Always and forever, till the end of time."),
+  (2, "We can solve this with geometric construction."),
   (2, "Screw PEP 8."),
   (2, "So, is it pronounced ‘fee-grow’, ‘figh-grow’, ‘figh-gross’, ‘figh-groze’? ‘figh-g-ross’, anyone??"),
   (2, "Yo pigeons, I got your hair growth – wait no, that’s my web fluid. Never mind."),
