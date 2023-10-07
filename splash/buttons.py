@@ -65,7 +65,7 @@ class Button(Element):
     self.anim = anim
 
   def update(self):
-    super().visible()
+    # super().visible()
     
     ## process
     self.surf = py.Surface(self.size, py.SRCALPHA)

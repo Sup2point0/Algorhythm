@@ -327,5 +327,6 @@ def loadsequence(display):
     game.pulse.tick(config.framerate)
     py.display.flip()
 
-  screen.switch = "start"
+  screen.state = screen.states.start
+  screen.switch = screen.states.start
   screen.fade = "dark"

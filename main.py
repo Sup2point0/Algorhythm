@@ -95,9 +95,11 @@ class main:
         screen.fade = "out"
     
     elif screen.fade == "dark":
-      sprites.splash[screen.state.name].update()
-      sprites.splash[screen.switch].update()
-      
+      # sprites.splash[screen.state.name].update()
+      sprites.active.remove(sprites.splash[screen.state.name])
+      sprites.active.add(sprites.splash[screen.switch.name])
+      sprites.splash[screen.switch.name].update()
+
       screen.state = screen.switch
       screen.switch = None
       

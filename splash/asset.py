@@ -37,6 +37,7 @@ class Asset(Element):
     self.rect = self.surf.get_rect()
 
   def update(self):
-    super().visible()
+    # super().visible()
 
     ## TODO
+    ...

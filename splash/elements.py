@@ -107,7 +107,7 @@ class Element(Sprite):
     If element is clicked, call `root` if passed in, or `self.root` if available.
     '''
 
-    if self.lock():
+    if self.display.lock():
       return "lock"
 
     down = py.mouse.get_pressed()[0]

@@ -72,6 +72,7 @@ class screen:
     start = "start screen"
     home = "song selection"
     environ = "environment"
+    settings = "temporary"
     access = "accounts"
     play = "playing a level"
     score = "finished a level and displaying results"
