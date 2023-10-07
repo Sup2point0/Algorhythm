@@ -42,13 +42,10 @@ class Lane(Sprite):
     super().show("lanes")
 
     ## handle notes
-    for event in game.events:
-      if event.type in [KEYDOWN, KEYUP]:
-        if event.key == globals()[f"K_{self.key}"]:
-          self.hit = (event.type == KEYDOWN)
-
-    if self.hit:
-      self.pop()
+    for each in game.keys:
+      if each == config.keys.all[self.key]:
+        if not self.hit:
+          self.pop()
 
     ## animate
     self.anim.size[0] = util.slide(self.anim.size[0], self.size[0], 5)
@@ -90,12 +87,11 @@ class Lane(Sprite):
 
     notes = self.notes.sprites()
     if notes:
-      note = sorted(notes, key = lambda note: note.hit)[0]
+      note = sorted(notes, key = lambda note: (note.hit, note.y))[0]
       note.pop(hit = True)
 
     self.anim.coltick = 0.4
-
-    self.hit = False
+    self.hit = True
 
   def switch(self, index = None):
     '''Change index of lane.'''

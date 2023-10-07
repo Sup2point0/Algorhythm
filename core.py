@@ -183,6 +183,7 @@ class config:
     arrows = _auto_(["UP", "LEFT", "DOWN", "RIGHT"])
     spec = _auto_(["SPACE", "RETURN", "LSHIFT", "RSHIFT"])
 
+    rand = {**upper, **home, **lower}
     all = {**upper, **home, **lower, **arrows, **spec}
 
 
