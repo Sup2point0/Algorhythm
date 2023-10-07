@@ -151,28 +151,28 @@ def setup():
     ),
   ]
 
-  about = [
-    Text(
-      id = "about.title",
-      pos = util.cord(0, -0.5),
-      text = "ABOUT",
-      style = Text.Style(
-        typeface = ui.font.title,
-        size = 100,
-      ),
-      display = Displayed(
-        show = {"about"},
-      ),
-    ),
-    Text(
-      id = "about.body.1",
-      pos = util.cord(0, -0.5),
-      text = f"Algorhythm v{game.version}",
-      display = Displayed(
-        show = {"about"},
-      )
-    ),
-  ]
+  # about = [
+  #   Text(
+  #     id = "about.title",
+  #     pos = util.cord(0, -0.5),
+  #     text = "ABOUT",
+  #     style = Text.Style(
+  #       typeface = ui.font.title,
+  #       size = 100,
+  #     ),
+  #     display = Displayed(
+  #       show = {"about"},
+  #     ),
+  #   ),
+  #   Text(
+  #     id = "about.body.1",
+  #     pos = util.cord(0, -0.5),
+  #     text = f"Algorhythm v{game.version}",
+  #     display = Displayed(
+  #       show = {"about"},
+  #     )
+  #   ),
+  # ]
 
   account = []
 

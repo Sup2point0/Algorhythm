@@ -83,7 +83,7 @@ class Element(Sprite):
       self.click = False
     
     for state in display.show:
-      sprites.splash[state].add(self)
+      sprites.splash[state.lower()].add(self)
 
   # def visible(self):
   #   '''Show or hide sprite depending on current screen state.'''

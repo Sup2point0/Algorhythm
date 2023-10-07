@@ -67,7 +67,7 @@ class screen:
 
   switch = None
   state = None
-  states = ["START", "HOME", "ENVIRON", "SETTINGS", "ACCESS", "PLAY", "SCORE"]
+  states = {"START", "HOME", "ENVIRON", "SETTINGS", "ACCESS", "PLAY", "SCORE"}
   
   fade = None
   '''
@@ -174,14 +174,18 @@ class config:
   laneradius = lanewidth // 4
 
   class keys:
-    def _auto_(keys):
-      return {key.upper(): vars(py)[f"K_{key}"] for key in keys}
+    def _auto_(keys, *, upper = False):
+      return {
+        key.upper(): vars(py)[
+          f"K_{key.upper() if upper else key.lower()}"
+        ] for key in keys
+      }
 
     upper = _auto_(["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"])
     home = _auto_(["A", "S", "D", "F", "G", "H", "J", "K", "L"])
     lower = _auto_(["Z", "X", "C", "V", "B", "N", "M"])
-    arrows = _auto_(["UP", "LEFT", "DOWN", "RIGHT"])
-    spec = _auto_(["SPACE", "RETURN", "LSHIFT", "RSHIFT"])
+    arrows = _auto_(["UP", "LEFT", "DOWN", "RIGHT"], upper = True)
+    spec = _auto_(["SPACE", "RETURN", "LSHIFT", "RSHIFT"], upper = True)
 
     rand = {**upper, **home, **lower}
     all = {**upper, **home, **lower, **arrows, **spec}

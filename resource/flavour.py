@@ -11,7 +11,7 @@ flavours = WeightedList(
   (25, "Feel."),
   (25, "Look."),
   (25, "Observe."),
-  (25, 'Analyze."),
+  (25, "Analyze."),
   (25, "Find."),
   (50, "Actually, there is no algorithm. Only rhythm."),
   (50, "Pro tip – do NOT play with liquid containers nearby."),

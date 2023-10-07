@@ -116,9 +116,10 @@ class find:
     '''Find which row of the keyboard a key belongs to.'''
 
     rows = config.keys.__dict__
-    for row in rows:
-      if key in rows[row]:
-        return row
+    for each in rows:
+      if not each.startswith("_"):
+        if key in rows[each]:
+          return each
     else:
       return "spec"
 
