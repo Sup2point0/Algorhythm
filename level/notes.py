@@ -164,3 +164,9 @@ class HoldNote(Note):
     ''''''
 
     ...
+
+
+class RollNote:
+  '''...'''
+
+  ...
