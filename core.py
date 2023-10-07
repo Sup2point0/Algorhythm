@@ -69,14 +69,6 @@ class screen:
   state = None
   states = ["START", "HOME", "ENVIRON", "SETTINGS", "ACCESS", "PLAY", "SCORE"]
   
-  class states(Enum):
-    start = "start screen"
-    home = "song selection"
-    environ = "environment"
-    access = "accounts"
-    play = "playing a level"
-    score = "finished a level and displaying results"
-  
   fade = None
   '''
   | value | description |
@@ -126,7 +118,7 @@ class sprites:
     "lanes": 4,
     "back": 1,
   }
-  splash = {each.name: py.sprite.Group() for each in screen.states}
+  splash = {each.lower(): py.sprite.Group() for each in screen.states}
 
 
 ## settings
