@@ -21,8 +21,7 @@ class Note(Sprite):
     
     | argument | type | description |
     | :------- | :--- | :---------- |
-    | `hit` | `int`, `float` | Beat the note should be hit. |
-    | `lane` | `int`, `list[int]` | Starting lane(s) of the note. |
+    | `lane` | `int`, `list[int]` | Starting lane(s) of the note. If a list is provided, it will be randomly chosen from those lanes. |
     | `speed` | `float` | How fast the note approaches. Defaults to set speed of difficulty. |
     '''
 
@@ -165,3 +164,9 @@ class HoldNote(Note):
     ''''''
 
     ...
+
+
+class RollNote:
+  '''...'''
+
+  ...

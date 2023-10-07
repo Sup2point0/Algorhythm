@@ -87,19 +87,20 @@ class main:
     '''Control active game loop.'''
 
     if not screen.fade:
-      sprites.splash[screen.state.name].update()
-      if game.level and not screen.switch:  # NOTE needed?
+      sprites.splash[screen.state].update()
+      if game.level and not screen.switch:  # NOTE `screen.switch` needed?
         game.level.run()
       
       if screen.switch:
-        screen.fade = "out"
+        screen.fade = "OUT"
     
-    elif screen.fade == "dark":
-      # sprites.splash[screen.state.name].update()
-      sprites.active.remove(sprites.splash[screen.state.name])
-      sprites.active.add(sprites.splash[screen.switch.name])
-      sprites.splash[screen.switch.name].update()
-
+    elif screen.fade == "DARK":
+      sprites.splash[screen.state].update()
+      sprites.splash[screen.switch].update()
+      
+      sprites.active.remove(sprites.splash[screen.state])
+      sprites.active.add(sprites.splash[screen.switch])
+      
       screen.state = screen.switch
       screen.switch = None
       
@@ -110,7 +111,7 @@ class main:
       else:
         screen.track.append(screen.state)
       
-      screen.fade = "in"
+      screen.fade = "IN"
     
     else:
       sprites.fade.update()

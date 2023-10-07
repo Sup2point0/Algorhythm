@@ -24,7 +24,7 @@ class Displayed:
     | parameter | type | description |
     | :-------- | :--- | :---------- |
     | `show` | `set[str]` | Set of screen states to show the sprite. |
-    | `hide` | `set[str]` | Set of screen states to hide the sprite. |
+    | `hide` | `set[str]` | Set of screen states to hide the sprite. If specified, the sprite will default to being shown in every screen state. |
     | `layer` | `int` | Layer to render sprite. |
     | `fade` | `bool` | Show or hide the sprite with a fade animation. |
     | `root` | `Callable -> bool` | Function called to check if sprite should be rendered. |
@@ -32,7 +32,7 @@ class Displayed:
     '''
 
     if hide:
-      self.show = set(state for state in screen.states if state not in hide)
+      self.show = screen.states - hide
     else:
       self.show = show or set()
 
@@ -46,13 +46,10 @@ class Element(Sprite):
   '''Base class from which all splash sprites derive.'''
   
   class Style:
-    '''Base style class from which all style classes derive.'''
+    '''Base class from which all style classes derive.'''
 
     def update(self, **kwargs):
-      '''Update style settings.
-      
-      Useful for dynamically altering a style setting.
-      '''
+      '''Update style settings using keyword arguments.'''
 
       for kwarg in kwargs:
         if hasattr(self, kwarg):
@@ -69,7 +66,7 @@ class Element(Sprite):
     | parameter | type | description |
     | :-------- | :--- | :---------- |
     | `id` | `str` | Unique ID to identify element. |
-    | `interact` | `bool` | Whether element can be hovered or clicked. |
+    | `interact` | `bool` | Whether element can be hovered over or clicked on. |
     | `display` | `splash.Displayed` | Sprite display settings. |
 
     Other base parameters are inherited from `resource.Sprite`. `groups` is not inherited, since all splash sprites are automatically added to the suitable `sprites.splash` group.
@@ -85,10 +82,8 @@ class Element(Sprite):
       self.hover = False
       self.click = False
     
-    # add to relevant splash sprite groups
-    for state in screen.states:
-      if state.name in display.show:
-        sprites.splash[state.name].add(self)
+    for state in display.show:
+      sprites.splash[state].add(self)
 
   # def visible(self):
   #   '''Show or hide sprite depending on current screen state.'''
@@ -102,13 +97,13 @@ class Element(Sprite):
   #     sprites.active.remove(self)
 
   def interact(self, root = None) -> str:
-    '''Detect hover and click interactions with element and return state as a string.
+    '''Detect hover and click interactions with element and return state as an uppercase string.
 
     If element is clicked, call `root` if passed in, or `self.root` if available.
     '''
 
     if self.display.lock():
-      return "lock"
+      return "LOCK"
 
     down = py.mouse.get_pressed()[0]
 
@@ -121,15 +116,15 @@ class Element(Sprite):
             self.root()
         self.hover = True
         self.click = False
-        return "hover"
+        return "HOVER"
 
       elif down and self.hover:  # clicked
         self.click = True
-        return "click"
+        return "CLICK"
       
-      return "idle"
+      return "IDLE"
 
     else:  # not hovering
       self.hover = False
       self.click = False
-      return "idle"
+      return "IDLE"

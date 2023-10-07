@@ -89,7 +89,7 @@ def setscore(score, digits: int = None) -> str:
   return (f"{'0' * (digits - places)}{score}") if places < digits else points
 
 def randkey(rows: list[str] = None):
-  '''Randomly select a key from the game keys.
+  '''Randomly select a key from the non-special game keys.
   
   The row(s) from which the key is selected can be restricted by specifying `rows`.
   '''
@@ -98,11 +98,11 @@ def randkey(rows: list[str] = None):
     return has((lane.key for lane in sprites.lanes), key, every = False)
   
   if rows is None:
-    keys = [key for key in config.keys.all if not taken(key)]
+    keys = [key for key in config.keys.rand.keys() if not taken(key)]
   else:
     keys = [
       key for row in rows
-      for key in globals()[f"config.keys.{row}"]
+      for key in vars(config.keys)[row].keys()
       if not taken(key)
     ]
   
@@ -114,13 +114,11 @@ class find:
 
   def row(key) -> str:
     '''Find which row of the keyboard a key belongs to.'''
-  
-    if key in config.keys.upper:
-      return "upper"
-    elif key in config.keys.home:
-      return "home"
-    elif key in config.keys.lower:
-      return "lower"
+
+    rows = config.keys.__dict__
+    for row in rows:
+      if key in rows[row]:
+        return row
     else:
       return "spec"
 

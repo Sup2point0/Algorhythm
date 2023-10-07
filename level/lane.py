@@ -11,6 +11,7 @@ from core import game, level, screen, sprites, ui, config, opt
 from resource.sprite import Sprite
 import util
 
+from level.notes import TapNote, HoldNote, RollNote
 from level.lanekey import LaneKey
 
 
@@ -44,9 +45,9 @@ class Lane(Sprite):
     ## handle notes
     for event in game.events:
       if event.type in [KEYDOWN, KEYUP]:
-        if event.key == globals()[f"K_{self.key}"]:
+        if event.key == config.keys.all[self.key]:
           self.hit = (event.type == KEYDOWN)
-
+    
     if self.hit:
       self.pop()
 
@@ -90,12 +91,15 @@ class Lane(Sprite):
 
     notes = self.notes.sprites()
     if notes:
-      note = sorted(notes, key = lambda note: note.hit)[0]
-      note.pop(hit = True)
+      note = sorted(notes, key = lambda note: (note.hit, -note.y))[0]
+
+      if isinstance(note, TapNote):
+        note.pop(hit = True)
+        self.hit = False
+      elif isinstance(note, HoldNote):
+        note.pop
 
     self.anim.coltick = 0.4
-
-    self.hit = False
 
   def switch(self, index = None):
     '''Change index of lane.'''

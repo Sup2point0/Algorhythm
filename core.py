@@ -67,24 +67,16 @@ class screen:
 
   switch = None
   state = None
-  
-  class states(Enum):
-    start = "start screen"
-    home = "song selection"
-    environ = "environment"
-    settings = "temporary"
-    access = "accounts"
-    play = "playing a level"
-    score = "finished a level and displaying results"
+  states = ["START", "HOME", "ENVIRON", "SETTINGS", "ACCESS", "PLAY", "SCORE"]
   
   fade = None
   '''
   | value | description |
   | :---- | :---------- |
   | `None` | No fading animation. |
-  | `out` | Fading out to dark. |
-  | `dark` | Screen is entirely black – safe to switch screens. |
-  | `in` | Fading in from black. |
+  | `OUT` | Fading out to dark. |
+  | `DARK` | Screen is entirely black – safe to switch screens. |
+  | `IN` | Fading in from black. |
   '''
 
   track = []
@@ -126,7 +118,7 @@ class sprites:
     "lanes": 4,
     "back": 1,
   }
-  splash = {each.name: py.sprite.Group() for each in screen.states}
+  splash = {each.lower(): py.sprite.Group() for each in screen.states}
 
 
 ## settings
@@ -182,18 +174,23 @@ class config:
   laneradius = lanewidth // 4
 
   class keys:
-    upper = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"]
-    home = ["a", "s", "d", "f", "g", "h", "j", "k", "l"]
-    lower = ["z", "x", "c", "v", "b", "n", "m"]
-    arrows = ["T", "L", "D", "R"]
-    spec = {"space", "enter", "shift"}  ## TODO
-    all = upper + home + lower
+    def _auto_(keys):
+      return {key.upper(): vars(py)[f"K_{key}"] for key in keys}
+
+    upper = _auto_(["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"])
+    home = _auto_(["A", "S", "D", "F", "G", "H", "J", "K", "L"])
+    lower = _auto_(["Z", "X", "C", "V", "B", "N", "M"])
+    arrows = _auto_(["UP", "LEFT", "DOWN", "RIGHT"])
+    spec = _auto_(["SPACE", "RETURN", "LSHIFT", "RSHIFT"])
+
+    rand = {**upper, **home, **lower}
+    all = {**upper, **home, **lower, **arrows, **spec}
 
 
 class opt:
   '''User-alterable settings.'''
 
-  keys = ["z", "x", "c", "v"]
+  keys = ["Z", "X", "C", "V"]
 
   class note:
     size: float = 100.0
