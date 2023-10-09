@@ -83,7 +83,7 @@ class Element(Sprite):
       self.click = False
     
     for state in display.show:
-      sprites.splash[state.lower()].add(self)
+      sprites.splash[state].add(self)
 
   # def visible(self):
   #   '''Show or hide sprite depending on current screen state.'''
@@ -97,13 +97,13 @@ class Element(Sprite):
   #     sprites.active.remove(self)
 
   def interact(self, root = None) -> str:
-    '''Detect hover and click interactions with element and return state as an uppercase string.
+    '''Detect hover and click interactions with element and return state as a string.
 
     If element is clicked, call `root` if passed in, or `self.root` if available.
     '''
 
     if self.display.lock():
-      return "LOCK"
+      return "lock"
 
     down = py.mouse.get_pressed()[0]
 
@@ -116,15 +116,15 @@ class Element(Sprite):
             self.root()
         self.hover = True
         self.click = False
-        return "HOVER"
+        return "hover"
 
       elif down and self.hover:  # clicked
         self.click = True
-        return "CLICK"
+        return "click"
       
-      return "IDLE"
+      return "idle"
 
     else:  # not hovering
       self.hover = False
       self.click = False
-      return "IDLE"
+      return "idle"

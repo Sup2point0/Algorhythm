@@ -62,12 +62,12 @@ class screen:
   
   `screen.state` and `screen.fade` control what displays on screen. Sprites only render if the current `screen.state` is in their configured list of screen states.
   
-  When `screen.switch` is set, `screen.state` is updated to that at the start of the next frame (to avoid conflicting screen state processing within the same frame). While fading out, `screen.fade` becomes `'out'`, freezing sprites from updating. Once the screen entirely blacks out, `screen.fade` briefly becomes `'dark'`. In this time window (where the player cannot see anything), sprites update again, changing the rendered screen.
+  When `screen.switch` is set, `screen.state` is updated to that at the start of the next frame (to avoid conflicting screen state processing within the same frame). While fading out, `screen.fade` becomes `'OUT'`, freezing sprites from updating. Once the screen entirely blacks out, `screen.fade` briefly becomes `'DARK'`. In this time window (where the player cannot see anything), sprites update again, changing the rendered screen.
   '''
 
   switch = None
   state = None
-  states = {"START", "HOME", "ENVIRON", "SETTINGS", "ACCESS", "PLAY", "SCORE"}
+  states = {"start", "home", "environ", "settings", "access", "play", "score"}
   
   fade = None
   '''
@@ -118,7 +118,7 @@ class sprites:
     "lanes": 4,
     "back": 1,
   }
-  splash = {each.lower(): py.sprite.Group() for each in screen.states}
+  splash = {each: py.sprite.Group() for each in screen.states}
 
 
 ## settings

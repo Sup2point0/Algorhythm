@@ -94,24 +94,26 @@ class main:
       if screen.switch:
         screen.fade = "OUT"
     
-    elif screen.fade == "DARK":  # test if screen.state truthy?
+    elif screen.fade == "DARK":
       sprites.splash[screen.state].update()
-      sprites.splash[screen.switch].update()
       
-      sprites.active.remove(sprites.splash[screen.state])
-      sprites.active.add(sprites.splash[screen.switch])
-      
-      screen.state = screen.switch
-      screen.switch = None
-      
-      # update screen change history
-      if len(screen.track) > 1:
-        if screen.state == screen.track[-2]:
-          screen.track.pop()
-      else:
-        screen.track.append(screen.state)
-      
-      screen.fade = "IN"
+      if screen.switch:
+        sprites.splash[screen.switch].update()
+        
+        sprites.active.remove(sprites.splash[screen.state])
+        sprites.active.add(sprites.splash[screen.switch])
+
+        screen.state = screen.switch
+        screen.switch = None
+        
+        # update screen change history
+        if len(screen.track) > 1:
+          if screen.state == screen.track[-2]:
+            screen.track.pop()
+        else:
+          screen.track.append(screen.state)
+        
+        screen.fade = "IN"
     
     else:
       sprites.fade.update()
