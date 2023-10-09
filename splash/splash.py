@@ -8,7 +8,7 @@ import json
 
 import pygame as py
 
-from core import game, level, screen, ui, config
+from core import game, level, screen, sprites, ui, config
 from resource import flavour
 import util
 
@@ -327,5 +327,7 @@ def loadsequence(display):
     game.pulse.tick(config.framerate)
     py.display.flip()
 
+  sprites.active.add(sprites.splash["start"])
+  
   screen.state = "start"
   screen.fade = "DARK"
