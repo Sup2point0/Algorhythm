@@ -94,7 +94,7 @@ class main:
       if screen.switch:
         screen.fade = "OUT"
     
-    elif screen.fade == "DARK":
+    elif screen.fade == "DARK":  # test if screen.state truthy?
       sprites.splash[screen.state].update()
       sprites.splash[screen.switch].update()
       
