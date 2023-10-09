@@ -95,25 +95,24 @@ class main:
         screen.fade = "OUT"
     
     elif screen.fade == "DARK":
-      sprites.splash[screen.state].update()
-      
-      if screen.switch:
-        sprites.splash[screen.switch].update()
-        
+      if screen.state:
         sprites.active.remove(sprites.splash[screen.state])
-        sprites.active.add(sprites.splash[screen.switch])
+      
+      # switch screen
+      screen.state = screen.switch
+      screen.switch = None
 
-        screen.state = screen.switch
-        screen.switch = None
-        
-        # update screen change history
-        if len(screen.track) > 1:
-          if screen.state == screen.track[-2]:
-            screen.track.pop()
-        else:
-          screen.track.append(screen.state)
-        
-        screen.fade = "IN"
+      sprites.splash[screen.state].update()
+      sprites.active.add(sprites.splash[screen.state])
+      
+      # update screen change history
+      if len(screen.track) > 1:
+        if screen.state == screen.track[-2]:
+          screen.track.pop()
+      else:
+        screen.track.append(screen.state)
+      
+      screen.fade = "IN"
     
     else:
       sprites.fade.update()
