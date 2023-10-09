@@ -30,7 +30,7 @@ for i in range(128):
 tutorial = Chart(
   difficulty = 0,
   lanes = 6,
-  keys = ["q", "x", "f", "y", "n", "i"],
+  keys = ["Q", "X", "F", "Y", "N", "I"],
   data = [
     # TODO: make the tutorial level!
     *data
