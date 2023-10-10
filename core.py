@@ -197,17 +197,17 @@ class opt:
   keys = ["Z", "X", "C", "V"]
 
   class note:
-    size: float = 100.0
-    glow: float = 100.0
+    size: float = 1.0
+    glow: float = 1.0
 
   class sound:
     offset: float = 0.0
-    vol: float = 100.0
-    music: float = 100.0
-    effects: float = 100.0
+    vol: float = 1.0
+    music: float = 1.0
+    effects: float = 1.0
 
   class effect:
-    size: float = 100.0
+    size: float = 1.0
     speed = (15, 8)  ## NOTE simplify?
 
   class col:

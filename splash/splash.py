@@ -36,7 +36,7 @@ def setup():
 
   common = [
     Asset(
-      id = "start.back",
+      id = "start.backdrop",
       pos = [screen.cx, screen.cy],
       image = "scarlet-cortex.jpg",
       size = screen.size,
