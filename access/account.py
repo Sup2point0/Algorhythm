@@ -5,7 +5,8 @@ Player account
 import json
 import hashlib
 
-from core import opt
+from core import game, opt
+import util
 
 
 class UsernameError(Exception):
@@ -18,7 +19,13 @@ class PasswordError(Exception):
 class Account:
   '''Represents a player account.'''
 
-  def __init__(self, username: str, password: str):
+  def __init__(self, data: dict):
+    '''Create a player account object.'''
+
+    self.data = data
+
+  @ classmethod
+  def create(username: str, password: str):
     '''Create a new player account.'''
 
     user = str(username).strip()
@@ -46,20 +53,19 @@ class Account:
         raise UsernameError("Username is taken.")
 
       key = hashlib.sha256("sup" + password).hexdigest()
-
-      self.data = {
+      
+      data[user] = {
         "user": user,
         "key": key,
         "opt": {vars(opt)},
         "charts": {},
         "achievements": [each.id for each in game.achievements if each.unlocked],
         "stats": data["root"]["stats"],
-      }  ## TODO sync options
-      
-      data[user] = self.data
-      util.overwrite(file, data)
+      }  ### TODO sync options
 
-    game.player = self
+      game.player = Account(data[user])
+
+      util.overwrite(file, data)
 
   def save(self):
     '''Save current player data to file.
@@ -73,7 +79,7 @@ class Account:
       util.overwrite(file, data)
 
   @ classmethod
-  def login(username: str, password: str):
+  def login(cls, username: str, password: str):
     '''Attempt to login to a player account.'''
 
     user = str(username).strip()
@@ -91,7 +97,7 @@ class Account:
       if hashlib.sha256("sup" + key).hexdigest() != data[user]["key"]:
         raise PasswordError("Incorrect password.")
 
-      game.player = self
+      game.player = Account(data[user])
 
   def logout(self):
     '''Logout of the current player account.'''
