@@ -48,9 +48,9 @@ def setup():
     ),
     Button(
       id = "common.back",
-      pos = [100, 55],
-      size = [150, ui.button.size[1]],
-      text = "BACK",
+      pos = [75, 75],
+      size = [ui.button.size[1]] * 2,
+      text = "‹",
       root = roots.switch.back,
       display = Displayed(
         hide = {"start", "play", "score"},
@@ -89,11 +89,11 @@ def setup():
       ),
     ),
     Button(
-      id = "start.tutorial",
+      id = "start.environ",
       pos = util.cord(-0.75, 0),
       size = ui.button.size,
-      text = "TUTORIAL",
-      root = roots.switch.tutorial,
+      text = "ENVIRONMENT",
+      root = roots.switch.state("environ",
       display = Displayed(
         show = {"start"},
         layer = 15,
@@ -105,17 +105,6 @@ def setup():
       size = ui.button.size,
       text = "SETTINGS",
       root = roots.switch.state("settings"),
-      display = Displayed(
-        show = {"start"},
-        layer = 15,
-      ),
-    ),
-    Button(
-      id = "start.about",
-      pos = util.cord(-0.75, 0.5),
-      size = ui.button.size,
-      text = "ABOUT",
-      root = roots.switch.state("about"),
       display = Displayed(
         show = {"start"},
         layer = 15,
@@ -135,21 +124,7 @@ def setup():
     ),
   ]
 
-  settings = [
-    Text(
-      id = "settings.title",
-      pos = util.cord(0, -0.5),
-      text = "SETTINGS",
-      style = Text.Style(
-        typeface = ui.font.title,
-        size = 100,
-      ),
-      display = Displayed(
-        show = {"settings"},
-        layer = 15,
-      ),
-    ),
-  ]
+  environ = []
 
   # about = [
   #   Text(
@@ -164,19 +139,92 @@ def setup():
   #       show = {"about"},
   #     ),
   #   ),
-  #   Text(
-  #     id = "about.body.1",
-  #     pos = util.cord(0, -0.5),
-  #     text = f"Algorhythm v{game.version}",
-  #     display = Displayed(
-  #       show = {"about"},
-  #     )
-  #   ),
   # ]
+
+  settings = [
+    Text(
+      id = "settings.title",
+      pos = util.cord(0, -0.5),
+      text = "ALGORHYTHM",
+      style = Text.Style(
+        typeface = ui.font.title,
+        size = 100,
+      ),
+      display = Displayed(
+        show = {"settings"},
+        layer = 15,
+      ),
+    ),
+    Text(
+      id = "settings.about",
+      pos = util.cord(0, -0.25),
+      text = f"v{game.version}",
+      display = Displayed(
+        show = {"about"},
+        layer = 15,
+      )
+    ),
+  ]
 
   account = []
 
-  home = []
+  home = [
+    Button(
+      id = "home.tutorials",
+      pos = util.cord(0, -0.5),
+      size = [screen.x * 0.8, ui.button.size[1] * 2],
+      text = "TUTORIALS",
+      root = roots.switch.state("tutorials"),
+      display = Displayed(
+        show = {"home"},
+        layer = 15,
+      ),
+    ),
+    Button(
+      id = "home.origins",
+      pos = util.cord(0, -0.25),
+      size = [screen.x * 0.8, ui.button.size[1] * 2],
+      text = "ORIGINS",
+      root = roots.switch.state("origins"),
+      display = Displayed(
+        show = {"home"},
+        layer = 15,
+      ),
+    ),
+    Button(
+      id = "home.protos",
+      pos = util.cord(0, 0),
+      size = [screen.x * 0.8, ui.button.size[1] * 2],
+      text = "ORIGINS",
+      root = roots.switch.state("protos"),
+      display = Displayed(
+        show = {"home"},
+        layer = 15,
+      ),
+    ),
+    Button(
+      id = "home.decode",
+      pos = util.cord(0, 0.25),
+      size = [screen.x * 0.8, ui.button.size[1] * 2],
+      text = "ORIGINS",
+      root = roots.switch.state("decode"),
+      display = Displayed(
+        show = {"home"},
+        layer = 15,
+      ),
+    ),
+    Button(
+      id = "home.special",
+      pos = util.cord(0, 0.5),
+      size = [screen.x * 0.8, ui.button.size[1] * 2],
+      text = "ORIGINS",
+      root = roots.switch.state("special"),
+      display = Displayed(
+        show = {"home"},
+        layer = 15,
+      ),
+    ),
+  ]
 
   play = [
     ActiveText(
