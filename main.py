@@ -92,9 +92,9 @@ class main:
         game.level.run()
       
       if screen.switch:
-        screen.fade = "OUT"
+        screen.fade = "out"
     
-    elif screen.fade == "DARK":
+    elif screen.fade == "dark":
       if screen.state:
         sprites.active.remove(sprites.splash[screen.state])
       
@@ -112,7 +112,7 @@ class main:
       else:
         screen.track.append(screen.state)
       
-      screen.fade = "IN"
+      screen.fade = "in"
     
     else:
       sprites.fade.update()

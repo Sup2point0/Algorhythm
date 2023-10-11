@@ -376,4 +376,4 @@ def loadsequence(display):
     py.display.flip()
   
   screen.switch = "start"
-  screen.fade = "DARK"
+  screen.fade = "dark"

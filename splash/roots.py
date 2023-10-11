@@ -82,11 +82,11 @@ class fade:
 
   def total(self):
     match screen.fade:
-      case "OUT":
+      case "out":
         self.alpha.alt(config.faderate)
         if self.alpha.bounded():
-          screen.fade = "DARK"
-      case "IN":
+          screen.fade = "dark"
+      case "in":
         self.alpha.alt(-config.faderate)
         if self.alpha.bounded():
           screen.fade = None

@@ -74,9 +74,9 @@ class screen:
   | value | description |
   | :---- | :---------- |
   | `None` | No fading animation. |
-  | `OUT` | Fading out to dark. |
+  | `out` | Fading out to dark. |
   | `DARK` | Screen is entirely black – safe to switch screens. |
-  | `IN` | Fading in from black. |
+  | `in` | Fading in from black. |
   '''
 
   track = []
