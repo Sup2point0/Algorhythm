@@ -12,7 +12,7 @@ class Sprite(py.sprite.Sprite):
 
   def __init__(self,
     pos = None,
-    align = (0, 0),
+    align = None,
     groups = list(),
   ):
     '''
@@ -26,7 +26,7 @@ class Sprite(py.sprite.Sprite):
     super().__init__(*groups)
 
     self.x, self.y = pos or screen.origin
-    self.align: tuple[int, int] = align
+    self.align: tuple[int, int] = align or (0, 0)
 
     self.surf: py.Surface
     self.rect: py.Rect
