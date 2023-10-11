@@ -95,6 +95,8 @@ class main:
         screen.fade = "out"
     
     elif screen.fade == "dark":
+      sprites.fade.update()
+      
       if screen.state:
         sprites.active.remove(sprites.splash[screen.state])
       

@@ -126,21 +126,6 @@ def setup():
 
   environ = []
 
-  # about = [
-  #   Text(
-  #     id = "about.title",
-  #     pos = util.cord(0, -0.5),
-  #     text = "ABOUT",
-  #     style = Text.Style(
-  #       typeface = ui.font.title,
-  #       size = 100,
-  #     ),
-  #     display = Displayed(
-  #       show = {"about"},
-  #     ),
-  #   ),
-  # ]
-
   settings = [
     Text(
       id = "settings.title",
