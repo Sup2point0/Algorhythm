@@ -60,7 +60,7 @@ def setup():
   ]
 
   pause = [
-    
+    ...
   ]
 
   start = [
@@ -93,7 +93,7 @@ def setup():
       pos = util.cord(-0.75, 0),
       size = ui.button.size,
       text = "ENVIRONMENT",
-      root = roots.switch.state("environ",
+      root = roots.switch.state("environ"),
       display = Displayed(
         show = {"start"},
         layer = 15,
@@ -160,7 +160,7 @@ def setup():
       pos = util.cord(0, -0.25),
       text = f"v{game.version}",
       display = Displayed(
-        show = {"about"},
+        show = {"settings"},
         layer = 15,
       )
     ),
