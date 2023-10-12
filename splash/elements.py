@@ -1,11 +1,12 @@
 '''
-Base splash element
+Implements the `Element` and `Element.Style` base classes for other splash sprites to derive from, and defines the `Displayed` class for configuring how sprites are displayed.
 '''
 
 import pygame as py
 
 from core import screen, sprites
 from resource.sprite import Sprite
+from resource.object import Object
 
 
 class Displayed:
@@ -45,20 +46,13 @@ class Displayed:
 class Element(Sprite):
   '''Base class from which all splash sprites derive.'''
   
-  class Style:
+  class Style(Object):
     '''Base class from which all style classes derive.'''
-
-    def update(self, **kwargs):
-      '''Update style settings using keyword arguments.'''
-
-      for kwarg in kwargs:
-        if hasattr(self, kwarg):
-          self.__setattr__(kwarg, kwargs[kwarg])
-
   
   def __init__(self,
     id: str,
     pos = None,
+    align = None,
     interact = False,
     display = None,
   ):
@@ -72,7 +66,7 @@ class Element(Sprite):
     Other base parameters are inherited from `resource.Sprite`. `groups` is not inherited, since all splash sprites are automatically added to the suitable `sprites.splash` group.
     '''
     
-    super().__init__(pos = pos, align = (0, 0))
+    super().__init__(pos = pos, align = align)
 
     self.id = id
     self.display = display
@@ -84,17 +78,6 @@ class Element(Sprite):
     
     for state in display.show:
       sprites.splash[state].add(self)
-
-  # def visible(self):
-  #   '''Show or hide sprite depending on current screen state.'''
-
-  #   if (
-  #     screen.state.name in self.display.show or
-  #     self.display.hide and screen.state.name not in self.display.hide
-  #   ):
-  #     sprites.active.add(self, layer = self.display.layer)
-  #   else:
-  #     sprites.active.remove(self)
 
   def interact(self, root = None) -> str:
     '''Detect hover and click interactions with element and return state as a string.
