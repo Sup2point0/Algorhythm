@@ -69,7 +69,7 @@ class screen:
   state = None
   states = {
     "start", "select",
-    *{f"select.{each} for each in [
+    *{f"select.{each}" for each in [
       "tutorials", "origins", "protos", "decode", "special",
     ]},
     "environ", "environ.load", "environ.create",
@@ -178,10 +178,6 @@ class config:
     hit: float = 0.6
     perfect: float = 1
 
-  lanewidth = 160
-  lanespace = 40
-  laneradius = lanewidth // 4
-
   class keys:
     def _auto_(keys, *, upper = False):
       return {
@@ -198,6 +194,19 @@ class config:
 
     rand = {**upper, **home, **lower}
     all = {**upper, **home, **lower, **arrows, **spec}
+
+  class lane:
+    width = 160
+    radius = width // 4
+    space = 40
+
+  class note:
+    size = [10, lane.width * 3 // 4]
+    glow = 10
+
+  class effects:
+    size = 40
+    speed = 8
 
 
 class opt:
@@ -216,8 +225,9 @@ class opt:
     effects: float = 1.0
 
   class effect:
+    on: bool = True
     size: float = 1.0
-    speed = (15, 8)  ## NOTE simplify?
+    speed = 1.0
 
   class col:
     hit = [255, 255, 255, 255]
