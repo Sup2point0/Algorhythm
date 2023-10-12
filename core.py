@@ -8,7 +8,8 @@ import pygame as py
 
 # This module is imported by almost every file. As such,
 # it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
-# These resource modules are exceptions, since they are safe to import.
+# These are exceptions, since they are safe to import.
+from resource.value import Value
 from resource.difficulty import Difficulty
 from effects.shake import Shake
 
