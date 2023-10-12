@@ -75,7 +75,7 @@ class screen:
   | :---- | :---------- |
   | `None` | No fading animation. |
   | `out` | Fading out to dark. |
-  | `DARK` | Screen is entirely black – safe to switch screens. |
+  | `dark` | Screen is entirely black – safe to switch screens. |
   | `in` | Fading in from black. |
   '''
 
