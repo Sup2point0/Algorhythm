@@ -1,5 +1,5 @@
 '''
-Graphic interface functionality
+Integrates all the different splash sprite classes into the graphical user interface.
 '''
 
 import math
@@ -148,6 +148,28 @@ def setup():
         show = {"settings"},
         layer = 15,
       )
+    ),
+    Button(
+      id = "settings.sounds",
+      pos = util.cord(-0.5, 0),
+      size = ui.button.size,
+      text = "SOUNDS",
+      root = roots.switch.state("settings.sounds"),
+      display = Displayed(
+        show = {"settings"},
+        layer = 15,
+      ),
+    ),
+    Button(
+      id = "settings.visuals",
+      pos = util.cord(0.5, 0),
+      size = ui.button.size,
+      text = "VISUALS",
+      root = roots.switch.state("settings.visuals"),
+      display = Displayed(
+        show = {"settings"},
+        layer = 15,
+      ),
     ),
   ]
 
