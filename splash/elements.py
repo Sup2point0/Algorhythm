@@ -15,6 +15,7 @@ class Displayed:
   def __init__(self, *,
     show = None,
     hide = None,
+    align = None,
     layer = None,
     fade = False,
     root = None,
@@ -26,6 +27,7 @@ class Displayed:
     | :-------- | :--- | :---------- |
     | `show` | `set[str]` | Set of screen states to show the sprite. |
     | `hide` | `set[str]` | Set of screen states to hide the sprite. If specified, the sprite will default to being shown in every screen state. |
+    | `align` | `int, int` | Alignment of sprite in x and y directions, respectively. Can be `-1`, `0`, `1`. |
     | `layer` | `int` | Layer to render sprite. |
     | `fade` | `bool` | Show or hide the sprite with a fade animation. |
     | `root` | `Callable -> bool` | Function called to check if sprite should be rendered. |
@@ -37,6 +39,7 @@ class Displayed:
     else:
       self.show = show or set()
 
+    self.align = align or (0, 0)
     self.layer = layer or sprites.active.layer["splash"]
     self.fade = fade
     self.root = root or (lambda: True)
@@ -70,14 +73,15 @@ class Element(Sprite):
 
     self.id = id
     self.display = display
-
-    if interact:
-      self.locked = display.lock
-      self.hover = False
-      self.click = False
     
-    for state in display.show:
-      sprites.splash[state].add(self)
+    if display:
+      if interact:
+        self.locked = display.lock
+        self.hover = False
+        self.click = False
+      
+      for state in display.show:
+        sprites.splash[state].add(self)
 
   def interact(self, root = None) -> str:
     '''Detect hover and click interactions with element and return state as a string.
