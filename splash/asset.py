@@ -1,5 +1,5 @@
 '''
-Image assets
+Implements the `Asset` class, for image sprites.
 '''
 
 import pygame as py
@@ -7,24 +7,33 @@ import pygame as py
 from splash.elements import Element
 from core import sprites
 
-import effects.blur
+from effects import blur
 
 
 class Asset(Element):
-  '''An image asset.'''
+  '''An image–only splash element.'''
 
-  def __init__(self, id, pos, image: str, size = None, blur = None, display = None):
-    '''Create an image asset.
+  def __init__(self, id, pos,
+    image: str,
+    size = None,
+    blur = None,
+    display = None,
+  ):
+    '''Create an image element.
 
     ｜ parameter | type | description |
     | :--------- | :-- | :----------- |
     | `image` | The file name from which to load the image asset. |
-    | `size` | `[int, int]` | Resize image if specified. |
+    | `size` | `int, int` | Resize image if specified. |
+    | `blur` | Amount of blur to apply to image. |
 
     Other base parameters are inherited from `splash.Element`.
     '''
 
-    super().__init__(id, pos, display = display)
+    super().__init__(id, pos,
+      align = display.align if display else None,
+      display = display,
+    )
 
     if blur:
       self.surf = effects.blur.load(f"assets/{image}", blur = blur)
@@ -35,9 +44,3 @@ class Asset(Element):
       self.surf = py.transform.scale(self.surf, size).convert()
       
     self.rect = self.surf.get_rect()
-
-  def update(self):
-    # super().visible()
-
-    ## TODO
-    ...
