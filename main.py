@@ -38,24 +38,30 @@ class main:
         return
       
       elif event.type == KEYDOWN:
-        key = event.key
+        key, mod = event.key, event.mod
         game.keys.append(key)
-        
-        if key == K_ESCAPE:
-          main.pause()
 
-        ## NOTE testing
-        elif key == K_SPACE:
-          print(level.beat); break
-          global tick, diffs
-          now = time()
-          diff = now - tick
-          diffs.append(diff)
-          if len(diffs) > 1:
-            av = sum(diffs[1:]) / len(diffs[1:])
-            print(f"diff = {diff}, average = {av}, bpm = {60 / av}")
-          tick = now
-        ###
+        if mod == KMOD_NONE:
+          if key == K_ESCAPE:
+            main.pause()
+  
+          ## NOTE testing
+          elif key == K_SPACE:
+            print(level.beat); break
+            global tick, diffs
+            now = time()
+            diff = now - tick
+            diffs.append(diff)
+            if len(diffs) > 1:
+              av = sum(diffs[1:]) / len(diffs[1:])
+              print(f"diff = {diff}, average = {av}, bpm = {60 / av}")
+            tick = now
+          ###
+
+        elif mod & KMOD_CTRL:
+          if key == K_w:
+            game.state = None
+            return
 
       elif event.type == KEYUP:
         try:
@@ -75,10 +81,6 @@ class main:
         # remove pressed keys from history to prevent further unintentional combos
         game.keys.pop(idx + 1)
         game.keys.pop(idx)
-
-        if action == K_w:
-          game.state = None
-          return
         
         elif action == K_SPACE:
           main.pause()
@@ -104,8 +106,8 @@ class main:
       screen.state = screen.switch
       screen.switch = None
 
-      sprites.splash[screen.state].update()
       sprites.active.add(sprites.splash[screen.state])
+      sprites.splash[screen.state].update()
       
       # update screen change history
       if len(screen.track) > 1:
