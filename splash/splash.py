@@ -311,7 +311,7 @@ def loadsequence(display):
     rendered = Text.render("2.0 Studios", Text.Style(size = 169, col = py.Color(255, 0, 144, load.alpha.value)))
     display.blit(rendered[0], util.root(rendered[1]))
 
-    game.pulse.tick(config.framerate)
+    game.pulse.tick(config.framerate())
     py.display.flip()
 
   ## Loading...
@@ -379,7 +379,7 @@ def loadsequence(display):
       width = 5,
     )
 
-    game.pulse.tick(config.framerate)
+    game.pulse.tick(config.framerate())
     py.display.flip()
   
   screen.switch = "start"

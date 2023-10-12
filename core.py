@@ -9,7 +9,7 @@ import pygame as py
 # This module is imported by almost every file. As such,
 # it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
 # These are exceptions, since they are safe to import.
-from resource.value import Value
+from resource.value import BoundedValue as Val
 from resource.difficulty import Difficulty
 from effects.shake import Shake
 
@@ -202,7 +202,7 @@ class config:
     space = 40
 
   class note:
-    size = [10, lane.width * 3 // 4]
+    size = 10, lane.width * 3 // 4
     glow = 10
 
   class effects:
@@ -213,22 +213,24 @@ class config:
 class opt:
   '''User-alterable settings.'''
 
+  framerate = Val(60, lower = 15, upper = 121)
   keys = ["Z", "X", "C", "V"]
 
-  class note:
-    size: float = 1.0
-    glow: float = 1.0
-
   class sound:
-    offset: float = 0.0
-    vol: float = 1.0
-    music: float = 1.0
-    effects: float = 1.0
+    offset = Val(0, lower = -500, upper = 500)
+    vol = Val(1.0, lower = 0.0, upper = 1.0)
+    music = Val(1.0, lower = 0.0, upper = 1.0)
+    effects = Val(1.0, lower = 0.0, upper = 1.0)
+
+  class note:
+    highlight = True
+    size = Val(1.0, lower = 0.5, upper = 1.0)
+    glow = Val(1.0, lower = 0.5, upper = 2.0)
 
   class effect:
-    on: bool = True
-    size: float = 1.0
-    speed = 1.0
+    on = True
+    size = Val(1.0, lower = 0.5, upper = 2.0)
+    speed = Val(1.0, lower = 0.8, upper = 3.0)
 
   class col:
     hit = [255, 255, 255, 255]

@@ -82,7 +82,7 @@ class main:
         game.keys.pop(idx + 1)
         game.keys.pop(idx)
         
-        elif action == K_SPACE:
+        if action == K_SPACE:
           main.pause()
 
   def control():
@@ -170,7 +170,7 @@ while game.state is not None:
   else:
     main.hold()
   
-  # game.pulse.tick(config.framerate)
+  game.pulse.tick(config.framerate())
   main.render()
 
 
