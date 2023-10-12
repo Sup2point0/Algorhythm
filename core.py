@@ -1,5 +1,5 @@
 '''
-Global variables and constants for all modules to access
+Global variables and constants for all modules to access.
 '''
 
 from enum import Enum
