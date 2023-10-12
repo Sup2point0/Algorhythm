@@ -1,11 +1,12 @@
 '''
-Player account
+Implements the `Account` class for managing player accounts.
 '''
 
 import json
 import hashlib
 
 from core import game, opt
+from resource.value import BoundValue
 import util
 
 
@@ -14,6 +15,25 @@ class UsernameError(Exception):
 
 class PasswordError(Exception):
   pass
+
+
+def _construct_(source):
+  '''An internal method to convert the namespace structure of `source` into a multi-level `dict`.'''
+
+  out = {}
+  struct = vars(source)
+
+  for key in struct:
+    if not key.startswith("_"):
+      val = struct[key]
+      if isinstance(val, BoundValue):
+        out[key] = val()
+      elif hasattr(val, "__dict__"):
+        out[key] = _construct_(val)
+      else:
+        out[key] = val
+
+  return out
 
 
 class Account:
@@ -57,11 +77,11 @@ class Account:
       data[user] = {
         "user": user,
         "key": key,
-        "opt": {vars(opt)},
+        "opt": {_construct_(opt)},
         "charts": {},
         "achievements": [each.id for each in game.achievements if each.unlocked],
         "stats": data["root"]["stats"],
-      }  ### TODO sync options
+      }
 
       game.player = Account(data[user])
 
