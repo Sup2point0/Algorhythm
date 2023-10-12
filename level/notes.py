@@ -125,7 +125,10 @@ class TapNote(Note):
     super().spawn()
 
     ## render
-    self.surf = py.Surface([config.lanewidth * opt.note.size, 25])
+    self.surf = py.Surface([
+      config.note.size[0] * opt.note.size(),
+      config.note.size[1]
+    ])
     self.surf.fill(py.Color(self.col))
     self.rect = self.surf.get_rect()
 

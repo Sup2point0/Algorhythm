@@ -162,7 +162,7 @@ class ui:
 
 
 class config:
-  '''Internal non-user-alterable settings.'''
+  '''Internal non-alterable settings.'''
 
   framerate = 60
   faderate = 8
@@ -202,7 +202,7 @@ class config:
     space = 40
 
   class note:
-    size = 10, lane.width * 3 // 4
+    size = [10, lane.width * 3 // 4]
     glow = 10
 
   class effects:
