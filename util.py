@@ -7,6 +7,7 @@ import json
 import colorsys
 
 from core import screen, sprites, config, opt
+from innate.value import BoundValue
 
 
 ## generic
@@ -148,3 +149,12 @@ class interpolate:
       lower[1] + percent * (upper[1] - lower[1]),
       lower[2] + percent * (upper[2] - lower[2]),
     )
+
+
+class Alpha(BoundValue):
+  '''...'''
+
+  def __init__(self, value, bounds = (0, 255)):
+    '''...'''
+
+    super().__init__(value, *bounds)
