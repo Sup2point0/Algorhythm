@@ -19,8 +19,8 @@ class Note(Sprite):
   def __init__(self, lane = None, speed = None, shock = None):
     '''Create a note.
     
-    | argument | type | description |
-    | :------- | :--- | :---------- |
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
     | `lane` | `int`, `list[int]` | Starting lane(s) of the note. If a list is provided, it will be randomly chosen from those lanes. |
     | `speed` | `float` | How fast the note approaches. Defaults to set speed of difficulty. |
     '''
@@ -52,7 +52,6 @@ class Note(Sprite):
   def update(self):
     super().show("notes")
 
-    ## process
     ly = sprites.lines.sprites()[0].y
     self.x = self.lane.x
     self.y = ly - self.speed * (self.hit - level.beat)
@@ -60,9 +59,6 @@ class Note(Sprite):
     if self.y >= screen.y:
       self.pop()
 
-    ## render
-    self.col = vars(opt.col)[util.find.row(self.lane.key)]
-    self.surf.fill(py.Color(self.col))
     self.surf.set_alpha(255 * (self.y - ly) / (screen.y - ly))
 
     super().position()
@@ -94,11 +90,6 @@ class Note(Sprite):
         level.apex = level.chain
       if acc == "perfect":
         level.perfect += 1
-      
-      PopEffect(
-        pos = [self.lane.x, sprites.lines.sprites()[0].y],
-        acc = acc,
-      )
     
     else:
       level.chain = 0
@@ -112,8 +103,8 @@ class TapNote(Note):
   def __init__(self, /, *, hit, **kwargs):
     '''Create a tap note.
     
-    | argument | type | description |
-    | :------- | :--- | :---------- |
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
     | `hit` | `int`, `float` | Beat the note should be hit. |
     '''
 
@@ -134,9 +125,11 @@ class TapNote(Note):
     ## render
     self.surf = py.Surface(self.size, py.SRCALPHA)
 
+    self.surf = ...
+
     py.draw.rect(
-      surface = self.surf,
-      color = py.Color(self.col),
+      surface = surf,
+      color = py.Color(0xffffffff),
       rect = py.Rect(0, 0, *self.size),
       width = 0,
       border_radius = min(self.size) // 2,
@@ -164,8 +157,8 @@ class HoldNote(Note):
   def __init__(self, /, *, hit, hold, **kwargs):
     '''Create a hold note.
     
-    | argument | type | description |
-    | :------- | :--- | :---------- |
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
     | `hit` | `int`, `float` | Beat the note should be hit. |
     | `hold` | `int`, `float` | Beat until which the note should be held. |
     '''

@@ -94,10 +94,14 @@ class Lane(Sprite):
       note = sorted(notes, key = lambda note: (note.hit, -note.y))[0]
 
       if isinstance(note, TapNote):
-        note.pop(hit = True)
         self.hit = False
+        acc = note.pop(hit = True)
+
+        if acc and acc != "miss":
+          PopEffect(pos = self.pos, acc = acc)
+        
       elif isinstance(note, HoldNote):
-        note.pop
+        note.pop(hit = True)
 
     self.anim.coltick = 0.4
 
