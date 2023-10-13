@@ -5,11 +5,11 @@ Implements the `Element` and `Element.Style` base classes for other splash sprit
 import pygame as py
 
 from core import screen, sprites
-from resource.sprite import Sprite
 from resource.object import Object
+from resource.sprite import Sprite
 
 
-class Displayed:
+class Displayed(Object):
   '''Settings for displaying a sprite.'''
 
   def __init__(self, *,
@@ -39,11 +39,13 @@ class Displayed:
     else:
       self.show = show or set()
 
-    self.align = align or (0, 0)
-    self.layer = layer or sprites.active.layer["splash"]
-    self.fade = fade
-    self.root = root or (lambda: True)
-    self.lock = lock or (lambda: False)
+    super().__init__(
+      align = align or (0, 0),
+      layer = layer or sprites.active.layer["splash"],
+      fade = fade,
+      root = root or (lambda: True),
+      lock = lock or (lambda: False),
+    )
 
 
 class Element(Sprite):
