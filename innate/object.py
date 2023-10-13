@@ -12,7 +12,7 @@ class Object:
     '''Create a generic object with attributes passed as keyword arguments.'''
 
     for each in attrs:
-      self.__setattr__(each, kwargs[each])
+      self.__setattr__(each, attrs[each])
 
   def update(self, **attrs):
     '''Update attributes using keyword arguments.'''

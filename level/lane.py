@@ -28,7 +28,7 @@ class Lane(Sprite):
     self.hit = False
     self.col = util.find.col(self.key)
 
-    self.size = [config.lanewidth, screen.y - config.lanespace / 2]
+    self.size = [config.lane.width, screen.y - config.lane.space / 2]
     self.notes = py.sprite.Group()
 
     self.lanekey = LaneKey(self)
@@ -79,7 +79,7 @@ class Lane(Sprite):
 
     # slide (smoothly) towards correct position
     offset = -(len(sprites.lanes) - 1) / 2 + self.index
-    tx = screen.cx + offset * (config.lanewidth + config.lanespace)
+    tx = screen.cx + offset * (config.lane.width + config.lane.space)
     self.x = util.slide(self.x, tx, 5)
 
     super().position()

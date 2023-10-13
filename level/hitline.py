@@ -16,7 +16,7 @@ class Hitline(Sprite):
     '''Create a hitline.'''
 
     super().__init__(
-      pos = [screen.cx, screen.y - config.lanespace * 4],
+      pos = [screen.cx, screen.y - config.lane.space * 4],
       groups = [sprites.lines]
     )
 

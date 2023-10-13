@@ -54,8 +54,9 @@ class level:
   chain = 0  # combo
   apex = 0  # max combo
 
-  lanewidth = 0
-  lanespace = 0
+  class lane:
+    width = 0
+    space = 0
 
 
 class screen:
@@ -202,7 +203,7 @@ class config:
     space = 40
 
   class note:
-    size = [10, lane.width * 3 // 4]
+    size = [10, 120]
     glow = 10
 
   class effects:

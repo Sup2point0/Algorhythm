@@ -65,6 +65,6 @@ class LaneKey(Sprite):
 
     self.surf.set_alpha(self.alpha.value)
     self.x = self.lane.x
-    self.y = screen.y - config.lanespace * 2
+    self.y = screen.y - config.lane.space * 2
 
     super().position()

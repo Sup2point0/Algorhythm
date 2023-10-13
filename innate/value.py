@@ -27,8 +27,8 @@ class BoundValue:
     self.lower = lower
     self.upper = upper
 
-    if upper > lower:
-      raise ValueError("Upper bound cannot be greater than lower bound")
+    if lower > upper:
+      raise ValueError("Lower bound cannot be greater than upper bound")
 
     self._check_()
   

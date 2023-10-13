@@ -61,12 +61,11 @@ class Button(Element):
     class anim:
       col = self.style.col
       coltick = 0
+      y = 0
 
     self.anim = anim
 
   def update(self):
-    # super().visible()
-    
     ## process
     self.surf = py.Surface(self.size, py.SRCALPHA)
     self.rect = self.surf.get_rect()
@@ -78,6 +77,7 @@ class Button(Element):
       if interaction == "idle":
         if self.anim.coltick > 0:
           self.anim.coltick -= 0.1
+        self.anim.y += util.slide(self.anim.y1, self.size[1])
       else:
         if self.anim.coltick < 1:
           self.anim.coltick += 0.1

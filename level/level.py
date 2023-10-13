@@ -97,7 +97,7 @@ class Track:
     level.perfect = 0
     level.chain = 0
     level.apex = 0
-    level.lanespace = config.lanespace
+    level.lane.space = config.lane.space
 
     # clear just to be safe
     sprites.lines.empty()
