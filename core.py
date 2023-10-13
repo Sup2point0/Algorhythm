@@ -9,8 +9,8 @@ import pygame as py
 # This module is imported by almost every file. As such,
 # it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
 # These are exceptions, since they are safe to import.
-from resource.value import BoundValue as Val
-from resource.innate import Difficulty, Rank
+from innate.value import BoundValue as Val
+from innate.innate import Difficulty, Rank
 from effects.shake import Shake
 
 

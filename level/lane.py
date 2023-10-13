@@ -8,7 +8,7 @@ import pygame as py
 from pygame.locals import *
 
 from core import game, level, screen, sprites, ui, config, opt
-from resource.sprite import Sprite
+from innate.sprite import Sprite
 import util
 
 from level.notes import TapNote, HoldNote, RollNote

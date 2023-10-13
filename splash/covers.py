@@ -5,8 +5,8 @@ Implements the `Cover` class for screen transitions.
 import pygame as py
 
 from core import screen, sprites
-from resource.value import BoundValue as Val
-from resource.sprite import Sprite
+from innate.value import BoundValue as Val
+from innate.sprite import Sprite
 import util
 
 
@@ -18,7 +18,7 @@ class Cover(Sprite):
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
-    | `alpha` | `num`, `resource.BoundValue` | Alpha value of cover. If only a number is provided, the bounds will default to 0 and 255. |
+    | `alpha` | `num`, `innate.BoundValue` | Alpha value of cover. If only a number is provided, the bounds will default to 0 and 255. |
     | `root` | `Callable` | Function replacing `self.update()`. |
     '''
 

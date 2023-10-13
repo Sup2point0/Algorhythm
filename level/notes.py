@@ -7,7 +7,7 @@ import random
 import pygame as py
 
 from core import level, screen, sprites, config, opt
-from resource.sprite import Sprite
+from innate.sprite import Sprite
 import util
 
 from effects.pop import PopEffect
@@ -121,17 +121,27 @@ class TapNote(Note):
 
     self.hit = hit
 
+    self.size = [
+      config.note.size[0] * opt.note.size(),
+      config.note.size[1]
+    ]
+
   def spawn(self):
     '''Spawn a tap note.'''
 
     super().spawn()
 
     ## render
-    self.surf = py.Surface([
-      config.note.size[0] * opt.note.size(),
-      config.note.size[1]
-    ])
-    self.surf.fill(py.Color(self.col))
+    self.surf = py.Surface(self.size, py.SRCALPHA)
+
+    py.draw.rect(
+      surface = self.surf,
+      color = py.Color(self.col),
+      rect = py.Rect(0, 0, *self.size),
+      width = 0,
+      border_radius = min(self.size) // 2,
+    )
+    
     self.rect = self.surf.get_rect()
 
   def pop(self, hit = False) -> str | None:

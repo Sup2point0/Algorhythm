@@ -9,7 +9,7 @@ import json
 import pygame as py
 
 from core import game, level, screen, sprites, ui, config
-from resource import flavour
+from innate import flavour
 import util
 
 from splash import roots

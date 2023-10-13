@@ -4,7 +4,7 @@ Implements the innate `Difficulty` and `Rank` classes.
 Safe to import.
 '''
 
-from resource.object import Object
+from innate.object import Object
 
 
 class Difficulty(Object):
@@ -46,4 +46,38 @@ class Rank(Object):
       name = name,
       score = score,
       req = req,
+    )
+
+
+class Achievement(Object):
+  '''Represents a game achievement.'''
+
+  def __init__(self,
+    id: str,
+    name = None,
+    desc = None,
+    secret = False,
+    root = None
+  ):
+    '''Create an achievement.
+    
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `id` | `str` | Unique ID to identify achievement. |
+    | `name` | `str` | Displayed name of achievement. |
+    | `desc` | `str` | Description of achievement. |
+    | `secret` | `bool` | Whether the achievement is secret (hidden until unlocked). |
+    | `root` | `Callable -> bool` | Function called to check if achievement should be unlocked. |
+    '''
+
+    if root is None:
+      raise ValueError("Achievement root is required.")
+
+    super().__init__(
+      id = id,
+      name = name or "Achievement Unlocked!",
+      desc = desc or "How is this unlocked again?",
+      secret = secret,
+      root = root,
+      unlocked = False,
     )

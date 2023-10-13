@@ -5,7 +5,7 @@ Hitline
 import pygame as py
 
 from core import level, screen, sprites, config
-from resource.sprite import Sprite
+from innate.sprite import Sprite
 import util
 
 

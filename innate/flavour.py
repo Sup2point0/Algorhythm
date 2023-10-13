@@ -2,7 +2,7 @@
 What are you looking in here for?
 '''
 
-from resource.weightedlist import WeightedList
+from innate.weightedlist import WeightedList
 
 
 # I don’t know why I categorised and ordered these, but for whoever’s looking, you’re welcome.

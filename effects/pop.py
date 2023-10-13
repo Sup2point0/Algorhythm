@@ -5,7 +5,8 @@ Note hit effects
 import pygame as py
 
 from core import sprites, ui, opt
-from resource.sprite import Sprite
+from innate.value import BoundValue as Val
+from innate.sprite import Sprite
 import util
 
 

@@ -5,8 +5,8 @@ Implements the `Element` and `Element.Style` base classes for other splash sprit
 import pygame as py
 
 from core import screen, sprites
-from resource.object import Object
-from resource.sprite import Sprite
+from innate.object import Object
+from innate.sprite import Sprite
 
 
 class Displayed(Object):
@@ -68,7 +68,7 @@ class Element(Sprite):
     | `interact` | `bool` | Whether element can be hovered over or clicked on. |
     | `display` | `splash.Displayed` | Sprite display settings. |
 
-    Other base parameters are inherited from `resource.Sprite`. `groups` is not inherited, since all splash sprites are automatically added to the suitable `sprites.splash` group.
+    Other base parameters are inherited from `innate.Sprite`. `groups` is not inherited, since all splash sprites are automatically added to the suitable `sprites.splash` group.
     '''
     
     super().__init__(pos = pos, align = align)

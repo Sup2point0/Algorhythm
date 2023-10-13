@@ -19,9 +19,9 @@ from pygame.locals import *
 from PIL import ...
 
 from core import game, level, screen, sprites, ui, config, opt
-from resource.value import BoundValue (as Val)
-from resource.object import Object
-from resource.sprite import Sprite
+from innate.value import BoundValue (as Val)
+from innate.object import Object
+from innate.sprite import Sprite
 import util
 
 from splash.elements import ...

@@ -6,7 +6,7 @@ import json
 import hashlib
 
 from core import game, opt
-from resource.value import BoundValue
+from innate.value import BoundValue
 import util
 
 
