@@ -1,10 +1,12 @@
 '''
 Implements the generic `Object` class.
+
+Safe to import.
 '''
 
 
 class Object:
-  '''A generic object with any attributes that can be updated in bulk.'''
+  '''A generic object with any attributes that can be set and updated in bulk.'''
 
   def __init__(self, **attrs):
     '''Create a generic object with attributes passed as keyword arguments.'''
