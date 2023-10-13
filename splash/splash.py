@@ -82,7 +82,7 @@ def setup():
       pos = util.cord(-0.75, -0.25),
       size = ui.button.size,
       text = "PLAY",
-      root = roots.switch.state("home"),
+      root = roots.switch.state("select"),
       display = Displayed(
         show = {"start"},
         layer = 15,
@@ -175,59 +175,59 @@ def setup():
 
   account = []
 
-  home = [
+  select = [
     Button(
-      id = "home.tutorials",
+      id = "select.tutorials",
       pos = util.cord(0, -0.5),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "TUTORIALS",
       root = roots.switch.state("tutorials"),
       display = Displayed(
-        show = {"home"},
+        show = {"select"},
         layer = 15,
       ),
     ),
     Button(
-      id = "home.origins",
+      id = "select.origins",
       pos = util.cord(0, -0.25),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
       root = roots.switch.state("origins"),
       display = Displayed(
-        show = {"home"},
+        show = {"select"},
         layer = 15,
       ),
     ),
     Button(
-      id = "home.protos",
+      id = "select.protos",
       pos = util.cord(0, 0),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
       root = roots.switch.state("protos"),
       display = Displayed(
-        show = {"home"},
+        show = {"select"},
         layer = 15,
       ),
     ),
     Button(
-      id = "home.decode",
+      id = "select.decode",
       pos = util.cord(0, 0.25),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
       root = roots.switch.state("decode"),
       display = Displayed(
-        show = {"home"},
+        show = {"select"},
         layer = 15,
       ),
     ),
     Button(
-      id = "home.special",
+      id = "select.special",
       pos = util.cord(0, 0.5),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
       root = roots.switch.state("special"),
       display = Displayed(
-        show = {"home"},
+        show = {"select"},
         layer = 15,
       ),
     ),

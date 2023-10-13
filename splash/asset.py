@@ -7,7 +7,7 @@ import pygame as py
 from splash.elements import Element
 from core import sprites
 
-from effects import blur
+import effects.blur
 
 
 class Asset(Element):
