@@ -4,7 +4,8 @@ Lane key indicators
 
 import pygame as py
 
-from core import level, screen, sprites, config
+from core import level, screen, config
+from innate.value import BoundValue as Val
 from innate.sprite import Sprite
 import util
 
@@ -22,7 +23,7 @@ class LaneKey(Sprite):
     self.lane = lane
     self.key = self.lane.key
     
-    self.alpha = util.Alpha(0)
+    self.alpha = Val(0, lower = 0, upper = 255)
     self.style = Text.Style(
       typeface = "Orbitron-Semibold",
       size = 69,
@@ -63,7 +64,7 @@ class LaneKey(Sprite):
       )
     )
 
-    self.surf.set_alpha(self.alpha.value)
+    self.surf.set_alpha(self.alpha())
     self.x = self.lane.x
     self.y = screen.y - config.lane.space * 2
 

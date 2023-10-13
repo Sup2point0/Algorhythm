@@ -14,6 +14,8 @@ import util
 from level.notes import TapNote, HoldNote, RollNote
 from level.lanekey import LaneKey
 
+from effects.pop import PopEffect
+
 
 class Lane(Sprite):
   '''A lane where notes fall.'''
