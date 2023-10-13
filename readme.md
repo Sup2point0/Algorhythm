@@ -4,9 +4,9 @@
 ## Tasks
 
 ### Ongoing
-- Rework sprite display handling to avoid excessive iteration
 
 ### Todo
+- Move `size` attribute of `splash.Button` to `Button.Style`
 - Musical sound effects on button click
 - Dynamically spawn sprites
   - Sort list of notes

@@ -40,3 +40,14 @@ from levels import ...
 
 from effects import ...
 ```
+
+### Splash Sprite Parameter Precedence
+
+```py
+def __init__(self, id,
+  pos, align,
+  text, image,
+  root,
+  style, display
+)
+```
