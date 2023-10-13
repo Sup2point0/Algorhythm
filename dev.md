@@ -1,4 +1,4 @@
-# Notes
+# Dev Notes
 
 Just little notes to maintain consistency while coding ;)
 
