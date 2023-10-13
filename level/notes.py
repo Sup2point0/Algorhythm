@@ -29,7 +29,7 @@ class Note(Sprite):
 
     self.lane = lane
     self.speed = speed
-    self.shock = shock  # TODO
+    self.shock = shock
 
   def spawn(self):
     '''Spawn a note.'''
@@ -44,7 +44,7 @@ class Note(Sprite):
         self.lane = lane
         lane.notes.add(self)
         sprites.notes.add(self)
-        self.col = vars(opt.col)[util.find.row(lane.key)]
+        self.col = util.find.col(lane.key)
         break
 
     self.speed = self.speed or config.difficulties[level.chart.difficulty].speed
@@ -52,9 +52,10 @@ class Note(Sprite):
   def update(self):
     super().show("notes")
 
-    ## process      
+    ## process
+    ly = sprites.lines.sprites()[0].y
     self.x = self.lane.x
-    self.y = sprites.lines.sprites()[0].y - self.speed * (self.hit - level.beat)
+    self.y = ly - self.speed * (self.hit - level.beat)
     
     if self.y >= screen.y:
       self.pop()
@@ -62,6 +63,7 @@ class Note(Sprite):
     ## render
     self.col = vars(opt.col)[util.find.row(self.lane.key)]
     self.surf.fill(py.Color(self.col))
+    self.surf.set_alpha(255 * (self.y - ly) / (screen.y - ly))
 
     super().position()
 
