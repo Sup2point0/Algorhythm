@@ -37,6 +37,8 @@ class game:
   keys = []  # tracks current pressed keys
   pulse = py.time.Clock()  # game timer
 
+  chapters = {"tutorials", "origins", "protos", "decode", "special"}
+
 
 class level:
   '''Level-specific variables.'''
@@ -71,9 +73,7 @@ class screen:
   state = None
   states = {
     "start", "select",
-    *{f"select.{each}" for each in [
-      "tutorials", "origins", "protos", "decode", "special",
-    ]},
+    *{f"select.{each}" for each in game.chapters},
     "environ", "environ.load", "environ.create",
     "settings", "settings.sounds", "settings.visuals",
     "account",

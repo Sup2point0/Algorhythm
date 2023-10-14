@@ -169,7 +169,7 @@ def setup():
       pos = util.cord(0, -0.5),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "TUTORIALS",
-      root = roots.switch.state("tutorials"),
+      root = roots.switch.state("select.tutorials"),
       display = Displayed(
         show = {"select"},
         layer = 15,
@@ -179,7 +179,7 @@ def setup():
       pos = util.cord(0, -0.25),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
-      root = roots.switch.state("origins"),
+      root = roots.switch.state("select.origins"),
       display = Displayed(
         show = {"select"},
         layer = 15,
@@ -189,7 +189,7 @@ def setup():
       pos = util.cord(0, 0),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
-      root = roots.switch.state("protos"),
+      root = roots.switch.state("select.protos"),
       display = Displayed(
         show = {"select"},
         layer = 15,
@@ -199,7 +199,7 @@ def setup():
       pos = util.cord(0, 0.25),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
-      root = roots.switch.state("decode"),
+      root = roots.switch.state("select.decode"),
       display = Displayed(
         show = {"select"},
         layer = 15,
@@ -209,9 +209,22 @@ def setup():
       pos = util.cord(0, 0.5),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
-      root = roots.switch.state("special"),
+      root = roots.switch.state("select.special"),
       display = Displayed(
         show = {"select"},
+        layer = 15,
+      ),
+    ),
+  ]
+
+  tutorials = [
+    Button("select.tutorials.standard",
+      pos = util.cord(0, 0),
+      size = ui.button.size,
+      text = "STANDARD",
+      root = roots.switch.tutorial,
+      display = Displayed(
+        show = {"select.tutorials"},
         layer = 15,
       ),
     ),

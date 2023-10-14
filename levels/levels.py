@@ -5,7 +5,7 @@ Implements all the levels defined in individual files in `levels/` into a single
 from level.level import Track
 
 from levels import (
-  Day,
+  # Day,
   EndOfTime,
 )
 
