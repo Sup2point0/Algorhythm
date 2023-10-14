@@ -4,6 +4,7 @@
 ## Tasks
 
 ### Ongoing
+- Update button styles
 
 ### Todo
 - Move `size` attribute of `splash.Button` to `Button.Style`

@@ -1,12 +1,11 @@
 '''
-Algorhythm levels
-
-This module collects all the levels defined in individual files in `levels/` into a single list `charts`.
+Implements all the levels defined in individual files in `levels/` into a single list `charts`.
 '''
 
 from level.level import Track
 
 from levels import (
+  Day,
   EndOfTime,
 )
 

@@ -1,5 +1,5 @@
 '''
-Reusable sprite functionality
+Implements root functions for reusable sprite functionality.
 
 Often, sprites will take a `root` argument when instantiated. This is a `Callable` (a function) that will be called to provide the sprite with functionality. For instance, a button would call its `root` when clicked.
 
@@ -30,7 +30,7 @@ class switch:
   def back():
     '''Go back to the previous screen.'''
 
-    switch.state(screen.track[-2])()
+    screen.switch = screen.track[-2]
 
   def tutorial():
     '''Play the tutorial.'''
@@ -91,7 +91,7 @@ class fade:
         if self.alpha.bounded():
           screen.fade = None
       case None:
-        self.alpha.value = 0
+        self.alpha.set(0)
 
   def partial(self):
     self.alpha.alt(config.faderate * (-1 if game.state else 1))

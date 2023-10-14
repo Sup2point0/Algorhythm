@@ -35,8 +35,7 @@ def setup():
   ]
 
   common = [
-    Asset(
-      id = "start.backdrop",
+    Asset("start.backdrop",
       pos = [screen.cx, screen.cy],
       image = "scarlet-cortex.jpg",
       size = screen.size,
@@ -46,8 +45,7 @@ def setup():
         layer = 1,
       ),
     ),
-    Button(
-      id = "common.back",
+    Button("common.back",
       pos = [75, 75],
       size = [ui.button.size[1]] * 2,
       text = "‹",
@@ -64,8 +62,7 @@ def setup():
   ]
 
   start = [
-    Text(
-      id = "start.title",
+    Text("start.title",
       pos = util.cord(0, -0.5),
       text = "ALGORHYTHM",
       style = Text.Style(
@@ -77,8 +74,7 @@ def setup():
         layer = 15,
       ),
     ),
-    Button(
-      id = "start.play",
+    Button("start.play",
       pos = util.cord(-0.75, -0.25),
       size = ui.button.size,
       text = "PLAY",
@@ -88,8 +84,7 @@ def setup():
         layer = 15,
       ),
     ),
-    Button(
-      id = "start.environ",
+    Button("start.environ",
       pos = util.cord(-0.75, 0),
       size = ui.button.size,
       text = "ENVIRONMENT",
@@ -99,8 +94,7 @@ def setup():
         layer = 15,
       ),
     ),
-    Button(
-      id = "start.settings",
+    Button("start.settings",
       pos = util.cord(-0.75, 0.25),
       size = ui.button.size,
       text = "SETTINGS",
@@ -110,8 +104,7 @@ def setup():
         layer = 15,
       ),
     ),
-    Text(
-      id = "start.version",
+    Text("start.version",
       pos = [screen.x - 50, screen.y - 50],
       text = "v" + game.version,
       style = Text.Style(
@@ -127,8 +120,7 @@ def setup():
   environ = []
 
   settings = [
-    Text(
-      id = "settings.title",
+    Text("settings.title",
       pos = util.cord(0, -0.5),
       text = "ALGORHYTHM",
       style = Text.Style(
@@ -140,8 +132,7 @@ def setup():
         layer = 15,
       ),
     ),
-    Text(
-      id = "settings.about",
+    Text("settings.about",
       pos = util.cord(0, -0.25),
       text = f"v{game.version}",
       display = Displayed(
@@ -149,8 +140,7 @@ def setup():
         layer = 15,
       )
     ),
-    Button(
-      id = "settings.sounds",
+    Button("settings.sounds",
       pos = util.cord(-0.5, 0),
       size = ui.button.size,
       text = "SOUNDS",
@@ -160,8 +150,7 @@ def setup():
         layer = 15,
       ),
     ),
-    Button(
-      id = "settings.visuals",
+    Button("settings.visuals",
       pos = util.cord(0.5, 0),
       size = ui.button.size,
       text = "VISUALS",
@@ -176,8 +165,7 @@ def setup():
   account = []
 
   select = [
-    Button(
-      id = "select.tutorials",
+    Button("select.tutorials",
       pos = util.cord(0, -0.5),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "TUTORIALS",
@@ -187,8 +175,7 @@ def setup():
         layer = 15,
       ),
     ),
-    Button(
-      id = "select.origins",
+    Button("select.origins",
       pos = util.cord(0, -0.25),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
@@ -198,8 +185,7 @@ def setup():
         layer = 15,
       ),
     ),
-    Button(
-      id = "select.protos",
+    Button("select.protos",
       pos = util.cord(0, 0),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
@@ -209,8 +195,7 @@ def setup():
         layer = 15,
       ),
     ),
-    Button(
-      id = "select.decode",
+    Button("select.decode",
       pos = util.cord(0, 0.25),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
@@ -220,8 +205,7 @@ def setup():
         layer = 15,
       ),
     ),
-    Button(
-      id = "select.special",
+    Button("select.special",
       pos = util.cord(0, 0.5),
       size = [screen.x * 0.8, ui.button.size[1] * 2],
       text = "ORIGINS",
@@ -234,8 +218,7 @@ def setup():
   ]
 
   play = [
-    ActiveText(
-      id = "level.score",
+    ActiveText("level.score",
       pos = [screen.x - 40, 40],
       source = lambda: util.setscore(round(level.scored)),
       style = Text.Style(
@@ -247,8 +230,7 @@ def setup():
         layer = 15,
       ),
     ),
-    ActiveText(
-      id = "level.chain",
+    ActiveText("level.chain",
       pos = [screen.cx, 40],
       source = lambda: str(level.chain),
       style = Text.Style(
