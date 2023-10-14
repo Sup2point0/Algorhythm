@@ -206,7 +206,7 @@ class config:
     size = [10, 120]
     glow = 10
 
-  class effects:
+  class effect:
     size = 40
     speed = 8
 

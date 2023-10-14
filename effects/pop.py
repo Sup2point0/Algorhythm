@@ -4,7 +4,7 @@ Note hit effects
 
 import pygame as py
 
-from core import sprites, ui, opt
+from core import sprites, config, opt
 from innate.value import BoundValue as Val
 from innate.sprite import Sprite
 import util
@@ -29,8 +29,8 @@ class PopEffect(Sprite):
     sprites.active.add(self, layer = sprites.active.layer["effects"])
 
     self.col = opt.col.perfect if acc == "perfect" else opt.col.hit
-    self.size = size or opt.effect.size
-    self.speed = speed or opt.effect.speed
+    self.size = size or config.effect.size * opt.effect.size()
+    self.speed = speed or config.effect.speed * opt.effect.speed()
 
     class anim:
       tick = 0
@@ -45,8 +45,8 @@ class PopEffect(Sprite):
     self.anim.tick += 1
 
     ## animate
-    self.anim.alpha.alt(-opt.effect.speed())
-    if self.anim.alpha.value == 0:
+    self.anim.alpha.alt(self.speed)
+    if self.anim.alpha() == 0:
       return self.kill()
 
     self.anim.pop = util.slide(self.anim.pop, 1, speed = 2)
