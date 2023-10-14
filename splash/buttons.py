@@ -73,7 +73,7 @@ class Button(Element):
     
     interaction = super().interact()
     self.style.text.update(col = self.style.text.cols[interaction])
-    if interaction in {"idle", "hover"}:  # NOTE is set faster?
+    if interaction in ["idle", "hover"]:
       if interaction == "idle":
         if self.anim.coltick > 0:
           self.anim.coltick -= 0.1

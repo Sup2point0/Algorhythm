@@ -54,7 +54,7 @@ class Hint(Action):
       self.pos = pos
       self.size = size
 
-      self.rect = py.Rect(0, 0, 0, 0)  # NOTE remove if defaults to 0?
+      self.rect = py.Rect(0, 0, 0, 0)
 
     def update(self):
       self.rect.width = util.slide(self.rect.width, self.size[0])
