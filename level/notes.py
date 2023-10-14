@@ -26,7 +26,7 @@ class Note(Sprite):
     | `speed` | `float` | How fast the note approaches. Defaults to set speed of difficulty. |
     '''
 
-    super().__init__(pos = None, align = (0, 1))  # FIXME
+    super().__init__(pos = None)
 
     self.lane = lane
     self.speed = speed
@@ -127,7 +127,7 @@ class TapNote(Note):
     self.surf = blur.glow(
       size = [self.size[0] + 50, self.size[1] + 50],
       col = py.Color(self.col),
-      blur = 10,
+      blur = 40,
     )
 
     py.draw.rect(
@@ -135,7 +135,7 @@ class TapNote(Note):
       color = py.Color(0xffffffff),
       rect = py.Rect(25, 25, *self.size),
       width = 0,
-      # border_radius = min(self.size) // 2,
+      border_radius = round(min(self.size) // 2),
     )
     
     self.rect = self.surf.get_rect()

@@ -12,7 +12,6 @@ from core import game, level, screen, sprites, ui, config, opt
 import util
 
 from splash import splash
-from levels import levels
 
 ## NOTE testing
 from time import time

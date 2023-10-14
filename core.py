@@ -203,7 +203,7 @@ class config:
     space = 40
 
   class note:
-    size = [10, 120]
+    size = [120, 10]
     glow = 10
 
   class effect:
