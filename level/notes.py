@@ -10,6 +10,7 @@ from core import level, screen, sprites, config, opt
 from innate.sprite import Sprite
 import util
 
+from effects import blur
 from effects.pop import PopEffect
 
 
@@ -123,16 +124,18 @@ class TapNote(Note):
     super().spawn()
 
     ## render
-    self.surf = py.Surface(self.size, py.SRCALPHA)
-
-    self.surf = ...
+    self.surf = blur.glow(
+      size = [self.size[0] + 50, self.size[1] + 50],
+      col = py.Color(self.col),
+      blur = 10,
+    )
 
     py.draw.rect(
-      surface = surf,
+      surface = self.surf,
       color = py.Color(0xffffffff),
-      rect = py.Rect(0, 0, *self.size),
+      rect = py.Rect(25, 25, *self.size),
       width = 0,
-      border_radius = min(self.size) // 2,
+      # border_radius = min(self.size) // 2,
     )
     
     self.rect = self.surf.get_rect()

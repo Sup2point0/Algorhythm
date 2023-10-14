@@ -68,7 +68,7 @@ class Lane(Sprite):
 
     ## render
     self.surf = py.Surface(self.size, py.SRCALPHA)
-    radius = round(config.laneradius * (self.anim.size[0] / self.size[0]))
+    radius = round(config.lane.radius * (self.anim.size[0] / self.size[0]))
     py.draw.rect(
       surface = self.surf,
       color = py.Color(self.col),
