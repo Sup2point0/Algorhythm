@@ -7,14 +7,12 @@ import random
 import pygame as py
 from pygame.locals import *
 
-from core import game, level, screen, sprites, ui, config, opt
+from core import game, screen, sprites, config, opt
 from innate.sprite import Sprite
 import util
 
 from level.notes import TapNote, HoldNote, RollNote
 from level.lanekey import LaneKey
-
-from effects.pop import PopEffect
 
 
 class Lane(Sprite):
@@ -96,11 +94,8 @@ class Lane(Sprite):
       note = sorted(notes, key = lambda note: (note.hit, -note.y))[0]
 
       if isinstance(note, TapNote):
+        note.pop(hit = True)
         self.hit = False
-        acc = note.pop(hit = True)
-
-        if acc and acc != "miss":
-          PopEffect(pos = self.pos, acc = acc)
         
       elif isinstance(note, HoldNote):
         note.pop(hit = True)

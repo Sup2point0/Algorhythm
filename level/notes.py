@@ -60,7 +60,8 @@ class Note(Sprite):
     if self.y >= screen.y:
       self.pop()
 
-    self.surf.set_alpha(255 * (self.y - ly) / (screen.y - ly))
+    if isinstance(self, TapNote):
+      self.surf.set_alpha(255 * (1 - (self.y - ly) / (screen.y - ly)))
 
     super().position()
 
@@ -150,6 +151,8 @@ class TapNote(Note):
 
     if acc:
       super().pop(acc)
+      if acc != "miss":
+        PopEffect(pos = self.pos, acc = acc)
 
     return acc
 
