@@ -4,6 +4,7 @@
 ## Tasks
 
 ### Ongoing
+- Render notes with glow effect
 - Update button styles
 
 ### Todo
