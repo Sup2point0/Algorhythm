@@ -77,7 +77,7 @@ class Button(Element):
       if interaction == "idle":
         if self.anim.coltick > 0:
           self.anim.coltick -= 0.1
-        self.anim.y += util.slide(self.anim.y1, self.size[1])
+        self.anim.y += util.slide(self.anim.y, self.size[1])
       else:
         if self.anim.coltick < 1:
           self.anim.coltick += 0.1

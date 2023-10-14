@@ -8,7 +8,7 @@ import sys
 import pygame as py
 from pygame.locals import *
 
-from core import game, level, screen, sprites, ui, config
+from core import game, level, screen, sprites, ui, config, opt
 import util
 
 from splash import splash
@@ -170,7 +170,7 @@ while game.state is not None:
   else:
     main.hold()
   
-  game.pulse.tick(config.framerate())
+  game.pulse.tick(opt.framerate())
   main.render()
 
 
