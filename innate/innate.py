@@ -1,5 +1,7 @@
 '''
-Implements the innate `Difficulty` and `Rank` classes.
+Implements the innate `Difficulty`, `Rank`, `Achievement` classes.
+
+These are implement little extra functionality outside of their certain Attributes.
 
 Safe to import.
 '''
