@@ -6,6 +6,11 @@ import pygame as py
 from PIL import Image, ImageFilter
 
 
+def _image_(surf) -> Image.Image:
+  '''Internal utility function to convert a pygame Surface to a Pillow image.'''
+
+  return Image.frombytes("RGBA", surf.get_size(), py.image.tostring(surf, "RGBA"))
+
 def _blur_(image, blur) -> py.Surface:
   '''Internal utility function to blur a Pillow image.'''
 
@@ -24,8 +29,7 @@ def load(file: str, blur: int) -> py.Surface:
 def process(surf: py.Surface, blur: int) -> py.Surface:
   '''Blur an existing pygame surface.'''
 
-  image = Image.frombytes("RGBA", surf.get_size(), py.image.tostring(surf, "RGBA"))
-  return _blur_(image, blur)
+  return _blur_(_image_(surf), blur)
 
 
 def glow(size, col, blur: int) -> py.Surface:
@@ -40,4 +44,8 @@ def glow(size, col, blur: int) -> py.Surface:
 
   surf = py.Surface(size)
   surf.fill(py.Color(col))
+  image = _image_(surf)
+
+  ...
+
   return process(surf, blur)
