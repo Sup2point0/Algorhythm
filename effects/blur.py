@@ -47,7 +47,11 @@ def glow(size, dist, col, blur: int) -> py.Surface:
   surf.fill(py.Color(col))
   image = _image_(surf)
 
-  base = Image.new("RGBA", (size[0] + 2 * dist, size[1] + 2 * dist), 0xffffff00)  # FIXME
-  base.paste(image, dist, dist)
+  base = Image.new("RGBA", (
+      round(size[0] + 2 * dist),
+      round(size[1] + 2 * dist),
+    ), 0xffffff00)
+  
+  base.paste(image, (dist, dist))
 
   return _blur_(base, blur)
