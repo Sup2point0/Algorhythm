@@ -126,8 +126,9 @@ class TapNote(Note):
 
     ## render
     self.surf = blur.glow(
-      size = [self.size[0] + 50, self.size[1] + 50],
-      col = py.Color(self.col),
+      size = self.size,
+      dist = 50,
+      col = self.col,
       blur = 40,
     )
 

@@ -32,12 +32,13 @@ def process(surf: py.Surface, blur: int) -> py.Surface:
   return _blur_(_image_(surf), blur)
 
 
-def glow(size, col, blur: int) -> py.Surface:
+def glow(size, dist, col, blur: int) -> py.Surface:
   '''Generate a blurred solid colour pygame surface for glow effects.
   
   | parameter | type | description |
   | :-------- | :--- | :---------- |
-  | `size` | `int, int` | Dimensions of surface. |
+  | `size` | `num, num` | Dimensions of surface. |
+  | `dist` | `num` | ... |
   | `col` | `Color` | Color of the glow effect. |
   | `blur` | `int` | Radius of the Gaussian blur to apply. |
   '''
@@ -46,6 +47,7 @@ def glow(size, col, blur: int) -> py.Surface:
   surf.fill(py.Color(col))
   image = _image_(surf)
 
-  ...
+  base = Image.new("RGBA", (size[0] + 2 * dist, size[1] + 2 * dist), 0xffffff00)  # FIXME
+  base.paste(image, dist, dist)
 
-  return process(surf, blur)
+  return _blur_(base, blur)
