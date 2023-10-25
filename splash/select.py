@@ -4,11 +4,12 @@ Implements the `SeriesSelect` and `TrackSelect` classes for selecting series or 
 
 import pygame as py
 
-from core import game, screen, sprites, ui, config
+from core import screen, sprites, ui, opt
+from innate.object import Object
 import util
 
 from splash import roots
-from splash.elements import Element
+from splash.elements import Element, Displayed
 from splash.text import Text
 from splash.buttons import Button
 
@@ -72,60 +73,46 @@ class SeriesSelect(Element):
   def update(self):
     self.surf = py.Surface(self.size, py.SRCALPHA)
     self.rect = self.surf.get_rect()
-    self._position_()
+    self.position()
     super().position()
 
     if self.display.lock():
-      self._lock_()
+      self.lock()
     else:
-      self._render_()
+      self.render()
 
-  def _position_(self):
+  def position(self):
     self.x = util.cord(x = 0)[0]
     self.y = (100 +
       (ui.size.select.series + 50)
     * levels.charts.index(self.series)
     )
 
-  def _render_(self):
+  def render(self):
     interact = super().interact()
     self.anim.col = self.style.cols[interact]
     self.anim.blur = self.style.blur[interact]
 
-    rendered = Text.render(
-      text = self.series,
-      style = Text.Style(
-        size = 20,
-        col = self.anim.col,
-      )
+    rendered = Text.render(self.series,
+      style = Text.Style(size = 20, col = self.anim.col)
     )
-    self.surf.blit(
-      source = rendered[0],
-      dest = util.root(
-        rect = rendered[1],
-        x = self.size[0] / 2,
-        y = self.size[1] / 2
-      )
+    self.surf.blit(rendered[0],
+      dest = util.root(rendered[1], self.size[0] / 2, self.size[1] / 2)
     )
 
-  _lock_(self):
+  def lock(self):
     # TODO render dark rectangle
 
     if self.locktext:
-      rendered = Text.render(
-        text = self.locktext,
+      rendered = Text.render(self.locktext,
         style = Text.Style(size = 16)
       )
-      self.surf.blit(
-        source = rendered[0],
-        dest = util.root(
-          rect = rendered[1],
-          x = self.size[0] / 2,
-          y = self.size[1] / 2
+      self.surf.blit(rendered[0],
+        dest = util.root(rendered[1], self.size[0] / 2, self.size[1] / 2)
       )
 
 
-class TrackSelect(Selector):
+class TrackSelect(SeriesSelect):
   '''Represents a stylised button for selecting a track in the track selection menu.'''
 
   def __init__(self, id,
@@ -160,10 +147,10 @@ class TrackSelect(Selector):
     )
 
     super(self, Object).__init__(
-      index = index,
+      track = track,
       size = ui.size.select.track,
       track = track,
-      cover = util.asset(f"covers/{cover or none.png}"),
+      cover = util.asset(f"covers/{cover or 'none.png'}"),
       locktext = locktext,
       root = roots.select("track", track),
       style = Element.Style(
@@ -180,50 +167,30 @@ class TrackSelect(Selector):
       ),
     )
 
-  def _position_(self):
+  def position(self):
     self.x = util.cord(x = -0.5)[0]
     self.y = (100 +
       (ui.size.select.track + 50)
     * sprites.splash["select.tracks"].index(self.id)
     )
 
-  def _render_(self):    
+  def render(self):    
     # TODO blur image
     ...
 
-    rendered = Text.render(
-      text = self.track.name,
-      style = Text.Style(
-        size = 20,
-        col = self.anim.col,
-      )
+    rendered = Text.render(self.track.name,
+      style = Text.Style(size = 20, col = self.anim.col)
     )
-    self.surf.blit(
-      source = rendered[0],
-      dest = util.root(
-        rect = rendered[1],
-        x = 25,
-        y = self.size[1] - 25,
-        align = (-1, 1)
-      )
+    self.surf.blit(rendered[0],
+      dest = util.root(rendered[1], 25, self.size[1] - 25, align = (-1, 1))
     )
 
     if not self.track.artist:
       return
 
-    rendered = Text.render(
-      text = self.track.artist,
-      style = Text.Style(
-        size = 16,
-        col = self.anim.col,
-      )
+    rendered = Text.render(self.track.artist,
+      style = Text.Style(size = 16, col = self.anim.col)
     )
-    self.surf.blit(
-      source = rendered[0],
-      dest = util.root(
-        rect = rendered[1],
-        x = 25,
-        y = 25,
-        align = (-1, -1)
-      )
+    self.surf.blit(rendered[0],
+      dest = util.root(rendered[1], 25, 25, align = (-1, -1))
     )

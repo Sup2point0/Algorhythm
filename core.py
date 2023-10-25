@@ -103,13 +103,13 @@ class screen:
   '''
 
   scroll = {
-    "select": Val(),
+    "select": Val(0),
     **{
-      f"select.{each}": Val()
+      f"select.{each}": Val(0)
       for each in game.series
     },
-    "settings": Val(),
-    "settings.sounds": Val(),
+    "settings": Val(0),
+    "settings.sounds": Val(0),
   }
 
   track = []
