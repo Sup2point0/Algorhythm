@@ -1,7 +1,7 @@
 '''
 Implements the innate `Difficulty`, `Rank`, `Achievement` classes.
 
-These are implement little extra functionality outside of their certain Attributes.
+These implement little extra functionality outside of their certain Attributes.
 
 Safe to import.
 '''
@@ -32,22 +32,22 @@ class Difficulty(Object):
 
 
 class Rank(Object):
-  '''Represents a rank for a level score.'''
+  '''Represents a rank for a chart depending on how well the player performed.'''
 
-  def __init__(self, name, score, req = None):
+  def __init__(self, name, col = None, req = None):
     '''Create a rank.
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
     | `name` | `str` | Displayed name of rank. |
-    | `score` | `int` | Score requirement to reach rank. |
-    | `req` | `Callable -> bool` | Function called to check if rank has been reached (for special conditions). |
+    | `col` | `Color`, `Color, Color` | Colour (solid or gradient) associated with rank. |
+    | `req` | `Callable -> bool` | Function called to check if requirement to reach rank has been met. |
     '''
 
     super().__init__(
       name = name,
-      score = score,
-      req = req,
+      col = col or 0xffffff,
+      req = req or (lambda: True),
     )
 
 
