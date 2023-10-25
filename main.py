@@ -11,6 +11,7 @@ from pygame.locals import *
 from core import game, level, screen, sprites, ui, config, opt
 import util
 
+import splash.live
 from splash import splash
 
 ## NOTE testing
@@ -88,6 +89,7 @@ class main:
     '''Control active game loop.'''
 
     if not screen.fade:
+      splash.live.run()
       sprites.splash[screen.state].update()
       if game.level and not screen.switch:  # NOTE `screen.switch` needed?
         game.level.run()

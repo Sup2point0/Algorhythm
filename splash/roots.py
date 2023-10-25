@@ -39,6 +39,15 @@ class switch:
     switch.state("play")()
 
 
+def select(var, state):  # TODO add class hierarchy?
+  '''Change `var` in `game.select` to `state`.'''
+
+  def root():
+    game.select[var] = state
+
+  return root
+
+
 class shock:
   '''Functions for shock notes. The shock note calling the root should pass itself in as an argument.'''
   
