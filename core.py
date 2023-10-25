@@ -194,6 +194,32 @@ class config:
     Difficulty("insane", leniency = 0.12, speed = 200),
   ]
 
+  ranks = [
+    Rank("Apex Accurate",
+      col = [[], []],
+      req = (lambda: level.perfect == len(level.chart.notes) and level.slips == 0),
+    ),
+    Rank("Apex Perfect",
+      col = [[], []],
+      req = (lambda: level.perfect == len(level.chart.notes)),
+    ),
+    Rank("Apex Chain",
+      col = [],
+      req = (lambda: level.hits == len(level.chart.notes)),
+    ),
+    Rank("Clear",
+      col = 0xffffff,
+      req = (lambda: level.score >= config.score.apex * 0.5),
+    ),
+    Rank("Uhhh...",
+      col = 0xffffff,
+      req = (lambda: 0 >= level.score),
+    ),
+    Rank("Finish",
+      col = 0x909090,
+    ),
+  ]
+
   class score:
     apex: int = 100000
     hit: float = 0.6
