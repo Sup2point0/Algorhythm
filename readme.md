@@ -1,4 +1,6 @@
-# Algorhythm
+<h1 align="center"> Algorhythm </h1>
+
+<div align="center"> <em>A keyboard-based rhythm game made in pygame!</em> </div>
 
 
 ## Tasks
@@ -30,3 +32,30 @@
   - Press any keys
 - Branch mode
   - Optional Shock Notes
+
+
+## About
+
+
+<br>
+
+
+## Installation
+
+### Dependencies
+
+
+<br>
+
+
+## Credits
+
+### Game
+* Much inspired by [Phigros](...) and other rhythm games (but mostly Phigros).
+
+### Code
+* Coded entirely by yours truly.
+* Made in [Python 3.11](...) with [pygame](...).
+
+### Assets
+* Non-level soundtracks and all the tracks in the *Origins* series were created by yours truly in [GarageBand](...) (iPadOS).
