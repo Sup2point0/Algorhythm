@@ -31,7 +31,7 @@ class process:
           sprite for sprite in sprites.splash[screen.state]
           # if isinstance(sprite, TrackSelect)
         ],
-        key = config.sort[game.select["sort"]],
+        key = config.sorts[game.select["sort"]],
         reverse = game.select["reverse"],
       )
     ]

@@ -149,7 +149,6 @@ class TrackSelect(SeriesSelect):
     super(self, Object).__init__(
       track = track,
       size = ui.size.select.track,
-      track = track,
       cover = util.asset(f"covers/{cover or 'none.png'}"),
       locktext = locktext,
       root = roots.select("track", track),
