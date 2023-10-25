@@ -7,7 +7,6 @@ import pygame as py
 # This module is imported by almost every file. As such,
 # it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
 # These are exceptions, since they are safe to import.
-from levels import levels
 from innate.value import BoundValue as Val
 from innate.innate import Difficulty, Rank
 from effects.shake import Shake
@@ -42,6 +41,8 @@ class game:
   events = []  # tracks events in frame
   keys = []  # tracks current pressed keys
   pulse = py.time.Clock()  # game timer
+
+  series = ["tutorials", "origins", "protos", "decode", "special"]
 
 
 class level:
@@ -84,7 +85,7 @@ class screen:
   state = None
   states = {
     "start", "select",
-    *{f"select.{each}" for each in levels.charts},
+    *{f"select.{each}" for each in game.series},
     "environ", "environ.load", "environ.create",
     "settings", "settings.sounds", "settings.visuals",
     "account",
@@ -105,7 +106,7 @@ class screen:
     "select": Val(),
     **{
       f"select.{each}": Val()
-      for each in levels.levels
+      for each in game.series
     },
     "settings": Val(),
     "settings.sounds": Val(),

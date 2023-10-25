@@ -9,10 +9,10 @@ from levels import (
   EndOfTime,
 )
 
-# NOTE need `OrderedDict`?
+
 charts = {
   "tutorials": [
-    Track("Tutorial",
+    Track("Standard",
       file = "end-of-time-instr.mp3",
       bpm = 116,
       offset = 0,
