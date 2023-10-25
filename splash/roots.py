@@ -35,7 +35,7 @@ class switch:
   def tutorial():
     '''Play the tutorial.'''
 
-    levels.charts[0].start(difficulty = 0)
+    levels.charts["tutorials"][0].start(difficulty = 0)
     switch.state("play")()
 
 

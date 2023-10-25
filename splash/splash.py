@@ -22,242 +22,240 @@ from splash.buttons import Button
 
 def setup():
   '''Load sprites for all screens in the game.'''
-  
-  covers = [
-    Cover(
-      alpha = util.Alpha(255),
-      root = roots.fade.total,
-    ),
-    Cover(
-      alpha = util.Alpha(0, bounds = (0, 128)),
-      root = roots.fade.partial,
-    ),
-  ]
 
-  common = [
-    Asset("common.backdrop",
-      pos = screen.origin,
-      image = "scarlet-cortex.jpg",
-      size = screen.size,
-      blur = 10,
-      display = Displayed(
-        hide = {"play", "score"},
-        layer = 1,
+  return {
+    "covers": [
+      Cover(
+        alpha = util.Alpha(255),
+        root = roots.fade.total,
       ),
-    ),
-    Button("common.back",
-      pos = [75, 75],
-      size = [ui.size.button[1]] * 2,
-      text = "‹",
-      root = roots.switch.back,
-      display = Displayed(
-        hide = {"start", "play", "score"},
-        layer = sprites.active.layer["splash"],
+      Cover(
+        alpha = util.Alpha(0, bounds = (0, 128)),
+        root = roots.fade.partial,
       ),
-    ),
-  ]
-
-  pause = [
-    ...
-  ]
-
-  start = [
-    Text("start.title",
-      pos = util.cord(0, -0.5),
-      text = "ALGORHYTHM",
-      style = Text.Style(
-        typeface = ui.font.title,
-        size = 100,
+    ],
+    "common": [
+      Asset("common.backdrop",
+        pos = screen.origin,
+        image = "scarlet-cortex.jpg",
+        size = screen.size,
+        blur = 10,
+        display = Displayed(
+          hide = {"play", "score"},
+          layer = 1,
+        ),
       ),
-      display = Displayed(
-        show = {"start"},
-        layer = sprites.active.layer["splash"],
+      Button("common.back",
+        pos = [75, 75],
+        size = [ui.size.button[1]] * 2,
+        text = "‹",
+        root = roots.switch.back,
+        display = Displayed(
+          hide = {"start", "play", "score"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-    Button("start.play",
-      pos = util.cord(-0.75, -0.25),
-      size = ui.size.button,
-      text = "PLAY",
-      root = roots.switch.state("select"),
-      display = Displayed(
-        show = {"start"},
-        layer = sprites.active.layer["splash"],
+    ],
+    "pause": [
+      ...
+    ],
+    "start": [
+      Text("start.title",
+        pos = util.cord(0, -0.5),
+        text = "ALGORHYTHM",
+        style = Text.Style(
+          typeface = ui.font.title,
+          size = 100,
+        ),
+        display = Displayed(
+          show = {"start"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-    Button("start.environ",
-      pos = util.cord(-0.75, 0),
-      size = ui.size.button,
-      text = "ENVIRONMENT",
-      root = roots.switch.state("environ"),
-      display = Displayed(
-        show = {"start"},
-        layer = sprites.active.layer["splash"],
+      Button("start.play",
+        pos = util.cord(-0.75, -0.25),
+        size = ui.size.button,
+        text = "PLAY",
+        root = roots.switch.state("select"),
+        display = Displayed(
+          show = {"start"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-    Button("start.settings",
-      pos = util.cord(-0.75, 0.25),
-      size = ui.size.button,
-      text = "SETTINGS",
-      root = roots.switch.state("settings"),
-      display = Displayed(
-        show = {"start"},
-        layer = sprites.active.layer["splash"],
+      Button("start.environ",
+        pos = util.cord(-0.75, 0),
+        size = ui.size.button,
+        text = "ENVIRONMENT",
+        root = roots.switch.state("environ"),
+        display = Displayed(
+          show = {"start"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-    Text("start.version",
-      pos = [screen.x - 50, screen.y - 50],
-      text = "v" + game.version,
-      style = Text.Style(
-        align = (1, 1),
+      Button("start.settings",
+        pos = util.cord(-0.75, 0.25),
+        size = ui.size.button,
+        text = "SETTINGS",
+        root = roots.switch.state("settings"),
+        display = Displayed(
+          show = {"start"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-      display = Displayed(
-        show = {"start"},
-        layer = sprites.active.layer["splash"],
+      Text("start.version",
+        pos = [screen.x - 50, screen.y - 50],
+        text = "v" + game.version,
+        style = Text.Style(
+          align = (1, 1),
+        ),
+        display = Displayed(
+          show = {"start"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-  ]
-
-  environ = []
-
-  settings = [
-    Text("settings.title",
-      pos = util.cord(0, -0.5),
-      text = "ALGORHYTHM",
-      style = Text.Style(
-        typeface = ui.font.title,
-        size = 100,
+    ],
+    "environ": [
+      ...
+    ],
+    "settings": [
+      Text("settings.title",
+        pos = util.cord(0, -0.5),
+        text = "ALGORHYTHM",
+        style = Text.Style(
+          typeface = ui.font.title,
+          size = 100,
+        ),
+        display = Displayed(
+          show = {"settings"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-      display = Displayed(
-        show = {"settings"},
-        layer = sprites.active.layer["splash"],
+      Text("settings.about",
+        pos = util.cord(0, -0.25),
+        text = f"v{game.version}",
+        display = Displayed(
+          show = {"settings"},
+          layer = sprites.active.layer["splash"],
+        )
       ),
-    ),
-    Text("settings.about",
-      pos = util.cord(0, -0.25),
-      text = f"v{game.version}",
-      display = Displayed(
-        show = {"settings"},
-        layer = sprites.active.layer["splash"],
-      )
-    ),
-    Button("settings.sounds",
-      pos = util.cord(-0.5, 0),
-      size = ui.size.button,
-      text = "SOUNDS",
-      root = roots.switch.state("settings.sounds"),
-      display = Displayed(
-        show = {"settings"},
-        layer = sprites.active.layer["splash"],
+      Button("settings.sounds",
+        pos = util.cord(-0.5, 0),
+        size = ui.size.button,
+        text = "SOUNDS",
+        root = roots.switch.state("settings.sounds"),
+        display = Displayed(
+          show = {"settings"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-    Button("settings.visuals",
-      pos = util.cord(0.5, 0),
-      size = ui.size.button,
-      text = "VISUALS",
-      root = roots.switch.state("settings.visuals"),
-      display = Displayed(
-        show = {"settings"},
-        layer = sprites.active.layer["splash"],
+      Button("settings.visuals",
+        pos = util.cord(0.5, 0),
+        size = ui.size.button,
+        text = "VISUALS",
+        root = roots.switch.state("settings.visuals"),
+        display = Displayed(
+          show = {"settings"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-  ]
-
-  account = []
-
-  select = [
-    Button("select.tutorials",
-      pos = util.cord(0, -0.5),
-      size = [screen.x * 0.8, ui.size.button[1] * 2],
-      text = "TUTORIALS",
-      root = roots.switch.state("select.tutorials"),
-      display = Displayed(
-        show = {"select"},
-        layer = sprites.active.layer["splash"],
+    ],
+    "account": [
+      ...
+    ],
+    "select": [
+      Button("select.tutorials",
+        pos = util.cord(0, -0.5),
+        size = [screen.x * 0.8, ui.size.button[1] * 2],
+        text = "TUTORIALS",
+        root = roots.switch.state("select.tutorials"),
+        display = Displayed(
+          show = {"select"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-    Button("select.origins",
-      pos = util.cord(0, -0.25),
-      size = [screen.x * 0.8, ui.size.button[1] * 2],
-      text = "ORIGINS",
-      root = roots.switch.state("select.origins"),
-      display = Displayed(
-        show = {"select"},
-        layer = sprites.active.layer["splash"],
+      Button("select.origins",
+        pos = util.cord(0, -0.25),
+        size = [screen.x * 0.8, ui.size.button[1] * 2],
+        text = "ORIGINS",
+        root = roots.switch.state("select.origins"),
+        display = Displayed(
+          show = {"select"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-    Button("select.protos",
-      pos = util.cord(0, 0),
-      size = [screen.x * 0.8, ui.size.button[1] * 2],
-      text = "ORIGINS",
-      root = roots.switch.state("select.protos"),
-      display = Displayed(
-        show = {"select"},
-        layer = sprites.active.layer["splash"],
+      Button("select.protos",
+        pos = util.cord(0, 0),
+        size = [screen.x * 0.8, ui.size.button[1] * 2],
+        text = "ORIGINS",
+        root = roots.switch.state("select.protos"),
+        display = Displayed(
+          show = {"select"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-    Button("select.decode",
-      pos = util.cord(0, 0.25),
-      size = [screen.x * 0.8, ui.size.button[1] * 2],
-      text = "ORIGINS",
-      root = roots.switch.state("select.decode"),
-      display = Displayed(
-        show = {"select"},
-        layer = sprites.active.layer["splash"],
+      Button("select.decode",
+        pos = util.cord(0, 0.25),
+        size = [screen.x * 0.8, ui.size.button[1] * 2],
+        text = "ORIGINS",
+        root = roots.switch.state("select.decode"),
+        display = Displayed(
+          show = {"select"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-    Button("select.special",
-      pos = util.cord(0, 0.5),
-      size = [screen.x * 0.8, ui.size.button[1] * 2],
-      text = "ORIGINS",
-      root = roots.switch.state("select.special"),
-      display = Displayed(
-        show = {"select"},
-        layer = sprites.active.layer["splash"],
+      Button("select.special",
+        pos = util.cord(0, 0.5),
+        size = [screen.x * 0.8, ui.size.button[1] * 2],
+        text = "ORIGINS",
+        root = roots.switch.state("select.special"),
+        display = Displayed(
+          show = {"select"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-  ]
-
-  tutorials = [
-    Button("select.tutorials.standard",
-      pos = util.cord(0, 0),
-      size = ui.size.button,
-      text = "STANDARD",
-      root = roots.switch.tutorial,
-      display = Displayed(
-        show = {"select.tutorials"},
-        layer = sprites.active.layer["splash"],
+    ],
+    "tutorials": [
+      Button("select.tutorials.standard",
+        pos = util.cord(0, 0),
+        size = ui.size.button,
+        text = "STANDARD",
+        root = roots.switch.tutorial,
+        display = Displayed(
+          show = {"select.tutorials"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-  ]
-
-  play = [
-    ActiveText("level.score",
-      pos = [screen.x - 40, 40],
-      source = lambda: util.setscore(round(level.scored)),
-      style = Text.Style(
-        size = 69,
-        align = (1, -1),
+    ],
+    "play": [
+      ActiveText("level.score",
+        pos = [screen.x - 40, 40],
+        source = lambda: util.setscore(round(level.scored)),
+        style = Text.Style(
+          size = 69,
+          align = (1, -1),
+        ),
+        display = Displayed(
+          show = {"play"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-      display = Displayed(
-        show = {"play"},
-        layer = sprites.active.layer["splash"],
+      ActiveText("level.chain",
+        pos = [screen.cx, 40],
+        source = lambda: str(level.chain),
+        style = Text.Style(
+          size = 69,
+          align = (0, -1)
+        ),
+        display = Displayed(
+          show = {"play"},
+          layer = sprites.active.layer["splash"],
+        ),
       ),
-    ),
-    ActiveText("level.chain",
-      pos = [screen.cx, 40],
-      source = lambda: str(level.chain),
-      style = Text.Style(
-        size = 69,
-        align = (0, -1)
-      ),
-      display = Displayed(
-        show = {"play"},
-        layer = sprites.active.layer["splash"],
-      ),
-    ),
-  ]
-
-  score = []
+    ],
+    "score": [
+      ...
+    ],
+  }
 
 
 def load(display):

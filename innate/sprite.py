@@ -45,8 +45,9 @@ class Sprite(py.sprite.Sprite):
     if shake:
       x -= screen.shake.x()
       y += screen.shake.y()
-    if self.display.scroll:
-      y += self.display.scroll()
+    if hasattr(self, "display"):
+      if self.display.scroll:
+        y += self.display.scroll()
 
     lx, ly = self.align
 

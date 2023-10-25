@@ -35,7 +35,7 @@ class game:
     "track": None,
     "difficulty": None,
     "sort": "default",
-    "inverse": True,
+    "reverse": True,
   }
 
   events = []  # tracks events in frame
@@ -256,14 +256,14 @@ class config:
     size = 40
     speed = 8
 
-  sorts = [
-    ("default", None),
-    ("score", lambda each: each),  # TODO
-    ("name", lambda each: each.track.name),
-    ("artist", lambda each: each.track.artist),
-    ("duration", lambda each: each.track.dur),
+  sorts = {
+    "default": lambda each: each.id,
+    "score": lambda each: each,  # TODO
+    "name": lambda each: each.track.name,
+    "artist": lambda each: each.track.artist,
+    "duration": lambda each: each.track.dur,
     # NOTE brackets needed around lambda?
-  ]
+  }
 
 
 class opt:

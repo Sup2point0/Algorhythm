@@ -29,9 +29,11 @@ class process:
       each.id for each in sorted(
         [
           sprite for sprite in sprites.splash[screen.state]
-          # if isinstance(sprite, TrackSelect)
+          if isinstance(sprite, TrackSelect)
         ],
         key = config.sorts[game.select["sort"]],
         reverse = game.select["reverse"],
       )
     ]
+
+    print("run.log =", run.log)
