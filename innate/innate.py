@@ -6,7 +6,7 @@ These implement little extra functionality outside of their certain Attributes.
 Safe to import.
 '''
 
-from innate.object import Object
+from innate import Object
 
 
 class Difficulty(Object):

@@ -9,7 +9,7 @@ import colorsys
 import pygame as py
 
 from core import screen, sprites, config, opt
-from innate.value import BoundValue
+from innate import Val
 
 
 ## generic
@@ -172,7 +172,7 @@ class interpolate:
     )
 
 
-class Alpha(BoundValue):
+class Alpha(Val):
   '''...'''
 
   def __init__(self, value, bounds = (0, 255)):

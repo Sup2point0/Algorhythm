@@ -5,7 +5,7 @@ Implements the `Element` and `Element.Style` base classes for other splash sprit
 import pygame as py
 
 from core import screen, sprites
-from innate.object import Object
+from innate import Object
 from innate.sprite import Sprite
 
 

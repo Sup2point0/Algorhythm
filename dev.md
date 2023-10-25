@@ -20,8 +20,8 @@ from PIL import ...
 
 from core import game, level, screen, sprites, ui, config, opt
 import innate
-from innate.value import BoundValue (as Val)
-from innate.object import Object
+from innate import Val
+from innate import Object
 from innate.sprite import Sprite
 import util
 

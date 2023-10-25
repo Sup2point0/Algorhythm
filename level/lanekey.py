@@ -5,7 +5,7 @@ Lane key indicators
 import pygame as py
 
 from core import level, screen, config
-from innate.value import BoundValue as Val
+from innate import Val
 from innate.sprite import Sprite
 import util
 

@@ -6,7 +6,7 @@ import json
 import hashlib
 
 from core import game, opt
-from innate.value import BoundValue
+from innate import Val
 import util
 
 
@@ -26,7 +26,7 @@ def _construct_(source):
   for key in struct:
     if not key.startswith("_"):
       val = struct[key]
-      if isinstance(val, BoundValue):
+      if isinstance(val, Val):
         out[key] = val()
       elif hasattr(val, "__dict__"):
         out[key] = _construct_(val)

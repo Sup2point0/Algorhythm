@@ -153,9 +153,9 @@ class ui:
   class font:
     body = "Abel-Regular"
     title = "Orbitron-Semibold"
-    size = 25
 
   class size:
+    font = 25
     button = [200, 60]
     
     class select:  # FIXME

@@ -34,7 +34,7 @@ class Text(Element):
       '''
   
       self.typeface = typeface or ui.font.body
-      self.size = size or ui.font.size
+      self.size = size or ui.size.font
       self.align = align or (0, 0)
 
       self.cols = vars(ui.col.text)

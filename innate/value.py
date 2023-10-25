@@ -1,7 +1,7 @@
 '''
 Implements the `BoundValue` class for values restricted within certain bounds.
 
-This module does not import any other in-game modules.
+Safe to import.
 '''
 
 
