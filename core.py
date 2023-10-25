@@ -32,6 +32,13 @@ class game:
   player = None
   level = None
 
+  select = {
+    "track": None,
+    "difficulty": None,
+    "sort": "default",
+    "inverse": True,
+  }
+
   events = []  # tracks events in frame
   keys = []  # tracks current pressed keys
   pulse = py.time.Clock()  # game timer
@@ -66,6 +73,13 @@ class screen:
   When `screen.switch` is set, `screen.state` is updated to that at the start of the next frame (to avoid conflicting screen state processing within the same frame). While fading out, `screen.fade` becomes `'out'`, freezing sprites from updating. Once the screen entirely blacks out, `screen.fade` briefly becomes `'dark'`. In this time window (where the player cannot see anything), sprites update again, changing the rendered screen.
   '''
 
+  x = 1280
+  y = 720
+  cx = x / 2
+  cy = y / 2
+  size = [x, y]
+  origin = [cx, cy]
+
   switch = None
   state = None
   states = {
@@ -87,14 +101,17 @@ class screen:
   | `in` | Fading in from black. |
   '''
 
-  track = []
+  scroll = {
+    "select": Val(),
+    **{
+      f"select.{each}": Val()
+      for each in levels.levels
+    },
+    "settings": Val(),
+    "settings.sounds": Val(),
+  }
 
-  x = 1280
-  y = 720
-  cx = x / 2
-  cy = y / 2
-  size = [x, y]
-  origin = [cx, cy]
+  track = []
 
   class shake:
     x = Shake()
@@ -127,6 +144,7 @@ class sprites:
     "back": 1,
   }
   splash = {each: py.sprite.Group() for each in screen.states}
+  splash["select.tracks"] = []
 
 
 ## settings
@@ -211,6 +229,15 @@ class config:
     size = 40
     speed = 8
 
+  sorts = [
+    ("default", None),
+    ("score", lambda each: each),  # TODO
+    ("name", lambda each: each.track.name),
+    ("artist", lambda each: each.track.artist),
+    ("duration", lambda each: each.track.dur),
+    # NOTE brackets needed around lambda?
+  ]
+
 
 class opt:
   '''User-alterable settings.'''
@@ -235,6 +262,9 @@ class opt:
     speed = Val(1.0, lower = 0.8, upper = 3.0)
 
   class col:
+    accent = [64, 144, 241, 255]
+    flavour = [255, 0, 144, 255]
+
     hit = [255, 255, 255, 255]
     perfect = [64, 241, 144, 255]
     
