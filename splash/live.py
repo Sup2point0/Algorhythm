@@ -1,6 +1,5 @@
-@ splash/live.py
 '''
-Implements the `run` function for handling dynamic splash functionality.
+Handles dynamic splash functionality through the `run` function.
 '''
 
 from core import game, screen, sprites, config
@@ -30,7 +29,7 @@ class process:
       each.id for each in sorted(
         [
           sprite for sprite in sprites.splash[screen.state]
-          if isinstance(sprite, TrackSelect)
+          # if isinstance(sprite, TrackSelect)
         ],
         key = config.sort[game.select["sort"]],
         reverse = game.select["reverse"],
