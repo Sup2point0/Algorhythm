@@ -6,6 +6,8 @@ import random
 import json
 import colorsys
 
+import pygame as py
+
 from core import screen, sprites, config, opt
 from innate.value import BoundValue
 
@@ -39,6 +41,20 @@ def index(iterable, *values, check = False) -> int | tuple[int, any] | None:
         return i
   
   return None
+
+def log(**attrs):
+  '''Adds the specified attributes to a given function. Used as a decorator.'''
+
+  def wrapper(func):
+    def root(*args, **kwargs):
+      func(*args, **kwargs)
+
+    for each in attrs:
+      root.__setattr__(each, attrs[each])
+
+    return root
+
+  return wrapper
 
 
 ## engine
@@ -128,6 +144,11 @@ class find:
     '''Find suitable colour for a game key.'''
     
     return vars(opt.col)[find.row(key)]
+  
+  def asset(file) -> py.Surface:
+    '''Load an image file to a pygame Surface.'''
+
+    return py.image.load(f"assets/{file}").convert()  # TODO try-except
 
 
 class interpolate:
