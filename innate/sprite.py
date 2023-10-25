@@ -36,11 +36,18 @@ class Sprite(py.sprite.Sprite):
 
     sprites.active.add(self, layer = sprites.active.layer[layer])
 
-  def position(self):
-    '''Update sprite `rect` position, adjusting for screen shake and rotation.'''
+  def position(self, shake = False):
+    '''Update sprite `rect` position, adjusting for screen scroll, shake, and rotation (and maybe zoom in future).'''
 
-    x = self.x + screen.shake.x()
+    x = self.x
     y = self.y + screen.shake.y()
+
+    if shake:
+      x -= screen.shake.x()
+      y += screen.shake.y()
+    if self.display.scroll:
+      y += self.display.scroll()
+
     lx, ly = self.align
 
     match lx:
