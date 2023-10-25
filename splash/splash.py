@@ -35,8 +35,8 @@ def setup():
   ]
 
   common = [
-    Asset("start.backdrop",
-      pos = [screen.cx, screen.cy],
+    Asset("common.backdrop",
+      pos = screen.origin,
       image = "scarlet-cortex.jpg",
       size = screen.size,
       blur = 10,
@@ -47,12 +47,12 @@ def setup():
     ),
     Button("common.back",
       pos = [75, 75],
-      size = [ui.button.size[1]] * 2,
+      size = [ui.size.button[1]] * 2,
       text = "‹",
       root = roots.switch.back,
       display = Displayed(
         hide = {"start", "play", "score"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
   ]
@@ -71,37 +71,37 @@ def setup():
       ),
       display = Displayed(
         show = {"start"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
     Button("start.play",
       pos = util.cord(-0.75, -0.25),
-      size = ui.button.size,
+      size = ui.size.button,
       text = "PLAY",
       root = roots.switch.state("select"),
       display = Displayed(
         show = {"start"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
     Button("start.environ",
       pos = util.cord(-0.75, 0),
-      size = ui.button.size,
+      size = ui.size.button,
       text = "ENVIRONMENT",
       root = roots.switch.state("environ"),
       display = Displayed(
         show = {"start"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
     Button("start.settings",
       pos = util.cord(-0.75, 0.25),
-      size = ui.button.size,
+      size = ui.size.button,
       text = "SETTINGS",
       root = roots.switch.state("settings"),
       display = Displayed(
         show = {"start"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
     Text("start.version",
@@ -112,7 +112,7 @@ def setup():
       ),
       display = Displayed(
         show = {"start"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
   ]
@@ -129,7 +129,7 @@ def setup():
       ),
       display = Displayed(
         show = {"settings"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
     Text("settings.about",
@@ -137,27 +137,27 @@ def setup():
       text = f"v{game.version}",
       display = Displayed(
         show = {"settings"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       )
     ),
     Button("settings.sounds",
       pos = util.cord(-0.5, 0),
-      size = ui.button.size,
+      size = ui.size.button,
       text = "SOUNDS",
       root = roots.switch.state("settings.sounds"),
       display = Displayed(
         show = {"settings"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
     Button("settings.visuals",
       pos = util.cord(0.5, 0),
-      size = ui.button.size,
+      size = ui.size.button,
       text = "VISUALS",
       root = roots.switch.state("settings.visuals"),
       display = Displayed(
         show = {"settings"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
   ]
@@ -167,52 +167,52 @@ def setup():
   select = [
     Button("select.tutorials",
       pos = util.cord(0, -0.5),
-      size = [screen.x * 0.8, ui.button.size[1] * 2],
+      size = [screen.x * 0.8, ui.size.button[1] * 2],
       text = "TUTORIALS",
       root = roots.switch.state("select.tutorials"),
       display = Displayed(
         show = {"select"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
     Button("select.origins",
       pos = util.cord(0, -0.25),
-      size = [screen.x * 0.8, ui.button.size[1] * 2],
+      size = [screen.x * 0.8, ui.size.button[1] * 2],
       text = "ORIGINS",
       root = roots.switch.state("select.origins"),
       display = Displayed(
         show = {"select"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
     Button("select.protos",
       pos = util.cord(0, 0),
-      size = [screen.x * 0.8, ui.button.size[1] * 2],
+      size = [screen.x * 0.8, ui.size.button[1] * 2],
       text = "ORIGINS",
       root = roots.switch.state("select.protos"),
       display = Displayed(
         show = {"select"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
     Button("select.decode",
       pos = util.cord(0, 0.25),
-      size = [screen.x * 0.8, ui.button.size[1] * 2],
+      size = [screen.x * 0.8, ui.size.button[1] * 2],
       text = "ORIGINS",
       root = roots.switch.state("select.decode"),
       display = Displayed(
         show = {"select"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
     Button("select.special",
       pos = util.cord(0, 0.5),
-      size = [screen.x * 0.8, ui.button.size[1] * 2],
+      size = [screen.x * 0.8, ui.size.button[1] * 2],
       text = "ORIGINS",
       root = roots.switch.state("select.special"),
       display = Displayed(
         show = {"select"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
   ]
@@ -220,12 +220,12 @@ def setup():
   tutorials = [
     Button("select.tutorials.standard",
       pos = util.cord(0, 0),
-      size = ui.button.size,
+      size = ui.size.button,
       text = "STANDARD",
       root = roots.switch.tutorial,
       display = Displayed(
         show = {"select.tutorials"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
   ]
@@ -240,7 +240,7 @@ def setup():
       ),
       display = Displayed(
         show = {"play"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
     ActiveText("level.chain",
@@ -252,7 +252,7 @@ def setup():
       ),
       display = Displayed(
         show = {"play"},
-        layer = 15,
+        layer = sprites.active.layer["splash"],
       ),
     ),
   ]
@@ -260,7 +260,7 @@ def setup():
   score = []
 
 
-def loadsequence(display):
+def load(display):
   '''Run the game loading sequence.'''
 
   class load:

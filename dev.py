@@ -2,14 +2,6 @@ Algorhythm Code
 
 
 # TODO
-= rework levels.levels to follow (ordered?) dict structure 
-= import levels.levels in core.py to auto-generate screen states
-
-= add from splash import roots to dev
-= rename splash.loadsequence to splash.load
-= fixes to splash.common.start.back
-= change ui.button.size to ui.size.button and add ui.size.select
-= change display layers to use sprites.active.layer instead of magic numbers
 = update modules to directly import innate for general use
 = update sprite classes to use super(self, Object).__init__()
 

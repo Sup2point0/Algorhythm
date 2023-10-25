@@ -1,6 +1,6 @@
 '''
 Algorhythm
-A rhythm game made in pygame!
+A keyboard-based rhythm game made in pygame!
 '''
 
 import sys
@@ -155,7 +155,7 @@ py.init()
 display = py.display.set_mode(screen.size, py.FULLSCREEN)
 
 splash.setup()
-splash.loadsequence(display)
+splash.load(display)
 
 
 ## loop
