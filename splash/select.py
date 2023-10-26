@@ -14,6 +14,8 @@ from splash.text import Text
 
 from levels import levels
 
+import effects.blur
+
 
 class SeriesSelect(Element):
   '''Represents a stylised button for selecting a series in the series selection menu.'''
@@ -46,10 +48,20 @@ class SeriesSelect(Element):
       ),
     )
 
+    class root:
+      surf = util.find.asset(f"covers/{cover or 'none.png'}")
+      width, height = surf.get_size()
+
+    width, height = ui.size.select.series
+    if root.width / root.height < width / height:
+      scale = width / root.width
+    else:
+      scale = height / root.height
+
     Object.__init__(self,
-      size = ui.size.select.series,
+      size = (width, height),
       series = series,
-      cover = util.find.asset(f"covers/{cover or 'none.png'}"),
+      cover = py.transform.scale_by(root.surf, scale),
       locktext = locktext,
       root = roots.switch.state(f"select.{series.lower()}"),
       style = Element.Style(
@@ -67,7 +79,9 @@ class SeriesSelect(Element):
     )
 
     self.anim.col = ui.col.text.idle
-    self.anim.blur = 20
+    self.anim.blur = self.style.blur["idle"]
+    self.anim.blurred = self.anim.blur - 1
+    self.anim.cover = self.cover
 
   def update(self):
     self.surf = py.Surface(self.size, py.SRCALPHA)
@@ -92,16 +106,21 @@ class SeriesSelect(Element):
     self.anim.col = self.style.cols[interact]
     self.anim.blur = self.style.blur[interact]
 
+    if self.anim.blurred != self.anim.blur:
+      self.anim.blurred += 1 if self.anim.blurred < self.anim.blur else -1
+      self.anim.cover = effects.blur.blur(self.cover, self.anim.blurred)
+
     self.surf.blit(
-      source = effects.blur.blur(self.cover, self.anim.blur),
-      dest = py.Rect(
-        (self.rect.width - self.cover.get_width()) / 2,
-        (self.rect.height - self.cover.get_height()) / 2,
-      *self.size)
+      source = self.anim.cover,
+      dest = (0, 0),
+      # area = py.Rect(
+      #   (self.rect.width - self.cover.get_width()) / 2,
+      #   (self.rect.height - self.cover.get_height()) / 2,
+      # *self.size)
     )
 
-    rendered = Text.render(self.series,
-      style = Text.Style(size = 20, col = self.anim.col)
+    rendered = Text.render(self.series.upper(),
+      style = Text.Style(size = 40, col = self.anim.col)
     )
     self.surf.blit(rendered[0],
       dest = util.root(rendered[1], self.size[0] / 2, self.size[1] / 2)

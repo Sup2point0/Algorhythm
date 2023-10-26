@@ -168,15 +168,21 @@ def setup():
         series = "tutorials",
         cover = "tutorials.jpeg",
       ),
-      Button("select.special",
-        pos = util.cord(0, 0.5),
-        size = [screen.x * 0.8, ui.size.button[1] * 2],
-        text = "ORIGINS",
-        root = roots.switch.state("select.special"),
-        display = Displayed(
-          show = {"select"},
-          layer = sprites.active.layer["splash"],
-        ),
+      SeriesSelect("select.origins",
+        series = "origins",
+        cover = "origins.jpeg",
+      ),
+      SeriesSelect("select.protos",
+        series = "protos",
+        cover = "protos.jpeg",
+      ),
+      SeriesSelect("select.decode",
+        series = "decode",
+        cover = "decode.jpeg",
+      ),
+      SeriesSelect("select.special",
+        series = "special",
+        cover = "special.jpeg",
       ),
     ],
     "tutorials": [
@@ -290,7 +296,7 @@ def load(display):
     if load.state is True:
       load.tick += 1
       if random.random() < load.percent:
-        load.percent += random.randint(2, 11) / 600
+        load.percent += random.randint(2, 13) / 600
       load.alpha.alt(4)
     else:
       load.state -= 1

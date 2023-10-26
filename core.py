@@ -152,15 +152,16 @@ class sprites:
 class ui:
   class font:
     body = "Abel-Regular"
-    title = "Orbitron-Semibold"
+    title = "Rajdhani-Semibold"
+    # title = "Orbitron-Semibold"
 
   class size:
     font = 25
     button = [200, 60]
     
-    class select:  # FIXME
-      series = [200, 60]
-      track = [200, 60]
+    class select:
+      series = [screen.x * 0.7, 120]
+      track = [screen.x * 0.7, 120]
 
   class col:
     back = [0, 23, 42]
