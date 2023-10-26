@@ -18,6 +18,7 @@ from splash.covers import Cover
 from splash.asset import Asset
 from splash.text import Text, ActiveText
 from splash.buttons import Button
+from splash.select import SeriesSelect, TrackSelect
 
 
 def setup():
@@ -163,45 +164,9 @@ def setup():
       ...
     ],
     "select": [
-      Button("select.tutorials",
-        pos = util.cord(0, -0.5),
-        size = [screen.x * 0.8, ui.size.button[1] * 2],
-        text = "TUTORIALS",
-        root = roots.switch.state("select.tutorials"),
-        display = Displayed(
-          show = {"select"},
-          layer = sprites.active.layer["splash"],
-        ),
-      ),
-      Button("select.origins",
-        pos = util.cord(0, -0.25),
-        size = [screen.x * 0.8, ui.size.button[1] * 2],
-        text = "ORIGINS",
-        root = roots.switch.state("select.origins"),
-        display = Displayed(
-          show = {"select"},
-          layer = sprites.active.layer["splash"],
-        ),
-      ),
-      Button("select.protos",
-        pos = util.cord(0, 0),
-        size = [screen.x * 0.8, ui.size.button[1] * 2],
-        text = "ORIGINS",
-        root = roots.switch.state("select.protos"),
-        display = Displayed(
-          show = {"select"},
-          layer = sprites.active.layer["splash"],
-        ),
-      ),
-      Button("select.decode",
-        pos = util.cord(0, 0.25),
-        size = [screen.x * 0.8, ui.size.button[1] * 2],
-        text = "ORIGINS",
-        root = roots.switch.state("select.decode"),
-        display = Displayed(
-          show = {"select"},
-          layer = sprites.active.layer["splash"],
-        ),
+      SeriesSelect("select.tutorials",
+        series = "tutorials",
+        cover = "tutorials.jpeg",
       ),
       Button("select.special",
         pos = util.cord(0, 0.5),
