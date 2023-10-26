@@ -16,6 +16,7 @@ class Displayed(Object):
     show = None,
     hide = None,
     align = None,
+    scroll = None,
     layer = None,
     fade = False,
     root = None,
@@ -28,6 +29,7 @@ class Displayed(Object):
     | `show` | `set[str]` | Set of screen states to show the sprite. |
     | `hide` | `set[str]` | Set of screen states to hide the sprite. If specified, the sprite will default to being shown in every screen state. |
     | `align` | `int, int` | Alignment of sprite in x and y directions, respectively. Can be `-1`, `0`, `1`. |
+    | `scroll` | `Callable -> num` | Function called to get scroll offset for sprite. |
     | `layer` | `int` | Layer to render sprite. |
     | `fade` | `bool` | Show or hide the sprite with a fade animation. |
     | `root` | `Callable -> bool` | Function called to check if sprite should be rendered. |
@@ -41,6 +43,7 @@ class Displayed(Object):
 
     super().__init__(
       align = align or (0, 0),
+      scroll = scroll or (lambda: 0),
       layer = layer or sprites.active.layer["splash"],
       fade = fade,
       root = root or (lambda: True),
@@ -58,6 +61,7 @@ class Element(Sprite):
     id: str,
     pos = None,
     align = None,
+    anim = None,
     interact = False,
     display = None,
   ):
@@ -75,6 +79,12 @@ class Element(Sprite):
 
     self.id = id
     self.display = display
+
+    if anim:
+      class anim:
+        '''Internal class to store variables that change for animations.'''
+
+      self.anim = anim
     
     if display:
       if interact:

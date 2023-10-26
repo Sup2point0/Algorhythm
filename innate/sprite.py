@@ -1,13 +1,16 @@
 '''
-Base sprite functionality
+Implements the `Sprite` base class from which all game sprite classes derive.
+
+Unsafe to import.
 '''
 
 import pygame as py
 
 from core import screen, sprites
+from innate import Object
 
 
-class Sprite(py.sprite.Sprite):
+class Sprite(py.sprite.Sprite, Object):
   '''Base class from which all game sprites derive, providing inherent attributes and utility.'''
 
   def __init__(self,

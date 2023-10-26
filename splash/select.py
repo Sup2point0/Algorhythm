@@ -47,15 +47,15 @@ class SeriesSelect(Element):
       ),
     )
 
-    super(self, Object).__init__(
+    Object.__init__(self,
       size = ui.size.select.series,
       series = series,
-      cover = util.asset(f"covers/{cover or 'none.png'}"),
+      cover = util.find.asset(f"covers/{cover or 'none.png'}"),
       locktext = locktext,
       root = roots.switch.state(f"select.{series.lower()}"),
       style = Element.Style(
         cols = {
-          "idle": ui.col.text,
+          "idle": ui.col.text.idle,
           "hover": opt.col.accent,
           "click": opt.col.flavour,
         },
@@ -67,7 +67,7 @@ class SeriesSelect(Element):
       ),
     )
 
-    self.anim.col = ui.col.text
+    self.anim.col = ui.col.text.idle
     self.anim.blur = 20
 
   def update(self):
@@ -84,8 +84,8 @@ class SeriesSelect(Element):
   def position(self):
     self.x = util.cord(x = 0)[0]
     self.y = (100 +
-      (ui.size.select.series + 50)
-    * levels.charts.index(self.series)
+      (ui.size.select.series[1] + 50)
+    * list(levels.charts.keys()).index(self.series)
     )
 
   def render(self):
@@ -146,15 +146,15 @@ class TrackSelect(SeriesSelect):
       ),
     )
 
-    super(self, Object).__init__(
+    Object.__init__(self,
       track = track,
       size = ui.size.select.track,
-      cover = util.asset(f"covers/{cover or 'none.png'}"),
+      cover = util.find.asset(f"covers/{cover or 'none.png'}"),
       locktext = locktext,
       root = roots.select("track", track),
       style = Element.Style(
         cols = {
-          "idle": ui.col.text,
+          "idle": ui.col.text.idle,
           "hover": opt.col.accent,
           "click": opt.col.flavour,
         },
@@ -169,7 +169,7 @@ class TrackSelect(SeriesSelect):
   def position(self):
     self.x = util.cord(x = -0.5)[0]
     self.y = (100 +
-      (ui.size.select.track + 50)
+      (ui.size.select.track[1] + 50)
     * sprites.splash["select.tracks"].index(self.id)
     )
 
