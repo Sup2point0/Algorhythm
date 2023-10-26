@@ -93,6 +93,14 @@ class SeriesSelect(Element):
     self.anim.col = self.style.cols[interact]
     self.anim.blur = self.style.blur[interact]
 
+    self.surf.blit(
+      source = effects.blur.blur(self.cover, self.anim.blur),
+      dest = py.Rect(
+        (self.rect.width - self.cover.get_width()) / 2,
+        (self.rect.height - self.cover.get_height()) / 2,
+      *self.size)
+    )
+
     rendered = Text.render(self.series,
       style = Text.Style(size = 20, col = self.anim.col)
     )
