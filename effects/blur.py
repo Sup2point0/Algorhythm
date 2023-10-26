@@ -1,5 +1,5 @@
 '''
-Blur effects
+Implements the `blur` and `glow` functions for effects involving blurring.
 '''
 
 import pygame as py
@@ -19,14 +19,7 @@ def _blur_(image, blur) -> py.Surface:
   return out
 
 
-def load(file: str, blur: int) -> py.Surface:
-  '''Load and blur a file into a pygame surface.'''
-
-  image = Image.open(file)
-  return _blur_(image, blur)
-
-
-def process(surf: py.Surface, blur: int) -> py.Surface:
+def blur(surf: py.Surface, blur: int) -> py.Surface:
   '''Blur an existing pygame surface.'''
 
   return _blur_(_image_(surf), blur)

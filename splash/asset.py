@@ -35,12 +35,11 @@ class Asset(Element):
       display = display,
     )
 
-    if blur:
-      self.surf = effects.blur.load(f"assets/{image}", blur = blur)
-    else:
-      self.surf = py.image.load(f"assets/{image}")
+    self.root = py.image.load(f"assets/{image}")
     
     if size:
-      self.surf = py.transform.scale(self.surf, size).convert()
+      self.surf = py.transform.scale(self.root, size).convert()
+    if blur:
+      self.surf = effects.blur.blur(self.root)
       
     self.rect = self.surf.get_rect()
