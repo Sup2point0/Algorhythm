@@ -58,7 +58,13 @@ class BoundValue:
   def set(self, value, /):
     '''Set the value.'''
 
-    self.value = value
+    if value == "lower":
+      self.value = self.lower
+    elif value == "upper":
+      self.value = self.upper
+    else:
+      self.value = value
+    
     self._check_()
 
   def alt(self, value, /):

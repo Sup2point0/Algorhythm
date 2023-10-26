@@ -109,7 +109,7 @@ class SeriesSelect(Element):
     interact = super().interact()
     self.anim.col = self.style.cols[interact]
     self.anim.blur = self.style.blur[interact]
-    self.anim.alpha.alt(config.faderate if interact == "idle" else -config.faderate)
+    self.anim.alpha.set("upper" if interact == "idle" else "lower")
 
     # This approaches asymptotically, so we have to stop at some point
     if abs(self.anim.blurred - self.anim.blur) > 0.1:
@@ -141,7 +141,7 @@ class SeriesSelect(Element):
 
     if self.locktext:
       rendered = Text.render(self.locktext,
-        style = Text.Style(size = 16)
+        style = Text.Style()
       )
       self.surf.blit(rendered[0],
         dest = util.root(rendered[1], self.size[0] / 2, self.size[1] / 2)
