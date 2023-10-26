@@ -4,7 +4,7 @@ Implements the `SeriesSelect` and `TrackSelect` classes for selecting series or 
 
 import pygame as py
 
-from core import screen, sprites, ui, opt
+from core import screen, sprites, ui, config, opt
 from innate import Object
 import util
 
@@ -71,21 +71,25 @@ class SeriesSelect(Element):
           "click": opt.col.flavour,
         },
         blur = {
-          "idle": 15,
-          "hover": 5,
-          "click": 5,
+          "idle": 7,
+          "hover": 2,
+          "click": 2,
         },
       ),
     )
 
     self.anim.col = ui.col.text.idle
+    self.anim.alpha = util.Alpha("upper", bounds = (16, 64))
     self.anim.blur = self.style.blur["idle"]
     self.anim.blurred = self.anim.blur - 1
     self.anim.cover = self.cover
+    self.anim.shade = py.Surface(self.size)
+    self.anim.shade.fill(0x00000)
 
   def update(self):
     self.surf = py.Surface(self.size, py.SRCALPHA)
     self.rect = self.surf.get_rect()
+    
     self.position()
     super().position()
 
@@ -105,22 +109,28 @@ class SeriesSelect(Element):
     interact = super().interact()
     self.anim.col = self.style.cols[interact]
     self.anim.blur = self.style.blur[interact]
+    self.anim.alpha.alt(config.faderate if interact == "idle" else -config.faderate)
 
-    if self.anim.blurred != self.anim.blur:
-      self.anim.blurred += 1 if self.anim.blurred < self.anim.blur else -1
+    # This approaches asymptotically, so we have to stop at some point
+    if abs(self.anim.blurred - self.anim.blur) > 0.1:
+      self.anim.blurred = util.slide(self.anim.blurred, self.anim.blur)
       self.anim.cover = effects.blur.blur(self.cover, self.anim.blurred)
 
     self.surf.blit(
       source = self.anim.cover,
       dest = (0, 0),
-      # area = py.Rect(
-      #   (self.rect.width - self.cover.get_width()) / 2,
-      #   (self.rect.height - self.cover.get_height()) / 2,
-      # *self.size)
+      area = py.Rect(
+        (self.cover.get_width() - self.rect.width) / 2,
+        (self.cover.get_height() - self.rect.height) / 2,
+      *self.size)
     )
 
+    # darken image
+    self.anim.shade.set_alpha(self.anim.alpha())
+    self.surf.blit(self.anim.shade, [0, 0])
+
     rendered = Text.render(self.series.upper(),
-      style = Text.Style(size = 40, col = self.anim.col)
+      style = Text.Style(typeface = "title", size = 50, col = self.anim.col)
     )
     self.surf.blit(rendered[0],
       dest = util.root(rendered[1], self.size[0] / 2, self.size[1] / 2)

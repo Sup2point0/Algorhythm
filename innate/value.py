@@ -20,16 +20,22 @@ class BoundValue:
     | `lower` | `num`, `Any` | Lower bound of value. |
     | `upper` | `num`, `Any` | Upper bound of value. |
 
-    If a bound(s) is unspecified, the value will not be restricted in that direction.
+    Setting the value to `'lower'` or `'upper'` sets it to the value for that bound. If a bound(s) is unspecified, the value will not be restricted in that direction.
     '''
 
-    self.value = value
     self.lower = lower
     self.upper = upper
 
     if (lower, upper) != (None, None):
       if lower > upper:
         raise ValueError("Lower bound cannot be greater than upper bound")
+    
+    if value == "lower":
+      self.value = self.lower
+    elif value == "upper":
+      self.value = self.upper
+    else:
+      self.value = value
 
     self._check_()
   

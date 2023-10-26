@@ -179,3 +179,6 @@ class Alpha(Val):
     '''...'''
 
     super().__init__(value, *bounds)
+
+  def __call__(self):
+    return round(super().__call__())

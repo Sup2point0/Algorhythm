@@ -5,7 +5,8 @@ Text rendering
 import pygame as py
 from pygame import freetype
 
-from core import sprites, ui
+from core import ui
+from innate import Object
 import util
 
 from splash.elements import Element
@@ -32,10 +33,18 @@ class Text(Element):
   
       Arguments are set to internal defaults if unspecified.
       '''
+
+      # Check if typeface is a generic, like 'body'
+      try:
+        typeface = vars(ui.font)[typeface]
+      except KeyError:
+        pass
   
-      self.typeface = typeface or ui.font.body
-      self.size = size or ui.size.font
-      self.align = align or (0, 0)
+      Object.__init__(self,
+        typeface = typeface or ui.font.body,
+        size = size or ui.size.font,
+        align = align or (0, 0),
+      )
 
       self.cols = vars(ui.col.text)
       if isinstance(col, dict):
