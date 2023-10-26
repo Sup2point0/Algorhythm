@@ -11,7 +11,6 @@ import util
 from splash import roots
 from splash.elements import Element, Displayed
 from splash.text import Text
-from splash.buttons import Button
 
 from levels import levels
 

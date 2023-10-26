@@ -1,5 +1,5 @@
 '''
-Implements the `Sprite` base class from which all game sprite classes derive.
+Implements the `Sprite` base class for sprite classes to derive from.
 
 Unsafe to import.
 '''
@@ -10,8 +10,8 @@ from core import screen, sprites
 from innate import Object
 
 
-class Sprite(py.sprite.Sprite, Object):
-  '''Base class from which all game sprites derive, providing inherent attributes and utility.'''
+class Sprite(py.sprite.Sprite):
+  '''Base class from which all game sprites derive, providing inherent attributes, functionality and utility.'''
 
   def __init__(self,
     pos = None,

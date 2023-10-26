@@ -38,8 +38,9 @@ class Asset(Element):
     self.root = py.image.load(f"assets/{image}")
     
     if size:
-      self.surf = py.transform.scale(self.root, size).convert()
+      self.surf = py.transform.scale(self.root, size)
     if blur:
-      self.surf = effects.blur.blur(self.root)
-      
+      self.surf = effects.blur.blur(self.root, blur)
+    
+    self.surf = self.surf.convert()
     self.rect = self.surf.get_rect()
