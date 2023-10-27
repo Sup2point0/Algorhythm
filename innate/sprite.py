@@ -7,7 +7,6 @@ Unsafe to import.
 import pygame as py
 
 from core import screen, sprites
-from innate import Object
 
 
 class Sprite(py.sprite.Sprite):

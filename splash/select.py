@@ -4,7 +4,7 @@ Implements the `SeriesSelect` and `TrackSelect` classes for selecting series or 
 
 import pygame as py
 
-from core import screen, sprites, ui, config, opt
+from core import screen, sprites, ui, opt
 from innate import Val, Object
 import util
 
