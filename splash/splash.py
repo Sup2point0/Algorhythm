@@ -20,6 +20,8 @@ from splash.text import Text, ActiveText
 from splash.buttons import Button
 from splash.select import SeriesSelect, TrackSelect
 
+from levels import levels
+
 
 def setup():
   '''Load sprites for all screens in the game.'''
@@ -187,8 +189,13 @@ def setup():
       ),
     ],
     "tutorials": [
+      TrackSelect("select.tutorials.standard",
+        series = "tutorials",
+        track = levels.charts["tutorials"][0],
+        cover = "tutorials-standard.jpeg",
+      ),
       Button("select.tutorials.standard",
-        pos = util.cord(0, 0),
+        pos = util.cord(0, 0.5),
         size = ui.size.button,
         text = "STANDARD",
         root = roots.switch.tutorial,

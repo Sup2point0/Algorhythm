@@ -25,6 +25,8 @@ class SeriesSelect(Element):
     cover = None,
     lock = None,
     locktext = None,
+    _size_ = None,
+    _display_ = None,
   ):
     '''Create a button for selecting a series.
     
@@ -38,8 +40,8 @@ class SeriesSelect(Element):
     Other base parameters are inherited from `splash.Element`.
     '''
 
-    super().__init__(id, anim = True, interact = True,
-      display = Displayed(
+    super().__init__(id = id, anim = True, interact = True,
+      display = _display_ or Displayed(
         show = {"select"},
         align = (0, -1),
         scroll = (lambda: screen.scroll["select"]()),
@@ -48,20 +50,10 @@ class SeriesSelect(Element):
       ),
     )
 
-    class root:
-      surf = util.find.asset(f"covers/{cover or 'none.png'}")
-      width, height = surf.get_size()
-
-    width, height = ui.size.select.series
-    if root.width / root.height < width / height:
-      scale = width / root.width
-    else:
-      scale = height / root.height
-
     Object.__init__(self,
-      size = (width, height),
+      size = _size_ or ui.size.select.series,
       series = series,
-      cover = py.transform.scale_by(root.surf, scale),
+      cover = self._resize_(cover, _size_),
       locktext = locktext,
       root = roots.switch.state(f"select.{series.lower()}"),
       style = Element.Style(
@@ -89,6 +81,30 @@ class SeriesSelect(Element):
       self.style.blur["lock"]:
       effects.blur.blur(self.cover, self.style.blur["lock"])
     }}
+
+  def _resize_(self, cover, size) -> py.Surface:
+    '''Internal utility method to resize cover asset to suitable size.'''
+
+    class root:
+      surf = util.find.asset(f"covers/{cover or 'none.png'}")
+      width, height = surf.get_size()
+
+    width, height = size or ui.size.select.series
+    if root.width / root.height < width / height:
+      scale = width / root.width
+    else:
+      scale = height / root.height
+
+    return py.transform.scale_by(root.surf, scale)
+  
+  def _centre_(self, surf, rect) -> py.Rect:
+    '''Internal utility method to get centered area of a pygame Surface.'''
+
+    return py.Rect(
+      (surf.get_width() - rect.width) / 2,
+      (surf.get_height() - rect.height) / 2,
+      *self.size
+    )
 
   def update(self):
     self.surf = py.Surface(self.size, py.SRCALPHA)
@@ -118,10 +134,7 @@ class SeriesSelect(Element):
     self.surf.blit(
       source = self.anim.covers[self.anim.blur()],
       dest = (0, 0),
-      area = py.Rect(
-        (self.cover.get_width() - self.rect.width) / 2,
-        (self.cover.get_height() - self.rect.height) / 2,
-      *self.size)
+      area = self._centre_(self.cover, self.rect)
     )
 
     # darken image
@@ -140,10 +153,7 @@ class SeriesSelect(Element):
     self.surf.blit(
       source = self.anim.covers[self.style.blur["lock"]],
       dest = (0, 0),
-      area = py.Rect(
-        (self.cover.get_width() - self.rect.width) / 2,
-        (self.cover.get_height() - self.rect.height) / 2,
-      *self.size)
+      area = self._centre_(self.cover, self.rect)
     )
 
     self.anim.shade.set_alpha(self.style.alpha["lock"])
@@ -182,34 +192,20 @@ class TrackSelect(SeriesSelect):
 
     display = f"select.{series.lower()}"
 
-    super().__init__(id, anim = True, interact = True,
-      display = Displayed(
-        show = display,
+    super().__init__(id, series, cover, lock, locktext,
+      _size_ = ui.size.select.track,
+      _display_ = Displayed(
+        show = {display},
         align = (0, -1),
         scroll = (lambda: screen.scroll[display]()),
         layer = sprites.active.layer["splash"],
         lock = lock,
-      ),
+      )
     )
 
     Object.__init__(self,
       track = track,
-      size = ui.size.select.track,
-      cover = util.find.asset(f"covers/{cover or 'none.png'}"),
-      locktext = locktext,
       root = roots.select("track", track),
-      style = Element.Style(
-        cols = {
-          "idle": ui.col.text.idle,
-          "hover": opt.col.accent,
-          "click": opt.col.flavour,
-        },
-        blur = {
-          "idle": 15,
-          "hover": 5,
-          "click": 5,
-        },
-      ),
     )
 
   def position(self):
@@ -219,12 +215,20 @@ class TrackSelect(SeriesSelect):
     * sprites.splash["select.tracks"].index(self.id)
     )
 
-  def render(self):    
-    # TODO blur image
-    ...
+  def render(self):
+    interact = super().interact()
+    self.anim.col = self.style.cols[interact]
+    self.anim.alpha.set(self.style.alpha[interact])
+    self.anim.blur.alt(1 if interact == "idle" else -1)
+
+    self.surf.blit(
+      source = self.anim.covers[self.anim.blur()],
+      dest = (0, 0),
+      area = self._centre_(self.cover, self.rect)
+    )
 
     rendered = Text.render(self.track.name,
-      style = Text.Style(size = 20, col = self.anim.col)
+      style = Text.Style(typeface = "title", size = 20, col = self.anim.col)
     )
     self.surf.blit(rendered[0],
       dest = util.root(rendered[1], 25, self.size[1] - 25, align = (-1, 1))
