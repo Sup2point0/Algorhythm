@@ -38,9 +38,9 @@ def setup():
     "common": [
       Asset("common.backdrop",
         pos = screen.origin,
-        image = "scarlet-cortex.jpg",
+        image = "violet-cortex.jpg",
         size = screen.size,
-        blur = 10,
+        blur = 5,
         display = Displayed(
           hide = {"play", "score"},
           layer = 1,
@@ -179,6 +179,7 @@ def setup():
       SeriesSelect("select.decode",
         series = "decode",
         cover = "decode.jpeg",
+        lock = (lambda: True),
       ),
       SeriesSelect("select.special",
         series = "special",

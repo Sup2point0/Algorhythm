@@ -5,7 +5,7 @@ Implements the `SeriesSelect` and `TrackSelect` classes for selecting series or 
 import pygame as py
 
 from core import screen, sprites, ui, config, opt
-from innate import Object
+from innate import Val, Object
 import util
 
 from splash import roots
@@ -66,25 +66,29 @@ class SeriesSelect(Element):
       root = roots.switch.state(f"select.{series.lower()}"),
       style = Element.Style(
         cols = {
-          "idle": ui.col.text.idle,
-          "hover": opt.col.accent,
-          "click": opt.col.flavour,
+          "idle": ui.col.text.idle, "hover": opt.col.accent,
+          "click": opt.col.flavour, "lock": ui.col.text.lock,
         },
-        blur = {
-          "idle": 7,
-          "hover": 2,
-          "click": 2,
-        },
+        alpha = {"idle": 32, "hover": 32, "click": 96, "lock": 160},
+        blur = {"idle": 8, "hover": 3, "click": 3, "lock": 12},
       ),
     )
 
     self.anim.col = ui.col.text.idle
-    self.anim.alpha = util.Alpha("upper", bounds = (16, 64))
-    self.anim.blur = self.style.blur["idle"]
-    self.anim.blurred = self.anim.blur - 1
-    self.anim.cover = self.cover
+    blurs = list(self.style.blur.values())[:3]
+    self.anim.blur = Val("upper", lower = min(blurs), upper = max(blurs))
+    self.anim.alpha = util.Alpha("upper")
+
     self.anim.shade = py.Surface(self.size)
     self.anim.shade.fill(0x00000)
+    self.anim.cover = None
+    self.anim.covers = {**{
+      each: effects.blur.blur(self.cover, each)
+      for each in range(self.anim.blur.lower, self.anim.blur.upper + 1)
+    }, **{
+      self.style.blur["lock"]:
+      effects.blur.blur(self.cover, self.style.blur["lock"])
+    }}
 
   def update(self):
     self.surf = py.Surface(self.size, py.SRCALPHA)
@@ -108,16 +112,11 @@ class SeriesSelect(Element):
   def render(self):
     interact = super().interact()
     self.anim.col = self.style.cols[interact]
-    self.anim.blur = self.style.blur[interact]
-    self.anim.alpha.set("upper" if interact == "idle" else "lower")
-
-    # This approaches asymptotically, so we have to stop at some point
-    if abs(self.anim.blurred - self.anim.blur) > 0.1:
-      self.anim.blurred = util.slide(self.anim.blurred, self.anim.blur)
-      self.anim.cover = effects.blur.blur(self.cover, self.anim.blurred)
+    self.anim.alpha.set(self.style.alpha[interact])
+    self.anim.blur.alt(1 if interact == "idle" else -1)
 
     self.surf.blit(
-      source = self.anim.cover,
+      source = self.anim.covers[self.anim.blur()],
       dest = (0, 0),
       area = py.Rect(
         (self.cover.get_width() - self.rect.width) / 2,
@@ -126,8 +125,9 @@ class SeriesSelect(Element):
     )
 
     # darken image
-    self.anim.shade.set_alpha(self.anim.alpha())
-    self.surf.blit(self.anim.shade, [0, 0])
+    if (alpha := self.anim.alpha()):
+      self.anim.shade.set_alpha(alpha)
+      self.surf.blit(self.anim.shade, [0, 0])
 
     rendered = Text.render(self.series.upper(),
       style = Text.Style(typeface = "title", size = 50, col = self.anim.col)
@@ -137,7 +137,17 @@ class SeriesSelect(Element):
     )
 
   def lock(self):
-    # TODO render dark rectangle
+    self.surf.blit(
+      source = self.anim.covers[self.style.blur["lock"]],
+      dest = (0, 0),
+      area = py.Rect(
+        (self.cover.get_width() - self.rect.width) / 2,
+        (self.cover.get_height() - self.rect.height) / 2,
+      *self.size)
+    )
+
+    self.anim.shade.set_alpha(self.style.alpha["lock"])
+    self.surf.blit(self.anim.shade, [0, 0])
 
     if self.locktext:
       rendered = Text.render(self.locktext,
