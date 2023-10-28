@@ -61,8 +61,8 @@ class SeriesSelect(Element):
           "idle": ui.col.text.idle, "hover": opt.col.accent,
           "click": opt.col.flavour, "lock": ui.col.text.lock,
         },
-        alpha = {"idle": 32, "hover": 32, "click": 96, "lock": 160},
-        blur = {"idle": 8, "hover": 3, "click": 3, "lock": 12},
+        alpha = {"idle": 32, "hover": 32, "click": 96, "lock": 192},
+        blur = {"idle": 10, "hover": 4, "click": 4, "lock": 15},
       ),
     )
 

@@ -183,7 +183,7 @@ class config:
   '''Internal non-alterable settings.'''
 
   framerate = 60
-  faderate = 8
+  faderate = 12
 
   difficulties = [
     Difficulty("standard", leniency = 0.15, speed = 200),
