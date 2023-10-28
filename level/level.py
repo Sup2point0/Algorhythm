@@ -6,6 +6,7 @@ Level handling
 from pygame import mixer
 
 from core import game, level, screen, sprites, config, opt
+from innate import Val
 import util
 
 from level.hitline import Hitline
@@ -19,21 +20,25 @@ class Chart:
 
   def __init__(self,
     difficulty: int,
-    lanes: int = 4,
-    keys: list = opt.keys,
-    data = list(),
+    lanes = 4,
+    keys = opt.keys,
+    data = None,
   ):
     '''Create a chart.
     
-    | argument | type | description |
-    | :------- | :--- | :---------- |
-    ''' # TODO
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `difficulty` | `int` | Chart difficulty, indexed from the pre-defined game difficulties. |
+    | `lanes` | `int` | Initial number of lanes. |
+    | `keys` | `list[str[upper]]` | Initial lanekeys. |
+    | `data` | `list[object]` | Chart data, in the form of a list of chart objects. |
+    '''
 
-    self.difficulty = difficulty
-    self.data = data
-    self.lines = [each for each in data if isinstance(each, Hitline)] or Hitline()
-    self.notes = [each for each in data if isinstance(each, Note)]
-    self.actions = [each for each in data if isinstance(each, Action)]
+    self.difficulty = difficulty,
+    self.data = data or [],
+    self.lines = [each for each in data if isinstance(each, Hitline)] or Hitline(),
+    self.notes = [each for each in data if isinstance(each, Note)],
+    self.actions = [each for each in data if isinstance(each, Action)],
 
     self.lanes = []
     for i in range(lanes):
@@ -54,14 +59,14 @@ class Track:
   ):
     '''Create a soundtrack.
     
-    | argument | type | description |
-    | :------- | :--- | :---------- |
-    | `name` | `str` | Song name. |
-    | `artist` | `str` | Song artist. |
-    | `bpm` | `int`, `float` | Beats per minute. |
-    | `file` | `str` | Source file to stream from. |
-    | `offset` | `float` | Time offset until song should start playing. |
-    | `vol` | `float` | Internal volume of song. |
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `name` | `str` | Track name. |
+    | `artist` | `str` | Track artist. |
+    | `bpm` | `num` | Tempo of track in beats per minute (can be scaled for easier charting). |
+    | `file` | `str` | Source file (path) to stream from. |
+    | `offset` | `float` | Time offset to apply to beat calculations. |
+    | `vol` | `float in [0.0, 1.0]` | Internal volume of song. |
     | `charts` | `list[Chart]` | Playable charts of the song. |
     '''
 
@@ -70,7 +75,7 @@ class Track:
     self.bpm = bpm
     self.file = file
     self.offset = offset
-    self.vol = vol
+    self.vol = Val(vol, lower = 0.0, upper = 1.0)()
     self.charts = sorted(charts, key = lambda chart: chart.difficulty) or []
     self.difficulties = (chart.difficulty for chart in self.charts)
 
@@ -81,8 +86,7 @@ class Track:
       if chart.difficulty == difficulty:
         return chart
     else:
-      return None
-      # if chart not found, return no value and handle accordingly
+      return None  # if chart not found, return no value and handle accordingly
 
   def start(self, difficulty: int):
     '''Start a new game with a selected difficulty.'''
