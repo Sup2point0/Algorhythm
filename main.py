@@ -107,6 +107,7 @@ class main:
       screen.switch = None
 
       sprites.active.add(sprites.splash[screen.state])
+      live.run()
       sprites.splash[screen.state].update()
       
       # update screen change history

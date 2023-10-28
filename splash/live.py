@@ -8,7 +8,7 @@ import util
 from splash.select import TrackSelect
 
 
-@ util.log(log = {None, *game.select.values()})
+@ util.log(log = {"state": None, **game.select})
 def run():
   '''Handle dynamic splash functionality for more interactive screens.'''
 
@@ -20,11 +20,12 @@ class process:
   def trackselect():
     '''Sort track selector elements, only if necessary.'''
 
-    data = {screen.state, *game.select.values()}
-    if run.log == data:
+    data = {"state": screen.state, **game.select}
+    if run.log != data:
+      run.log = data
+    else:
       return
-
-    run.log = data
+    
     sprites.splash["select.tracks"] = [
       each.id for each in sorted(
         [
@@ -36,4 +37,4 @@ class process:
       )
     ]
 
-    print("run.log =", run.log)
+    print("sprites.splash['select.tracks'] =", sprites.splash["select.tracks"])
