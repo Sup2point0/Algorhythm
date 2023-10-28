@@ -52,11 +52,17 @@
 ## Credits
 
 ### Game
-* Much inspired by [Phigros](...) and other rhythm games (but mostly Phigros).
+- Much inspired by [Phigros](https://phigros.fandom.com/wiki/Phigros_Wiki) and other rhythm games (but mostly Phigros).
 
 ### Code
-* Coded entirely by yours truly.
-* Made in [Python 3.11](...) with [pygame](...).
+- Coded entirely by yours truly.
+- Made in [Python 3.11](https://www.python.org) with [pygame](https://www.pygame.org).
 
 ### Assets
-* Non-level soundtracks and all the tracks in the *Origins* series were created by yours truly in [GarageBand](...) (iPadOS).
+
+### Fonts
+- [Rajdhani](...) (title)
+- [Abel](...) (body)
+
+### Soundtracks
+* Non-level soundtracks and all the tracks in the *Origins* series were created by yours truly in [GarageBand](https://www.apple.com/ios/garageband/) (iPadOS).
