@@ -23,7 +23,7 @@ class Chart:
     lanes = 4,
     keys = opt.keys,
     data = None,
-  ):
+  ):  # TODO change initialiser to use lane objects
     '''Create a chart.
     
     | parameter | type | description |
