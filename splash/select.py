@@ -17,70 +17,49 @@ from levels import levels
 import effects.blur
 
 
-class SeriesSelect(Element):
-  '''Represents a stylised button for selecting a series in the series selection menu.'''
+class Select(Element):
+  '''A stylised button with an image background.'''
 
-  def __init__(self, id,
-    series,
-    cover = None,
-    lock = None,
-    locktext = None,
-    _size_ = None,
-    _display_ = None,
-  ):
-    '''Create a button for selecting a series.
-    
-    | parameter | type | description |
-    | :-------- | :--- | :---------- |
-    | `series` | `str` | Series selected when button is clicked. |
-    | `cover` | `str` | File name from which to load image asset for button background. |
-    | `lock` | `Callable -> bool` | Function called to check if series is locked. |
-    | `locktext` | `str` | Text displayed if series is locked. |
+  class Style:
+    '''A selector style.'''
 
-    Other base parameters are inherited from `splash.Element`.
-    '''
+    def __init__(self, *, col = None, alpha = None, blur = None):
+      '''Create a selector style.
+      
+      | parameter | type | description |
+      | :-------- | :--- | :---------- |
+      | `col` | `dict[str: Color]` | Text colour. |
+      | `alpha` | `dict[str: num]` | Opacity of darkness cover. |
+      | `blur` | `dict[str: num]` | Radius of image blur. |
 
-    super().__init__(id = id, anim = True, interact = True,
-      display = _display_ or Displayed(
-        show = {"select"},
-        align = (0, -1),
-        scroll = (lambda: screen.scroll["select"]()),
-        layer = sprites.active.layer["splash"],
-        lock = lock,
-      ),
-    )
+      Each argument is a `dict`, with the keys being the 4 interaction states `'idle'`, `'hover'`, `'click'`, `'lock'`
+      '''
 
-    Object.__init__(self,
-      size = _size_ or ui.size.select.series,
-      series = series,
-      cover = self._resize_(cover, _size_),
-      locktext = locktext,
-      root = roots.switch.state(f"select.{series.lower()}"),
-      style = Element.Style(
+      Object.__init__(self,
         cols = {
           "idle": ui.col.text.idle, "hover": opt.col.accent,
           "click": opt.col.flavour, "lock": ui.col.text.lock,
         },
         alpha = {"idle": 32, "hover": 32, "click": 96, "lock": 192},
         blur = {"idle": 10, "hover": 4, "click": 4, "lock": 15},
-      ),
+      )
+      
+      # Override defaults by whichever settings have been specified
+      self.cols.update(col or {})
+      self.alpha.update(alpha or {})
+      self.blur.update(blur or {})
+
+
+  def __init__(self, id, size, cover, locktext, display):
+    '''Create a selector element.'''
+
+    super().__init__(id = id, anim = True, interact = True, display = display)
+
+    Object.__init__(self,
+      size = size,
+      cover = self._resize_(cover, size),
+      locktext = locktext,
     )
-
-    self.anim.col = ui.col.text.idle
-    blurs = list(self.style.blur.values())[:3]
-    self.anim.blur = Val("upper", lower = min(blurs), upper = max(blurs))
-    self.anim.alpha = util.Alpha("upper")
-
-    self.anim.shade = py.Surface(self.size)
-    self.anim.shade.fill(0x00000)
-    self.anim.cover = None
-    self.anim.covers = {**{
-      each: effects.blur.blur(self.cover, each)
-      for each in range(self.anim.blur.lower, self.anim.blur.upper + 1)
-    }, **{
-      self.style.blur["lock"]:
-      effects.blur.blur(self.cover, self.style.blur["lock"])
-    }}
 
   def _resize_(self, cover, size) -> py.Surface:
     '''Internal utility method to resize cover asset to suitable size.'''
@@ -117,6 +96,69 @@ class SeriesSelect(Element):
       self.lock()
     else:
       self.render()
+
+
+class SeriesSelect(Select):
+  '''Represents a stylised button for selecting a series in the series selection menu.'''
+
+  def __init__(self, id,
+    series,
+    cover = None,
+    lock = None,
+    locktext = None,
+    style = None,
+  ):
+    '''Create a button for selecting a series.
+    
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `series` | `str` | Series selected when button is clicked. |
+    | `cover` | `str` | File name from which to load image asset for button background. |
+    | `lock` | `Callable -> bool` | Function called to check if series is locked. |
+    | `locktext` | `str` | Text displayed if series is locked. |
+
+    Other base parameters are inherited from `splash.Element`.
+    '''
+
+    super().__init__(id = id,
+      size = ui.size.select.series,
+      cover = cover,
+      locktext = locktext,
+      display = Displayed(
+        show = {"select"},
+        align = (0, -1),
+        scroll = (lambda: screen.scroll["select"]()),
+        layer = sprites.active.layer["splash"],
+        lock = lock,
+      ),
+    )
+
+    Object.__init__(self,
+      series = series,
+      root = roots.switch.state(f"select.{series.lower()}"),
+      style = style or Select.Style(),
+    )
+
+    self._anims_()
+
+  def _anims_(self):
+    '''Internal utility method to initialise animation attributes.'''
+
+    self.anim.col = ui.col.text.idle
+    blurs = list(self.style.blur.values())[:3]
+    self.anim.blur = Val("upper", lower = min(blurs), upper = max(blurs))
+    self.anim.alpha = util.Alpha("upper")
+
+    self.anim.shade = py.Surface(self.size)
+    self.anim.shade.fill(0x00000)
+    self.anim.cover = None
+    self.anim.covers = {**{
+      each: effects.blur.blur(self.cover, each)
+      for each in range(self.anim.blur.lower, self.anim.blur.upper + 1)
+    }, **{
+      self.style.blur["lock"]:
+      effects.blur.blur(self.cover, self.style.blur["lock"])
+    }}
 
   def position(self):
     self.x = util.cord(x = 0)[0]
@@ -177,6 +219,7 @@ class TrackSelect(SeriesSelect):
     cover = None,
     lock = None,
     locktext = None,
+    style = None,
   ):
     '''Create a button for selecting a track.
     
@@ -192,21 +235,27 @@ class TrackSelect(SeriesSelect):
 
     display = f"select.{series.lower()}"
 
-    super().__init__(id, series, cover, lock, locktext,
-      _size_ = ui.size.select.track,
-      _display_ = Displayed(
+    super(SeriesSelect, self).__init__(id = id,
+      size = ui.size.select.track,
+      cover = cover,
+      locktext = locktext,
+      display = Displayed(
         show = {display},
         align = (0, -1),
         scroll = (lambda: screen.scroll[display]()),
         layer = sprites.active.layer["splash"],
         lock = lock,
-      )
+      ),
     )
 
     Object.__init__(self,
+      series = series,
       track = track,
       root = roots.select("track", track),
+      style = style or Select.Style()
     )
+
+    super()._anims_()
 
   def position(self):
     self.x = util.cord(x = -0.5)[0]
