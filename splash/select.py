@@ -100,7 +100,7 @@ class Select(Element):
     py.draw.rect(surf,
       color = [255, 255, 255],
       rect = (0, 0, *self.size),
-      border_radius = round(max(self.size) / ui.radius / 2)
+      border_radius = round(max(self.size) * ui.radius / 2)
     )
     self.surf.blit(surf, (0, 0), special_flags = py.BLEND_RGBA_MIN)
 
