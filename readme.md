@@ -11,6 +11,7 @@
 
 ### Todo
 - Move `size` attribute of `splash.Button` to `Button.Style`
+- Split `splash/splash.py` into `setup.py` and rename `setup()` to `load`
 - Split `Note` base utility methods into separate `hit`, `kill` methods
 - Rework screen state change to allow animation specification
 - Scrolling elements functionality
@@ -18,14 +19,14 @@
   - Sort list of notes
   - Each frame, iterate through notes and break if spawn not needed
 - Selection and navigation history
-- Notifications
-- `ColourPicker`, `KeyPicker`
 
 ### Ideas
 - Musical sound effects on button click
 - Techy node background with floating geometric entities
   - Blue theme
   - Glow effects with Pillow
+- Notifications
+- `ColourPicker`, `KeyPicker`
 - Multiple lanekeys
   - For easier spamming
 - Free mode
