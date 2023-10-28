@@ -161,7 +161,7 @@ class ui:
     
     class select:
       series = [screen.x * 0.7, 120]
-      track = [screen.x * 0.7, 120]
+      track = [screen.x * 0.4, 120]
 
   class col:
     back = [0, 23, 42]
