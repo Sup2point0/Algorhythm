@@ -277,7 +277,7 @@ class TrackSelect(SeriesSelect):
     )
 
     rendered = Text.render(self.track.name,
-      style = Text.Style(typeface = "title", size = 20, col = self.anim.col)
+      style = Text.Style(typeface = "title", size = 40, col = self.anim.col)
     )
     self.surf.blit(rendered[0],
       dest = util.root(rendered[1], 25, self.size[1] - 25, align = (-1, 1))
@@ -287,7 +287,7 @@ class TrackSelect(SeriesSelect):
       return
 
     rendered = Text.render(self.track.artist,
-      style = Text.Style(size = 16, col = self.anim.col)
+      style = Text.Style(size = 25, col = self.anim.col)
     )
     self.surf.blit(rendered[0],
       dest = util.root(rendered[1], 25, 25, align = (-1, -1))

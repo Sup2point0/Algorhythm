@@ -18,7 +18,7 @@ from splash.covers import Cover
 from splash.asset import Asset
 from splash.text import Text, ActiveText
 from splash.buttons import Button
-from splash.select import SeriesSelect, TrackSelect
+from splash.select import Select, SeriesSelect, TrackSelect
 
 from levels import levels
 
@@ -169,6 +169,9 @@ def setup():
       SeriesSelect("select.tutorials",
         series = "tutorials",
         cover = "tutorials.jpeg",
+        # style = Select.Style(
+        #   alpha = {"idle"}
+        # )
       ),
       SeriesSelect("select.origins",
         series = "origins",
@@ -188,12 +191,6 @@ def setup():
         series = "special",
         cover = "special.jpeg",
       ),
-      # *[
-      #   SeriesSelect(f"select.{each}",
-      #     series = each,
-      #     cover = f"{each}.jpeg"           
-      #   ) for each in game.series
-      # ]
     ],
     "tutorials": [
       TrackSelect("select.tutorials.standard",
