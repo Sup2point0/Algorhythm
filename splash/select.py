@@ -5,7 +5,7 @@ Implements the `SeriesSelect` and `TrackSelect` classes for selecting series or 
 import pygame as py
 
 from core import screen, sprites, ui, opt
-from innate import Val, Object
+from innate import Val
 import util
 
 from splash import roots
@@ -35,14 +35,12 @@ class Select(Element):
       Each argument is a `dict`, with the keys being the 4 interaction states `'idle'`, `'hover'`, `'click'`, `'lock'`
       '''
 
-      Object.__init__(self,
-        cols = {
-          "idle": ui.col.text.idle, "hover": opt.col.accent,
-          "click": opt.col.flavour, "lock": ui.col.text.lock,
-        },
-        alpha = {"idle": 32, "hover": 32, "click": 96, "lock": 192},
-        blur = {"idle": 10, "hover": 4, "click": 4, "lock": 15},
-      )
+      self.cols = {
+        "idle": ui.col.text.idle, "hover": opt.col.accent,
+        "click": opt.col.flavour, "lock": ui.col.text.lock,
+      }
+      self.alpha = {"idle": 32, "hover": 32, "click": 96, "lock": 192}
+      self.blur = {"idle": 10, "hover": 4, "click": 4, "lock": 15}
       
       # Override defaults by whichever settings have been specified
       self.cols.update(col or {})
@@ -55,11 +53,9 @@ class Select(Element):
 
     super().__init__(id = id, anim = True, interact = True, display = display)
 
-    Object.__init__(self,
-      size = size,
-      cover = self._resize_(cover, size),
-      locktext = locktext,
-    )
+    self.size = size
+    self.cover = self._resize_(cover, size)
+    self.locktext = locktext
 
   def _resize_(self, cover, size) -> py.Surface:
     '''Internal utility method to resize cover asset to suitable size.'''
@@ -74,7 +70,7 @@ class Select(Element):
     else:
       scale = height / root.height
 
-    return py.transform.scale_by(root.surf, scale)
+    return py.transform.scale_by(root.surf, scale).convert_alpha()
   
   def _centre_(self, surf, rect) -> py.Rect:
     '''Internal utility method to get centered area of a pygame Surface.'''
@@ -97,9 +93,20 @@ class Select(Element):
     else:
       self.render()
 
+  def render(self):
+    '''Rounds the corners of the button.'''
+
+    surf = py.Surface(self.size, py.SRCALPHA)
+    py.draw.rect(surf,
+      color = [255, 255, 255],
+      rect = (0, 0, *self.size),
+      border_radius = round(max(self.size) / ui.radius / 2)
+    )
+    self.surf.blit(surf, (0, 0), special_flags = py.BLEND_RGBA_MIN)
+
 
 class SeriesSelect(Select):
-  '''Represents a stylised button for selecting a series in the series selection menu.'''
+  '''A selector for selecting a series in the series selection menu.'''
 
   def __init__(self, id,
     series,
@@ -133,11 +140,9 @@ class SeriesSelect(Select):
       ),
     )
 
-    Object.__init__(self,
-      series = series,
-      root = roots.switch.state(f"select.{series.lower()}"),
-      style = style or Select.Style(),
-    )
+    self.series = series
+    self.root = roots.switch.state(f"select.{series.lower()}")
+    self.style = style or Select.Style()
 
     self._anims_()
 
@@ -182,7 +187,7 @@ class SeriesSelect(Select):
     # darken image
     if (alpha := self.anim.alpha()):
       self.anim.shade.set_alpha(alpha)
-      self.surf.blit(self.anim.shade, [0, 0])
+      self.surf.blit(self.anim.shade, (0, 0))
 
     rendered = Text.render(self.series.upper(),
       style = Text.Style(typeface = "title", size = 50, col = self.anim.col)
@@ -190,6 +195,8 @@ class SeriesSelect(Select):
     self.surf.blit(rendered[0],
       dest = util.root(rendered[1], self.size[0] / 2, self.size[1] / 2)
     )
+
+    super().render()
 
   def lock(self):
     self.surf.blit(
@@ -199,7 +206,7 @@ class SeriesSelect(Select):
     )
 
     self.anim.shade.set_alpha(self.style.alpha["lock"])
-    self.surf.blit(self.anim.shade, [0, 0])
+    self.surf.blit(self.anim.shade, (0, 0))
 
     if self.locktext:
       rendered = Text.render(self.locktext,
@@ -208,6 +215,8 @@ class SeriesSelect(Select):
       self.surf.blit(rendered[0],
         dest = util.root(rendered[1], self.size[0] / 2, self.size[1] / 2)
       )
+
+    super().render()
 
 
 class TrackSelect(SeriesSelect):
@@ -248,12 +257,10 @@ class TrackSelect(SeriesSelect):
       ),
     )
 
-    Object.__init__(self,
-      series = series,
-      track = track,
-      root = roots.select("track", track),
-      style = style or Select.Style()
-    )
+    self.series = series
+    self.track = track
+    self.root = roots.select("track", track)
+    self.style = style or Select.Style()
 
     super()._anims_()
 
@@ -292,3 +299,5 @@ class TrackSelect(SeriesSelect):
     self.surf.blit(rendered[0],
       dest = util.root(rendered[1], 25, 25, align = (-1, -1))
     )
+
+    super(TrackSelect, self).render()

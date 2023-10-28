@@ -150,6 +150,8 @@ class sprites:
 
 ## settings
 class ui:
+  radius = 0.5
+
   class font:
     body = "Abel-Regular"
     title = "Rajdhani-Semibold"

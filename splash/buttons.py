@@ -93,8 +93,7 @@ class Button(Element):
       self.anim.col = self.style.cols[interaction]
     
     ## render
-    py.draw.rect(
-      surface = self.surf,
+    py.draw.rect(self.surf,
       color = py.Color(self.anim.col),
       rect = py.Rect(0, 0, *self.size),
       width = 0,
@@ -102,11 +101,6 @@ class Button(Element):
     )
     
     rendered = Text.render(self.text, self.style.text)
-    self.surf.blit(
-      source = rendered[0],
-      dest = util.root(
-        rect = rendered[1],
-        x = self.size[0] / 2,
-        y = self.size[1] / 2
-      )
+    self.surf.blit(rendered[0],
+      dest = util.root(rendered[1], x = self.size[0] / 2, y = self.size[1] / 2)
     )
