@@ -182,11 +182,18 @@ def setup():
         series = "decode",
         cover = "decode.jpeg",
         lock = (lambda: True),
+        locktext = "Arriving in a future update!",
       ),
       SeriesSelect("select.special",
         series = "special",
         cover = "special.jpeg",
       ),
+      # *[
+      #   SeriesSelect(f"select.{each}",
+      #     series = each,
+      #     cover = f"{each}.jpeg"           
+      #   ) for each in game.series
+      # ]
     ],
     "tutorials": [
       TrackSelect("select.tutorials.standard",
@@ -194,11 +201,13 @@ def setup():
         track = levels.charts["tutorials"][0],
         cover = "tutorials-standard.jpeg",
       ),
-      *[TrackSelect(f"select.tutorials.{each.name}",
-        series = "tutorials",
-        track = levels.charts["tutorials"][i],
-        cover = f"tutorials-{each.name}.jpeg",
-      ) for i, each in enumerate(config.difficulties)],
+      # *[
+      #   TrackSelect(f"select.tutorials.{each.name}",
+      #     series = "tutorials",
+      #     track = levels.charts["tutorials"][i],
+      #     cover = f"tutorials-{each.name}.jpeg",
+      #   ) for i, each in enumerate(config.difficulties)
+      # ],
     ],
     "play": [
       ActiveText("level.score",
