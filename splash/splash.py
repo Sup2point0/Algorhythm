@@ -44,7 +44,7 @@ def setup():
         size = screen.size,
         blur = 5,
         display = Displayed(
-          hide = {"play", "score"},
+          show = {"start", "settings"},
           layer = 1,
         ),
       ),
@@ -166,6 +166,16 @@ def setup():
       ...
     ],
     "select": [
+      Asset("select.backdrop",
+        pos = screen.origin,
+        image = "covers/back.jpg",
+        size = screen.size,
+        blur = 5,
+        display = Displayed(
+          show = {"select"},
+          layer = 1,
+        ),
+      ),
       SeriesSelect("select.tutorials",
         series = "tutorials",
         cover = "tutorials.jpeg",

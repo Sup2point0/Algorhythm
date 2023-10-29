@@ -100,7 +100,7 @@ class Select(Element):
     py.draw.rect(surf,
       color = [255, 255, 255],
       rect = (0, 0, *self.size),
-      border_radius = round(max(self.size) * ui.radius / 2)
+      border_radius = round(min(self.size) * ui.radius / 2)
     )
     self.surf.blit(surf, (0, 0), special_flags = py.BLEND_RGBA_MIN)
 
@@ -265,7 +265,7 @@ class TrackSelect(SeriesSelect):
     super()._anims_()
 
   def position(self):
-    self.x = util.cord(x = -0.5)[0]
+    self.x = util.cord(x = -0.35)[0]
     self.y = (100 +
       (ui.size.select.track[1] + 50)
     * sprites.splash["select.tracks"].index(self.id)
@@ -300,4 +300,4 @@ class TrackSelect(SeriesSelect):
       dest = util.root(rendered[1], 25, 25, align = (-1, -1))
     )
 
-    super(TrackSelect, self).render()
+    super(SeriesSelect, self).render()
