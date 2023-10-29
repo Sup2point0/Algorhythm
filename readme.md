@@ -11,6 +11,7 @@
 
 ### Todo
 - Move `size` attribute of `splash.Button` to `Button.Style`
+- Split `splash/splash.py` into `setup.py` and rename `setup()` to `load`
 - Split `Note` base utility methods into separate `hit`, `kill` methods
 - Rework screen state change to allow animation specification
 - Scrolling elements functionality
@@ -18,14 +19,14 @@
   - Sort list of notes
   - Each frame, iterate through notes and break if spawn not needed
 - Selection and navigation history
-- Notifications
-- `ColourPicker`, `KeyPicker`
 
 ### Ideas
 - Musical sound effects on button click
 - Techy node background with floating geometric entities
   - Blue theme
   - Glow effects with Pillow
+- Notifications
+- `ColourPicker`, `KeyPicker`
 - Multiple lanekeys
   - For easier spamming
 - Free mode
@@ -51,11 +52,17 @@
 ## Credits
 
 ### Game
-* Much inspired by [Phigros](...) and other rhythm games (but mostly Phigros).
+- Much inspired by [Phigros](https://phigros.fandom.com/wiki/Phigros_Wiki) and other rhythm games (but mostly Phigros).
 
 ### Code
-* Coded entirely by yours truly.
-* Made in [Python 3.11](...) with [pygame](...).
+- Coded entirely by yours truly.
+- Made in [Python 3.11](https://www.python.org) with [pygame](https://www.pygame.org).
 
 ### Assets
-* Non-level soundtracks and all the tracks in the *Origins* series were created by yours truly in [GarageBand](...) (iPadOS).
+
+### Fonts
+- [Rajdhani](...) (title)
+- [Abel](...) (body)
+
+### Soundtracks
+* Non-level soundtracks and all the tracks in the *Origins* series were created by yours truly in [GarageBand](https://www.apple.com/ios/garageband/) (iPadOS).
