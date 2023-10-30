@@ -166,7 +166,7 @@ class ui:
       track = [screen.x * 0.4, 120]
 
   class col:
-    back = [0, 23, 42]
+    back = [0, 0, 0, 128]
 
     class text:
       idle = [255, 255, 255, 255]
