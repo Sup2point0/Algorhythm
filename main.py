@@ -137,7 +137,6 @@ class main:
   def render():
     '''Update screen.'''
 
-    display.fill(ui.col.back)
     sprites.active.draw(display)
     py.display.flip()
 
