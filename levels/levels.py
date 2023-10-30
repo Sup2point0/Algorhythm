@@ -9,25 +9,23 @@ from levels.tutorials import Day
 
 charts = {
   "tutorials": [
-    Track("STANDARD TUTORIAL",
+    Track("tutorial-standard",
+      name = "STANDARD TUTORIAL",
       artist = "Sup#2.0",
       file = "end-of-time-instr.mp3",
       bpm = 116,
       offset = 0,
       vol = 1.0,
-      charts = [
-        Day.tutorial,
-      ]
+      charts = [Day.tutorial]
     ),
-    Track("ADVANCED TUTORIAL",
+    Track("tutorial-advanced",
+      name = "ADVANCED TUTORIAL",
       artist = "Sup#2.0",
       file = "end-of-time-instr.mp3",
       bpm = 116,
       offset = 0,
       vol = 1.0,
-      charts = [
-        # Daylight.tutorial,
-      ]
+      # charts = [Daylight.tutorial],
     )
   ],
   "origins": [],

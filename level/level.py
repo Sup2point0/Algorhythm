@@ -80,7 +80,7 @@ class Track:
     self.vol = Val(vol, lower = 0.0, upper = 1.0)()
     self.charts = sorted(charts, key = lambda chart: chart.difficulty) or []
     self.difficulties = (chart.difficulty for chart in self.charts)
-    self.cover = util.find.asset(f"covers/{id}", backup = "covers/none.png")
+    self.cover = util.find.asset(f"covers/{id}.jpeg", backup = "covers/none.png")
 
   def __getitem__(self, difficulty):
     ''''''

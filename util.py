@@ -145,7 +145,7 @@ class find:
     
     return vars(opt.col)[find.row(key)]
   
-  def asset(file) -> py.Surface:
+  def asset(file, backup = None) -> py.Surface:
     '''Load an image file to a pygame Surface.'''
 
     return py.image.load(f"assets/{file}").convert()  # TODO try-except
