@@ -48,7 +48,7 @@ class Chart:
 class Track:
   '''A particular soundtrack.'''
 
-  def __init__(self,
+  def __init__(self, id,
     name,
     bpm,
     file: str,
@@ -61,6 +61,7 @@ class Track:
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
+    | `id` | `str` | Internal identifier for track, used for finding cover art. |
     | `name` | `str` | Track name. |
     | `artist` | `str` | Track artist. |
     | `bpm` | `num` | Tempo of track in beats per minute (can be scaled for easier charting). |
@@ -70,6 +71,7 @@ class Track:
     | `charts` | `list[Chart]` | Playable charts of the song. |
     '''
 
+    self.id = id
     self.name = name
     self.artist = artist
     self.bpm = bpm
@@ -78,6 +80,7 @@ class Track:
     self.vol = Val(vol, lower = 0.0, upper = 1.0)()
     self.charts = sorted(charts, key = lambda chart: chart.difficulty) or []
     self.difficulties = (chart.difficulty for chart in self.charts)
+    self.cover = util.find.asset(f"covers/{id}", backup = "covers/none.png")
 
   def __getitem__(self, difficulty):
     ''''''
