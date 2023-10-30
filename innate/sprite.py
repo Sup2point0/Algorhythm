@@ -42,7 +42,7 @@ class Sprite(py.sprite.Sprite):
     '''Update sprite `rect` position, adjusting for screen scroll, shake, and rotation (and maybe zoom in future).'''
 
     x = self.x
-    y = self.y + screen.shake.y()
+    y = self.y
 
     if shake:
       x -= screen.shake.x()
