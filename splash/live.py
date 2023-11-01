@@ -36,5 +36,3 @@ class process:
         reverse = game.select["reverse"],
       )
     ]
-
-    print("sprites.splash['select.tracks'] =", sprites.splash["select.tracks"])

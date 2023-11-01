@@ -3,8 +3,6 @@ Algorhythm
 A keyboard-based rhythm game made in pygame!
 '''
 
-import sys
-
 import pygame as py
 from pygame.locals import *
 
@@ -137,7 +135,8 @@ class main:
   def render():
     '''Update screen.'''
 
-    sprites.active.draw(display)
+    game.pulse.tick(opt.framerate())
+    sprites.active.draw(screen.display)
     py.display.flip()
 
   def pause():
@@ -149,34 +148,3 @@ class main:
         py.mixer.music.pause()
       else:
         game.state = round(256 / config.faderate) + 1
-
-
-## setup
-py.init()
-display = py.display.set_mode(screen.size, py.FULLSCREEN)
-
-splash.setup()
-splash.load(display)
-
-
-## loop
-while game.state is not None:
-  main.events()
-  
-  if game.state is None:
-    break
-  elif game.state is True:
-    main.control()
-  else:
-    main.hold()
-  
-  game.pulse.tick(opt.framerate())
-  main.render()
-
-
-## end
-py.quit()
-
-# keep window open in IDLE for testing
-if "idlelib.run" not in sys.modules:
-  sys.exit()

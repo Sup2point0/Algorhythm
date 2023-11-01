@@ -1,5 +1,5 @@
 '''
-Global variables and constants for all modules to access.
+Manages global variables and constants for all modules to access.
 '''
 
 import pygame as py
@@ -74,8 +74,10 @@ class screen:
   When `screen.switch` is set, `screen.state` is updated to that at the start of the next frame (to avoid conflicting screen state processing within the same frame). While fading out, `screen.fade` becomes `'out'`, freezing sprites from updating. Once the screen entirely blacks out, `screen.fade` briefly becomes `'dark'`. In this time window (where the player cannot see anything), sprites update again, changing the rendered screen.
   '''
 
-  x = 1280
-  y = 720
+  size = py.display.get_desktop_sizes()[0]
+  display = py.display.set_mode(size, py.FULLSCREEN)
+
+  x, y = size
   cx = x / 2
   cy = y / 2
   size = [x, y]

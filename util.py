@@ -148,7 +148,7 @@ class find:
   def asset(file, backup = None) -> py.Surface:
     '''Load an image file to a pygame Surface.'''
 
-    return py.image.load(f"assets/{file}").convert()  # TODO try-except
+    return py.image.load(f"assets/{file}")#.convert()  # TODO try-except
 
 
 class interpolate:

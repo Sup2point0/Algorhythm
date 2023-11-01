@@ -25,7 +25,7 @@ charts = {
       bpm = 116,
       offset = 0,
       vol = 1.0,
-      # charts = [Daylight.tutorial],
+      charts = [] #[Daylight.tutorial],
     )
   ],
   "origins": [],

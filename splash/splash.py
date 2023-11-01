@@ -168,7 +168,7 @@ def setup():
     "select": [
       Asset("select.backdrop",
         pos = screen.origin,
-        image = "covers/back.jpg",
+        image = "covers/back.jpeg",
         size = screen.size,
         blur = 5,
         display = Displayed(
@@ -206,13 +206,13 @@ def setup():
       TrackSelect("select.tutorials.standard",
         series = "tutorials",
         track = levels.charts["tutorials"][0],
-        cover = "tutorials-standard.jpeg",
+        cover = "tutorial-standard.jpeg",
       ),
       # *[
       #   TrackSelect(f"select.tutorials.{each.name}",
       #     series = "tutorials",
       #     track = levels.charts["tutorials"][i],
-      #     cover = f"tutorials-{each.name}.jpeg",
+      #     cover = f"tutorial-{each.name}.jpeg",
       #   ) for i, each in enumerate(config.difficulties)
       # ],
     ],
@@ -273,7 +273,7 @@ def load(display):
 
   ## 2.0 Studios
   while load.tick < 240:
-    display.fill((0, 0, 0))
+    screen.display.fill((0, 0, 0))
     
     for event in py.event.get():
       if event.type == py.QUIT:
@@ -292,7 +292,7 @@ def load(display):
 
     # render
     rendered = Text.render("2.0 Studios", Text.Style(size = 169, col = py.Color(255, 0, 144, load.alpha.value)))
-    display.blit(rendered[0], util.root(rendered[1]))
+    screen.display.blit(rendered[0], util.root(rendered[1]))
 
     game.pulse.tick(config.framerate)
     py.display.flip()
@@ -301,7 +301,7 @@ def load(display):
   load.state = True
   load.tick = 0
   while load.state is not None:
-    display.fill((0, 0, 2))
+    screen.display.fill((0, 0, 2))
 
     for event in py.event.get():
       if event.type == py.QUIT:
@@ -331,16 +331,16 @@ def load(display):
     rendered = Text.render("LOADING...", style = Text.Style(
       col = 3 * [load.alpha.value * abs(math.cos(load.tick / 42 - 60))],
     ))
-    display.blit(rendered[0], util.root(rendered[1], y = screen.cy - 50))
+    screen.display.blit(rendered[0], util.root(rendered[1], y = screen.cy - 50))
 
     rendered = Text.render(load.flavour, style = Text.Style(
       size = 20,
       col = 3 * [load.alpha.value],
     ))
-    display.blit(rendered[0], util.root(rendered[1], y = screen.y - 100))
+    screen.display.blit(rendered[0], util.root(rendered[1], y = screen.y - 100))
     
     py.draw.rect(
-      surface = display,
+      surface = screen.display,
       color = py.Color(3 * [load.alpha.value]),
       rect = py.Rect(
         screen.cx - screen.x / 1.6 / 2,
@@ -351,7 +351,7 @@ def load(display):
     )
 
     py.draw.rect(
-      surface = display,
+      surface = screen.display,
       color = py.Color(3 * [load.alpha.value]),
       rect = py.Rect(
         screen.cx - (25 + screen.x / 1.6) / 2,
