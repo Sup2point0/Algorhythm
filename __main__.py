@@ -14,8 +14,6 @@ from splash import splash
 
 
 if __name__ == "__main__":
-  py.init()
-
   splash.setup()
   splash.load()
 

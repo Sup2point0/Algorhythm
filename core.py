@@ -12,6 +12,9 @@ from innate.innate import Difficulty, Rank
 from effects.shake import Shake
 
 
+py.init()
+
+
 ## globals
 class game:
   '''Game-wide variables.'''

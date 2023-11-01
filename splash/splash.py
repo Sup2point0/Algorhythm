@@ -248,7 +248,7 @@ def setup():
   }
 
 
-def load(display):
+def load():
   '''Run the game loading sequence.'''
 
   class load:
