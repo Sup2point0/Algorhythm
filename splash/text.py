@@ -69,11 +69,7 @@ class Text(Element):
     self.style = style or Text.Style()
     
     self.surf, self.rect = Text.render(text = self.text, style = self.style)
-
-  def update(self):
-    # self.visible()
-    
-    self.rect.x, self.rect.y = util.root(self.rect, *self.pos, align = self.style.align)
+    super().position()
 
   @ classmethod
   def render(cls, text, style = Style()) -> tuple[py.Surface, py.Rect]:

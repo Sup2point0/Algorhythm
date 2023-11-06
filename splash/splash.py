@@ -26,6 +26,13 @@ from levels import levels
 def setup():
   '''Load sprites for all screens in the game.'''
 
+  class displays:
+    start = Displayed(
+      show = {"start"},
+      align = (-1, 0),
+      layer = sprites.active.layer["splash"],
+    )
+
   covers = [
     Cover(
       alpha = util.Alpha(255),
@@ -63,46 +70,34 @@ def setup():
       ),
     ),
     Text("start.title",
-      pos = util.cord(0, -0.5),
+      pos = util.cord(-0.75, -0.5),
       text = "ALGORHYTHM",
       style = Text.Style(
         typeface = ui.font.title,
         size = 100,
       ),
-      display = Displayed(
-        show = {"start"},
-        layer = sprites.active.layer["splash"],
-      ),
+      display = displays.start,
     ),
     Button("start.play",
       pos = util.cord(-0.75, -0.25),
       size = ui.size.button,
       text = "PLAY",
       root = roots.switch.state("select"),
-      display = Displayed(
-        show = {"start"},
-        layer = sprites.active.layer["splash"],
-      ),
+      display = displays.start,
     ),
     Button("start.environ",
       pos = util.cord(-0.75, 0),
       size = ui.size.button,
       text = "ENVIRONMENT",
       root = roots.switch.state("environ"),
-      display = Displayed(
-        show = {"start"},
-        layer = sprites.active.layer["splash"],
-      ),
+      display = displays.start,
     ),
     Button("start.settings",
       pos = util.cord(-0.75, 0.25),
       size = ui.size.button,
       text = "SETTINGS",
       root = roots.switch.state("settings"),
-      display = Displayed(
-        show = {"start"},
-        layer = sprites.active.layer["splash"],
-      ),
+      display = displays.start,
     ),
     Text("start.version",
       pos = [screen.x - 50, screen.y - 50],

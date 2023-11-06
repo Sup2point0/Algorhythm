@@ -69,7 +69,7 @@ class Button(Element):
     ## process
     self.surf = py.Surface(self.size, py.SRCALPHA)
     self.rect = self.surf.get_rect()
-    self.rect.x, self.rect.y = util.root(self.rect, *self.pos)
+    super().position()
     
     interaction = super().interact()
     self.style.text.update(col = self.style.text.cols[interaction])

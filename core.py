@@ -158,13 +158,12 @@ class ui:
   radius = 0.5
 
   class font:
-    body = "Abel-Regular"
     body = "Geologica-Regular"
     title = "Geologica-Semibold"
 
   class size:
     font = 25
-    button = [200, 60]
+    button = [300, 60]
     
     class select:
       series = [screen.x * 0.6, 120]

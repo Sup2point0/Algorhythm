@@ -75,7 +75,9 @@ class Element(Sprite):
     Other base parameters are inherited from `innate.Sprite`. `groups` is not inherited, since all splash sprites are automatically added to the suitable `sprites.splash` group.
     '''
     
-    super().__init__(pos = pos, align = align)
+    super().__init__(pos = pos,
+      align = display.align if display else None,
+    )
 
     self.id = id
     self.display = display
