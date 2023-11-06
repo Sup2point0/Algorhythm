@@ -39,7 +39,7 @@ class Text(Element):
       except KeyError:
         pass
   
-      self.typeface = typeface or ui.font.head
+      self.typeface = typeface or ui.font.body
       self.size = size or ui.size.font
       self.align = align or (0, 0)
 

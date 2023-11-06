@@ -52,14 +52,14 @@ def setup():
     ...
   ]
   start = [
-    Asset("back.start",
+    Asset("start.backdrop",
       pos = screen.origin,
       image = "cortex-violet.jpg",
       size = screen.size,
       blur = 5,
       display = Displayed(
         show = {"start", "settings"},
-        layer = 1,
+        layer = sprites.active.layer["backdrop"],
       ),
     ),
     Text("start.title",
@@ -117,14 +117,14 @@ def setup():
     ),
   ]
   environ = [
-    Asset("back.environ",
+    Asset("environ.backdrop",
       pos = screen.origin,
       image = "cortex-blue.png",
       size = screen.size,
       blur = 5,
       display = Displayed(
         show = {"environ"},
-        layer = 1,
+        layer = sprites.active.layer["backdrop"],
       ),
     ),
   ]
@@ -181,7 +181,7 @@ def setup():
       blur = 5,
       display = Displayed(
         show = {"select"},
-        layer = 1,
+        layer = sprites.active.layer["backdrop"],
       ),
     ),
     SeriesSelect("select.tutorials",

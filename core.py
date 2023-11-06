@@ -147,7 +147,7 @@ class sprites:
     "hitline": 6,
     "lanekeys": 5,
     "lanes": 4,
-    "back": 1,
+    "backdrop": 1,
   }
   splash = {each: py.sprite.Group() for each in screen.states}
   splash["select.tracks"] = []
@@ -159,7 +159,7 @@ class ui:
 
   class font:
     body = "Abel-Regular"
-    head = "Geologica-Regular"
+    body = "Geologica-Regular"
     title = "Geologica-Semibold"
 
   class size:
