@@ -102,7 +102,7 @@ class Note(Sprite):
 class TapNote(Note):
   '''A note hit by a pressed key.'''
 
-  def __init__(self, /, *, hit, **kwargs):
+  def __init__(self, hit, **kwargs):
     '''Create a tap note.
     
     | parameter | type | description |

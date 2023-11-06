@@ -29,7 +29,7 @@ charts = {
     )
   ],
   "origins": [],
-  "protos": [],
+  "xenos": [],
   "decode": [],
   "special": [],
 }
