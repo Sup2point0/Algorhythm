@@ -65,4 +65,4 @@
 - [Abel](...) (body)
 
 ### Soundtracks
-* Non-level soundtracks and all the tracks in the *Origins* series were created by yours truly in [GarageBand](https://www.apple.com/ios/garageband/) (iPadOS).
+- Non-level soundtracks and all the tracks in the *Origins* series were created by yours truly in [GarageBand](https://www.apple.com/ios/garageband) (iPadOS).
