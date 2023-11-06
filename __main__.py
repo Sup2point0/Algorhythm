@@ -6,14 +6,15 @@ import sys
 
 import pygame as py
 
-from Algorhythm import main
-
-import core
-
-from splash import splash
-
 
 if __name__ == "__main__":
+  # import first to initialise the display as early as possible
+  import core
+
+  # then load the rest, which takes some time.
+  from Algorhythm import main
+  from splash import splash
+
   splash.setup()
   splash.load()
 

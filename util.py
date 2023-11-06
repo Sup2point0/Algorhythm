@@ -145,10 +145,14 @@ class find:
     
     return vars(opt.col)[find.row(key)]
   
-  def asset(file, backup = None) -> py.Surface:
+  def asset(*files) -> py.Surface:
     '''Load an image file to a pygame Surface.'''
 
-    return py.image.load(f"assets/{file}")#.convert()  # TODO try-except
+    for file in files:
+      try:
+        return py.image.load(f"assets/{file}")
+      except:
+        pass
 
 
 class interpolate:
