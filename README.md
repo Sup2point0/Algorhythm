@@ -59,10 +59,11 @@
 - Made in [Python 3.11](https://www.python.org) with [pygame](https://www.pygame.org).
 
 ### Assets
+- Cover art for tracks in the *Origins* series were generated using [DALL-E 3](https://openai.com/dall-e-3).
 
 ### Fonts
-- [Rajdhani](...) (title)
-- [Abel](...) (body)
+- [](...) (title)
+- [Abel](https://fonts.google.com/specimen/Abel) (body)
 
-### Soundtracks
+### Sounds
 - Non-level soundtracks and all the tracks in the *Origins* series were created by yours truly in [GarageBand](https://www.apple.com/ios/garageband) (iPadOS).
