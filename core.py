@@ -45,7 +45,7 @@ class game:
   keys = []  # tracks current pressed keys
   pulse = py.time.Clock()  # game timer
 
-  series = ["tutorials", "origins", "protos", "decode", "special"]
+  series = ["tutorials", "origins", "xenos", "decode", "special"]
 
 
 class level:
