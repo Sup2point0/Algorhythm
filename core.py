@@ -159,8 +159,8 @@ class ui:
 
   class font:
     body = "Abel-Regular"
-    title = "Rajdhani-Semibold"
-    # title = "Orbitron-Semibold"
+    title = "Geologica"
+    # title = "Rajdhani-Semibold"
 
   class size:
     font = 25
