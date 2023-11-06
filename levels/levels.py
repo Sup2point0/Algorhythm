@@ -12,8 +12,8 @@ charts = {
     Track("tutorial-standard",
       name = "STANDARD TUTORIAL",
       artist = "Sup#2.0",
-      file = "end-of-time-instr.mp3",
-      bpm = 116,
+      file = "Day.wav",
+      bpm = 144,
       offset = 0,
       vol = 1.0,
       charts = [Day.tutorial]
