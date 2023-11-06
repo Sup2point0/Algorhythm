@@ -37,16 +37,6 @@ def setup():
     ),
   ]
   common = [
-    Asset("common.backdrop",
-      pos = screen.origin,
-      image = "violet-cortex.jpg",
-      size = screen.size,
-      blur = 5,
-      display = Displayed(
-        show = {"start", "settings"},
-        layer = 1,
-      ),
-    ),
     Button("common.back",
       pos = [75, 75],
       size = [ui.size.button[1]] * 2,
@@ -62,6 +52,16 @@ def setup():
     ...
   ]
   start = [
+    Asset("back.start",
+      pos = screen.origin,
+      image = "cortex-violet.jpg",
+      size = screen.size,
+      blur = 5,
+      display = Displayed(
+        show = {"start", "settings"},
+        layer = 1,
+      ),
+    ),
     Text("start.title",
       pos = util.cord(0, -0.5),
       text = "ALGORHYTHM",
@@ -117,7 +117,16 @@ def setup():
     ),
   ]
   environ = [
-    ...
+    Asset("back.environ",
+      pos = screen.origin,
+      image = "cortex-blue.png",
+      size = screen.size,
+      blur = 5,
+      display = Displayed(
+        show = {"environ"},
+        layer = 1,
+      ),
+    ),
   ]
   settings = [
     Text("settings.title",
