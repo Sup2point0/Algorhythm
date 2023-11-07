@@ -9,7 +9,6 @@ import json
 import pygame as py
 
 from core import game, level, screen, sprites, ui, config
-from innate import flavour
 import util
 
 from splash import roots
@@ -252,6 +251,8 @@ def setup():
 
 def load():
   '''Run the game loading sequence.'''
+
+  from assets.__toppings__ import flavour
 
   class load:
     state = None
