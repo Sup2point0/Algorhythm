@@ -30,7 +30,7 @@ class Displayed(Object):
     | `hide` | `set[str]` | Set of screen states to hide the sprite. If specified, the sprite will default to being shown in every screen state. |
     | `align` | `int, int` | Alignment of sprite in x and y directions, respectively. Can be `-1`, `0`, `1`. |
     | `scroll` | `Callable -> num` | Function called to get scroll offset for sprite. |
-    | `layer` | `int` | Layer to render sprite. |
+    | `layer` | `int`, `str` | Layer to render sprite. If a string is provided, it is set to the internal layer assigned to that value. |
     | `fade` | `bool` | Show or hide the sprite with a fade animation. |
     | `root` | `Callable -> bool` | Function called to check if sprite should be rendered. |
     | `lock` | `Callable -> bool` | Function called to check if sprite should be locked from interaction. |
@@ -44,7 +44,7 @@ class Displayed(Object):
     super().__init__(
       align = align or (0, 0),
       scroll = scroll or (lambda: 0),
-      layer = layer or sprites.active.layer["splash"],
+      layer = sprites.active.layer[layer] if isinstance(layer, str) else layer or sprites.active.layer["splash"],
       fade = fade,
       root = root or (lambda: True),
       lock = lock or (lambda: False),

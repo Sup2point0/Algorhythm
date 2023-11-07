@@ -29,7 +29,6 @@ def setup():
     start = Displayed(
       show = {"start"},
       align = (-1, 0),
-      layer = sprites.active.layer["splash"],
     )
 
   covers = [
@@ -107,7 +106,6 @@ def setup():
       display = Displayed(
         show = {"start"},
         align = (1, 1),
-        layer = sprites.active.layer["splash"],
       ),
     ),
   ]
@@ -133,7 +131,6 @@ def setup():
       ),
       display = Displayed(
         show = {"settings"},
-        layer = sprites.active.layer["splash"],
       ),
     ),
     Text("settings.about",
@@ -141,7 +138,6 @@ def setup():
       text = f"v{game.version}",
       display = Displayed(
         show = {"settings"},
-        layer = sprites.active.layer["splash"],
       )
     ),
     Button("settings.sounds",
@@ -151,7 +147,6 @@ def setup():
       root = roots.switch.state("settings.sounds"),
       display = Displayed(
         show = {"settings"},
-        layer = sprites.active.layer["splash"],
       ),
     ),
     Button("settings.visuals",
@@ -161,7 +156,6 @@ def setup():
       root = roots.switch.state("settings.visuals"),
       display = Displayed(
         show = {"settings"},
-        layer = sprites.active.layer["splash"],
       ),
     ),
   ]
@@ -212,11 +206,20 @@ def setup():
       display = Displayed(
         show = {state for state in screen.states if state.startswith("select.")},
         align = (1, 1),
-        layer = sprites.active.layer["splash"],
       ),
     ),
   ]
   tutorials = [
+    Asset("select.tutorials.backdrop",
+      pos = screen.origin,
+      image = "covers/tutorial-standard.jpeg",
+      size = screen.size,
+      blur = 5,
+      display = Displayed(
+        show = {"select.tutorials"},
+        layer = sprites.active.layer["backdrop"],
+      ),
+    ),
     TrackSelect("select.tutorials.standard",
       series = "tutorials",
       track = levels.charts["tutorials"][0],
@@ -240,7 +243,6 @@ def setup():
       ),
       display = Displayed(
         show = {"play"},
-        layer = sprites.active.layer["splash"],
       ),
     ),
     ActiveText("level.chain",
@@ -252,7 +254,6 @@ def setup():
       ),
       display = Displayed(
         show = {"play"},
-        layer = sprites.active.layer["splash"],
       ),
     ),
   ]

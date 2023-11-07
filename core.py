@@ -243,7 +243,7 @@ class config:
     home = _auto_(["A", "S", "D", "F", "G", "H", "J", "K", "L"])
     lower = _auto_(["Z", "X", "C", "V", "B", "N", "M"])
     arrows = _auto_(["UP", "LEFT", "DOWN", "RIGHT"], upper = True)
-    spec = _auto_(["SPACE", "RETURN", "LSHIFT", "RSHIFT"], upper = True)
+    spec = _auto_(["SPACE", "RETURN"], upper = True)
 
     rand = {**upper, **home, **lower}
     all = {**upper, **home, **lower, **arrows, **spec}
