@@ -7,8 +7,8 @@ from level.action import Action, Hint
 from level.notes import (
   TapNote as Tap,
   HoldNote as Hold,
-  # RideNote as Ride,
-  RollNote as Roll,
+  RideNote as Ride,
+  RideNotes as Rides,
 )
 
 
