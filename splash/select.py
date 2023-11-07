@@ -54,23 +54,9 @@ class Select(Element):
     super().__init__(id = id, anim = True, interact = True, display = display)
 
     self.size = size
-    self.cover = self._resize_(cover, size)
+    surf = util.find.asset("covers/{cover}", "covers/none.png")
+    self.cover = util.resize(surf, size).convert_alpha()
     self.locktext = locktext
-
-  def _resize_(self, cover, size) -> py.Surface:
-    '''Internal utility method to resize cover asset to suitable size.'''
-
-    class root:
-      surf = util.find.asset(f"covers/{cover or 'none.png'}")
-      width, height = surf.get_size()
-
-    width, height = size or ui.size.select.series
-    if root.width / root.height < width / height:
-      scale = width / root.width
-    else:
-      scale = height / root.height
-
-    return py.transform.scale_by(root.surf, scale).convert_alpha()
   
   def _centre_(self, surf, rect) -> py.Rect:
     '''Internal utility method to get centered area of a pygame Surface.'''
@@ -167,7 +153,7 @@ class SeriesSelect(Select):
 
   def position(self):
     self.x = util.cord(x = 0)[0]
-    self.y = (100 +
+    self.y = (50 +
       (ui.size.select.series[1] + 50)
     * list(levels.charts.keys()).index(self.series)
     )
@@ -266,7 +252,7 @@ class TrackSelect(SeriesSelect):
 
   def position(self):
     self.x = util.cord(x = -0.35)[0]
-    self.y = (100 +
+    self.y = (50 +
       (ui.size.select.track[1] + 50)
     * sprites.splash["select.tracks"].index(self.id)
     )
