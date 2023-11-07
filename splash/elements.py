@@ -60,7 +60,6 @@ class Element(Sprite):
   def __init__(self,
     id: str,
     pos = None,
-    align = None,
     anim = None,
     interact = False,
     display = None,

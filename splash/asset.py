@@ -30,10 +30,7 @@ class Asset(Element):
     Other base parameters are inherited from `splash.Element`.
     '''
 
-    super().__init__(id, pos,
-      align = display.align if display else None,
-      display = display,
-    )
+    super().__init__(id, pos, display = display)
 
     self.root = py.image.load(f"assets/{image}")
     self.surf = self.root

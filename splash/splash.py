@@ -41,15 +41,15 @@ def setup():
       root = roots.fade.partial,
     ),
   ]
-  common = [
-    Button("common.back",
-      pos = [75, 75],
-      size = [ui.size.button[1]] * 2,
+  general = [
+    Button("general.back",
+      pos = [50, 50],
+      size = (ui.size.button[1], ui.size.button[1]),
       text = "‹",
       root = roots.switch.back,
       display = Displayed(
         hide = {"start", "play", "score"},
-        layer = 15, #sprites.active.layer["splash"],
+        align = (1, 1),
       ),
     ),
   ]
@@ -63,8 +63,8 @@ def setup():
       size = screen.size,
       blur = 5,
       display = Displayed(
-        show = {"start", "settings"},
-        layer = sprites.active.layer["backdrop"],
+        show = {"start", "settings", "settings.sounds", "settings.visuals"},
+        layer = "backdrop",
       ),
     ),
     Text("start.title",
