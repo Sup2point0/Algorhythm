@@ -1,5 +1,5 @@
 '''
-Level events
+Implements the `Action` class for triggering level events and the specialised `Hint` class for tutorials.
 '''
 
 import pygame as py
@@ -36,7 +36,7 @@ class Action:
     return root
 
 
-class Hint(Action):
+class Hint(Sprite, Action):
   '''Text that displays during a level.'''
 
   class Highlight:
@@ -47,7 +47,7 @@ class Hint(Action):
 
       | parameter | type | description |
       | :-------- | :--- | :---------- |
-      | `pos` | `num, num` | Position of the rectangle (centre). |
+      | `pos` | `num, num` | Position of centre of rectangle. |
       | `size` | `num, num` | Dimensions of area. |
       '''
 
@@ -62,16 +62,22 @@ class Hint(Action):
       self.rect.centre = self.pos
 
 
-  def __init__(self, dur, text = None, highlights: list[Highlight] = None):
+  def __init__(self, beat, dur, text = None, highlights = None):
     '''Create a level hint.
 
     | parameter | type | description |
     | :-------- | :--- | :---------- |
+    | `beat` | `num` | Beat on which to trigger hint. |
     | `dur` | `int` | Duration (in ticks) to display hint. |
     | `text` | `splash.Text` | Text element to render on darkened overlay. |
-    | `highlights` | `list[Hint.Highlight]` | Part of screen to highlight. |
+    | `highlights` | `list[Hint.Highlight]` | Part(s) of screen to highlight. |
+
+    Although this class does not utilise any functionality from `Action`, it needs to inherit from it to be detected and activated when the chart is processed.
     '''
 
+    super().__init__()
+
+    self.beat = beat
     self.dur = dur
     self.text = text
     self.highlights = highlights
@@ -84,7 +90,7 @@ class Hint(Action):
 
   def activate(self):
     sprites.actions.add(self)
-    sprites.active.add(self, layer = sprites.layer["hints"])
+    sprites.active.add(self, layer = sprites.active.layer["hints"])
 
   def update(self):
     if self.anim.tick:
@@ -99,22 +105,13 @@ class Hint(Action):
         self.anim.tick = 1
 
     self.surf = py.Surface(screen.size, py.SRCALPHA)
-    self.surf.fill(0xffffff)
+    self.surf.fill([255, 255, 255, self.anim.alpha()])
     self.rect = self.surf.get_rect()
 
     if self.highlights and self.anim.tick > 30:
       for each in self.highlights:
         each.update()
-        self.surf.blit(
-          source = py.Surface(each.anim.size, py.SRCALPHA),
-          dest = each.rect
-        )
+        self.surf.blit(py.Surface(each.anim.size, py.SRCALPHA), each.rect)
 
     if self.text:
       self.surf.blit(self.text, self.text.rect)
-
-    self.surf.set_alpha(self.anim.alpha.value)
-
-  @ property
-  def image(self):
-    return self.surf
