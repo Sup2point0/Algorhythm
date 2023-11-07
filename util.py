@@ -1,5 +1,5 @@
 '''
-Utility classes and functions
+Implements various utility functions and classes used throughout the game modules.
 '''
 
 import random
