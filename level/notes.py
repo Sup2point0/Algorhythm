@@ -209,7 +209,7 @@ class RideNote:
     ]
 
 
-def Rides(lane, hit) -> list[RideNote]:
+def RideNotes(lane, hit) -> list[RideNote]:
   '''Utility function to create several ride notes in the same lane at once.
     
     | parameter | type | description |
