@@ -173,7 +173,7 @@ class ui:
     back = [0, 0, 0, 128]
 
     class text:
-      idle = [255, 255, 255, 255]
+      idle = [32, 64, 128, 255]
       hover = [255, 255, 255, 255]
       click = [255, 255, 255, 255]
       lock = [255, 255, 255, 128]
@@ -294,6 +294,8 @@ class opt:
     speed = Val(1.0, lower = 0.8, upper = 3.0)
 
   class col:
+    look = "dark"
+    
     accent = [64, 144, 241, 255]
     flavour = [255, 0, 144, 255]
 

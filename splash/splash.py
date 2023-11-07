@@ -212,6 +212,7 @@ def setup():
       image = "covers/tutorial-standard.jpeg",
       size = screen.size,
       blur = 5,
+      dark = 32,
       display = Displayed(
         show = {"select.tutorials"},
         layer = sprites.active.layer["backdrop"],
