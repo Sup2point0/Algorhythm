@@ -18,20 +18,26 @@ class Action:
     | :-------- | :--- | :---------- |
     | `beat` | `num` | Beat on which event should occur. |
     | `action` | `Callable` | Function called when event occurs. |
-    | `loop` | `int, num` | How many times to loop the action, and the gap in beats between each repeat. |
+    | `loop` | `int, num` | How many times to loop the event (default is 1), and the gap in beats between each repeat. |
     '''
 
     self.beat = beat
     self.activate = Action._handler_(action, loop)
-    self.loop = loop
+    self.loop = loop or (1, 0)
     self.looped = 0
 
-  def _handler_(action, loop):  # TODO
-    '''Internal ...'''
+  def _handler_(action, loop):
+    '''Internal function to wrap a provided action.'''
 
     def root(self):
       if level.beat > self.beat:
         action()
+        
+        self.looped += 1
+        if self.looped >= self.loop[0]:
+          self.kill()
+        else:
+          self.beat += self.loop[1]
 
     return root
 
@@ -89,8 +95,9 @@ class Hint(Sprite, Action):
     self.anim = anim
 
   def activate(self):
-    sprites.actions.add(self)
-    sprites.active.add(self, layer = sprites.active.layer["hints"])
+    if level.beat > self.beat:
+      if not self.alive():
+        sprites.active.add(self, layer = sprites.active.layer["hints"])
 
   def update(self):
     if self.anim.tick:
