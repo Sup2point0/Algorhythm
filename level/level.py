@@ -2,6 +2,7 @@
 Implements the `Chart` and `Track` classes for creating levels.
 '''
 
+import pygame as py
 from pygame import mixer
 
 from core import game, level, screen, sprites, config, opt
@@ -34,14 +35,22 @@ class Chart:
     '''
 
     self.difficulty = difficulty,
-    self.data = data or [],
-    self.lines = [each for each in data if isinstance(each, Hitline)] or Hitline(),
-    self.notes = [each for each in data if isinstance(each, Note)],
-    self.actions = [each for each in data if isinstance(each, Action)],
-
     self.lanes = []
     for i in range(lanes):
       self.lanes.append(Lane(index = i, key = keys[i]))
+    
+    self.data = data or []
+    self.lines = [Hitline()]
+    self.notes = []
+    self.actions = []
+    
+    for each in data:
+      if isinstance(each, Note):
+        self.notes.append(each)
+      elif isinstance(each, Action):
+        self.actions.append(each)
+      elif isinstance(each, Hitline):
+        self.lines.append(each)
 
 
 class Track:
@@ -106,18 +115,16 @@ class Track:
     level.lane.space = config.lane.space
 
     # clear just to be safe
-    sprites.lines.empty()
-    sprites.lanes.empty()
-    sprites.notes.empty()
+    sprites.lines = py.sprite.Group(*level.chart.lines)
+    sprites.lanes = py.sprite.Group(*level.chart.lanes)
+    sprites.actions = py.sprite.Group(*level.chart.actions)
+    sprites.notes.empty()  # FIXME
 
-    sprites.lines.add(level.chart.lines)
-    sprites.lanes.add(level.chart.lanes)
     for note in level.chart.notes:
       note.spawn()
       sprites.notes.add(note)
     
     mixer.music.fadeout(1000)
-
     level.started = False  # only becomes True once music starts
 
   def run(self):
