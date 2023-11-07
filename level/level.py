@@ -31,7 +31,7 @@ class Chart:
     | `difficulty` | `int` | Chart difficulty, indexed from the pre-defined game difficulties. |
     | `lanes` | `int` | Initial number of lanes. |
     | `keys` | `list[str[upper]]` | Initial lanekeys. |
-    | `data` | `list[object]` | Chart data, in the form of a list of chart objects. |
+    | `data` | `list[Hitline, Note, Action]` | Chart data, in the form of a list of chart objects. |
     '''
 
     self.difficulty = difficulty,
