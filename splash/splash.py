@@ -50,7 +50,7 @@ def setup():
       root = roots.switch.back,
       display = Displayed(
         hide = {"start", "play", "score"},
-        layer = sprites.active.layer["splash"],
+        layer = 15, #sprites.active.layer["splash"],
       ),
     ),
   ]
@@ -69,7 +69,7 @@ def setup():
       ),
     ),
     Text("start.title",
-      pos = util.cord(-0.9, -0.6),
+      pos = util.cord(-0.8, -0.6),
       text = "ALGORHYTHM",
       style = Text.Style(
         typeface = ui.font.title,
@@ -78,21 +78,21 @@ def setup():
       display = displays.start,
     ),
     Button("start.play",
-      pos = util.cord(-0.9, -0.1),
+      pos = util.cord(-0.8, -0.1),
       size = ui.size.button,
       text = "PLAY",
       root = roots.switch.state("select"),
       display = displays.start,
     ),
     Button("start.environ",
-      pos = util.cord(-0.9, 0.15),
+      pos = util.cord(-0.8, 0.15),
       size = ui.size.button,
       text = "ENVIRONMENT",
       root = roots.switch.state("environ"),
       display = displays.start,
     ),
     Button("start.settings",
-      pos = util.cord(-0.9, 0.4),
+      pos = util.cord(-0.8, 0.4),
       size = ui.size.button,
       text = "SETTINGS",
       root = roots.switch.state("settings"),
@@ -106,6 +106,7 @@ def setup():
       ),
       display = Displayed(
         show = {"start"},
+        align = (1, 1),
         layer = sprites.active.layer["splash"],
       ),
     ),
@@ -203,6 +204,16 @@ def setup():
       series = "special",
       cover = "special.jpeg",
     ),
+    Button("select.track.play",
+      pos = [screen.x - 50, screen.y - 50],
+      size = ui.size.button,
+      text = "PLAY",
+      root = roots.switch.tutorial,
+      display = Displayed(
+        root = (lambda: "select." in screen.state),
+        layer = sprites.active.layer["splash"],
+      ),
+    ),
   ]
   tutorials = [
     TrackSelect("select.tutorials.standard",
@@ -297,7 +308,7 @@ def load():
     rendered = Text.render("2.0 Studios", Text.Style(size = 169, col = py.Color(255, 0, 144, load.alpha.value)))
     screen.display.blit(rendered[0], util.root(rendered[1]))
 
-    game.pulse.tick(config.framerate)
+    game.pulse.tick(config.rate.frames)
     py.display.flip()
 
   ## Loading...
@@ -365,7 +376,7 @@ def load():
       width = 5,
     )
 
-    game.pulse.tick(config.framerate)
+    game.pulse.tick(config.rate.frames)
     py.display.flip()
   
   screen.switch = "start"

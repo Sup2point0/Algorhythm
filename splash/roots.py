@@ -92,15 +92,15 @@ class fade:
   def total(self):
     match screen.fade:
       case "out":
-        self.alpha.alt(config.faderate)
+        self.alpha.alt(config.rate.fade)
         if self.alpha.bounded():
           screen.fade = "dark"
       case "in":
-        self.alpha.alt(-config.faderate)
+        self.alpha.alt(-config.rate.fade)
         if self.alpha.bounded():
           screen.fade = None
       case None:
         self.alpha.set(0)
 
   def partial(self):
-    self.alpha.alt(config.faderate * (-1 if game.state else 1))
+    self.alpha.alt(config.rate.fade * (-1 if game.state else 1))

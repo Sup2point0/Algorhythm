@@ -11,7 +11,7 @@ if __name__ == "__main__":
   # import first to initialise the display as early as possible
   import core
 
-  # then load the rest, which takes some time.
+  # then load the rest, which takes some time
   from Algorhythm import main
   from splash import splash
 

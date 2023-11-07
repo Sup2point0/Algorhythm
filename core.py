@@ -108,7 +108,7 @@ class screen:
   '''
 
   scroll = {
-    "select": Val(0),
+    "select": Val(0, lower = -0.8 * y, upper = 0),
     **{
       f"select.{each}": Val(0)
       for each in game.series
@@ -188,8 +188,10 @@ class ui:
 class config:
   '''Internal non-alterable settings.'''
 
-  framerate = 60
-  faderate = 12
+  class rate:
+    frames = 60
+    fade = 12
+    scroll = 20
 
   difficulties = [
     Difficulty("standard", leniency = 0.15, speed = 200),

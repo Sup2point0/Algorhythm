@@ -66,6 +66,10 @@ class main:
         except ValueError:
           pass
 
+      elif event.type == MOUSEWHEEL:
+        if screen.state in screen.scroll:
+          screen.scroll[screen.state].alt(event.y * config.rate.scroll)
+
   def control():
     '''Control active game loop.'''
 
@@ -130,4 +134,4 @@ class main:
         game.state = False
         py.mixer.music.pause()
       else:
-        game.state = round(256 / config.faderate) + 1
+        game.state = round(256 / config.rate.fade) + 1

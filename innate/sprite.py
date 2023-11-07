@@ -7,6 +7,7 @@ Unsafe to import.
 import pygame as py
 
 from core import screen, sprites
+import util
 
 
 class Sprite(py.sprite.Sprite):
@@ -28,6 +29,7 @@ class Sprite(py.sprite.Sprite):
     super().__init__(*groups)
 
     self.x, self.y = pos or screen.origin
+    self.sx, self.sy = 0, 0
     self.align: tuple[int, int] = align or (0, 0)
 
     self.surf: py.Surface
@@ -49,7 +51,8 @@ class Sprite(py.sprite.Sprite):
       y += screen.shake.y()
     if hasattr(self, "display"):
       if self.display.scroll:
-        y += self.display.scroll()
+        self.sy = util.slide(self.sy, self.display.scroll())
+        y += self.sy
 
     lx, ly = self.align
 
