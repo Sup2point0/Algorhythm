@@ -49,7 +49,7 @@ def setup():
       root = roots.switch.back,
       display = Displayed(
         hide = {"start", "play", "score"},
-        align = (1, 1),
+        align = (-1, -1),
       ),
     ),
   ]
@@ -170,15 +170,12 @@ def setup():
       blur = 5,
       display = Displayed(
         show = {"select"},
-        layer = sprites.active.layer["backdrop"],
+        layer = "backdrop",
       ),
     ),
     SeriesSelect("select.tutorials",
       series = "tutorials",
       cover = "tutorials.jpeg",
-      # style = Select.Style(
-      #   alpha = {"idle"}
-      # )
     ),
     SeriesSelect("select.origins",
       series = "origins",

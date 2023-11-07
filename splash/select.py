@@ -121,7 +121,7 @@ class SeriesSelect(Select):
         show = {"select"},
         align = (0, -1),
         scroll = (lambda: screen.scroll["select"]()),
-        layer = sprites.active.layer["splash"],
+        layer = "splash",
         lock = lock,
       ),
     )
@@ -238,7 +238,7 @@ class TrackSelect(SeriesSelect):
         show = {display},
         align = (0, -1),
         scroll = (lambda: screen.scroll[display]()),
-        layer = sprites.active.layer["splash"],
+        layer = "splash",
         lock = lock,
       ),
     )
