@@ -62,8 +62,7 @@
 - Cover art for tracks in the *Origins* series were generated using [DALL-E 3](https://openai.com/dall-e-3).
 
 ### Fonts
-- [](...) (title)
-- [Abel](https://fonts.google.com/specimen/Abel) (body)
+- [Geologica](https://fonts.google.com/specimen/Geologica) (available on Google Fonts)
 
 ### Sounds
 - Non-level soundtracks and all the tracks in the *Origins* series were created by yours truly in [GarageBand](https://www.apple.com/ios/garageband) (iPadOS).
