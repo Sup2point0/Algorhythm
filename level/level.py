@@ -1,7 +1,6 @@
 '''
-Level handling
+Implements the `Chart` and `Track` classes for creating levels.
 '''
-
 
 from pygame import mixer
 
