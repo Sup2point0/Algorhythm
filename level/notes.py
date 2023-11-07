@@ -1,5 +1,5 @@
 '''
-Note kinds
+Implements the `TapNote`, `HoldNote`, `RideNote`, `RollNote`, `BreakNote` note kinds.
 '''
 
 import random
@@ -22,8 +22,9 @@ class Note(Sprite):
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
-    | `lane` | `int`, `list[int]` | Starting lane(s) of the note. If a list is provided, it will be randomly chosen from those lanes. |
-    | `speed` | `float` | How fast the note approaches. Defaults to set speed of difficulty. |
+    | `lane` | `int`, `list[int]` | Starting lane(s) of note. If a list is provided, it will be randomly chosen from those lanes. |
+    | `speed` | `float` | How fast note approaches. Defaults to set speed of difficulty. |
+    | `shock` | `Callable` | Function called when note hit to apply shock effect. |
     '''
 
     super().__init__(pos = None)
@@ -60,7 +61,7 @@ class Note(Sprite):
     if self.y >= screen.y:
       self.pop()
 
-    if isinstance(self, TapNote):
+    if isinstance(self, TapNote) or isinstance(self, RideNote):
       self.surf.set_alpha(255 * (1 - (self.y - ly) / (screen.y - ly)))
 
     super().position()
@@ -107,7 +108,9 @@ class TapNote(Note):
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
-    | `hit` | `int`, `float` | Beat the note should be hit. |
+    | `hit` | `num` | Beat note should be hit on. |
+
+    Other base parameters are inherited from `Note`.
     '''
 
     super().__init__(**kwargs)
@@ -161,19 +164,21 @@ class TapNote(Note):
 class HoldNote(Note):
   '''A note hit by a pressed and held key.'''
 
-  def __init__(self, /, *, hit, hold, **kwargs):
+  def __init__(self, hit, **kwargs):
     '''Create a hold note.
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
-    | `hit` | `int`, `float` | Beat the note should be hit. |
-    | `hold` | `int`, `float` | Beat until which the note should be held. |
+    | `hit` | `num, num` | Beat note should be hit on, and beat it should be held until. |
+
+    Other base parameters are inherited from `Note`.
     '''
 
     super().__init__(**kwargs)
 
     self.hit = hit
-    self.hold = hold
+    if hit[0] >= hit[1]:
+      raise ValueError("hold note cannot end before it starts")
 
   def pop(self):
     ''''''
@@ -181,7 +186,61 @@ class HoldNote(Note):
     ...
 
 
-class RollNote:
-  '''...'''
+class RideNote:
+  '''A note hit by a pressed or held key.'''
 
-  ...
+  def __init__(self, hit, **kwargs):
+    '''Create a ride note.
+    
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `hit` | `num` | Beat note should be hit on. |
+
+    Other base parameters are inherited from `Note`.
+    '''
+
+    super().__init__(**kwargs)
+
+    self.hit = hit
+
+    self.size = [
+      config.note.size[0] * opt.note.size() * 0.75,
+      config.note.size[1]
+    ]
+
+
+def Rides(lane, hit) -> list[RideNote]:
+  '''Utility function to create several ride notes in the same lane at once.
+    
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `lane` | `int` | Starting lane of notes. |
+    | `hit` | `list`, `range` | Hit beats for each note. This determines how many notes are created. |
+    '''
+  
+  out = []
+  for each in hit:
+    out.append(RideNote(hit = each, lane = lane))
+
+  return out
+
+
+class RollNote:
+  '''A note hit by multiple key presses.'''
+
+  def __init__(self, hit, hits, **kwargs):
+    '''Create a roll note.
+    
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `hit` | `num, num` | Beats at which note reaches and passes the hitline, respectively. |
+    | `hits` | `int` | Number of hits required to clear note. |
+
+    Other base parameters are inherited from `Note`.
+    '''
+    
+    if hit[0] >= hit[1]:
+      raise ValueError("roll note cannot end before it starts")
+
+    self.hit = hit
+    self.hits = hits
