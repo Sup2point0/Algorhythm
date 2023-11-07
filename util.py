@@ -86,6 +86,25 @@ def slide(var, target, speed = 2):
   # alt = (target - var) / speed
   # return (var + alt) if abs(alt) >= 0.5 else target
 
+def resize(surf, size) -> py.Surface:
+  '''Resize a surface to a specific size, fitting in as much of the original surface as possible.
+
+  | parameter | type | description |
+  | :-------- | :--- | :---------- |
+  | `surf` | `pygame.Surface` | Pygame surface to resize (generally an image asset). |
+  | `size` | `num, num` | Dimensions to resize to. |
+  '''
+
+  iwidth, iheight = surf.get_size()
+  nwidth, nheight = size
+
+  if iwidth / iheight < nwidth / nheight:
+    scale = nwidth / iwidth
+  else:
+    scale = nheight / iheight
+
+  return py.transform.scale_by(root.surf, scale)
+
 def overwrite(file, content: str):
   '''Overwrite a JSON file with `content`.'''
 
@@ -127,8 +146,6 @@ def randkey(rows: list[str] = None):
 
 
 class find:
-  '''Functions involving finding.'''
-
   def row(key) -> str:
     '''Find which row of the keyboard a key belongs to.'''
 
@@ -156,8 +173,6 @@ class find:
 
 
 class interpolate:
-  '''Functions involving interpolation.'''
-
   def value(start, stop, percent: float):
     '''Interpolate any value between 2 endpoints.'''
 
@@ -177,12 +192,20 @@ class interpolate:
 
 
 class Alpha(Val):
-  '''...'''
+  '''A `BoundValue` representing an alpha value, with bounds defaulting to 0 and 255.'''
 
   def __init__(self, value, bounds = (0, 255)):
-    '''...'''
+    '''Create an alpha value with the specified bounds.'''
 
     super().__init__(value, *bounds)
 
   def __call__(self):
-    return round(super().__call__())
+    val = super().__call__()
+
+    # ensure alpha values are safe to use
+    if val < 0:
+      val = 0
+    elif val > 255:
+      val = 255
+    
+    return val
