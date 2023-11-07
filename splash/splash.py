@@ -69,7 +69,7 @@ def setup():
       ),
     ),
     Text("start.title",
-      pos = util.cord(-0.75, -0.5),
+      pos = util.cord(-0.9, -0.6),
       text = "ALGORHYTHM",
       style = Text.Style(
         typeface = ui.font.title,
@@ -78,21 +78,21 @@ def setup():
       display = displays.start,
     ),
     Button("start.play",
-      pos = util.cord(-0.75, -0.25),
+      pos = util.cord(-0.9, -0.1),
       size = ui.size.button,
       text = "PLAY",
       root = roots.switch.state("select"),
       display = displays.start,
     ),
     Button("start.environ",
-      pos = util.cord(-0.75, 0),
+      pos = util.cord(-0.9, 0.15),
       size = ui.size.button,
       text = "ENVIRONMENT",
       root = roots.switch.state("environ"),
       display = displays.start,
     ),
     Button("start.settings",
-      pos = util.cord(-0.75, 0.25),
+      pos = util.cord(-0.9, 0.4),
       size = ui.size.button,
       text = "SETTINGS",
       root = roots.switch.state("settings"),
@@ -252,7 +252,7 @@ def setup():
 def load():
   '''Run the game loading sequence.'''
 
-  from assets.__toppings__ import flavour
+  from assets.__toppings__ import flavours
 
   class load:
     state = None
@@ -260,7 +260,7 @@ def load():
     percent = random.randint(7, 20) / 100
     alpha = util.Alpha(0)
 
-    flavour = flavour.flavours.select()
+    flavour = flavours.select()
 
   py.mixer.music.load(f"assets/tracks/dawn{random.randint(1, 3)}.mp3")
   py.mixer.music.set_volume(0.69)

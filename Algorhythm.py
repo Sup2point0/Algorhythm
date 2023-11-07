@@ -38,7 +38,12 @@ class main:
         key, mod = event.key, event.mod
         game.keys.append(key)
 
-        if mod == KMOD_NONE:
+        if mod & KMOD_CTRL:
+          if key == K_w:
+            game.state = None
+            return
+        
+        else:
           if key == K_ESCAPE:
             main.pause()
   
@@ -55,32 +60,11 @@ class main:
             tick = now
           ###
 
-        elif mod & KMOD_CTRL:
-          if key == K_w:
-            game.state = None
-            return
-
       elif event.type == KEYUP:
         try:
           game.keys.remove(event.key)
         except ValueError:
           pass
-    
-    activate = util.index(game.keys, K_LCTRL, K_RCTRL, check = True)
-
-    if activate:
-      idx, ctrl = activate
-      
-      # only activate a key combo if a key is pressed after the ctrl key
-      if idx < len(game.keys) - 1:
-        action = game.keys[idx + 1]
-
-        # remove pressed keys from history to prevent further unintentional combos
-        game.keys.pop(idx + 1)
-        game.keys.pop(idx)
-        
-        if action == K_SPACE:
-          main.pause()
 
   def control():
     '''Control active game loop.'''
@@ -109,9 +93,8 @@ class main:
       sprites.splash[screen.state].update()
       
       # update screen change history
-      if len(screen.track) > 1:
-        if screen.state == screen.track[-2]:
-          screen.track.pop()
+      if len(screen.track) > 1 and screen.state == screen.track[-2]:
+        screen.track.pop()
       else:
         screen.track.append(screen.state)
       

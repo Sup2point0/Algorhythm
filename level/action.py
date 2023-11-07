@@ -5,6 +5,7 @@ Implements the `Action` class for triggering level events and the specialised `H
 import pygame as py
 
 from core import level, screen, sprites
+from innate.sprite import Sprite
 import util
 
 

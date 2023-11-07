@@ -103,7 +103,7 @@ def resize(surf, size) -> py.Surface:
   else:
     scale = nheight / iheight
 
-  return py.transform.scale_by(root.surf, scale)
+  return py.transform.scale_by(surf, scale)
 
 def overwrite(file, content: str):
   '''Overwrite a JSON file with `content`.'''

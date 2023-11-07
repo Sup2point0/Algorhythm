@@ -54,7 +54,7 @@ class Select(Element):
     super().__init__(id = id, anim = True, interact = True, display = display)
 
     self.size = size
-    surf = util.find.asset("covers/{cover}", "covers/none.png")
+    surf = util.find.asset(f"covers/{cover}", "covers/none.png")
     self.cover = util.resize(surf, size).convert_alpha()
     self.locktext = locktext
   
