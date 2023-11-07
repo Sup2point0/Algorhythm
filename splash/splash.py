@@ -210,7 +210,8 @@ def setup():
       text = "PLAY",
       root = roots.switch.tutorial,
       display = Displayed(
-        root = (lambda: "select." in screen.state),
+        show = {state for state in screen.states if state.startswith("select.")},
+        align = (1, 1),
         layer = sprites.active.layer["splash"],
       ),
     ),

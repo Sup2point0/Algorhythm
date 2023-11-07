@@ -191,7 +191,7 @@ class config:
   class rate:
     frames = 60
     fade = 12
-    scroll = 20
+    scroll = 69
 
   difficulties = [
     Difficulty("standard", leniency = 0.15, speed = 200),
