@@ -43,7 +43,7 @@ class Displayed(Object):
 
     super().__init__(
       align = align or (0, 0),
-      scroll = scroll or (lambda: 0),
+      scroll = scroll or None,
       layer = sprites.active.layer[layer] if isinstance(layer, str) else layer or sprites.active.layer["splash"],
       fade = fade,
       root = root or (lambda: True),
