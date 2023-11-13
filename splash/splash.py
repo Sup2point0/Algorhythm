@@ -117,7 +117,7 @@ def setup():
       blur = 5,
       display = Displayed(
         show = {"environ"},
-        layer = sprites.active.layer["backdrop"],
+        layer = "backdrop",
       ),
     ),
   ]

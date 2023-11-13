@@ -45,6 +45,7 @@ class main:
         
         else:
           if key == K_ESCAPE:
+            print(sprites.active.layers())  # NOTE testing
             main.pause()
   
           ## NOTE testing
@@ -92,7 +93,9 @@ class main:
       screen.state = screen.switch
       screen.switch = None
 
-      sprites.active.add(sprites.splash[screen.state])
+      for sprite in sprites.splash[screen.state]:
+        sprites.active.add(sprite, layer = sprite.display.layer)
+      
       live.run()
       sprites.splash[screen.state].update()
       
