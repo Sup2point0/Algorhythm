@@ -25,7 +25,7 @@ class LaneKey(Sprite):
     
     self.alpha = Val(0, lower = 0, upper = 255)
     self.style = Text.Style(
-      typeface = "Orbitron-Semibold",
+      typeface = "Geologica-Semibold",
       size = 69,
       col = util.find.col(self.key),
     )
@@ -58,7 +58,7 @@ class LaneKey(Sprite):
     self.surf, self.rect = Text.render(
       text = self.lane.key.upper(),
       style = Text.Style(
-        typeface = "Orbitron-Semibold",
+        typeface = "Geologica-Semibold",
         size = self.anim.size,
         col = util.find.col(self.key),
       )

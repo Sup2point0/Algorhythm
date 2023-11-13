@@ -34,7 +34,7 @@ class Chart:
     | `data` | `list[Hitline, Note, Action]` | Chart data, in the form of a list of chart objects. |
     '''
 
-    self.difficulty = difficulty,
+    self.difficulty = difficulty
     self.lanes = []
     for i in range(lanes):
       self.lanes.append(Lane(index = i, key = keys[i]))
@@ -91,7 +91,7 @@ class Track:
     self.cover = util.find.asset(f"covers/{id}.jpeg", "covers/none.png")
 
   def __getitem__(self, difficulty):
-    ''''''
+    '''A convenient way to get a particular chart with the specified difficulty.'''
 
     for chart in self.charts:
       if chart.difficulty == difficulty:
