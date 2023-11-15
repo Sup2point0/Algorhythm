@@ -70,11 +70,12 @@ class Note(Sprite):
     '''Return accuracy of note hit.'''
 
     off = abs(self.hit - beat)
-    if off < config.difficulties[level.chart.difficulty].perfect:
+    window = config.difficulties[level.chart.difficulty]
+    if off < window.perfect:
       return "perfect"
-    elif off < config.difficulties[level.chart.difficulty].hit:
+    elif off < window.hit:
       return "hit"
-    elif off < config.difficulties[level.chart.difficulty].miss:
+    elif off < window.miss:
       return "miss"
     else:
       return None
@@ -95,6 +96,7 @@ class Note(Sprite):
         level.perfect += 1
     
     else:
+      level.slips += 1
       level.chain = 0
 
     self.kill()
@@ -209,22 +211,6 @@ class RideNote:
     ]
 
 
-def RideNotes(lane, hit) -> list[RideNote]:
-  '''Utility function to create several ride notes in the same lane at once.
-    
-    | parameter | type | description |
-    | :-------- | :--- | :---------- |
-    | `lane` | `int` | Starting lane of notes. |
-    | `hit` | `list`, `range` | Hit beats for each note. This determines how many notes are created. |
-    '''
-  
-  out = []
-  for each in hit:
-    out.append(RideNote(hit = each, lane = lane))
-
-  return out
-
-
 class RollNote:
   '''A note hit by multiple key presses.'''
 
@@ -244,3 +230,28 @@ class RollNote:
 
     self.hit = hit
     self.hits = hits
+
+
+def _Notes_(kind):
+  '''Internal utility function to create note-generating utility functions.'''
+  
+  def root(lane, hit) -> list[kind]:
+    '''Utility function to create several notes in the same lane at once.
+    
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `lane` | `int` | Starting lane of notes. |
+    | `hit` | `list`, `range` | Hit beats for each note. This determines how many notes are created. |
+    '''
+
+    out = []
+    for each in hit:
+      out.append(kind(hit = each, lane = lane))
+    
+    return out
+
+  return root
+
+
+TapNotes = _Notes_(TapNote)
+RideNotes = _Notes(RideNote)
