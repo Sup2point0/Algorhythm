@@ -42,7 +42,6 @@ class LaneKey(Sprite):
       if level.tick > 15 + self.lane.index * 6:
         self.alpha.alt(4)
         self.anim.size = util.slide(self.anim.size, self.style.size, speed = 5)
-    
     else:
       self.anim.size = util.slide(self.anim.size, self.style.size, speed = 5)
     
@@ -53,15 +52,10 @@ class LaneKey(Sprite):
     ## render
     self.surf, self.rect = Text.render(
       text = self.lane.key.upper(),
-      style = Text.Style(
-        typeface = "Geologica-Semibold",
-        size = self.anim.size,
-        col = util.find.col(self.key),
-      )
+      style = self.style.updated(size = self.anim.size)
     )
-
     self.surf.set_alpha(self.alpha())
+    
     self.x = self.lane.x
     self.y = screen.y - config.lane.space * 2
-
     super().position()
