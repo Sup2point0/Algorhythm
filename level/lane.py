@@ -7,7 +7,7 @@ import random
 import pygame as py
 from pygame.locals import *
 
-from core import game, screen, sprites, config, opt
+from core import game, level, screen, sprites, config, opt
 from innate.sprite import Sprite
 import util
 

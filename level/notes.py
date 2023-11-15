@@ -254,4 +254,4 @@ def _Notes_(kind):
 
 
 TapNotes = _Notes_(TapNote)
-RideNotes = _Notes(RideNote)
+RideNotes = _Notes_(RideNote)

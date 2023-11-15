@@ -126,6 +126,7 @@ class main:
     '''Update screen.'''
 
     game.pulse.tick(opt.framerate())
+    screen.display.fill(0x000000)
     sprites.active.draw(screen.display)
     py.display.flip()
 

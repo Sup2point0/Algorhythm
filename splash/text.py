@@ -20,7 +20,7 @@ class Text(Element):
   class Style(Element.Style):
     '''A text style.'''
   
-    def __init__(self, *, typeface = None, size = None, col = None, align = None):
+    def __init__(self, typeface = None, size = None, col = None, align = None):
       '''Create a text style.
 
       | parameter | type | description |
@@ -44,6 +44,7 @@ class Text(Element):
       self.align = align or (0, 0)
 
       self.cols = vars(ui.col.text)
+      self.cols = {each: self.cols[each] for each in self.cols if not each.startswith("__")}
       if isinstance(col, dict):
         for each in col:
           self.cols[each] = col[each]

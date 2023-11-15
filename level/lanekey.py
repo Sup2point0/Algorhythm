@@ -23,7 +23,7 @@ class LaneKey(Sprite):
     self.lane = lane
     self.key = self.lane.key
     
-    self.alpha = util.Alpha()
+    self.alpha = util.Alpha(0)
     self.style = Text.Style("title", 69, col = util.find.col(self.key))
     
     class anim:

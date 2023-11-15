@@ -61,6 +61,7 @@ class level:
   scored = 0  # displayed score
   hits = 0
   perfect = 0
+  slips = 0
   chain = 0  # combo
   apex = 0  # max combo
 
