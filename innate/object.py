@@ -4,6 +4,8 @@ Implements the generic `Object` class.
 Safe to import.
 '''
 
+from copy import deepcopy
+
 
 class Object:
   '''A generic object with any attributes that can be set and updated in bulk.'''
@@ -20,3 +22,11 @@ class Object:
     for each in attrs:
       if hasattr(self, each):
         self.__setattr__(each, attrs[each])
+
+  def updated(self, **attrs):
+    '''Return copy of object with updated attributes.'''
+
+    copy = deepcopy(self)
+    copy.update(**attrs)
+    
+    return copy
