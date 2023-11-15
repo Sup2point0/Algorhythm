@@ -1,5 +1,5 @@
 '''
-Lane key indicators
+Implements the `LaneKey` class for displaying keys for each lane.
 '''
 
 import pygame as py
@@ -18,17 +18,13 @@ class LaneKey(Sprite):
   def __init__(self, lane):
     '''Create a lane key indicator.'''
     
-    super().__init__()  # FIXME?
+    super().__init__()
     
     self.lane = lane
     self.key = self.lane.key
     
-    self.alpha = Val(0, lower = 0, upper = 255)
-    self.style = Text.Style(
-      typeface = "Geologica-Semibold",
-      size = 69,
-      col = util.find.col(self.key),
-    )
+    self.alpha = util.Alpha()
+    self.style = Text.Style("title", 69, col = util.find.col(self.key))
     
     class anim:
       size = self.style.size * 10
