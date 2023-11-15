@@ -1,5 +1,5 @@
 '''
-Note lanes
+Implements the `Lane` class.
 '''
 
 import random
@@ -11,7 +11,7 @@ from core import game, screen, sprites, config, opt
 from innate.sprite import Sprite
 import util
 
-from level.notes import TapNote, HoldNote, RollNote
+from level.notes import TapNote, HoldNote, RideNote, RollNote
 from level.lanekey import LaneKey
 
 
@@ -25,16 +25,14 @@ class Lane(Sprite):
 
     self.index = index
     self.key = key or util.randkey()
-    self.hit = False
     self.col = util.find.col(self.key)
-
     self.size = [config.lane.width, screen.y - config.lane.space / 2]
+    
     self.notes = py.sprite.Group()
-
     self.lanekey = LaneKey(self)
 
     class anim:
-      size = [2, 2]
+      size = [0, 0]
       coltick = 0
 
     self.anim = anim
@@ -44,18 +42,15 @@ class Lane(Sprite):
 
     ## handle notes
     for event in game.events:
-      if event.type in [KEYDOWN, KEYUP]:
+      if event.type == KEYDOWN:
         if event.key == config.keys.all[self.key]:
-          self.hit = (event.type == KEYDOWN)
-    
-    if self.hit:
-      self.pop()
+          self.pop()
 
     ## animate
     self.anim.size[0] = util.slide(self.anim.size[0], self.size[0], 5)
     self.anim.size[1] = util.slide(self.anim.size[1], self.size[1], 5)
 
-    self.col = vars(opt.col)[util.find.row(self.key)][:3]
+    self.col = util.find.col(self.key)[:3]
     if self.anim.coltick > 0:
       self.anim.coltick -= 0.1
     self.col.append(round(util.interpolate.value(
@@ -92,13 +87,9 @@ class Lane(Sprite):
     notes = self.notes.sprites()
     if notes:
       note = sorted(notes, key = lambda note: (note.hit, -note.y))[0]
-
-      if isinstance(note, TapNote):
-        note.pop(hit = True)
-        self.hit = False
-        
-      elif isinstance(note, HoldNote):
-        note.pop(hit = True)
+      note.pop(hit = True)
+    else:
+      level.slips += 1
 
     self.anim.coltick = 0.4
 
