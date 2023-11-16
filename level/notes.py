@@ -66,10 +66,10 @@ class Note(Sprite):
 
     super().position()
 
-  def accuracy(self, beat) -> str | None:
+  def accuracy(self, beat, hit) -> str | None:
     '''Return accuracy of note hit.'''
 
-    off = abs(self.hit - beat)
+    off = abs(hit - beat)
     window = config.difficulties[level.chart.difficulty]
     if off < window.perfect:
       return "perfect"
@@ -153,7 +153,7 @@ class TapNote(Note):
     `hit` determines if it was hit by the player.
     '''
     
-    acc = self.accuracy(level.beat) if hit else "miss"
+    acc = self.accuracy(level.beat, self.hit) if hit else "miss"
 
     if acc:
       super().pop(acc)
@@ -182,10 +182,33 @@ class HoldNote(Note):
     if hit[0] >= hit[1]:
       raise ValueError("hold note cannot end before it starts")
 
-  def pop(self):
-    ''''''
+    self.popped = False
+    self.slipped = False
+    self.popping = False
+    self.poptick = 0
 
-    ...
+  def update(self):
+    if not self.popping:
+      if level.beat > self.hit[0]:  # note missed
+        if self.accuracy(level.beat, self.hit[0]) == "miss":
+          self.slipped = True
+    
+    else:
+      keys = py.key.get_pressed()
+      key = config.keys[self.lane.key]
+      if not keys[key]:
+        self.poptick += 1
+        if self.poptick > 2:  # key slipped
+          self.slipped = True
+      else:
+        acc = self.accuracy(level.beat, self.hit[1])
+        if acc and acc != "miss":  # popped within hit timing
+          self.popped = True
+
+  def pop(self, hit = False):
+    '''Start popping note.'''
+
+    self.popping = True
 
 
 class RideNote:
