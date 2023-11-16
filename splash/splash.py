@@ -19,14 +19,14 @@ from levels import levels
 
 
 @ util.log(loaded = False)
-def setup():
+def load():
   '''Load sprites for all screens in the game.'''
 
   # safety net to avoid multiple calls
-  if setup.loaded:
+  if load.loaded:
     return
   
-  setup.loaded = True
+  load.loaded = True
 
   class displays:
     start = Displayed(

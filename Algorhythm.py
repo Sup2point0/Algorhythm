@@ -7,7 +7,6 @@ import pygame as py
 from pygame.locals import *
 
 from core import game, level, screen, sprites, config, opt
-import util
 
 from splash import live
 

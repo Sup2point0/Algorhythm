@@ -13,10 +13,10 @@ if __name__ == "__main__":
 
   # then load the rest, which takes some time
   from Algorhythm import main
-  from splash import splash
+  from splash import splash, sequence
 
-  splash.setup()
   splash.load()
+  sequence.load()
 
   while core.game.state is not None:
     main.events()
