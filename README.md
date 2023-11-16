@@ -10,11 +10,9 @@
 - Update button styles
 
 ### Todo
-- Move `size` attribute of `splash.Button` to `Button.Style`
 - Split `splash/splash.py` into `setup.py` and rename `setup()` to `load`
 - Split `Note` base utility methods into separate `hit`, `kill` methods
 - Rework screen state change to allow animation specification
-- Scrolling elements functionality
 - Dynamically spawn sprites
   - Sort list of notes
   - Each frame, iterate through notes and break if spawn not needed
