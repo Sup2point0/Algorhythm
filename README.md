@@ -10,7 +10,6 @@
 - Update button styles
 
 ### Todo
-- Split `splash/splash.py` into `setup.py` and rename `setup()` to `load`
 - Split `Note` base utility methods into separate `hit`, `kill` methods
 - Rework screen state change to allow animation specification
 - Dynamically spawn sprites
