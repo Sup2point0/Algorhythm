@@ -193,6 +193,7 @@ class config:
     frames = 60
     fade = 12
     scroll = 69
+    key = (500, 200)  # FIXME
 
   difficulties = [
     Difficulty("standard", leniency = 0.15, speed = 200),
