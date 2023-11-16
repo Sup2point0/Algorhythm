@@ -75,8 +75,8 @@ class Track:
     | `bpm` | `num` | Tempo of track in beats per minute (can be scaled for easier charting). |
     | `file` | `str` | Source file (path) to stream from. |
     | `offset` | `float` | Time offset to apply to beat calculations. |
-    | `vol` | `float in [0.0, 1.0]` | Internal volume of song. |
-    | `charts` | `list[Chart]` | Playable charts of the song. |
+    | `vol` | `float in [0.0, 1.0]` | Internal volume of soundtrack. |
+    | `charts` | `list[Chart]` | Playable charts of track. |
     '''
 
     self.id = id
@@ -118,14 +118,16 @@ class Track:
     sprites.lines = py.sprite.Group(*level.chart.lines)
     sprites.lanes = py.sprite.Group(*level.chart.lanes)
     sprites.actions = py.sprite.Group(*level.chart.actions)
+    
     sprites.notes.empty()  # FIXME
-
     for note in level.chart.notes:
       note.spawn()
       sprites.notes.add(note)
     
     mixer.music.fadeout(1000)
     level.started = False  # only becomes True once music starts
+
+    py.key.set_repeat()  # disable keypress repetition when held
 
   def run(self):
     '''Process and control chart.'''
@@ -175,3 +177,5 @@ class Track:
     
     game.level = None
     screen.switch = "score"
+
+    py.key.set_repeat(config.rate.keys)
