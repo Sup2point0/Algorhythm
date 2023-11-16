@@ -47,9 +47,11 @@ def load():
   general = [
     Button("general.back",
       pos = [50, 50],
-      size = (ui.size.button[1], ui.size.button[1]),
       text = "‹",
       root = roots.switch.back,
+      style = Button.Style(
+        size = (ui.size.button[1], ui.size.button[1]),
+      ),
       display = Displayed(
         hide = {"start", "play", "score"},
         align = (-1, -1),
@@ -81,21 +83,18 @@ def load():
     ),
     Button("start.play",
       pos = util.cord(-0.8, -0.1),
-      size = ui.size.button,
       text = "PLAY",
       root = roots.switch.state("select"),
       display = displays.start,
     ),
     Button("start.environ",
       pos = util.cord(-0.8, 0.15),
-      size = ui.size.button,
       text = "ENVIRONMENT",
       root = roots.switch.state("environ"),
       display = displays.start,
     ),
     Button("start.settings",
       pos = util.cord(-0.8, 0.4),
-      size = ui.size.button,
       text = "SETTINGS",
       root = roots.switch.state("settings"),
       display = displays.start,
@@ -145,7 +144,6 @@ def load():
     ),
     Button("settings.sounds",
       pos = util.cord(-0.5, 0),
-      size = ui.size.button,
       text = "SOUNDS",
       root = roots.switch.state("settings.sounds"),
       display = Displayed(
@@ -154,7 +152,6 @@ def load():
     ),
     Button("settings.visuals",
       pos = util.cord(0.5, 0),
-      size = ui.size.button,
       text = "VISUALS",
       root = roots.switch.state("settings.visuals"),
       display = Displayed(
@@ -200,7 +197,6 @@ def load():
     ),
     Button("select.track.play",
       pos = [screen.x - 50, screen.y - 50],
-      size = ui.size.button,
       text = "PLAY",
       root = roots.switch.tutorial,
       display = Displayed(
