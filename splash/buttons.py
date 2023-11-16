@@ -1,10 +1,10 @@
 '''
-Buttons
+Implements the `Button` class.
 '''
 
 import pygame as py
 
-from core import sprites, ui
+from core import ui
 import util
 
 from splash.elements import Element
@@ -17,16 +17,18 @@ class Button(Element):
   class Style(Element.Style):
     '''A button style.'''
   
-    def __init__(self, *, edge = "round", col: dict = None, textstyle = None):
+    def __init__(self, *, size = None, edge = "round", col: dict = None, textstyle = None):
       '''Create a button style.
       
       | parameter | type | description |
       | :-------- | :--- | :---------- |
+    | `size` | `int, int` | Dimensions of button. |
       | `edge` | `str` | Edge style – can be `round`, `sharp` or `angular`. |
       | `col` | `dict` | The colours for the different states of the button. |
       | `textstyle` | `Text.Style` | Style settings for text on button. |
       '''
   
+      self.size = size or ui.size.button
       self.edge = edge
   
       cols = col or {}
@@ -38,12 +40,11 @@ class Button(Element):
       self.text = textstyle or Text.Style()
 
   
-  def __init__(self, id, pos, size, text, root, style = None, display = None):
+  def __init__(self, id, pos, text, root, style = None, display = None):
     '''Create a clickable button.
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
-    | `size` | `[int, int]` | Dimensions of button. |
     | `text` | `str` | Text to display on button. |
     | `root` | `Callable` | Function called when button is clicked. |
     | `style` | `Button.Style` | Style settings for button. |
@@ -53,7 +54,6 @@ class Button(Element):
 
     super().__init__(id, pos, interact = True, display = display)
 
-    self.size = size
     self.text = text
     self.root = root
     self.style = style or Button.Style()
@@ -67,7 +67,7 @@ class Button(Element):
 
   def update(self):
     ## process
-    self.surf = py.Surface(self.size, py.SRCALPHA)
+    self.surf = py.Surface(self.style.size, py.SRCALPHA)
     self.rect = self.surf.get_rect()
     super().position()
     
@@ -77,7 +77,7 @@ class Button(Element):
       if interaction == "idle":
         if self.anim.coltick > 0:
           self.anim.coltick -= 0.1
-        self.anim.y += util.slide(self.anim.y, self.size[1])
+        self.anim.y += util.slide(self.anim.y, self.style.size[1])
       else:
         if self.anim.coltick < 1:
           self.anim.coltick += 0.1
@@ -95,12 +95,12 @@ class Button(Element):
     ## render
     py.draw.rect(self.surf,
       color = py.Color(self.anim.col),
-      rect = py.Rect(0, 0, *self.size),
+      rect = py.Rect(0, 0, *self.style.size),
       width = 0,
-      border_radius = min(self.size) // 3,  # FIXME value
+      border_radius = min(self.style.size) // 3,  # FIXME value
     )
     
     rendered = Text.render(self.text, self.style.text)
     self.surf.blit(rendered[0],
-      dest = util.root(rendered[1], x = self.size[0] / 2, y = self.size[1] / 2)
+      dest = util.root(rendered[1], x = self.style.size[0] / 2, y = self.style.size[1] / 2)
     )
