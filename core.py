@@ -134,6 +134,7 @@ class sprites:
   lines = py.sprite.Group()
   lanes = py.sprite.Group()
   notes = py.sprite.Group()
+  actions = py.sprite.Group()
   effects = py.sprite.Group()
 
   active = py.sprite.LayeredUpdates()

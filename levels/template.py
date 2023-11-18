@@ -8,9 +8,10 @@ from level.notes import (
   TapNote as Tap,
   HoldNote as Hold,
   RideNote as Ride,
-  RideNotes as Rides,
   RollNote as Roll,
   # BreakNote as Break,
+  TapNotes as Taps,
+  RideNotes as Rides,
 )
 
 

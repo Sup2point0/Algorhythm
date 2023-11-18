@@ -117,7 +117,7 @@ class Track:
     # clear just to be safe
     sprites.lines = py.sprite.Group(*level.chart.lines)
     sprites.lanes = py.sprite.Group(*level.chart.lanes)
-    sprites.actions = py.sprite.Group(*level.chart.actions)
+    sprites.actions.empty()
     
     sprites.notes.empty()  # FIXME
     for note in level.chart.notes:
@@ -149,14 +149,15 @@ class Track:
     if level.started:
       level.beat = game.level.bpm * (mixer.music.get_pos() - game.level.offset) / 60000
 
-    for action in level.chart.data:
-      if isinstance(action, Action):
-        action.activate()
+      for action in level.chart.actions:
+        if level.beat > action.beat:
+          action.activate()
 
-    ## handle notes
+    # These updates follow a specific order.
     sprites.lines.update()
     sprites.notes.update()
     sprites.lanes.update()
+    sprites.actions.update()
     sprites.effects.update()
 
     ## calculate score

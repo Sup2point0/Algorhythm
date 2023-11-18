@@ -23,7 +23,7 @@ class Action:
     '''
 
     self.beat = beat
-    self.activate = Action._handler_(action, loop)
+    self.activate = self._handler_(action, loop)
     self.loop = loop or (1, 0)
     self.looped = 0
 
@@ -49,17 +49,18 @@ class Hint(Sprite, Action):
   class Highlight:
     '''A highlighted (non-darkened) part of the hint overlay.'''
 
-    def __init__(self, pos, size):
+    def __init__(self, *highlight):
       '''Create a rectangular highlighted area.
 
       | parameter | type | description |
       | :-------- | :--- | :---------- |
-      | `pos` | `num, num` | Position of centre of rectangle. |
-      | `size` | `num, num` | Dimensions of area. |
+      | `x`, `y` | `num, num` | Position of centre of rectangle. |
+      | `width`, `height` | `num, num` | Dimensions of area. |
       '''
 
-      self.pos = pos
-      self.size = size
+      rect = py.Rect(*highlight)
+      self.pos = (rect.x, rect.y)
+      self.size = rect.size
 
       self.rect = py.Rect(0, 0, 0, 0)
 
@@ -96,20 +97,20 @@ class Hint(Sprite, Action):
     self.anim = anim
 
   def activate(self):
-    if level.beat > self.beat:
-      if not self.alive():
-        sprites.active.add(self, layer = sprites.active.layer["hints"])
+    if not self.alive():
+      sprites.actions.add(self)
+      sprites.active.add(self, layer = sprites.active.layer["hints"])
 
   def update(self):
     if self.anim.tick:
       self.anim.tick += 1
       if self.anim.tick > self.dur:  # fade out
         self.anim.alpha.alt(-4)
-        if self.anim.alpha.bounds():
+        if self.anim.alpha.bounded():
           self.kill()
     else:  # fade in
       self.anim.alpha.alt(4)
-      if self.anim.alpha.bounds():
+      if self.anim.alpha.bounded():
         self.anim.tick = 1
 
     self.surf = py.Surface(screen.size, py.SRCALPHA)
@@ -122,4 +123,4 @@ class Hint(Sprite, Action):
         self.surf.blit(py.Surface(each.anim.size, py.SRCALPHA), each.rect)
 
     if self.text:
-      self.surf.blit(self.text, self.text.rect)
+      self.surf.blit(self.text.surf, self.text.rect)
