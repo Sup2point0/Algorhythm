@@ -22,8 +22,8 @@ tutorial = Chart(
   lanes = 4,
   keys = ["Z", "X", "C", "V"],
   data = [
-    Hint(4, 8,
-      Text("Day.hint.1", (0, 0), "Welcome to Algorhythm!"),
+    Hint(4, 24,
+      Text("Day.hint.1", util.cord(0, 0.8), "Welcome to Algorhythm!"),
       [Hint.Highlight(*util.cord(0, 0), 100, 100)]
     ),
 

@@ -67,7 +67,7 @@ class Hint(Sprite, Action):
     def update(self):
       self.rect.width = util.slide(self.rect.width, self.size[0])
       self.rect.height = util.slide(self.rect.height, self.size[1])
-      self.rect.centre = self.pos
+      self.rect.center = self.pos
 
 
   def __init__(self, beat, dur, text = None, highlights = None):
@@ -114,13 +114,13 @@ class Hint(Sprite, Action):
         self.anim.tick = 1
 
     self.surf = py.Surface(screen.size, py.SRCALPHA)
-    self.surf.fill([255, 255, 255, self.anim.alpha()])
+    self.surf.fill([0, 0, 0, self.anim.alpha()])
     self.rect = self.surf.get_rect()
 
     if self.highlights and self.anim.tick > 30:
       for each in self.highlights:
         each.update()
-        self.surf.blit(py.Surface(each.anim.size, py.SRCALPHA), each.rect)
+        self.surf.blit(py.Surface(each.rect.size, py.SRCALPHA), each.rect)
 
     if self.text:
       self.surf.blit(self.text.surf, self.text.rect)
