@@ -1,5 +1,7 @@
 '''
-Sup#2.0 – Day
+Day
+Sup#2.0
+Standard Tutorial
 '''
 
 import util
