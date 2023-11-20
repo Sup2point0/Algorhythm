@@ -1,5 +1,6 @@
 '''
-Artist – Track
+Track
+Artist
 '''
 
 from level.level import Chart
@@ -9,7 +10,6 @@ from level.notes import (
   HoldNote as Hold,
   RideNote as Ride,
   RollNote as Roll,
-  # BreakNote as Break,
   TapNotes as Taps,
   RideNotes as Rides,
 )
