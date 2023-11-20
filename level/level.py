@@ -58,12 +58,12 @@ class Track:
 
   def __init__(self, id,
     name,
-    bpm,
-    file: str,
-    offset: float,
-    vol: float = 1.0,
+    file,
     artist = None,
-    charts: list = None,
+    bpm = None,
+    offset = None,
+    vol = 1.0,
+    charts = None,
   ):
     '''Create a soundtrack.
     
@@ -72,19 +72,19 @@ class Track:
     | `id` | `str` | Internal identifier for track, used for finding cover art. |
     | `name` | `str` | Track name. |
     | `artist` | `str` | Track artist. |
-    | `bpm` | `num` | Tempo of track in beats per minute (can be scaled for easier charting). |
     | `file` | `str` | Source file (path) to stream from. |
+    | `bpm` | `num` | Tempo of track in beats per minute (can be scaled for easier charting). |
     | `offset` | `float` | Time offset to apply to beat calculations. |
-    | `vol` | `float in [0.0, 1.0]` | Internal volume of soundtrack. |
+    | `vol` | `0.0 < num < 1.0` | Internal volume of soundtrack. |
     | `charts` | `list[Chart]` | Playable charts of track. |
     '''
 
     self.id = id
     self.name = name
     self.artist = artist
-    self.bpm = bpm
     self.file = file
-    self.offset = offset
+    self.bpm = bpm or util.find.sync(file)["tempo"]
+    self.offset = offset or util.find.sync(file)["offset"]
     self.vol = Val(vol, lower = 0.0, upper = 1.0)()
     self.charts = sorted(charts, key = lambda chart: chart.difficulty) or []
     self.difficulties = (chart.difficulty for chart in self.charts)
