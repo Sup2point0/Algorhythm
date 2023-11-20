@@ -82,7 +82,7 @@ class Button(Element):
         if self.anim.coltick < 1:
           self.anim.coltick += 0.1
       
-      self.anim.col = util.interpolate.col(
+      self.anim.col = util.lerp.col(
         start = self.style.cols["idle"],
         stop = self.style.cols["hover"],
         percent = self.anim.coltick,
