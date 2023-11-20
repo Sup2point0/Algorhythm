@@ -14,6 +14,17 @@ from core import screen, sprites, config, opt
 from innate import Val
 
 
+## generic
+def has(iterable, *values, every = False) -> bool:
+  '''Check if `iterable` contains any of `values`.
+  
+  If `every` is `True`, it must contain every specified value.
+  '''
+
+  out = (each in iterable for each in values)
+  return all(out) if every else any(out)
+
+
 ## calculations
 def cord(x = 0.5, y = 0.5):
   '''Return coordinates normalised to screen size, where the screen centre is the origin.'''
@@ -104,7 +115,7 @@ def randkey(rows: list[str] = None):
   '''
   
   def taken(key):
-    return has((lane.key for lane in sprites.lanes), key, every = False)
+    return has((lane.key for lane in sprites.lanes), key)
   
   if rows is None:
     keys = [key for key in config.keys.rand.keys() if not taken(key)]
@@ -146,11 +157,15 @@ class find:
 
   def sync(file: str):
     '''Find tempo and offset of a soundtrack audio file.'''
+
+    print("syncing")
   
     wave, rate = librosa.load(file)
     tempo, beats = librosa.beat.beat_track(y = wave, sr = rate)
     frame = librosa.frames_to_time(beats, sr = rate)
     diff = np.mean(np.diff(frame))
+
+    print(f"synced [tempo = {tempo}, offset = {frame[0] - diff}]")
 
     return {
       "tempo": tempo,
