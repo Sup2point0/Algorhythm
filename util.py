@@ -7,12 +7,14 @@ import json
 import colorsys
 
 import pygame as py
+import numpy as np
+import librosa
 
 from core import screen, sprites, config, opt
 from innate import Val
 
 
-## generic
+## generic  # TODO pending removal
 def has(iterable, *values, every = True) -> bool:
   '''Check if `iterable` contains any of `values`.
   
@@ -171,9 +173,22 @@ class find:
       except:
         pass
 
+  def sync(file: str):
+    '''Find tempo and offset of a soundtrack audio file.'''
+  
+    wave, rate = librosa.load(file)
+    tempo, beats = librosa.beat.beat_track(y = wave, sr = rate)
+    frame = librosa.frames_to_time(beats, sr = rate)
+    diff = np.mean(np.diff(frame))
 
-class interpolate:
-  def value(start, stop, percent: float):
+    return {
+      "tempo": tempo,
+      "offset": frame[0] - diff,
+    }
+
+
+class lerp:
+  def val(start, stop, percent: float = 0.5):
     '''Interpolate any value between 2 endpoints.'''
 
     return start + percent * (stop - start)
