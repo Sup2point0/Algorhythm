@@ -14,52 +14,7 @@ from core import screen, sprites, config, opt
 from innate import Val
 
 
-## generic  # TODO pending removal
-def has(iterable, *values, every = True) -> bool:
-  '''Check if `iterable` contains any of `values`.
-  
-  If `every` is `True`, it must contain every specified value.
-  '''
-
-  out = (each in iterable for each in values)
-  return all(out) if every else any(out)
-  
-def index(iterable, *values, check = False) -> int | tuple[int, any] | None:
-  '''Find index of first occurence of any value within `values`.
-
-  If `check` is True, a tuple containing which value was found is returned instead.
-  
-  Returns `None` if no occurrences are found.
-  '''
-
-  # Some slightly questionable logical flow, but this helps to avoid needless iteration.
-  for i, each in enumerate(iterable):
-    if each in values:
-      if check:
-        for value in values:
-          if value == each:
-            return (i, value)
-      else:
-        return i
-  
-  return None
-
-def log(**attrs):
-  '''Adds the specified attributes to a given function. Used as a decorator.'''
-
-  def wrapper(func):
-    def root(*args, **kwargs):
-      func(*args, **kwargs)
-
-    for each in attrs:
-      root.__setattr__(each, attrs[each])
-
-    return root
-
-  return wrapper
-
-
-## engine
+## calculations
 def cord(x = 0.5, y = 0.5):
   '''Return coordinates normalised to screen size, where the screen centre is the origin.'''
 
@@ -106,6 +61,22 @@ def resize(surf, size) -> py.Surface:
     scale = nheight / iheight
 
   return py.transform.scale_by(surf, scale)
+
+
+## internal
+def log(**attrs):
+  '''Adds the specified attributes to a given function. Used as a decorator.'''
+
+  def wrapper(func):
+    def root(*args, **kwargs):
+      func(*args, **kwargs)
+
+    for each in attrs:
+      root.__setattr__(each, attrs[each])
+
+    return root
+
+  return wrapper
 
 def overwrite(file, content: str):
   '''Overwrite a JSON file with `content`.'''
