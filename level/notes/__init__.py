@@ -1,12 +1,12 @@
 '''
-Implements the `TapNote`, `HoldNote`, `RideNote`, `RollNote`, `BreakNote` note kinds, as well as the `Taps`, `Rides` utility functions for mass-creating notes.
+Implements the `Tap`, `Hold`, `Ride`, `Roll`, `Break` note kinds, as well as the `Taps`, `Rides` utility functions for mass-creating notes.
 '''
 
-from level.notes.taps import TapNote
-from level.notes.holds import HoldNote
-from level.notes.rides import RideNote
-from level.notes.rolls import RollNote
-# from level.notes.breaks import BreakNote
+from level.notes.taps import TapNote as Tap
+from level.notes.holds import HoldNote as Hold
+from level.notes.rides import RideNote as Ride
+from level.notes.rolls import RollNote as Roll
+# from level.notes.breaks import BreakNote as Break
 
 
 def _Notes_(kind):
@@ -30,5 +30,5 @@ def _Notes_(kind):
   return root
 
 
-TapNotes = _Notes_(TapNote)
-RideNotes = _Notes_(RideNote)
+Taps = _Notes_(Tap)
+Rides = _Notes_(Ride)
