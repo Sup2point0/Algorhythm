@@ -5,14 +5,8 @@ Artist
 
 from level.level import Chart
 from level.action import Action
-from level.notes import (
-  TapNote as Tap,
-  HoldNote as Hold,
-  RideNote as Ride,
-  RollNote as Roll,
-  TapNotes as Taps,
-  RideNotes as Rides,
-)
+from level.notes import Tap, Hold, Ride, Roll, Break
+from level.notes import Taps, Rides
 
 
 standard = Chart(
