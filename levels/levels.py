@@ -14,7 +14,7 @@ charts = {
       artist = "Sup#2.0",
       file = "Day.wav",
       bpm = 144,
-      offset = 0,
+      offset = -0.415,
       vol = 1.0,
       charts = [Day.tutorial],
     ),

@@ -84,7 +84,7 @@ class Track:
     self.artist = artist
     self.file = f"assets/tracks/{file}"
     self.bpm = bpm# or util.find.sync(self.file)["tempo"]
-    self.offset = offset# or util.find.sync(self.file)["offset"]
+    self.offset = offset or util.find.sync(self.file)["offset"]
     self.vol = Val(vol, lower = 0.0, upper = 1.0)()
     self.charts = sorted(charts, key = lambda chart: chart.difficulty) or []
     self.difficulties = (chart.difficulty for chart in self.charts)

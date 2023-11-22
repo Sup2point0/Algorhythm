@@ -46,23 +46,24 @@ class Note(Sprite):
 
     self.speed = self.speed or config.difficulties[level.chart.difficulty].speed
 
-  def update(self, fade = True):
+  def update(self):
     super().show("notes")
 
-    # TODO specialise
+    if type(self) == type(Note()):
+      self.render()
+
+    super().position()
+
+  def render(self):
+    '''...'''
+    
     ly = sprites.lines.sprites()[0].y
     self.x = self.lane.x
     self.y = ly - self.speed * (self.hit - level.beat)
     
     if self.y >= screen.y:
       self.pop()
-    ###
-
-    super().position()
-
-  def fade(self):  # FIXME
-    '''Fade note after it passes the hitline.'''
-
+      
     self.surf.set_alpha(255 * (1 - (self.y - ly) / (screen.y - ly)))
 
   def accuracy(self, beat, hit) -> str | None:
