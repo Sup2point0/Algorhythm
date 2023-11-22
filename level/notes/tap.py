@@ -27,17 +27,16 @@ class TapNote(Note):
 
     self.hit = hit
 
-    self.size = [
+    self.size = (
       config.note.size[0] * opt.note.size(),
       config.note.size[1]
-    ]
+    )
 
   def spawn(self):
     '''Spawn a tap note.'''
 
     super().spawn()
 
-    ## render
     self.surf = blur.glow(
       size = self.size,
       dist = 50,
@@ -45,10 +44,9 @@ class TapNote(Note):
       blur = 40,
     )
 
-    py.draw.rect(
-      surface = self.surf,
-      color = py.Color(0xffffffff),
-      rect = py.Rect(50, 50, *self.size),
+    py.draw.rect(self.surf,
+      color = [255, 255, 255, 0],
+      rect = (50, 50, *self.size),
       width = 0,
       border_radius = round(min(self.size) // 2),
     )
