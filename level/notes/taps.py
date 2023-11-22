@@ -4,7 +4,9 @@ Implements the `TapNote` note kind.
 
 import pygame as py
 
-from core import config
+from core import level, config, opt
+
+from level.notes import Note
 
 from effects import blur
 from effects.pop import PopEffect

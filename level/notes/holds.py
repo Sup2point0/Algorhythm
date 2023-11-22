@@ -4,6 +4,8 @@ Implements the `HoldNote` class.
 
 import pygame as py
 
+from core import level, config
+
 from level.notes import Note
 
 

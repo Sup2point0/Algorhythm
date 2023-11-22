@@ -11,7 +11,7 @@ from core import game, level, screen, sprites, config, opt
 from innate.sprite import Sprite
 import util
 
-from level.notes import TapNote, HoldNote, RideNote, RollNote
+# from level.notes import Tap, Hold, Ride, Roll
 from level.lanekey import LaneKey
 
 

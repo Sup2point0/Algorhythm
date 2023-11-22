@@ -10,13 +10,8 @@ from splash.text import Text
 
 from level.level import Chart
 from level.action import Action, Hint
-from level.notes import (
-  TapNote as Tap,
-  HoldNote as Hold,
-  RideNote as Ride,
-  TapNotes as Taps,
-  RideNotes as Rides,
-)
+from level.notes import Tap, Hold, Ride
+from level.notes import Taps, Rides
 
 
 tutorial = Chart(
