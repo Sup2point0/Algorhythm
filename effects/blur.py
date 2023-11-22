@@ -36,14 +36,14 @@ def glow(size, dist, col, blur: int) -> py.Surface:
   | `blur` | `int` | Radius of the Gaussian blur to apply. |
   '''
 
+  base = Image.new("RGBA", (
+    round(size[0] + 2 * dist),
+    round(size[1] + 2 * dist),
+  ), [255, 255, 255, 0])
+
   surf = py.Surface(size)
   surf.fill(py.Color(col))
   image = _image_(surf)
-
-  base = Image.new("RGBA", (
-      round(size[0] + 2 * dist),
-      round(size[1] + 2 * dist),
-    ), 0xffffff00)
   
   base.paste(image, (dist, dist))
 
