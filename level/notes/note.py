@@ -60,11 +60,10 @@ class Note(Sprite):
 
     super().position()
 
-  def fade(self):
+  def fade(self):  # FIXME
     '''Fade note after it passes the hitline.'''
 
-    if fade:
-      self.surf.set_alpha(255 * (1 - (self.y - ly) / (screen.y - ly)))
+    self.surf.set_alpha(255 * (1 - (self.y - ly) / (screen.y - ly)))
 
   def accuracy(self, beat, hit) -> str | None:
     '''Return accuracy of note hit.'''

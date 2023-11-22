@@ -4,7 +4,7 @@ Implements the `RideNote` class.
 
 import pygame as py
 
-from core import config
+from core import config, opt
 
 from level.notes import Note
 

@@ -47,7 +47,7 @@ class TapNote(Note):
     )
 
     py.draw.rect(self.surf,
-      color = [255, 255, 255, 0],
+      color = (255, 255, 255, 255),
       rect = (50, 50, *self.size),
       width = 0,
       border_radius = round(min(self.size) // 2),
