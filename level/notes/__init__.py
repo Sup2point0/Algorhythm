@@ -2,6 +2,7 @@
 Implements the `Tap`, `Hold`, `Ride`, `Roll`, `Break` note kinds, as well as the `Taps`, `Rides` utility functions for mass-creating notes.
 '''
 
+from level.notes.note import Note
 from level.notes.taps import TapNote as Tap
 from level.notes.holds import HoldNote as Hold
 from level.notes.rides import RideNote as Ride
