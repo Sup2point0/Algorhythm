@@ -29,7 +29,7 @@ class Note(Sprite):
     self.shock = shock
 
   def spawn(self):
-    '''Spawn a note.'''
+    '''Initialise a note with by linking it to a lane.'''
 
     if hasattr(self.lane, "__iter__"):
       self.lane = random.choice(self.lane)
@@ -49,17 +49,22 @@ class Note(Sprite):
   def update(self, fade = True):
     super().show("notes")
 
+    # TODO specialise
     ly = sprites.lines.sprites()[0].y
     self.x = self.lane.x
     self.y = ly - self.speed * (self.hit - level.beat)
     
     if self.y >= screen.y:
       self.pop()
+    ###
+
+    super().position()
+
+  def fade(self):
+    '''Fade note after it passes the hitline.'''
 
     if fade:
       self.surf.set_alpha(255 * (1 - (self.y - ly) / (screen.y - ly)))
-
-    super().position()
 
   def accuracy(self, beat, hit) -> str | None:
     '''Return accuracy of note hit.'''
