@@ -147,7 +147,7 @@ class Track:
     
     ## process level
     if level.started:
-      level.beat = game.level.bpm * (mixer.music.get_pos() - game.level.offset) / 60000
+      level.beat = game.level.bpm * (mixer.music.get_pos() + game.level.offset) / 60000
 
       for action in level.chart.actions:
         if level.beat > action.beat:
