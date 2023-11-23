@@ -103,15 +103,14 @@ class Hint(Sprite, Action):
 
   def update(self):
     if self.anim.tick:
-      self.anim.tick += 1
-      if self.anim.tick > self.dur:  # fade out
+      if level.beat - self.anim.tick > self.dur:  # fade out
         self.anim.alpha.alt(-4)
         if self.anim.alpha.bounded():
           self.kill()
     else:  # fade in
       self.anim.alpha.alt(4)
       if self.anim.alpha.bounded():
-        self.anim.tick = 1
+        self.anim.tick = level.beat
 
     self.surf = py.Surface(screen.size, py.SRCALPHA)
     self.surf.fill([0, 0, 0, self.anim.alpha()])
@@ -123,4 +122,5 @@ class Hint(Sprite, Action):
         self.surf.blit(py.Surface(each.rect.size, py.SRCALPHA), each.rect)
 
     if self.text:
+      self.text.surf.set_alpha(self.anim.alpha())
       self.surf.blit(self.text.surf, self.text.rect)

@@ -19,8 +19,12 @@ tutorial = Chart(
   lanes = 4,
   keys = ["Z", "X", "C", "V"],
   data = [
-    Hint(4, 24,
+    Hint(4, 8,
       Text("Day.hint.1", util.cord(0, 0.8), "Welcome to Algorhythm!"),
+      [Hint.Highlight(*util.cord(0, 0), 100, 100)]
+    ),
+    Hint(16, 8,
+      Text("Day.hint.2", util.cord(0, 0.8), "This is a keyboard-based rhythm game."),
       [Hint.Highlight(*util.cord(0, 0), 100, 100)]
     ),
 
