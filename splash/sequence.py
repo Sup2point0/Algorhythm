@@ -14,8 +14,13 @@ import util
 from splash.text import Text
 
 
-def load():
+def load(skip = False):
   '''Run the game loading sequence.'''
+
+  if skip:  # NOTE pending removal
+    screen.switch = "start"
+    screen.fade = "dark"
+    return
 
   from assets.__toppings__ import flavours
 

@@ -169,9 +169,10 @@ class Track:
           break
 
       for i, action in enumerate(level.data.actions):
+        print(f"iterate {level.data.actions}")
         if level.beat >= action.beat:
-          print(f"activating, beats = {level.beat} > {action.beat}")  # NOTE testing
           action.activate()
+          print(f"activate {level.data.actions}")
           level.data.actions.pop(i)
         else:
           break
