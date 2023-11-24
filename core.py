@@ -270,7 +270,6 @@ class config:
     "name": lambda each: each.track.name,
     "artist": lambda each: each.track.artist,
     "duration": lambda each: each.track.dur,
-    # NOTE brackets needed around lambda?
   }
 
 

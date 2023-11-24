@@ -4,7 +4,7 @@ Implements the `Action` class for triggering level events and the specialised `H
 
 import pygame as py
 
-from core import level, screen, sprites
+from core import level, screen, sprites, config
 from innate.sprite import Sprite
 import util
 
@@ -104,11 +104,11 @@ class Hint(Sprite, Action):
   def update(self):
     if self.anim.tick:
       if level.beat - self.anim.tick > self.dur:  # fade out
-        self.anim.alpha.alt(-4)
+        self.anim.alpha.alt(-config.rate.fade)
         if self.anim.alpha.bounded():
           self.kill()
     else:  # fade in
-      self.anim.alpha.alt(4)
+      self.anim.alpha.alt(config.rate.fade)
       if self.anim.alpha.bounded():
         self.anim.tick = level.beat
 
@@ -122,5 +122,5 @@ class Hint(Sprite, Action):
         self.surf.blit(py.Surface(each.rect.size, py.SRCALPHA), each.rect)
 
     if self.text:
-      self.text.surf.set_alpha(self.anim.alpha())
+      self.text.surf.set_alpha(255 * self.anim.alpha() / self.anim.alpha.upper)
       self.surf.blit(self.text.surf, self.text.rect)
