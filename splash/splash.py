@@ -236,7 +236,6 @@ def load():
       source = lambda: util.setscore(round(level.scored)),
       style = Text.Style(
         size = 69,
-        align = (1, -1),
       ),
       display = Displayed(
         show = {"play"},
@@ -248,10 +247,10 @@ def load():
       source = lambda: str(level.chain),
       style = Text.Style(
         size = 69,
-        align = (0, -1)
       ),
       display = Displayed(
         show = {"play"},
+        align = (0, -1)
       ),
     ),
   ]

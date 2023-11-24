@@ -185,10 +185,10 @@ class ui:
       lock = (255, 255, 255, 128)
 
     class button:
-      idle = (0, 0, 0, 128)
-      hover = (0, 0, 0, 192)
-      click = (0, 0, 0, 255)
-      lock = (0, 0, 0, 64)
+      idle = (0, 0, 0, 96)
+      hover = (32, 64, 128, 96)
+      click = (16, 32, 64, 192)
+      lock = (0, 0, 0, 32)
 
 
 class config:

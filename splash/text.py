@@ -99,4 +99,4 @@ class ActiveText(Text):
   def update(self):
     self.surf, self.rect = Text.render(text = self.source(), style = self.style)
 
-    super().update()
+    super().position()

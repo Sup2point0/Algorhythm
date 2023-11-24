@@ -114,15 +114,13 @@ class Track:
       for i, note in enumerate(level.data.notes):
         if level.beat >= note.born():
           note.spawn()
-          level.data.actions.pop(i)
+          level.data.notes.pop(i)
         else:
           break
 
       for i, action in enumerate(level.data.actions):
-        print(f"iterate {level.data.actions}")
         if level.beat >= action.beat:
           action.activate()
-          print(f"activate {level.data.actions}")
           level.data.actions.pop(i)
         else:
           break

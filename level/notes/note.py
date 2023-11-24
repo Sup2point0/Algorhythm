@@ -75,7 +75,7 @@ class Note(Sprite):
 
     hit = self.hit[0] if hasattr(self.hit, "__iter__") else self.hit
     speed = self.speed or config.difficulties[level.chart.difficulty].speed
-    return hit - self.line() / speed + 1
+    return hit - self.line() / speed - 1
     # leave a little leeway so the note spawns slightly earlier than appearing onscreen
 
   def accuracy(self, beat, hit) -> str | None:
