@@ -1,0 +1,55 @@
+'''
+Implements the `Chart` class for creating levels.
+'''
+
+from core import opt
+
+from level.hitline import Hitline
+from level.lane import Lane
+from level.notes import Note
+from level.action import Action
+
+
+class Chart:
+  '''An Algorhythm level.'''
+
+  def __init__(self,
+    difficulty: int,
+    lanes = 4,
+    keys = opt.keys,
+    data = None,
+  ):  # TODO change initialiser to use lane objects
+    '''Create a chart.
+    
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    | `difficulty` | `int` | Chart difficulty, indexed from the pre-defined game difficulties. |
+    | `lanes` | `int` | Initial number of lanes. |
+    | `keys` | `list[str[upper]]` | Initial lanekeys. |
+    | `data` | `list[Hitline, Note, Action]` | Chart data, in the form of a list of chart objects. |
+    '''
+
+    self.difficulty = difficulty
+    self.lanes = []
+    for i in range(lanes):
+      self.lanes.append(Lane(index = i, key = keys[i]))
+    
+    self.data = data or []
+    self.lines = [Hitline()]
+    self.notes = []
+    self.actions = []
+    
+    for each in data:
+      if isinstance(each, Note):
+        self.notes.append(each)
+      
+      elif isinstance(each, Action):
+        if each.loops:
+          self.actions.extend(each.actions)
+        else:
+          self.actions.append(each)
+      
+      elif isinstance(each, Hitline):
+        self.lines.append(each)
+
+    self.actions.sort(key = lambda action: action.beat)
