@@ -84,8 +84,8 @@ class screen:
   x, y = size
   cx = x / 2
   cy = y / 2
-  size = [x, y]
-  origin = [cx, cy]
+  size = (x, y)
+  origin = (cx, cy)
 
   switch = None
   state = None
@@ -165,7 +165,7 @@ class ui:
 
   class size:
     font = 25
-    button = [300, 60]
+    button = (300, 60)
     
     class select:
       series = [screen.x * 0.6, 120]
@@ -175,16 +175,16 @@ class ui:
     back = [0, 0, 0, 128]
 
     class text:
-      idle = [255, 255, 255, 255]
-      hover = [255, 255, 255, 255]
-      click = [255, 255, 255, 255]
-      lock = [255, 255, 255, 128]
+      idle = (255, 255, 255, 255)
+      hover = (255, 255, 255, 255)
+      click = (255, 255, 255, 255)
+      lock = (255, 255, 255, 128)
 
     class button:
-      idle = [0, 0, 0, 128]
-      hover = [0, 0, 0, 192]
-      click = [0, 0, 0, 255]
-      lock = [0, 0, 0, 64]
+      idle = (0, 0, 0, 128)
+      hover = (0, 0, 0, 192)
+      click = (0, 0, 0, 255)
+      lock = (0, 0, 0, 64)
 
 
 class config:

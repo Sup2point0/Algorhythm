@@ -49,7 +49,7 @@ class main:
   
           ## NOTE testing
           elif key == K_SPACE:
-            print(level.beat); break
+            print(round(level.beat, 3)); break
             global tick, diffs
             now = time()
             diff = now - tick
