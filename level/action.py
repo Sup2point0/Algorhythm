@@ -87,6 +87,7 @@ class Hint(Sprite, Action):
 
     self.beat = beat
     self.dur = dur
+    self.loops = False
     self.text = text
     self.highlights = highlights
 

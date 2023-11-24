@@ -20,7 +20,7 @@ class Hitline(Sprite):
       groups = [sprites.lines]
     )
 
-    self.size = [2, 5]
+    self.size = [0, 0]
 
   def update(self):
     super().show("hitline")

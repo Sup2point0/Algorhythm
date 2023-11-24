@@ -35,9 +35,9 @@ class TapNote(Note):
 
     self.surf = blur.glow(
       size = self.size,
-      dist = 50,
+      dist = 60,
       col = self.col,
-      blur = 40,
+      blur = 20,
     )
 
     py.draw.rect(self.surf,
@@ -50,7 +50,7 @@ class TapNote(Note):
     self.rect = self.surf.get_rect()
 
   def update(self):
-    super().render()
+    super().move()
     super().update()
 
   def pop(self, hit = False) -> str | None:

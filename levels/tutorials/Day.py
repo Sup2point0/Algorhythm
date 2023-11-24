@@ -21,17 +21,17 @@ tutorial = Chart(
   data = [
 
     ## intro
-    Hint(4 * 2, 6,
+    Hint(4 * 1, 6,
       Text("Day.hint.intro.1", util.cord(0, -0.4),
         "Welcome to Algorhythm!"
       ),
     ),
-    Hint(4 * 4, 6,
+    Hint(4 * 3, 6,
       Text("Day.hint.intro.2", util.cord(0, -0.4),
         "This is a keyboard-based rhythm game."
       ),
     ),
-    Hint(4 * 6, 8,
+    Hint(4 * 5, 8,
       Text("Day.hint.intro.3", util.cord(0, -0.4),
         "You can pause the game at any time by pressing ESC or clicking the pause button, in the upper left."
       ), [Hint.Highlight(100, 100, 100, 100)]
