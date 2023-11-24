@@ -1,5 +1,5 @@
 '''
-Implements the `Chart` and `Track` classes for creating levels.
+Implements the `Track` class for creating levels.
 '''
 
 from copy import copy

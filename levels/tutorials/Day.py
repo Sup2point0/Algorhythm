@@ -8,7 +8,7 @@ import util
 
 from splash.text import Text
 
-from level.level import Chart
+from level.chart import Chart
 from level.action import Action, Hint
 from level.notes import Tap, Hold, Ride
 from level.notes import Taps, Rides
