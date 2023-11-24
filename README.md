@@ -10,7 +10,6 @@
 - Update button styles
 
 ### Todo
-- Split `Note` base utility methods into separate `hit`, `kill` methods
 - Rework screen state change to allow animation specification
 - Dynamically spawn sprites
   - Sort list of notes
