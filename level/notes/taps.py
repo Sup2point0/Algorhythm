@@ -55,6 +55,10 @@ class TapNote(Note):
     
     self.rect = self.surf.get_rect()
 
+  def update(self):
+    super().render()
+    super().update()
+
   def pop(self, hit = False) -> str | None:
     '''Delete the note and return accuracy.
     

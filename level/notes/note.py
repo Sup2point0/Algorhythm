@@ -48,10 +48,6 @@ class Note(Sprite):
 
   def update(self):
     super().show("notes")
-
-    if type(self) == type(Note()):
-      self.render()
-
     super().position()
 
   def render(self):

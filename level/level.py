@@ -152,6 +152,8 @@ class Track:
       for action in level.chart.actions:
         if level.beat > action.beat:
           action.activate()
+        else:
+          break
 
     # These updates follow a specific order.
     sprites.lines.update()

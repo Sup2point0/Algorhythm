@@ -41,27 +41,27 @@ tutorial = Chart(
     ),
 
     ## context
-    Hint(16 * 0, 0,
+    Hint(16 * 4.5, 8,
       Text("Day.hint.ctx.", util.cord(0, -0.4),
         "This is the hitline."
       ),
     ),
-    Hint(16 * 0, 0,
+    Hint(16 * 5.5, 8,
       Text("Day.hint.ctx.", util.cord(0, -0.4),
         "These are the lanes, in which notes approach."
       ),
     ),
-    Hint(16 * 0, 0,
+    Hint(16 * 6.5, 8,
       Text("Day.hint.ctx.", util.cord(0, -0.4),
         "Each lane is assigned its own particular key."
       ),
     ),
-    Hint(16 * 0, 0,
+    Hint(16 * 7.5, 8,
       Text("Day.hint.ctx.", util.cord(0, -0.4),
         "For each lane, you’ll press its key to hit notes in that lane."
       ),
     ),
-    Hint(16 * 0, 0,
+    Hint(16 * 8.5, 8,
       Text("Day.hint.ctx.", util.cord(0, -0.4),
         "Let’s take a look at the different kinds of notes."
       ),

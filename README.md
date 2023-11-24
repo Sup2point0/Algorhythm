@@ -10,6 +10,7 @@
 - Update button styles
 
 ### Todo
+- Generate actions when loading level to avoid iteration
 - Rework screen state change to allow animation specification
 - Dynamically spawn sprites
   - Sort list of notes
