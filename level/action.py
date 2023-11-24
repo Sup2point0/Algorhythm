@@ -104,11 +104,11 @@ class Hint(Sprite, Action):
   def update(self):
     if self.anim.tick:
       if level.beat - self.anim.tick > self.dur:  # fade out
-        self.anim.alpha.alt(-config.rate.fade)
+        self.anim.alpha.alt(-config.rate.fade / 2)
         if self.anim.alpha.bounded():
           self.kill()
     else:  # fade in
-      self.anim.alpha.alt(config.rate.fade)
+      self.anim.alpha.alt(config.rate.fade / 2)
       if self.anim.alpha.bounded():
         self.anim.tick = level.beat
 
