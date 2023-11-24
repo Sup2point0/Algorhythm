@@ -158,7 +158,7 @@ class find:
   def sync(file: str):
     '''Find tempo and offset of a soundtrack audio file.'''
 
-    print("syncing")
+    print("syncing")  # NOTE testing
   
     wave, rate = librosa.load(file)
     tempo, beats = librosa.beat.beat_track(y = wave, sr = rate)

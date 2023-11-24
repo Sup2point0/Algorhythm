@@ -44,7 +44,6 @@ class main:
         
         else:
           if key == K_ESCAPE:
-            print(sprites.active.layers())  # NOTE testing
             main.pause()
   
           ## NOTE testing

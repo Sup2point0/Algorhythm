@@ -21,56 +21,56 @@ tutorial = Chart(
   data = [
 
     ## intro
-    Hint(4 * 1, 6,
+    Hint(4 * 2, 6,
       Text("Day.hint.intro.1", util.cord(0, -0.4),
         "Welcome to Algorhythm!"
       ),
     ),
-    Hint(4 * 3, 6,
+    Hint(4 * 4, 6,
       Text("Day.hint.intro.2", util.cord(0, -0.4),
         "This is a keyboard-based rhythm game."
       ),
     ),
-    Hint(4 * 5, 12,
+    Hint(4 * 6, 8,
       Text("Day.hint.intro.3", util.cord(0, -0.4),
         "You can pause the game at any time by pressing ESC or clicking the pause button, in the upper left."
-      )
+      ), [Hint.Highlight(100, 100, 100, 100)]
     ),
-    Hint(4 * 8, 12,
+    Hint(4 * 8, 8,
       Text("Day.hint.intro.4", util.cord(0, -0.4),
         "Everything should be fairly self-explanatory, but let’s run through how the game works!"
-      ), [Hint.Highlight(*util.cord(0, 0), 100, 100)]
+      )
     ),
 
     ## context
-    Hint(4 * 12, 8,
+    Hint(4 * 11, 8,
       Text("Day.hint.ctx.1", util.cord(0, -0.4),
         "This is the hitline."
       ),
     ),
-    Hint(4 * 15, 8,
+    Hint(4 * 14, 8,
       Text("Day.hint.ctx.2", util.cord(0, -0.4),
         "These are the lanes, in which notes approach."
       ),
     ),
-    Hint(4 * 18, 8,
+    Hint(4 * 17, 8,
       Text("Day.hint.ctx.3", util.cord(0, -0.4),
         "Each lane is assigned its own particular key."
       ),
     ),
-    Hint(4 * 21, 8,
+    Hint(4 * 20, 8,
       Text("Day.hint.ctx.4", util.cord(0, -0.4),
         "For each lane, you’ll press its key to hit notes in that lane."
       ),
     ),
-    Hint(4 * 24, 8,
+    Hint(4 * 23, 8,
       Text("Day.hint.ctx.5", util.cord(0, -0.4),
         "Let’s take a look at the different kinds of notes."
       ),
     ),
     
     ## tap notes
-    Hint(4 * 27, 8,
+    Hint(4 * 26, 8,
       Text("Day.hint.tap.1", util.cord(0, -0.4),
         "When a tap note reaches the hitline, press that lane’s key."
       ),
@@ -88,19 +88,10 @@ tutorial = Chart(
       ),
     ),
 
-    *Taps(0, range(4 * 39, 4 * 40)),
-    Tap(4 * 40, lane = 1),
-    Tap(4 * 40 + 1, lane = 1),
-    Tap(4 * 40 + 2, lane = 1),
-    Tap(4 * 40 + 3, lane = 1),
-    Tap(4 * 41, lane = 2),
-    Tap(4 * 41 + 1, lane = 2),
-    Tap(4 * 41 + 2, lane = 2),
-    Tap(4 * 41 + 3, lane = 2),
-    Tap(4 * 42, lane = 3),
-    Tap(4 * 42 + 1, lane = 3),
-    Tap(4 * 42 + 2, lane = 3),
-    Tap(4 * 42 + 3, lane = 3),
+    *Taps(0, range(4 * 38, 4 * 39)),
+    *Taps(1, range(4 * 39, 4 * 40)),
+    *Taps(2, range(4 * 40, 4 * 41)),
+    *Taps(3, range(4 * 41, 4 * 42)),
 
     ## hold notes
     Hint(16 * 12, 8,
