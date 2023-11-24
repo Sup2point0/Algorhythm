@@ -2,7 +2,7 @@
 Implements the `Chart` class for creating levels.
 '''
 
-from core import opt
+from core import config, opt
 
 from level.hitline import Hitline
 from level.lane import Lane
@@ -14,8 +14,8 @@ class Chart:
   '''An Algorhythm level.'''
 
   def __init__(self,
-    difficulty: int,
-    lanes = 4,
+    difficulty,
+    speed = None,
     keys = opt.keys,
     data = None,
   ):  # TODO change initialiser to use lane objects
@@ -30,9 +30,10 @@ class Chart:
     '''
 
     self.difficulty = difficulty
+    self.speed = speed or config.difficulties[difficulty].speed
     self.lanes = []
-    for i in range(lanes):
-      self.lanes.append(Lane(index = i, key = keys[i]))
+    for i, key in enumerate(keys):
+      self.lanes.append(Lane(index = i, key = key))
     
     self.data = data or []
     self.lines = [Hitline()]

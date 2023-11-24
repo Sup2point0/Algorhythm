@@ -11,7 +11,7 @@ from level.notes import Taps, Rides
 
 standard = Chart(
   difficulty = 0,
-  lanes = 4,
+  speed = None,
   data = [
     ...
   ]

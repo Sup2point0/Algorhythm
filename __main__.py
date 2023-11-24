@@ -17,7 +17,7 @@ if __name__ == "__main__":
   from splash import splash, sequence
 
   splash.load()
-  sequence.load()
+  sequence.load(skip = True)
 
   # main loop
   while core.game.state is not None:
