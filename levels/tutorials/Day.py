@@ -14,6 +14,28 @@ from level.notes import Tap, Hold, Ride
 from level.notes import Taps, Rides
 
 
+'''
+This is the hitline.
+These are the lanes, in which notes approach.
+Each lane is assigned its own particular key.
+For each lane, you’ll press its key to hit notes in that lane.
+Let’s take a look at the different kinds of notes.
+——
+When a tap note reaches the hitline, press that lane’s key.
+Hit it precisely to the beat to score a perfect hit.
+When a hold note reaches the hitline, press and hold the lane key until the end of the note.
+Hitting notes builds your chain, and missing notes breaks it.
+——
+When a ride note reaches the hitline, ensure the lane key is already pressed.
+Ride notes do not have to be hit individually, so you can keep the key held down.
+However, it may help to let go at times, to free up fingers.
+——
+Now let’s mix everything together!
+Your final score is determined by your precision and highest chain.
+That’s it for now. Enjoy Algorhythm!
+'''
+
+
 tutorial = Chart(
   difficulty = 0,
   lanes = 4,
