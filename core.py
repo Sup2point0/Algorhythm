@@ -52,7 +52,10 @@ class level:
   '''Level-specific variables.'''
 
   chart = None
-  data = []
+  
+  class data:  # pending processing
+    notes = []
+    actions = []
   
   beat = 0
   tick = 0
@@ -131,6 +134,7 @@ class sprites:
   fade = py.sprite.Group()
   pause = py.sprite.Group()
 
+  # currently processing
   lines = py.sprite.Group()
   lanes = py.sprite.Group()
   notes = py.sprite.Group()

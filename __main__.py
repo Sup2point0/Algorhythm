@@ -4,6 +4,7 @@ Execute this file to run the game!
 
 import sys
 
+# I know it should really be `pg`, but I love `py` too much :P
 import pygame as py
 
 
@@ -18,6 +19,7 @@ if __name__ == "__main__":
   splash.load()
   sequence.load()
 
+  # main loop
   while core.game.state is not None:
     main.events()
     

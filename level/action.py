@@ -12,33 +12,31 @@ import util
 class Action:
   '''An event that can be triggered within a level.'''
 
-  def __init__(self, beat, action, loop = None):
+  def __init__(self, beat, action, loops = False, interval = None):
     '''Create an action event.
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
     | `beat` | `num` | Beat on which event should occur. |
     | `action` | `Callable` | Function called when event occurs. |
-    | `loop` | `int, num` | How many times to loop the event (default is 1), and the gap in beats between each repeat. |
+    | `loop` | `bool` | Whether action loops. |
+    | `interval` | `num` | Beat interval between each loop. |
     '''
 
     self.beat = beat
-    self.activate = self._handler_(action, loop)
-    self.loop = loop or (1, 0)
-    self.looped = 0
+    self.action = self._handler_(action)
 
-  def _handler_(action, loop):
+    self.loops = loops
+    if loops:
+      self.actions = [Action(beat + i * interval, action) for i in range(loops)]
+
+  def _handler_(self, action):
     '''Internal function to wrap a provided action.'''
 
-    def root(self):
+    def root():
       if level.beat > self.beat:
         action()
-        
-        self.looped += 1
-        if self.looped >= self.loop[0]:
-          self.kill()
-        else:
-          self.beat += self.loop[1]
+        self.kill()
 
     return root
 
@@ -65,8 +63,8 @@ class Hint(Sprite, Action):
       self.rect = py.Rect(0, 0, 0, 0)
 
     def update(self):
-      self.rect.width = util.slide(self.rect.width, self.size[0])
-      self.rect.height = util.slide(self.rect.height, self.size[1])
+      self.rect.width = util.slide(self.rect.width, self.size[0], speed = 10)
+      self.rect.height = util.slide(self.rect.height, self.size[1], speed = 10)
       self.rect.center = self.pos
       self.surf = py.Surface(self.rect.size, py.SRCALPHA)
       self.surf.fill([0, 0, 0, 0])

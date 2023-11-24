@@ -15,19 +15,13 @@ from effects.pop import PopEffect
 class TapNote(Note):
   '''A note hit by a pressed key.'''
 
-  def __init__(self, hit, **kwargs):
+  def __init__(self, *args, **kwargs):
     '''Create a tap note.
     
-    | parameter | type | description |
-    | :-------- | :--- | :---------- |
-    | `hit` | `num` | Beat note should be hit on. |
-
-    Other base parameters are inherited from `Note`.
+    All base parameters are inherited from `Note`.
     '''
 
-    super().__init__(**kwargs)
-
-    self.hit = hit
+    super().__init__(*args, **kwargs)
 
     self.size = (
       config.note.size[0] * opt.note.size(),

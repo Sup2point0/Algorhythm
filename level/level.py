@@ -2,6 +2,8 @@
 Implements the `Chart` and `Track` classes for creating levels.
 '''
 
+from copy import copy
+
 import pygame as py
 from pygame import mixer
 
@@ -47,10 +49,17 @@ class Chart:
     for each in data:
       if isinstance(each, Note):
         self.notes.append(each)
+      
       elif isinstance(each, Action):
-        self.actions.append(each)
+        if each.loops:
+          self.actions.extend(each.actions)
+        else:
+          self.actions.append(each)
+      
       elif isinstance(each, Hitline):
         self.lines.append(each)
+
+    self.actions.sort(key = lambda action: action.beat)
 
 
 class Track:
@@ -104,30 +113,32 @@ class Track:
 
     game.level = self
     level.chart = self[difficulty]
+
+    # load level data into shallow copies to avoid altering original list
+    level.data.notes = copy(level.chart.notes)
+    level.data.actions = copy(level.chart.actions)
+
     level.beat = 0
     level.tick = 0
     level.score = 0
     level.scored = 0
     level.hits = 0
     level.perfect = 0
+    level.slips = 0
     level.chain = 0
     level.apex = 0
+
     level.lane.space = config.lane.space
 
     # clear just to be safe
     sprites.lines = py.sprite.Group(*level.chart.lines)
     sprites.lanes = py.sprite.Group(*level.chart.lanes)
+    sprites.notes.empty()
     sprites.actions.empty()
     
-    sprites.notes.empty()  # FIXME
-    for note in level.chart.notes:
-      note.spawn()
-      sprites.notes.add(note)
-    
+    py.key.set_repeat()  # disable keypress repetition when held
     mixer.music.fadeout(1000)
     level.started = False  # only becomes True once music starts
-
-    py.key.set_repeat()  # disable keypress repetition when held
 
   def run(self):
     '''Process and control chart.'''
@@ -149,13 +160,22 @@ class Track:
     if level.started:
       level.beat = game.level.bpm * (mixer.music.get_pos() + game.level.offset) / 60000
 
-      for action in level.chart.actions:
-        if level.beat > action.beat:
-          action.activate()
+      # chart elements are removed from the pending processing lists once processed
+      for i, note in enumerate(level.data.notes):
+        if level.beat >= note.born():
+          note.spawn()
+          level.data.actions.pop(i)
         else:
           break
 
-    # These updates follow a specific order.
+      for i, action in enumerate(level.data.actions):
+        if level.beat >= action.beat:
+          action.activate()
+          level.data.actions.pop(i)
+        else:
+          break
+
+    # these updates follow a specific order
     sprites.lines.update()
     sprites.notes.update()
     sprites.lanes.update()

@@ -12,19 +12,13 @@ from level.notes import Note
 class RideNote(Note):
   '''A note hit by a pressed or held key.'''
 
-  def __init__(self, hit, **kwargs):
+  def __init__(self, *args, **kwargs):
     '''Create a ride note.
-    
-    | parameter | type | description |
-    | :-------- | :--- | :---------- |
-    | `hit` | `num` | Beat note should be hit on. |
 
-    Other base parameters are inherited from `notes.Note`.
+    All base parameters are inherited from `notes.Note`.
     '''
 
-    super().__init__(**kwargs)
-
-    self.hit = hit
+    super().__init__(*args, **kwargs)
 
     self.size = [
       config.note.size[0] * opt.note.size() * 0.75,
