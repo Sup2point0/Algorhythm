@@ -131,32 +131,30 @@ def load():
         typeface = ui.font.title,
         size = 100,
       ),
-      display = Displayed(
-        show = {"settings"},
-      ),
+      display = Displayed(show = {"settings"}),
     ),
     Text("settings.about",
       pos = util.cord(0, -0.25),
       text = f"v{game.version}",
-      display = Displayed(
-        show = {"settings"},
-      )
+      display = Displayed(show = {"settings"})
     ),
     Button("settings.sounds",
-      pos = util.cord(-0.5, 0),
+      pos = util.cord(-0.5, 0.2),
       text = "SOUNDS",
       root = roots.switch.state("settings.sounds"),
-      display = Displayed(
-        show = {"settings"},
-      ),
+      display = Displayed(show = {"settings"}),
     ),
     Button("settings.visuals",
-      pos = util.cord(0.5, 0),
+      pos = util.cord(0.5, 0.2),
       text = "VISUALS",
       root = roots.switch.state("settings.visuals"),
-      display = Displayed(
-        show = {"settings"},
-      ),
+      display = Displayed(show = {"settings"}),
+    ),
+    Button("settings.visuals",
+      pos = util.cord(0, 0.5),
+      text = "CREDITS",
+      root = roots.switch.state("settings.credits"),
+      display = Displayed(show = {"settings"}),
     ),
   ]
   account = [

@@ -16,7 +16,7 @@ from level.notes import Taps, Rides
 
 tutorial = Chart(
   difficulty = 0,
-  speed = 100,
+  speed = 80,
   keys = ["Z", "X", "C", "V"],
   data = [
 
