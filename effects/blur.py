@@ -2,30 +2,30 @@
 Implements the `blur` and `glow` functions for effects involving blurring.
 '''
 
-import pygame as py
+import pygame as pg
 from PIL import Image, ImageFilter
 
 
 def _image_(surf) -> Image.Image:
   '''Internal utility function to convert a pygame Surface to a Pillow image.'''
 
-  return Image.frombytes("RGBA", surf.get_size(), py.image.tostring(surf, "RGBA"))
+  return Image.frombytes("RGBA", surf.get_size(), pg.image.tostring(surf, "RGBA"))
 
-def _blur_(image, blur) -> py.Surface:
+def _blur_(image, blur) -> pg.Surface:
   '''Internal utility function to blur a Pillow image.'''
 
   out = image.filter(ImageFilter.GaussianBlur(blur))
-  out = py.image.fromstring(out.tobytes(), out.size, out.mode)
+  out = pg.image.fromstring(out.tobytes(), out.size, out.mode)
   return out
 
 
-def blur(surf: py.Surface, blur: int) -> py.Surface:
+def blur(surf: pg.Surface, blur: int) -> pg.Surface:
   '''Blur an existing pygame surface.'''
 
   return _blur_(_image_(surf), blur)
 
 
-def glow(size, dist, col, blur: int) -> py.Surface:
+def glow(size, dist, col, blur: int) -> pg.Surface:
   '''Generate a blurred solid colour pygame surface for glow effects.
   
   | parameter | type | description |
@@ -41,8 +41,8 @@ def glow(size, dist, col, blur: int) -> py.Surface:
     round(size[1] + 2 * dist),
   ), (255, 255, 255, 0))
 
-  surf = py.Surface(size)
-  surf.fill(py.Color(col))
+  surf = pg.Surface(size)
+  surf.fill(pg.Color(col))
   image = _image_(surf)
   
   base.paste(image, (dist, dist))

@@ -2,7 +2,7 @@
 Text rendering
 '''
 
-import pygame as py
+import pygame as pg
 from pygame import freetype
 
 from core import ui
@@ -73,7 +73,7 @@ class Text(Element):
     super().position()
 
   @ classmethod
-  def render(cls, text, style = Style()) -> tuple[py.Surface, py.Rect]:
+  def render(cls, text, style = Style()) -> tuple[pg.Surface, pg.Rect]:
     '''Generates a surface and its rect with rendered text.'''
 
     return freetype.Font(f"assets/fonts/{style.typeface}.ttf", style.size).render(text, style.col)

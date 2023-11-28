@@ -4,13 +4,13 @@ Implements the `Sprite` base class for sprite classes to derive from.
 Unsafe to import.
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import screen, sprites
 import util
 
 
-class Sprite(py.sprite.Sprite):
+class Sprite(pg.sprite.Sprite):
   '''Base class from which all game sprites derive, providing inherent attributes, functionality and utility.'''
 
   def __init__(self,
@@ -23,7 +23,7 @@ class Sprite(py.sprite.Sprite):
     | :-------- | :--- | :---------- |
     | `pos` | `num, num` | Coordinates of position of sprite. |
     | `align` | `int, int` | Alignment of sprite in x and y directions, respectively. Can be `-1`, `0`, `1`. |
-    | `groups` | `list[py.sprite.Group]` | Groups to add element to. |
+    | `groups` | `list[pg.sprite.Group]` | Groups to add element to. |
     '''
 
     super().__init__(*groups)
@@ -32,8 +32,8 @@ class Sprite(py.sprite.Sprite):
     self.sx, self.sy = 0, 0
     self.align: tuple[int, int] = align or (0, 0)
 
-    self.surf: py.Surface
-    self.rect: py.Rect
+    self.surf: pg.Surface
+    self.rect: pg.Rect
 
   def show(self, layer: str):
     '''Add sprite to `sprites.active` to render in `layer`.'''

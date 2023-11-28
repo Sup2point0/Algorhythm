@@ -2,7 +2,7 @@
 Implements the `RideNote` class.
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import config, opt
 

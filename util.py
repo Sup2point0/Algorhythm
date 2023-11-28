@@ -6,7 +6,7 @@ import random
 import json
 import colorsys
 
-import pygame as py
+import pygame as pg
 import numpy as np
 import librosa
 
@@ -54,7 +54,7 @@ def slide(var, target, speed = 2):
   # alt = (target - var) / speed
   # return (var + alt) if abs(alt) >= 0.5 else target
 
-def resize(surf, size) -> py.Surface:
+def resize(surf, size) -> pg.Surface:
   '''Resize a surface to a specific size, fitting in as much of the original surface as possible.
 
   | parameter | type | description |
@@ -71,7 +71,7 @@ def resize(surf, size) -> py.Surface:
   else:
     scale = nheight / iheight
 
-  return py.transform.scale_by(surf, scale)
+  return pg.transform.scale_by(surf, scale)
 
 
 ## internal
@@ -146,12 +146,12 @@ class find:
     
     return vars(opt.col)[find.row(key)]
   
-  def asset(*files) -> py.Surface:
+  def asset(*files) -> pg.Surface:
     '''Load an image file to a pygame Surface.'''
 
     for file in files:
       try:
-        return py.image.load(f"assets/{file}")
+        return pg.image.load(f"assets/{file}")
       except:
         pass
 

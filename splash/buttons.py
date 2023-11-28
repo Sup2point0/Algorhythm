@@ -2,7 +2,7 @@
 Implements the `Button` class.
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import ui
 import util
@@ -67,7 +67,7 @@ class Button(Element):
 
   def update(self):
     ## process
-    self.surf = py.Surface(self.style.size, py.SRCALPHA)
+    self.surf = pg.Surface(self.style.size, pg.SRCALPHA)
     self.rect = self.surf.get_rect()
     super().position()
     
@@ -93,9 +93,9 @@ class Button(Element):
       self.anim.col = self.style.cols[interaction]
     
     ## render
-    py.draw.rect(self.surf,
-      color = py.Color(self.anim.col),
-      rect = py.Rect(0, 0, *self.style.size),
+    pg.draw.rect(self.surf,
+      color = pg.Color(self.anim.col),
+      rect = pg.Rect(0, 0, *self.style.size),
       width = 0,
       border_radius = min(self.style.size) // 3,  # FIXME value
     )

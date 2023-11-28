@@ -27,6 +27,6 @@ class Object:
     '''Return copy of object with updated attributes.'''
 
     copy = deepcopy(self)
-    copy.update(**attrs)
+    copg.update(**attrs)
     
     return copy

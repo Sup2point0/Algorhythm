@@ -2,7 +2,7 @@
 Implements the `Element` and `Element.Style` base classes for other splash sprites to derive from, and defines the `Displayed` class for configuring how sprites are displayed.
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import screen, sprites
 from innate import Object
@@ -105,9 +105,9 @@ class Element(Sprite):
     if self.display.lock():
       return "lock"
 
-    down = py.mouse.get_pressed()[0]
+    down = pg.mouse.get_pressed()[0]
 
-    if self.rect.collidepoint(py.mouse.get_pos()):
+    if self.rect.collidepoint(pg.mouse.get_pos()):
       if not down:  # hovered
         if self.click:  # clicked and released
           if root:

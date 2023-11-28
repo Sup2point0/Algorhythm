@@ -14,7 +14,7 @@ import hashlib
 import colorsys
 from enum import Enum
 
-import pygame as py
+import pygame as pg
 from pygame.locals import *
 from PIL import ...
 

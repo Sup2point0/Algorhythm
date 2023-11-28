@@ -4,7 +4,7 @@ Execute this file to run the game!
 
 import sys
 
-import pygame as py
+import pygame as pg
 
 
 if __name__ == "__main__":
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     
     main.render()
 
-  py.quit()
+  pg.quit()
 
   # keep window open in IDLE for testing
   if "idlelib.run" not in sys.modules:

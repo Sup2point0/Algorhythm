@@ -2,7 +2,7 @@
 Implements the `TapNote` note kind.
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import level, config, opt
 
@@ -40,7 +40,7 @@ class TapNote(Note):
       blur = 20,
     )
 
-    py.draw.rect(self.surf,
+    pg.draw.rect(self.surf,
       color = (255, 255, 255, 255),
       rect = (50, 50, *self.size),
       width = 0,

@@ -8,7 +8,7 @@ This module centralises the functionality of various sprites, as well as providi
 
 import random
 
-import pygame as py
+import pygame as pg
 
 from core import game, screen, sprites, config
 import util

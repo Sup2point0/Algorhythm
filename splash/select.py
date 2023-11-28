@@ -2,7 +2,7 @@
 Implements the `SeriesSelect` and `TrackSelect` classes for selecting series or tracks.
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import screen, sprites, ui, opt
 from innate import Val
@@ -58,17 +58,17 @@ class Select(Element):
     self.cover = util.resize(surf, size).convert_alpha()
     self.locktext = locktext
   
-  def _centre_(self, surf, rect) -> py.Rect:
+  def _centre_(self, surf, rect) -> pg.Rect:
     '''Internal utility method to get centered area of a pygame Surface.'''
 
-    return py.Rect(
+    return pg.Rect(
       (surf.get_width() - rect.width) / 2,
       (surf.get_height() - rect.height) / 2,
       *self.size
     )
 
   def update(self):
-    self.surf = py.Surface(self.size, py.SRCALPHA)
+    self.surf = pg.Surface(self.size, pg.SRCALPHA)
     self.rect = self.surf.get_rect()
     
     self.position()
@@ -82,13 +82,13 @@ class Select(Element):
   def render(self):
     '''Rounds the corners of the button.'''
 
-    surf = py.Surface(self.size, py.SRCALPHA)
-    py.draw.rect(surf,
+    surf = pg.Surface(self.size, pg.SRCALPHA)
+    pg.draw.rect(surf,
       color = [255, 255, 255],
       rect = (0, 0, *self.size),
       border_radius = round(min(self.size) * ui.radius / 2)
     )
-    self.surf.blit(surf, (0, 0), special_flags = py.BLEND_RGBA_MIN)
+    self.surf.blit(surf, (0, 0), special_flags = pg.BLEND_RGBA_MIN)
 
 
 class SeriesSelect(Select):
@@ -140,7 +140,7 @@ class SeriesSelect(Select):
     self.anim.blur = Val("upper", lower = min(blurs), upper = max(blurs))
     self.anim.alpha = util.Alpha("upper")
 
-    self.anim.shade = py.Surface(self.size)
+    self.anim.shade = pg.Surface(self.size)
     self.anim.shade.fill(0x00000)
     self.anim.cover = None
     self.anim.covers = {**{

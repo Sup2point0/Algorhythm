@@ -2,7 +2,7 @@
 Implements the `LaneKey` class for displaying keys for each lane.
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import level, screen, config
 from innate import Val

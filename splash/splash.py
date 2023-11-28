@@ -2,7 +2,7 @@
 Integrates all the different splash sprite classes into the graphical user interface.
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import game, level, screen, sprites, ui
 import util

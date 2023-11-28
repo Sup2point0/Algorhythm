@@ -4,7 +4,7 @@ Implements the `Track` class for creating levels.
 
 from copy import copy
 
-import pygame as py
+import pygame as pg
 from pygame import mixer
 
 from core import game, level, screen, sprites, config
@@ -81,12 +81,12 @@ class Track:
     level.lane.space = config.lane.space
 
     # clear just to be safe
-    sprites.lines = py.sprite.Group(*level.chart.lines)
-    sprites.lanes = py.sprite.Group(*level.chart.lanes)
+    sprites.lines = pg.sprite.Group(*level.chart.lines)
+    sprites.lanes = pg.sprite.Group(*level.chart.lanes)
     sprites.notes.empty()
     sprites.actions.empty()
     
-    py.key.set_repeat()  # disable keypress repetition when held
+    pg.key.set_repeat()  # disable keypress repetition when held
     mixer.music.fadeout(1000)
     level.started = False  # only becomes True once music starts
 
@@ -151,4 +151,4 @@ class Track:
     game.level = None
     screen.switch = "score"
 
-    py.key.set_repeat(config.rate.keys)
+    pg.key.set_repeat(config.rate.keys)

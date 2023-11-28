@@ -2,7 +2,7 @@
 Implements the `RollNote` class.
 '''
 
-import pygame as py
+import pygame as pg
 
 from level.notes import Note
 

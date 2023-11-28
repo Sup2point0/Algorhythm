@@ -2,7 +2,7 @@
 Implements the `Action` class for triggering level events and the specialised `Hint` class for tutorials.
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import level, screen, sprites, config
 from innate.sprite import Sprite
@@ -56,17 +56,17 @@ class Hint(Sprite, Action):
       | `width`, `height` | `num, num` | Dimensions of area. |
       '''
 
-      rect = py.Rect(*highlight)
+      rect = pg.Rect(*highlight)
       self.pos = (rect.x, rect.y)
       self.size = rect.size
 
-      self.rect = py.Rect(0, 0, 0, 0)
+      self.rect = pg.Rect(0, 0, 0, 0)
 
     def update(self):
       self.rect.width = util.slide(self.rect.width, self.size[0], speed = 10)
       self.rect.height = util.slide(self.rect.height, self.size[1], speed = 10)
       self.rect.center = self.pos
-      self.surf = py.Surface(self.rect.size, py.SRCALPHA)
+      self.surf = pg.Surface(self.rect.size, pg.SRCALPHA)
       self.surf.fill([0, 0, 0, 0])
 
 
@@ -115,7 +115,7 @@ class Hint(Sprite, Action):
       if self.anim.alpha.bounded():
         self.anim.tick = level.beat
 
-    self.surf = py.Surface(screen.size, py.SRCALPHA)
+    self.surf = pg.Surface(screen.size, pg.SRCALPHA)
     self.rect = self.surf.get_rect()
     if self.dark:
       self.surf.fill([0, 0, 0, self.anim.alpha()])

@@ -4,7 +4,7 @@ Implements the `Lane` class.
 
 import random
 
-import pygame as py
+import pygame as pg
 from pygame.locals import *
 
 from core import game, level, screen, sprites, config, opt
@@ -28,7 +28,7 @@ class Lane(Sprite):
     self.col = util.find.col(self.key)
     self.size = [config.lane.width, screen.y - config.lane.space / 2]
     
-    self.notes = py.sprite.Group()
+    self.notes = pg.sprite.Group()
     self.lanekey = LaneKey(self)
 
     class anim:
@@ -60,12 +60,12 @@ class Lane(Sprite):
     )))
 
     ## render
-    self.surf = py.Surface(self.size, py.SRCALPHA)
+    self.surf = pg.Surface(self.size, pg.SRCALPHA)
     radius = round(config.lane.radius * (self.anim.size[0] / self.size[0]))
-    py.draw.rect(
+    pg.draw.rect(
       surface = self.surf,
-      color = py.Color(self.col),
-      rect = py.Rect(0, 0, *self.anim.size),
+      color = pg.Color(self.col),
+      rect = pg.Rect(0, 0, *self.anim.size),
       width = 0,
       border_bottom_left_radius = radius,
       border_bottom_right_radius = radius,

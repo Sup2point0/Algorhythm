@@ -2,7 +2,7 @@
 Implements the `Asset` class, for image sprites.
 '''
 
-import pygame as py
+import pygame as pg
 
 import util
 
@@ -35,15 +35,15 @@ class Asset(Element):
 
     super().__init__(id, pos, display = display)
 
-    self.surf = py.image.load(f"assets/{image}")
+    self.surf = pg.image.load(f"assets/{image}")
     if size:
-      self.surf = py.transform.scale(self.surf, size)
+      self.surf = pg.transform.scale(self.surf, size)
     if blur:
       self.surf = effects.blur.blur(self.surf, blur)
     self.surf = self.surf.convert()
 
     if dark is not None:
-      self.cover = py.Surface(self.surf.get_size())
+      self.cover = pg.Surface(self.surf.get_size())
       self.cover.fill(0x000000)
       self.cover.set_alpha(util.Alpha(dark)())
       self.surf.blit(self.cover, (0, 0))

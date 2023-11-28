@@ -2,7 +2,7 @@
 Implements the `HoldNote` class.
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import level, config
 
@@ -40,7 +40,7 @@ class HoldNote(Note):
           self.slipped = True
     
     else:
-      keys = py.key.get_pressed()
+      keys = pg.key.get_pressed()
       key = config.keys[self.lane.key]
       if not keys[key]:
         self.poptick += 1

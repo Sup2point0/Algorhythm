@@ -3,7 +3,7 @@ Algorhythm
 A keyboard-based rhythm game made in pygame!
 '''
 
-import pygame as py
+import pygame as pg
 from pygame.locals import *
 
 from core import game, level, screen, sprites, config, opt
@@ -26,7 +26,7 @@ class main:
     Events for each frame are stored in the global `game.events`, for all sprites to access and handle accordingly.
     '''
 
-    game.events = py.event.get()
+    game.events = pg.event.get()
     
     for event in game.events:
       if event.type == QUIT:
@@ -115,7 +115,7 @@ class main:
       game.state -= 1
       if game.state < 1:
         game.state = True
-        py.mixer.music.unpause()
+        pg.mixer.music.unpause()
 
     sprites.fade.update()
     sprites.pause.update()
@@ -126,7 +126,7 @@ class main:
     game.pulse.tick(opt.framerate())
     screen.display.fill([24, 48, 96, 255])
     sprites.active.draw(screen.display)
-    py.display.flip()
+    pg.display.flip()
 
   def pause():
     '''Pause or unpause the game.'''
@@ -134,6 +134,6 @@ class main:
     if game.level:
       if game.state:
         game.state = False
-        py.mixer.music.pause()
+        pg.mixer.music.pause()
       else:
         game.state = round(256 / config.rate.fade) + 1

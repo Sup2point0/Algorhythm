@@ -2,7 +2,7 @@
 Note hit effects
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import sprites, config, opt
 from innate.sprite import Sprite
@@ -53,17 +53,17 @@ class PopEffect(Sprite):
     self.anim.boop = util.slide(self.anim.boop, self.anim.poof, speed = 2)
 
     ## render
-    self.surf = py.Surface([self.size * 2] * 2, py.SRCALPHA)
+    self.surf = pg.Surface([self.size * 2] * 2, pg.SRCALPHA)
     self.rect = self.surf.get_rect()
     self.rect.center = self.pos
-    py.draw.circle(
+    pg.draw.circle(
       surface = self.surf,
       color = self.col[:3] + [self.anim.alpha.value],
       center = [self.size] * 2,
       radius = self.anim.pop,
       width = 0,
     )
-    py.draw.circle(
+    pg.draw.circle(
       surface = self.surf,
       color = self.col[:3] + [self.anim.alpha.value],
       center = [self.size] * 2,

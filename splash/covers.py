@@ -2,7 +2,7 @@
 Implements the `Cover` class for screen transitions.
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import screen, sprites
 from innate.sprite import Sprite
@@ -26,8 +26,8 @@ class Cover(Sprite):
     self.alpha = alpha if isinstance(alpha, util.Alpha) else util.Alpha(alpha)
     self.root = root
 
-    self.surf = py.Surface(screen.size)
-    self.surf.fill(py.Color(0x000000ff))
+    self.surf = pg.Surface(screen.size)
+    self.surf.fill(pg.Color(0x000000ff))
     self.rect = self.surf.get_rect()
 
   def update(self):

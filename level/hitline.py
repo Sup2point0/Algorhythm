@@ -2,7 +2,7 @@
 Hitline
 '''
 
-import pygame as py
+import pygame as pg
 
 from core import level, screen, sprites, config
 from innate.sprite import Sprite
@@ -28,7 +28,7 @@ class Hitline(Sprite):
     if level.tick > 30:
       self.size[0] = util.slide(self.size[0], screen.x, 10)
     
-    self.surf = py.Surface(self.size)
+    self.surf = pg.Surface(self.size)
     self.surf.fill(0xffffff)
     self.rect = self.surf.get_rect()
 

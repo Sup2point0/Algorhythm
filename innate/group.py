@@ -2,7 +2,7 @@
 Layered pygame sprite group
 '''
 
-import pygame as py
+import pygame as pg
 
 
 class LayeredGroup:
@@ -14,7 +14,7 @@ class LayeredGroup:
   def __init__(self, layers = 1):
     '''Create a group with a number of layers.'''
 
-    self.groups = [py.sprite.Group() for i in range(layers)]
+    self.groups = [pg.sprite.Group() for i in range(layers)]
 
   def add(self, *sprites, layer: int = None):
     '''Add sprites to a layer of the group.
@@ -27,7 +27,7 @@ class LayeredGroup:
     
     if layer >= self.layers:
       while layer >= self.layers:
-        self.groups.append(py.sprite.Group())
+        self.groups.append(pg.sprite.Group())
 
     self.groups[layer].add(sprites)
 
@@ -50,9 +50,9 @@ class LayeredGroup:
     '''
 
     if layer is None:
-      self.groups.append(py.sprite.Group())
+      self.groups.append(pg.sprite.Group())
     else:
-      self.groups.insert(layer, py.sprite.Group())
+      self.groups.insert(layer, pg.sprite.Group())
 
   def reduce(self):
     '''Delete all empty layers.'''

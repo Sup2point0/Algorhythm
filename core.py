@@ -2,7 +2,7 @@
 Manages global variables and constants for all modules to access.
 '''
 
-import pygame as py
+import pygame as pg
 
 # This module is imported by almost every file. As such,
 # it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
@@ -12,7 +12,7 @@ from innate.innate import Difficulty, Rank
 from effects.shake import Shake
 
 
-py.init()
+pg.init()
 
 
 ## globals
@@ -43,7 +43,7 @@ class game:
 
   events = []  # tracks events in frame
   keys = []  # tracks current pressed keys
-  pulse = py.time.Clock()  # game timer
+  pulse = pg.time.Clock()  # game timer
 
   series = ["tutorials", "origins", "xenos", "decode", "special"]
 
@@ -81,8 +81,8 @@ class screen:
   When `screen.switch` is set, `screen.state` is updated to that at the start of the next frame (to avoid conflicting screen state processing within the same frame). While fading out, `screen.fade` becomes `'out'`, freezing sprites from updating. Once the screen entirely blacks out, `screen.fade` briefly becomes `'dark'`. In this time window (where the player cannot see anything), sprites update again, changing the rendered screen.
   '''
 
-  size = py.display.get_desktop_sizes()[0]
-  display = py.display.set_mode(size, py.FULLSCREEN)
+  size = pg.display.get_desktop_sizes()[0]
+  display = pg.display.set_mode(size, pg.FULLSCREEN)
 
   x, y = size
   cx = x / 2
@@ -131,17 +131,17 @@ class screen:
 class sprites:
   '''Sprite groups.'''
 
-  fade = py.sprite.Group()
-  pause = py.sprite.Group()
+  fade = pg.sprite.Group()
+  pause = pg.sprite.Group()
 
   # currently processing
-  lines = py.sprite.Group()
-  lanes = py.sprite.Group()
-  notes = py.sprite.Group()
-  actions = py.sprite.Group()
-  effects = py.sprite.Group()
+  lines = pg.sprite.Group()
+  lanes = pg.sprite.Group()
+  notes = pg.sprite.Group()
+  actions = pg.sprite.Group()
+  effects = pg.sprite.Group()
 
-  active = py.sprite.LayeredUpdates()
+  active = pg.sprite.LayeredUpdates()
   active.layer = {
     "fade": 21,
     "overlay": 20,
@@ -155,7 +155,7 @@ class sprites:
     "lanes": 4,
     "backdrop": 1,
   }
-  splash = {each: py.sprite.Group() for each in screen.states}
+  splash = {each: pg.sprite.Group() for each in screen.states}
   splash["select.tracks"] = []
 
 
@@ -241,7 +241,7 @@ class config:
   class keys:
     def _auto_(keys, *, upper = False):
       return {
-        key.upper(): vars(py)[
+        key.upper(): vars(pg)[
           f"K_{key.upper() if upper else key.lower()}"
         ] for key in keys
       }
