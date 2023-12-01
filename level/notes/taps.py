@@ -18,7 +18,7 @@ class TapNote(Note):
   def __init__(self, *args, **kwargs):
     '''Create a tap note.
     
-    All base parameters are inherited from `Note`.
+    All base parameters are inherited from `notes.Note`.
     '''
 
     super().__init__(*args, **kwargs)
