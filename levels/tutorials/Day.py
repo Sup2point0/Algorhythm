@@ -21,29 +21,29 @@ tutorial = Chart(
   data = [
 
     ## intro
-    Hint(4 * 1, 6,
+    Hint(4 * 1, 8,
       Text("Day.hint.intro.1", util.cord(0, -0.4),
         "Welcome to Algorhythm!"
       ),
     ),
-    Hint(4 * 3, 6,
+    Hint(4 * 3.5, 8,
       Text("Day.hint.intro.2", util.cord(0, -0.4),
         "This is a keyboard-based rhythm game."
       ),
     ),
-    Hint(4 * 5, 8,
+    Hint(4 * 6, 8,
       Text("Day.hint.intro.3", util.cord(0, -0.4),
         "You can pause the game at any time by pressing ESC or clicking the pause button, in the upper left."
       ), [Hint.Highlight(100, 100, 100, 100)]
     ),
-    Hint(4 * 8, 8,
+    Hint(4 * 8.5, 8,
       Text("Day.hint.intro.4", util.cord(0, -0.4),
         "Everything should be fairly self-explanatory, but let’s run through how the game works!"
       )
     ),
 
     ## context
-    Hint(4 * 11, 8,
+    Hint(4 * 11.5, 6,
       Text("Day.hint.ctx.1", util.cord(0, -0.4),
         "This is the hitline."
       ),
@@ -53,17 +53,17 @@ tutorial = Chart(
         "These are the lanes, in which notes approach."
       ),
     ),
-    Hint(4 * 17, 8,
+    Hint(4 * 16.5, 8,
       Text("Day.hint.ctx.3", util.cord(0, -0.4),
         "Each lane is assigned its own particular key."
       ),
     ),
-    Hint(4 * 20, 8,
+    Hint(4 * 19, 8,
       Text("Day.hint.ctx.4", util.cord(0, -0.4),
         "For each lane, you’ll press its key to hit notes in that lane."
       ),
     ),
-    Hint(4 * 23, 8,
+    Hint(4 * 21.5, 8,
       Text("Day.hint.ctx.5", util.cord(0, -0.4),
         "Let’s take a look at the different kinds of notes."
       ),
@@ -82,7 +82,7 @@ tutorial = Chart(
     Tap(4 * 34, lane = 1),
     Tap(4 * 35, lane = 2),
 
-    Hint(16 * 10, 8,
+    Hint(4 * 36, 8,
       Text("Day.hint.tap.2", util.cord(0, -0.4),
         "Hit it precisely to the beat to score a perfect hit."
       ),
@@ -94,47 +94,47 @@ tutorial = Chart(
     *Taps(3, range(4 * 41, 4 * 42)),
 
     ## hold notes
-    Hint(16 * 12, 8,
+    Hint(4 * 42, 8,
       Text("Day.hint.hold.1", util.cord(0, -0.4),
         "When a hold note reaches the hitline, press and hold the lane key until the end of the note."
       ),
     ),
 
-    Hint(16 * 0, 0,
+    Hint(4 * 51, 8,
       Text("Day.hint.hold.2", util.cord(0, -0.4),
         "Hitting notes builds your chain, and missing notes breaks it."
       ),
     ),
     
     ## ride notes
-    Hint(16 * 0, 0,
+    Hint(4 * 60, 8,
       Text("Day.hint.ride.1", util.cord(0, -0.4),
         "When a ride note reaches the hitline, ensure the lane key is already pressed."
       ),
     ),
-    Hint(16 * 0, 0,
+    Hint(4 * 63, 8,
       Text("Day.hint.ride.2", util.cord(0, -0.4),
         "Ride notes do not have to be hit individually, so you can keep the key held down."
       ),
     ),
-    Hint(16 * 0, 0,
+    Hint(4 * 66, 8,
       Text("Day.hint.ride.3", util.cord(0, -0.4),
         "However, it may help to let go at times, to free up fingers."
       ),
     ),
     
     ## finish
-    Hint(16 * 0, 0,
+    Hint(4 * 75, 6,
       Text("Day.hint.final.1", util.cord(0, -0.4),
         "Now let’s mix everything together!"
       ),
     ),
-    Hint(16 * 0, 0,
+    Hint(4 * 88, 8,
       Text("Day.hint.final.2", util.cord(0, -0.4),
         "Your final score is determined by your precision and highest chain."
       ),
     ),
-    Hint(16 * 0, 0,
+    Hint(4 * 92, 8,
       Text("Day.hint.final.3", util.cord(0, -0.4),
         "That’s it for now. Enjoy Algorhythm!"
       ),

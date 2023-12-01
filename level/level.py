@@ -151,4 +151,4 @@ class Track:
     game.level = None
     screen.switch = "score"
 
-    pg.key.set_repeat(config.rate.keys)
+    pg.key.set_repeat(config.rate.key)

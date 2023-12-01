@@ -70,7 +70,7 @@ class Hint(Sprite, Action):
       self.surf.fill([0, 0, 0, 0])
 
 
-  def __init__(self, beat, dur, text = None, highlights = None, dark = True):
+  def __init__(self, beat, dur, text = None, highlights = None):
     '''Create a level hint.
 
     | parameter | type | description |
@@ -79,7 +79,6 @@ class Hint(Sprite, Action):
     | `dur` | `int` | Duration (in ticks) to display hint. |
     | `text` | `splash.Text` | Text element to render on darkened overlay. |
     | `highlights` | `list[Hint.Highlight]` | Part(s) of screen to highlight. |
-    | `dark` | `bool` | Whether to display a dark overlay. |
 
     Although this class does not utilise any functionality from `Action`, it needs to inherit from it to be detected and activated when the chart is processed.
     '''
@@ -91,7 +90,6 @@ class Hint(Sprite, Action):
     self.loops = False
     self.text = text
     self.highlights = highlights
-    self.dark = dark
 
     class anim:
       tick = 0
@@ -117,8 +115,7 @@ class Hint(Sprite, Action):
 
     self.surf = pg.Surface(screen.size, pg.SRCALPHA)
     self.rect = self.surf.get_rect()
-    if self.dark:
-      self.surf.fill([0, 0, 0, self.anim.alpha()])
+    self.surf.fill([0, 0, 0, self.anim.alpha()])
 
     if self.highlights:
       if level.beat - self.anim.tick > 1:
