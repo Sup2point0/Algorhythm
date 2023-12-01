@@ -62,9 +62,8 @@ class Lane(Sprite):
     ## render
     self.surf = pg.Surface(self.size, pg.SRCALPHA)
     radius = round(config.lane.radius * (self.anim.size[0] / self.size[0]))
-    pg.draw.rect(
-      surface = self.surf,
-      color = pg.Color(self.col),
+    pg.draw.rect(self.surf,
+      color = self.col,
       rect = pg.Rect(0, 0, *self.anim.size),
       width = 0,
       border_bottom_left_radius = radius,

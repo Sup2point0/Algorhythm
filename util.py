@@ -47,7 +47,7 @@ def root(rect, x = None, y = None, *, align = (0, 0)):
     (screen.cy if y is None else y) - rect.height * (align[1] + 1) / 2
   )
 
-def slide(var, target, speed = 2):
+def slide(var, target, speed = 2):  # TODO change speed to decimal scalar
   '''Return variable altered partially towards target. Used for smooth motion.'''
 
   return var + (target - var) / speed

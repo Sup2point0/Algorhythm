@@ -4,6 +4,7 @@ Sup#2.0
 Standard Tutorial
 '''
 
+from core import screen, config
 import util
 
 from splash.text import Text
@@ -34,7 +35,7 @@ tutorial = Chart(
     Hint(4 * 6, 8,
       Text("Day.hint.intro.3", util.cord(0, -0.4),
         "You can pause the game at any time by pressing ESC or clicking the pause button, in the upper left."
-      ), [Hint.Highlight(100, 100, 100, 100)]
+      ), [Hint.Highlight(150, 150, 200, 200)]
     ),
     Hint(4 * 8.5, 8,
       Text("Day.hint.intro.4", util.cord(0, -0.4),
@@ -46,17 +47,17 @@ tutorial = Chart(
     Hint(4 * 11.5, 6,
       Text("Day.hint.ctx.1", util.cord(0, -0.4),
         "This is the hitline."
-      ),
+      ), [Hint.Highlight(screen.cx, screen.y - config.lane.space * 4, screen.x, 50)]
     ),
     Hint(4 * 14, 8,
       Text("Day.hint.ctx.2", util.cord(0, -0.4),
-        "These are the lanes, in which notes approach."
-      ),
+        "These are the lanes."
+      ), [Hint.Highlight(*screen.origin, config.lane.width * 4 + config.lane.space * 6, screen.y)]
     ),
     Hint(4 * 16.5, 8,
       Text("Day.hint.ctx.3", util.cord(0, -0.4),
-        "Each lane is assigned its own particular key."
-      ),
+        "Each lane has its own key."
+      ), [Hint.Highlight(screen.cx, screen.y - config.lane.space * 2, config.lane.width * 4 + config.lane.space * 6, 100)]
     ),
     Hint(4 * 19, 8,
       Text("Day.hint.ctx.4", util.cord(0, -0.4),
@@ -73,7 +74,10 @@ tutorial = Chart(
     Hint(4 * 26, 8,
       Text("Day.hint.tap.1", util.cord(0, -0.4),
         "When a tap note reaches the hitline, press that lane’s key."
-      ),
+      ), [Hint.Highlight(
+        screen.cx - (config.lane.space + config.lane.width) / 2, screen.cy,
+        config.lane.width + config.lane.space * 2, screen.y
+      )]
     ),
 
     Tap(4 * 28, lane = 1),
