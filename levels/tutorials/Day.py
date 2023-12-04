@@ -27,44 +27,39 @@ tutorial = Chart(
         "Welcome to Algorhythm!"
       ),
     ),
-    Hint(4 * 3.5, 8,
+    Hint(4 * 4, 8,
       Text("Day.hint.intro.2", util.cord(0, -0.4),
         "This is a keyboard-based rhythm game."
       ),
     ),
-    Hint(4 * 6, 8,
+    Hint(4 * 7, 8,
       Text("Day.hint.intro.3", util.cord(0, -0.4),
         "You can pause the game at any time by pressing ESC or clicking the pause button, in the upper left."
       ), [Hint.Highlight(150, 150, 200, 200)]
     ),
-    Hint(4 * 8.5, 8,
+    Hint(4 * 10, 8,
       Text("Day.hint.intro.4", util.cord(0, -0.4),
         "Everything should be fairly self-explanatory, but let’s run through how the game works!"
       )
     ),
 
     ## context
-    Hint(4 * 11.5, 6,
+    Hint(4 * 13, 6,
       Text("Day.hint.ctx.1", util.cord(0, -0.4),
         "This is the hitline."
       ), [Hint.Highlight(screen.cx, screen.y - config.lane.space * 4, screen.x, 50)]
     ),
-    Hint(4 * 14, 8,
+    Hint(4 * 16, 8,
       Text("Day.hint.ctx.2", util.cord(0, -0.4),
         "These are the lanes."
       ), [Hint.Highlight(*screen.origin, config.lane.width * 4 + config.lane.space * 6, screen.y)]
     ),
-    Hint(4 * 16.5, 8,
+    Hint(4 * 19, 8,
       Text("Day.hint.ctx.3", util.cord(0, -0.4),
         "Each lane has its own key."
       ), [Hint.Highlight(screen.cx, screen.y - config.lane.space * 2, config.lane.width * 4 + config.lane.space * 6, 100)]
     ),
-    Hint(4 * 19, 8,
-      Text("Day.hint.ctx.4", util.cord(0, -0.4),
-        "For each lane, you’ll press its key to hit notes in that lane."
-      ),
-    ),
-    Hint(4 * 21.5, 8,
+    Hint(4 * 22, 8,
       Text("Day.hint.ctx.5", util.cord(0, -0.4),
         "Let’s take a look at the different kinds of notes."
       ),
