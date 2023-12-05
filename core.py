@@ -190,6 +190,9 @@ class ui:
       click = (16, 32, 64, 192)
       lock = (0, 0, 0, 32)
 
+  class space:
+    text = 50
+
 
 class config:
   '''Internal non-alterable settings.'''

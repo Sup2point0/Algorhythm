@@ -1,5 +1,5 @@
 '''
-Text rendering
+Implements the `Text`, `Textbox`, `ActiveText` classes for displaying text.
 '''
 
 import pygame as pg
@@ -69,7 +69,7 @@ class Text(Element):
     self.text = text
     self.style = style or Text.Style()
     
-    self.surf, self.rect = Text.render(text = self.text, style = self.style)
+    self.surf, self.rect = Text.render(self.text, self.style)
     super().position()
 
   @ classmethod
@@ -79,24 +79,90 @@ class Text(Element):
     return freetype.Font(f"assets/fonts/{style.typeface}.ttf", style.size).render(text, style.col)
 
 
-class ActiveText(Text):
-  '''A dynamic text element that can change the text it displays.'''
+class Textbox(Element):
+  '''A block of text spanning multiple lines.'''
 
-  def __init__(self, id, pos, source, *args, **kwargs):
+  class Style(Text.Style):
+    '''A textbox style.'''
+
+    def __init__(self, *args, **kwargs):
+      '''Create a textbox style.
+    
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    '''
+
+    super().__init__(*args, **kwargs)
+
+    self.space = kwargs.get("space", ui.space.text)
+
+
+  def __init__(self, id, pos, text, style = None, display = None):
+    '''Create a text box.
+    
+    | parameter | type | description |
+    | :-------- | :--- | :---------- |
+    '''
+
+    super().__init__(id, pos, display = display)
+
+    self.text = text
+    self.style = style or Textbox.Style()
+
+    self._render_()
+    super.position()
+
+  def _render_(self):
+    self.surfs = [Text.Render(each, self.style) for each in self.text]
+
+    # Double iteration is painful, but I can’t (yet) see a better way to do it.
+    width = 0
+    height = 0
+    for surf, rect in self.surfs:
+      w, h = surf.get_size()
+      height += h + self.style.space
+      if w > width:
+        width = w
+    self.surf = py.Surface(width, height)
+
+    dy = 0
+    for surf, rect in self.surfs:
+      self.surf.blit(surf, (util.root(rect,
+        x = width / 2,
+        y = dy + rect.height / 2
+      )))
+      dy += rect.height + self.style.space
+
+    self.rect = self.surf.get_rect()
+
+
+class ActiveText(Text):
+  '''A dynamic text element that can change the text it displays or where it is positioned.'''
+
+  def __init__(self, id, pos = None, place = None, text = None, source = None, *args, **kwargs):
     '''Create a dynamic text element.
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
+    | `place` | `Callable` | Function called to fetch text position. |
     | `source` | `Callable` | Function called to fetch displayed text. |
 
     Other base parameters are inherited from `splash.Text` and `splash.Element`.
     '''
 
+    self.place = place
     self.source = source
 
-    super().__init__(id, pos, text = None, *args, **kwargs)
+    super().__init__(id,
+      pos = place() if place else pos,
+      text = source() if source else text,
+      *args, **kwargs
+    )
 
   def update(self):
-    self.surf, self.rect = Text.render(text = self.source(), style = self.style)
+    if self.place:
+      self.x, self.y = self.place()
+    if self.source:
+      self.surf, self.rect = Text.render(text = self.source(), style = self.style)
 
     super().position()
