@@ -269,7 +269,7 @@ class config:
 
   class effect:
     size = 40
-    speed = 8
+    speed = 4
 
   sorts = {
     "default": lambda each: each.id,

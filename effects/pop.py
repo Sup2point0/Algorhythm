@@ -45,7 +45,7 @@ class PopEffect(Sprite):
 
     ## animate
     self.anim.alpha.alt(self.speed)
-    if self.anim.alpha() == 0:
+    if self.anim.alpha.bounded():
       return self.kill()
 
     self.anim.pop = util.slide(self.anim.pop, 1, speed = 2)
