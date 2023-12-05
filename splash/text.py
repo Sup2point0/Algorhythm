@@ -92,9 +92,9 @@ class Textbox(Element):
     | :-------- | :--- | :---------- |
     '''
 
-    super().__init__(*args, **kwargs)
+      super().__init__(*args, **kwargs)
 
-    self.space = kwargs.get("space", ui.space.text)
+      self.space = kwargs.get("space", ui.space.text)
 
 
   def __init__(self, id, pos, text, style = None, display = None):
@@ -123,7 +123,7 @@ class Textbox(Element):
       height += h + self.style.space
       if w > width:
         width = w
-    self.surf = py.Surface(width, height)
+    self.surf = pg.Surface(width, height)
 
     dy = 0
     for surf, rect in self.surfs:

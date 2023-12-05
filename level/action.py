@@ -63,8 +63,8 @@ class Hint(Sprite, Action):
       self.rect = pg.Rect(0, 0, 0, 0)
 
     def update(self):
-      self.rect.width = util.slide(self.rect.width, self.size[0], speed = 5)
-      self.rect.height = util.slide(self.rect.height, self.size[1], speed = 5)
+      self.rect.width = util.slide(self.rect.width, self.size[0], speed = 4)
+      self.rect.height = util.slide(self.rect.height, self.size[1], speed = 4)
       self.rect.center = self.pos
 
 
@@ -115,9 +115,8 @@ class Hint(Sprite, Action):
     self.rect = self.surf.get_rect()
     self.surf.fill([0, 0, 0, self.anim.alpha()])
 
-    if self.highlights:
-      if level.beat - self.anim.tick > 2:
-        print(f"highlighting at {level.beat}")
+    if self.highlights and self.anim.tick:
+      if level.beat - self.anim.tick > 1:
         for each in self.highlights:
           each.update()
           pg.draw.rect(self.surf, (0, 0, 0, 0), each.rect)
