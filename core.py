@@ -45,7 +45,13 @@ class game:
   keys = []  # tracks current pressed keys
   pulse = pg.time.Clock()  # game timer
 
-  series = ["tutorials", "origins", "xenos", "decode", "special"]
+  series = [
+    "tutorials",
+    "origins", "roots",
+    "decode", "encode",
+    "xenos",
+    "special",
+  ]
 
 
 class level:
