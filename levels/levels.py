@@ -27,7 +27,9 @@ charts = {
     ),
   ],
   "origins": [],
-  "xenos": [],
+  "roots": [],
   "decode": [],
+  "encode": [],
+  "xenos": [],
   "special": [],
 }

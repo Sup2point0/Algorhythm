@@ -169,7 +169,7 @@ def load():
   select = [
     Asset("select.backdrop",
       pos = screen.origin,
-      image = "covers/back.jpeg",
+      image = "covers/select.jpeg",
       size = screen.size,
       blur = 5,
       display = Displayed(
