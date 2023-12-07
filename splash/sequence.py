@@ -18,6 +18,14 @@ def load(skip = False):
   '''Run the game loading sequence.'''
 
   if skip:  # NOTE pending removal
+    with open("access/data.json", "r+") as file:
+      data = json.load(file)
+
+      data["game"]["runs"] += 1
+      data["game"]["version"] = game.version
+
+      util.overwrite(file, data)
+
     screen.switch = "start"
     screen.fade = "dark"
     return
