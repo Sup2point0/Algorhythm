@@ -110,10 +110,10 @@ class Textbox(Element):
     self.style = style or Textbox.Style()
 
     self._render_()
-    super.position()
+    super(Element, self).position()
 
   def _render_(self):
-    self.surfs = [Text.Render(each, self.style) for each in self.text]
+    self.surfs = [Text.render(each, self.style) for each in self.text]
 
     # Double iteration is painful, but I can’t (yet) see a better way to do it.
     width = 0
@@ -123,7 +123,7 @@ class Textbox(Element):
       height += h + self.style.space
       if w > width:
         width = w
-    self.surf = pg.Surface(width, height)
+    self.surf = pg.Surface((width, height))
 
     dy = 0
     for surf, rect in self.surfs:

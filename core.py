@@ -102,7 +102,7 @@ class screen:
     "start", "select",
     *{f"select.{each}" for each in game.series},
     "environ", "environ.load", "environ.create",
-    "settings", "settings.sounds", "settings.visuals", "settings.credits",
+    "settings", "settings.sounds", "settings.visuals", "settings.changelog", "settings.credits",
     "account",
     "play", "score",
   }

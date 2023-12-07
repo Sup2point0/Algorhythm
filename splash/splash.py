@@ -11,7 +11,7 @@ from splash import roots
 from splash.elements import Displayed
 from splash.covers import Cover
 from splash.asset import Asset
-from splash.text import Text, ActiveText
+from splash.text import Text, Textbox, ActiveText
 from splash.buttons import Button
 from splash.select import Select, SeriesSelect, TrackSelect
 
@@ -111,6 +111,7 @@ def load():
       ),
     ),
   ]
+
   environ = [
     Asset("environ.backdrop",
       pos = screen.origin,
@@ -123,9 +124,10 @@ def load():
       ),
     ),
   ]
+
   settings = [
     Text("settings.title",
-      pos = util.cord(0, -0.5),
+      pos = util.cord(0, -0.6),
       text = "ALGORHYTHM",
       style = Text.Style(
         typeface = ui.font.title,
@@ -133,39 +135,66 @@ def load():
       ),
       display = Displayed(show = {"settings"}),
     ),
-    Text("settings.about",
-      pos = util.cord(0, -0.25),
+    Text("settings.version",
+      pos = util.cord(0, -0.35),
       text = f"v{game.version}",
       display = Displayed(show = {"settings"})
     ),
     Button("settings.sounds",
-      pos = util.cord(-0.5, 0.2),
+      pos = util.cord(-0.25, 0.15),
       text = "SOUNDS",
       root = roots.switch.state("settings.sounds"),
       display = Displayed(show = {"settings"}),
     ),
     Button("settings.visuals",
-      pos = util.cord(0.5, 0.2),
+      pos = util.cord(0.25, 0.15),
       text = "VISUALS",
       root = roots.switch.state("settings.visuals"),
       display = Displayed(show = {"settings"}),
     ),
     Button("settings.changelog",
-      pos = util.cord(-0.5, 0.4),
+      pos = util.cord(-0.25, 0.4),
       text = "CHANGELOG",
       root = roots.switch.state("settings.changelog"),
       display = Displayed(show = {"settings"}),
     ),
     Button("settings.credits",
-      pos = util.cord(0.5, 0.4),
+      pos = util.cord(0.25, 0.4),
       text = "CREDITS",
       root = roots.switch.state("settings.credits"),
       display = Displayed(show = {"settings"}),
     ),
   ]
+  credits = [
+    Text("settings.credits.title",
+      pos = util.cord(0, -0.6),
+      text = "ALGORHYTHM",
+      style = Text.Style(
+        typeface = ui.font.title,
+        size = 100,
+      ),
+      display = Displayed(show = {"settings.credits"}),
+    ),
+    Text("settings.credits.version",
+      pos = util.cord(0, -0.35),
+      text = f"v{game.version}",
+      display = Displayed(show = {"settings"})
+    ),
+    Textbox("settings.credits.1",
+      pos = util.cord(0, 0),
+      text = [
+        "test",
+        "test line",
+        "the quick brown fox",
+      ],
+      display = Displayed(show = {"settings.credits"})
+    )
+  ]
+
   account = [
     ...
   ]
+
   select = [
     Asset("select.backdrop",
       pos = screen.origin,
@@ -244,6 +273,7 @@ def load():
     #   ) for i, each in enumerate(config.difficulties)
     # ],
   ]
+
   play = [
     ActiveText("level.score",
       pos = [screen.x - 40, 40],
