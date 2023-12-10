@@ -1,9 +1,16 @@
 # Dev Notes
 
-Just little notes to maintain consistency while coding ;)
+Just little notes during development ^v^
 
 
-### Import Precedence
+<br>
+
+
+## Precedence
+
+To help maintain consistency while coding.
+
+### Imports
 
 ```py
 import sys
@@ -46,13 +53,23 @@ from effects.shake import ...
 from effects.pop import ...
 ```
 
-### Splash Sprite Parameter Precedence
+### Splash Sprite Parameters
 
 ```py
 def __init__(self, id,
   pos, align,
   text, image,
   root,
-  style, display
+  style, display,
 )
 ```
+
+
+<br>
+
+
+## Learnings
+
+Little bits of knowledge picked up along the way, for anyone who might be looking to do the same.
+
+ - Git can’t stop tracking a file already being tracked, so you’ve gotta delete it and re-create it.
