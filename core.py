@@ -125,6 +125,9 @@ class screen:
     },
     "settings": Val(0),
     "settings.sounds": Val(0),
+    "settings.visuals": Val(0),
+    "settings.changelog": Val(0),
+    "settings.credits": Val(0, lower = -0.8 * y, upper = 0),
   }
 
   track = []
@@ -197,7 +200,7 @@ class ui:
       lock = (0, 0, 0, 32)
 
   class space:
-    text = 50
+    text = 25
 
 
 class config:

@@ -72,6 +72,10 @@ class Text(Element):
     self.surf, self.rect = Text.render(self.text, self.style)
     super().position()
 
+    if self.display:
+      if self.display.scroll:
+        self.update = super().position
+
   @ classmethod
   def render(cls, text, style = Style()) -> tuple[pg.Surface, pg.Rect]:
     '''Generates a surface and its rect with rendered text.'''
@@ -110,7 +114,10 @@ class Textbox(Element):
     self.style = style or Textbox.Style()
 
     self._render_()
-    super(Element, self).position()
+
+    if self.display:
+      if self.display.scroll:
+        self.update = super().position
 
   def _render_(self):
     self.surfs = [Text.render(each, self.style) for each in self.text]
@@ -123,7 +130,7 @@ class Textbox(Element):
       height += h + self.style.space
       if w > width:
         width = w
-    self.surf = pg.Surface((width, height))
+    self.surf = pg.Surface((width, height), pg.SRCALPHA)
 
     dy = 0
     for surf, rect in self.surfs:

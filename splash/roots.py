@@ -47,6 +47,9 @@ def select(var, state):  # TODO add class hierarchy?
 
   return root
 
+def scroll(state):
+  return (lambda: screen.scroll[state]())
+
 
 class shock:
   '''Functions for shock notes. The shock note calling the root should pass itself in as an argument.'''

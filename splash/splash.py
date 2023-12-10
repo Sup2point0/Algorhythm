@@ -4,7 +4,7 @@ Integrates all the different splash sprite classes into the graphical user inter
 
 import pygame as pg
 
-from core import game, level, screen, sprites, ui
+from core import game, level, screen, sprites, ui, config
 import util
 
 from splash import roots
@@ -32,6 +32,11 @@ def load():
     start = Displayed(
       show = {"start"},
       align = (-1, 0),
+    )
+
+    credits = Displayed(
+      show = {"settings.credits"},
+      scroll = roots.scroll("settings.credits")
     )
 
   covers = [
@@ -68,7 +73,9 @@ def load():
       size = screen.size,
       blur = 5,
       display = Displayed(
-        show = {"start", "settings", "settings.sounds", "settings.visuals"},
+        show = {"start", "settings",
+          "settings.sounds", "settings.visuals",
+          "settings.changelog", "settings.credits"},
         layer = "backdrop",
       ),
     ),
@@ -165,6 +172,9 @@ def load():
       display = Displayed(show = {"settings"}),
     ),
   ]
+  sounds = []
+  visuals = []
+  changelog = []
   credits = [
     Text("settings.credits.title",
       pos = util.cord(0, -0.6),
@@ -173,21 +183,47 @@ def load():
         typeface = ui.font.title,
         size = 100,
       ),
-      display = Displayed(show = {"settings.credits"}),
+      display = displays.credits,
     ),
     Text("settings.credits.version",
       pos = util.cord(0, -0.35),
       text = f"v{game.version}",
-      display = Displayed(show = {"settings"})
+      display = displays.credits,
+    ),
+    Text("settings.credits.creator",
+      pos = util.cord(0, -0.1),
+      text = f"by Sup#2.0",
+      display = displays.credits,
     ),
     Textbox("settings.credits.1",
-      pos = util.cord(0, 0),
+      pos = util.cord(0, 0.2),
       text = [
-        "test",
-        "test line",
-        "the quick brown fox",
+        "made in Python 3.11",
+        "with Pygame 2.5",
       ],
-      display = Displayed(show = {"settings.credits"})
+      display = displays.credits,
+    ),
+    Text("settings.credits.packages",
+      pos = util.cord(0, 0.5),
+      text = f"Packages",
+      style = Text.Style(
+        typeface = ui.font.title,
+        size = 40,
+      ),
+      display = displays.credits,
+    ),
+    Textbox("settings.credits.2",
+      pos = util.cord(0, 1.0),
+      text = [
+        "Pillow",
+        "image effects",
+        " ",
+        "Librosa",
+        "sound processing",
+        "",
+        "test",
+      ],
+      display = displays.credits,
     )
   ]
 
@@ -260,18 +296,18 @@ def load():
         layer = sprites.active.layer["backdrop"],
       ),
     ),
-    TrackSelect("select.tutorials.standard",
-      series = "tutorials",
-      track = levels.charts["tutorials"][0],
-      cover = "tutorial-standard.jpeg",
-    ),
-    # *[
-    #   TrackSelect(f"select.tutorials.{each.name}",
-    #     series = "tutorials",
-    #     track = levels.charts["tutorials"][i],
-    #     cover = f"tutorial-{each.name}.jpeg",
-    #   ) for i, each in enumerate(config.difficulties)
-    # ],
+    # TrackSelect("select.tutorials.standard",
+    #   series = "tutorials",
+    #   track = levels.charts["tutorials"][0],
+    #   cover = "tutorial-standard.jpeg",
+    # ),
+    *[
+      TrackSelect(f"select.tutorials.{each.name}",
+        series = "tutorials",
+        track = levels.charts["tutorials"][i],
+        cover = f"tutorial-{each.name}.jpeg",
+      ) for i, each in enumerate(config.difficulties[:2])
+    ],
   ]
 
   play = [
