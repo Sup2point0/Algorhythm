@@ -2,31 +2,15 @@
 
 <div align="center"> A keyboard-based rhythm game made in pygame! </div>
 
+<br>
 
-## Tasks
-
-### Ongoing
-- Implement ride note functionality
-- Update button styles
-
-### Todo
-- Generate actions when loading level to avoid iteration (DONE?)
-- Rework screen state change to allow animation specification
-- Selection and navigation history
-
-### Ideas
-- Musical sound effects on button click
-- Techy node background with floating geometric entities
-  - Blue theme
-  - Glow effects with Pillow
-- Notifications
-- `ColourPicker`, `KeyPicker`
-- Multiple lanekeys
-  - For easier spamming
-- Free mode
-  - Press any keys
-- Branch mode
-  - Optional Shock Notes
+<div align="center">
+  <table>
+    <tr>
+      <img alt="Main Menu" height="200px" src="external/home.png">
+    </tr>
+  </table>
+</div>
 
 ---
 

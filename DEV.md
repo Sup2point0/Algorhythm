@@ -1,6 +1,36 @@
 # Dev Notes
 
-Just little notes during development ^v^
+Just development-related notes ^v^
+
+
+<br>
+
+
+## Tasks
+
+### Ongoing
+- Implement ride note functionality
+- Update button styles
+
+### Todo
+- Generate actions when loading level to avoid iteration (DONE?)
+- Rework screen state change to allow animation specification
+- Selection and navigation history
+- Rework load sequence
+
+### Ideas
+- Musical sound effects on button click
+- Techy node background with floating geometric entities
+  - Blue theme
+  - Glow effects with Pillow
+- Notifications
+- `ColourPicker`, `KeyPicker`
+- Multiple lanekeys
+  - For easier spamming
+- Free mode
+  - Press any keys
+- Branch mode
+  - Optional Shock Notes
 
 
 <br>
@@ -8,7 +38,7 @@ Just little notes during development ^v^
 
 ## Precedence
 
-To help maintain consistency while coding.
+Standardising orders to help maintain consistency while coding.
 
 ### Imports
 
