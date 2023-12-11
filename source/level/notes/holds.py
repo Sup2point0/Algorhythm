@@ -47,8 +47,8 @@ class HoldNote(Note):
         if self.poptick > 2:  # key slipped
           self.slipped = True
       else:
-        acc = self.precision(level.beat, self.hit[1])
-        if acc and acc != "miss":  # popped within hit timing
+        prec = self.precision(level.beat, self.hit[1])
+        if prec and prec != "miss":  # popped within hit timing
           self.popped = True
 
   def pop(self, hit = False):

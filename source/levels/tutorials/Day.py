@@ -116,6 +116,10 @@ tutorial = Chart(
         "Ride notes do not have to be hit individually, so you can keep the key held down."
       ),
     ),
+
+    *Rides(0, range(4 * 64, 4 * 66, 0.5)),
+    *Rides(0, range(4 * 66, 4 * 68, 0.5)),
+
     Hint(4 * 66, 8,
       Text("Day.hint.ride.3", util.cord(0, -0.4),
         "However, it may help to let go at times, to free up fingers."

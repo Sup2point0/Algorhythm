@@ -95,16 +95,16 @@ class Note(Sprite):
   def pop(self, acc: str):
     '''Hit note and handle accordingly.'''
 
-    if acc is None:
+    if prec is None:
       return
     
     # First, check if it's a hit, then check if that's a perfect hit.
-    if acc != "miss":
+    if prec != "miss":
       level.hits += 1
       level.chain += 1
       if level.chain >= level.apex:
         level.apex = level.chain
-      if acc == "perfect":
+      if prec == "perfect":
         level.perfect += 1
     
     else:

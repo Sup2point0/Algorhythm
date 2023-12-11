@@ -59,11 +59,11 @@ class TapNote(Note):
     `hit` determines if it was hit by the player.
     '''
     
-    acc = self.precision(level.beat, self.hit) if hit else "miss"
+    prec = self.precision(level.beat, self.hit) if hit else "miss"
 
     if acc:
       super().pop(acc)
-      if acc != "miss":
-        PopEffect(pos = self.pos, acc = acc)
+      if prec != "miss":
+        PopEffect(pos = self.pos, prec = acc)
 
     return acc

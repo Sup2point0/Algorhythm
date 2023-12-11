@@ -57,10 +57,10 @@ class RideNote(Note):
     keys = pg.key.get_pressed()
     key = config.keys[self.lane.key]
     if keys[key]:
-      acc = self.precision(level.beat, self.hit)
-      if acc and acc != "miss":
+      prec = self.precision(level.beat, self.hit)
+      if prec and prec != "miss":
         super().pop("perfect")
-        PopEffect(pos = self.pos, acc = "perfect")
+        PopEffect(pos = self.pos, prec = "perfect")
 
   def pop(self, hit = False) -> str | None:
     '''Delete the note and return precision.
@@ -68,11 +68,11 @@ class RideNote(Note):
     `hit` determines if it was hit by the player.
     '''
     
-    acc = self.precision(level.beat, self.hit) if hit else "miss"
+    prec = self.precision(level.beat, self.hit) if hit else "miss"
 
     if acc:
       super().pop(acc)
-      if acc != "miss":
-        PopEffect(pos = self.pos, acc = acc)
+      if prec != "miss":
+        PopEffect(pos = self.pos, prec = acc)
 
     return acc

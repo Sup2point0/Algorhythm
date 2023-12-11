@@ -12,7 +12,7 @@ import util
 class PopEffect(Sprite):
   '''A class to contain the component sprites that make up the animated effect when a note is hit.'''
 
-  def __init__(self, pos, acc = "hit", size = None, speed = None):
+  def __init__(self, pos, prec = "hit", size = None, speed = None):
     '''Create a note hit effect.
 
     | argument | type | description |
@@ -27,7 +27,7 @@ class PopEffect(Sprite):
 
     sprites.active.add(self, layer = sprites.active.layer["effects"])
 
-    self.col = opt.col.perfect if acc == "perfect" else opt.col.hit
+    self.col = opt.col.perfect if prec == "perfect" else opt.col.hit
     self.size = size or config.effect.size * opt.effect.size()
     self.speed = speed or config.effect.speed * opt.effect.speed()
 
