@@ -92,7 +92,7 @@ class Note(Sprite):
     else:
       return None
     
-  def pop(self, acc: str):
+  def pop(self, prec: str):
     '''Hit note and handle accordingly.'''
 
     if prec is None:

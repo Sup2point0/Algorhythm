@@ -70,9 +70,9 @@ class RideNote(Note):
     
     prec = self.precision(level.beat, self.hit) if hit else "miss"
 
-    if acc:
-      super().pop(acc)
+    if prec:
+      super().pop(prec)
       if prec != "miss":
-        PopEffect(pos = self.pos, prec = acc)
+        PopEffect(pos = self.pos, prec = prec)
 
-    return acc
+    return prec

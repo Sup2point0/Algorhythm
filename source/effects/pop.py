@@ -18,7 +18,7 @@ class PopEffect(Sprite):
     | argument | type | description |
     | :------- | :--- | :---------- |
     | `pos` | `num, num` | The position to create the effect. |
-    | `acc` | `str` | The precision of the hit, which affects effect appearance. |
+    | `prec` | `str` | The precision of the hit, which affects effect appearance. |
     | `size` | `num` | The greatest the radius of the circles involved in the effect will be. |
     | `speed` | `int, num` | How quickly the effect vanishes. The first value represents how many frames will pass before it starts fading, the second how much transparency will increase per frame. |
     '''
