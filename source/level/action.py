@@ -116,7 +116,7 @@ class Hint(Sprite, Action):
     self.surf.fill([0, 0, 0, self.anim.alpha()])
 
     if self.highlights and self.anim.tick:
-      if level.beat - self.anim.tick > 1:
+      if level.beat - self.anim.tick > 0.5:
         for each in self.highlights:
           each.update()
           pg.draw.rect(self.surf, (0, 0, 0, 0), each.rect)

@@ -44,7 +44,7 @@ class PopEffect(Sprite):
     self.anim.tick += 1
 
     ## animate
-    self.anim.alpha.alt(self.speed)
+    self.anim.alpha.alt(-self.speed)
     if self.anim.alpha.bounded():
       return self.kill()
 
