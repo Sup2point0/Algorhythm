@@ -72,4 +72,6 @@ def __init__(self, id,
 
 Little bits of knowledge picked up along the way, for anyone who might be looking to do the same.
 
- - Git can’t stop tracking a file already being tracked, so you’ve gotta delete it and re-create it.
+- Git can’t stop tracking a file already being tracked, so you’ve gotta delete it and re-create it.
+- VSCode executes code (at least for Python) with the directory open in Explorer as the current working directory.
+  - We can configure it to execute from a particular directory with the `PYTHONPATH` variable in a `.env` file.
