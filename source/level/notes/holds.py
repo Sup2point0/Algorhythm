@@ -41,7 +41,7 @@ class HoldNote(Note):
     
     else:
       keys = pg.key.get_pressed()
-      key = config.keys[self.lane.key]
+      key = config.keys.all[self.lane.key]
       if not keys[key]:
         self.poptick += 1
         if self.poptick > 2:  # key slipped

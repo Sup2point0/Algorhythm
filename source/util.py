@@ -98,6 +98,15 @@ def overwrite(file, content: str):
 
 
 ## niche
+def beats(start, stop, step):
+  '''Generate a sequence of evenly spaced beats.'''
+
+  div = 1 / step
+  return (
+    each / div for each in
+    range(round(start * div), round(stop * div))
+  )
+
 def setscore(score, digits: int = None) -> str:
   '''Add zeroes to the front of a value such that it is `digits` long.'''
 

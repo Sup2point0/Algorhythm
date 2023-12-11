@@ -55,7 +55,7 @@ class RideNote(Note):
     
     # When the note reaches within range of the hitline, check for pops
     keys = pg.key.get_pressed()
-    key = config.keys[self.lane.key]
+    key = config.keys.all[self.lane.key]
     if keys[key]:
       prec = self.precision(level.beat, self.hit)
       if prec and prec != "miss":
