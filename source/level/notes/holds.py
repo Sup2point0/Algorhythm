@@ -36,7 +36,7 @@ class HoldNote(Note):
   def update(self):
     if not self.popping:
       if level.beat > self.hit[0]:  # note missed
-        if self.accuracy(level.beat, self.hit[0]) == "miss":
+        if self.precision(level.beat, self.hit[0]) == "miss":
           self.slipped = True
     
     else:
@@ -47,7 +47,7 @@ class HoldNote(Note):
         if self.poptick > 2:  # key slipped
           self.slipped = True
       else:
-        acc = self.accuracy(level.beat, self.hit[1])
+        acc = self.precision(level.beat, self.hit[1])
         if acc and acc != "miss":  # popped within hit timing
           self.popped = True
 

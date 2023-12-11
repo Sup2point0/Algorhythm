@@ -54,12 +54,12 @@ class TapNote(Note):
     super().update()
 
   def pop(self, hit = False) -> str | None:
-    '''Delete the note and return accuracy.
+    '''Delete the note and return precision.
     
     `hit` determines if it was hit by the player.
     '''
     
-    acc = self.accuracy(level.beat, self.hit) if hit else "miss"
+    acc = self.precision(level.beat, self.hit) if hit else "miss"
 
     if acc:
       super().pop(acc)

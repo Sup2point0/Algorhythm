@@ -43,11 +43,11 @@ flavours = WeightedList(
   (100, "Hitting a note way off results in a miss hit and breaks your chain."),
   
   (10, "The 4 difficulties are Standing, Advancing, Expecting and... Insecurity?"),
-  (50, "Higher difficulties have stricter accuracy leniency and faster note speeds."),
+  (50, "Higher difficulties have stricter precision leniency and faster note speeds."),
   (50, "You don’t have to be an expert to play an Expert chart."),
   (50, "Insane difficulty isn’t always insane. It’s just more insane than the 3 before it. Which probably makes it quite insane."),
   (50, "Remember, no matter how difficult it is, it can always be more so."),
-  (75, "The highest accuracy score is 100,000."),
+  (75, "The highest precision score is 100,000."),
   
   (50, "You can create multiple accounts to save progress and settings."),
   

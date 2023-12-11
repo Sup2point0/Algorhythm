@@ -78,8 +78,8 @@ class Note(Sprite):
     return hit - self.line() / speed - 1
     # leave a little leeway so the note spawns slightly earlier than appearing onscreen
 
-  def accuracy(self, beat, hit) -> str | None:
-    '''Return accuracy of note hit.'''
+  def precision(self, beat, hit) -> str | None:
+    '''Return precision of note hit.'''
 
     off = abs(hit - beat)
     window = config.difficulties[level.chart.difficulty]

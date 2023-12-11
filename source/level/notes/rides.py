@@ -4,7 +4,7 @@ Implements the `RideNote` class.
 
 import pygame as pg
 
-from core import config, opt
+from core import level, config, opt
 
 from level.notes import Note
 
@@ -52,14 +52,23 @@ class RideNote(Note):
   def update(self):
     super().move()
     super().update()
+    
+    # When the note reaches within range of the hitline, check for pops
+    keys = pg.key.get_pressed()
+    key = config.keys[self.lane.key]
+    if keys[key]:
+      acc = self.precision(level.beat, self.hit)
+      if acc and acc != "miss":
+        super().pop("perfect")
+        PopEffect(pos = self.pos, acc = "perfect")
 
   def pop(self, hit = False) -> str | None:
-    '''Delete the note and return accuracy.
+    '''Delete the note and return precision.
     
     `hit` determines if it was hit by the player.
     '''
     
-    acc = self.accuracy(level.beat, self.hit) if hit else "miss"
+    acc = self.precision(level.beat, self.hit) if hit else "miss"
 
     if acc:
       super().pop(acc)
