@@ -28,5 +28,5 @@ class display:
 
   credits = Displayed(
     show = {"settings.credits"},
-    scroll = {roots.scroll("settings.credits")},
+    scroll = roots.scroll("settings.credits"),
   )
