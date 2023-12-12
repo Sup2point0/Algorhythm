@@ -5,6 +5,7 @@ Integrates all the different splash sprite classes into the graphical user inter
 import pygame as pg
 
 from core import game, level, screen, sprites, ui, config
+from innate import Alpha
 import util
 
 from splash import roots, presets
@@ -30,11 +31,11 @@ def load():
 
   covers = [
     Cover(
-      alpha = util.Alpha(255),
+      alpha = Alpha(255),
       root = roots.fade.total,
     ),
     Cover(
-      alpha = util.Alpha(0, bounds = (0, 128)),
+      alpha = Alpha(0, bounds = (0, 128)),
       root = roots.fade.partial,
     ),
   ]

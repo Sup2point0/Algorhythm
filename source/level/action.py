@@ -5,6 +5,7 @@ Implements the `Action` class for triggering level events and the specialised `H
 import pygame as pg
 
 from core import level, screen, sprites, config
+from innate import Alpha
 from innate.sprite import Sprite
 import util
 
@@ -91,7 +92,7 @@ class Hint(Sprite, Action):
 
     class anim:
       tick = 0
-      alpha = util.Alpha(0, bounds = (0, 96))
+      alpha = Alpha(0, bounds = (0, 96))
 
     self.anim = anim
 

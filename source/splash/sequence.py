@@ -9,6 +9,7 @@ import json
 import pygame as pg
 
 from core import game, screen, config
+from innate import Alpha
 import util
 
 from splash.text import Text
@@ -36,7 +37,7 @@ def load(skip = False):
     state = None
     tick = 0
     percent = random.randint(7, 20) / 100
-    alpha = util.Alpha(0)
+    alpha = Alpha(0)
 
     flavour = flavours.select()
 

@@ -5,6 +5,7 @@ Note hit effects
 import pygame as pg
 
 from core import sprites, config, opt
+from innate import Alpha
 from innate.sprite import Sprite
 import util
 
@@ -33,7 +34,7 @@ class PopEffect(Sprite):
 
     class anim:
       tick = 0
-      alpha = util.Alpha(192)
+      alpha = Alpha(192)
       pop = self.size
       poof = 1
       boop = 1

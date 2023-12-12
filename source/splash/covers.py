@@ -5,6 +5,7 @@ Implements the `Cover` class for screen transitions.
 import pygame as pg
 
 from core import screen, sprites
+from innate import Alpha
 from innate.sprite import Sprite
 import util
 
@@ -17,13 +18,13 @@ class Cover(Sprite):
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
-    | `alpha` | `num`, `util.Alpha` | Alpha value of cover. If only a number is provided, the bounds will default to 0 and 255. |
+    | `alpha` | `num`, `innate.Alpha` | Alpha value of cover. If only a number is provided, the bounds will default to 0 and 255. |
     | `root` | `Callable` | Function replacing `self.update()`. |
     '''
 
     super().__init__(groups = [sprites.fade])
 
-    self.alpha = alpha if isinstance(alpha, util.Alpha) else util.Alpha(alpha)
+    self.alpha = alpha if isinstance(alpha, Alpha) else Alpha(alpha)
     self.root = root
 
     self.surf = pg.Surface(screen.size)

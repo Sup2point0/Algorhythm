@@ -5,7 +5,7 @@ Implements the `SeriesSelect` and `TrackSelect` classes for selecting series or 
 import pygame as pg
 
 from core import screen, sprites, ui, opt
-from innate import Val
+from innate import Val, Alpha
 import util
 
 from splash import roots
@@ -138,7 +138,7 @@ class SeriesSelect(Select):
     self.anim.col = ui.col.text.idle
     blurs = list(self.style.blur.values())[:3]
     self.anim.blur = Val("upper", lower = min(blurs), upper = max(blurs))
-    self.anim.alpha = util.Alpha("upper")
+    self.anim.alpha = Alpha("upper")
 
     self.anim.shade = pg.Surface(self.size)
     self.anim.shade.fill(0x00000)

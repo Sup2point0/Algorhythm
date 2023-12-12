@@ -5,7 +5,7 @@ Implements the `LaneKey` class for displaying keys for each lane.
 import pygame as pg
 
 from core import level, screen, config
-from innate import Val
+from innate import Val, Alpha
 from innate.sprite import Sprite
 import util
 
@@ -23,7 +23,7 @@ class LaneKey(Sprite):
     self.lane = lane
     self.key = self.lane.key
     
-    self.alpha = util.Alpha(0)
+    self.alpha = Alpha(0)
     self.style = Text.Style("title", 69, col = util.find.col(self.key))
     
     class anim:
