@@ -51,6 +51,7 @@ class RideNote(Note):
 
   def update(self):
     super().move()
+    super().out()
     super().update()
     
     # When the note reaches within range of the hitline, check for pops

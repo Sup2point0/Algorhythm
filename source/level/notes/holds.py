@@ -4,7 +4,7 @@ Implements the `HoldNote` class.
 
 import pygame as pg
 
-from core import level, config
+from core import level, config, opt
 
 from level.notes import Note
 
@@ -28,10 +28,31 @@ class HoldNote(Note):
     if hit[0] >= hit[1]:
       raise ValueError("hold note cannot end before it starts")
 
-    self.popped = False
-    self.slipped = False
-    self.popping = False
-    self.poptick = 0
+    self.popping = False  # hold key
+    self.popped = False  # key can be let go
+
+    self.slipped = False  # key was let go for too long
+    self.poptick = 0  # track how long key has been let go for
+
+  def spawn(self):
+    super().spawn()
+
+    self.size = (
+      config.note.size[0] * opt.note.size(),
+      abs(self.hit[0] - self.hit[1]) * self.speed
+    )
+
+    self.surf = ...
+    self.surf = pg.Surface(self.size, pg.SRCALPHA)  # FIXME
+
+    pg.draw.rect(self.surf,
+      color = (255, 255, 255, 255),
+      rect = (0, 0, *self.size),
+      width = 0,
+      border_radius = round(self.size[0] // 2),
+    )
+
+    self.rect = self.surf.get_rect()
 
   def update(self):
     if not self.popping:

@@ -29,8 +29,6 @@ class TapNote(Note):
     )
 
   def spawn(self):
-    '''Spawn a tap note.'''
-
     super().spawn()
 
     self.surf = blur.glow(
@@ -51,6 +49,7 @@ class TapNote(Note):
 
   def update(self):
     super().move()
+    super().out()
     super().update()
 
   def pop(self, hit = False) -> str | None:

@@ -63,6 +63,9 @@ class Note(Sprite):
     self.x = self.lane.x
     self.y = self.line() - self.speed * (self.hit - level.beat)
     
+  def out(self):
+    '''Handle note vanishing when missed.'''
+    
     if self.y >= screen.y:
       self.pop()
       
