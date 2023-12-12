@@ -99,6 +99,8 @@ tutorial = Chart(
       ),
     ),
 
+    Hold((4 * 44, 4 * 48), lane = 2),
+
     Hint(4 * 51, 8,
       Text("Day.hint.hold.2", util.cord(0, -0.4),
         "Hitting notes builds your chain, and missing notes breaks it."
