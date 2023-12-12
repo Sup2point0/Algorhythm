@@ -10,6 +10,7 @@ def val(start, stop, percent: float = 0.5):
 
   return start + percent * (stop - start)
 
+
 def col(start, stop, percent: float = 0.5):
   '''Interpolate between 2 colours. Alpha is not taken into account.'''
 

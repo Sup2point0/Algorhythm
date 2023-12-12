@@ -20,10 +20,12 @@ def row(key) -> str:
   else:
     return "spec"
 
+
 def col(key):
   '''Find suitable colour for a game key.'''
   
   return vars(opt.col)[row(key)]
+
 
 def asset(*files) -> pg.Surface:
   '''Load an image file to a pygame Surface.'''
@@ -33,6 +35,7 @@ def asset(*files) -> pg.Surface:
       return pg.image.load(f"assets/{file}")
     except:
       pass
+
 
 def sync(file: str):  # NOTE needed?
   '''Find tempo and offset of a soundtrack audio file.'''
