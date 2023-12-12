@@ -1,7 +1,7 @@
 '''
-Screen shake effects handling
+Implements the `Shake` class for handling screenshake.
 
-This module does not import any other in-game modules.
+Safe to import.
 '''
 
 import random

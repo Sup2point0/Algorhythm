@@ -1,5 +1,5 @@
 '''
-Note hit effects
+Implements the `PopEffect` class for note hit visual effects.
 '''
 
 import pygame as pg
