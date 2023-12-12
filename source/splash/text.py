@@ -76,8 +76,8 @@ class Text(Element):
       if self.display.scroll:
         self.update = super().position
 
-  @ classmethod
-  def render(cls, text, style = Style()) -> tuple[pg.Surface, pg.Rect]:
+  @ staticmethod
+  def render(text, style = Style()) -> tuple[pg.Surface, pg.Rect]:
     '''Generates a surface and its rect with rendered text.'''
 
     return freetype.Font(f"assets/fonts/{style.typeface}.ttf", style.size).render(text, style.col)
