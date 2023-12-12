@@ -77,3 +77,23 @@ class BoundValue:
     '''Check if value is at a bound.'''
 
     return self.value in {self.lower, self.upper}
+
+
+class Alpha(BoundValue):
+  '''A `BoundValue` representing an alpha value, with bounds defaulting to 0 and 255.'''
+
+  def __init__(self, value, bounds = (0, 255)):
+    '''Create an alpha value with the specified bounds.'''
+
+    super().__init__(value, *bounds)
+
+  def __call__(self):
+    val = super().__call__()
+
+    # ensure alpha values are safe to use
+    if val < 0:
+      val = 0
+    elif val > 255:
+      val = 255
+    
+    return val

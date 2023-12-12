@@ -6,3 +6,4 @@ Safe to import.
 
 from innate.object import Object
 from innate.value import BoundValue as Val
+from innate.value import Alpha

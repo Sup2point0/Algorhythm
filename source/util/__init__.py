@@ -2,16 +2,17 @@
 Implements various utility functions and classes used throughout the game modules.
 '''
 
+# NOTE pending removal
 import random
 import json
-import colorsys
 
 import pygame as pg
-import numpy as np
-import librosa
 
-from core import screen, sprites, config, opt
-from innate import Val
+from core import screen, sprites, config
+##
+
+import util.find
+import util.lerp
 
 
 ## generic
@@ -136,86 +137,3 @@ def randkey(rows: list[str] = None):
     ]
   
   return random.choice(keys)
-
-
-class find:
-  def row(key) -> str:
-    '''Find which row of the keyboard a key belongs to.'''
-
-    rows = config.keys.__dict__
-    for each in rows:
-      if not each.startswith("_"):
-        if key in rows[each]:
-          return each
-    else:
-      return "spec"
-
-  def col(key):
-    '''Find suitable colour for a game key.'''
-    
-    return vars(opt.col)[find.row(key)]
-  
-  def asset(*files) -> pg.Surface:
-    '''Load an image file to a pygame Surface.'''
-
-    for file in files:
-      try:
-        return pg.image.load(f"assets/{file}")
-      except:
-        pass
-
-  def sync(file: str):
-    '''Find tempo and offset of a soundtrack audio file.'''
-
-    print("syncing")  # NOTE testing
-  
-    wave, rate = librosa.load(file)
-    tempo, beats = librosa.beat.beat_track(y = wave, sr = rate)
-    frame = librosa.frames_to_time(beats, sr = rate)
-    diff = np.mean(np.diff(frame))
-
-    print(f"synced [tempo = {tempo}, offset = {frame[0] - diff}]")
-
-    return {
-      "tempo": tempo,
-      "offset": frame[0] - diff,
-    }
-
-
-class lerp:
-  def val(start, stop, percent: float = 0.5):
-    '''Interpolate any value between 2 endpoints.'''
-
-    return start + percent * (stop - start)
-  
-  def col(start, stop, percent: float = 0.5):
-    '''Interpolate between 2 colours. Alpha is not taken into account.'''
-
-    lower = colorsys.rgb_to_hsv(*start[:3])
-    upper = colorsys.rgb_to_hsv(*stop[:3])
-
-    return colorsys.hsv_to_rgb(
-      lower[0] + percent * (upper[0] - lower[0]),
-      lower[1] + percent * (upper[1] - lower[1]),
-      lower[2] + percent * (upper[2] - lower[2]),
-    )
-
-
-class Alpha(Val):
-  '''A `BoundValue` representing an alpha value, with bounds defaulting to 0 and 255.'''
-
-  def __init__(self, value, bounds = (0, 255)):
-    '''Create an alpha value with the specified bounds.'''
-
-    super().__init__(value, *bounds)
-
-  def __call__(self):
-    val = super().__call__()
-
-    # ensure alpha values are safe to use
-    if val < 0:
-      val = 0
-    elif val > 255:
-      val = 255
-    
-    return val
