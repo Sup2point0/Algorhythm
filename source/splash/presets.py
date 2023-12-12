@@ -2,6 +2,8 @@
 Implements style and display presets.
 '''
 
+from core import ui
+
 from splash import roots
 from splash.elements import Displayed
 from splash.text import Text
