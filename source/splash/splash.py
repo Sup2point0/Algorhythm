@@ -7,7 +7,7 @@ import pygame as pg
 from core import game, level, screen, sprites, ui, config
 import util
 
-from splash import roots
+from splash import roots, presets
 from splash.elements import Displayed
 from splash.covers import Cover
 from splash.asset import Asset
@@ -27,17 +27,6 @@ def load():
     return
   
   load.loaded = True
-
-  class displays:
-    start = Displayed(
-      show = {"start"},
-      align = (-1, 0),
-    )
-
-    credits = Displayed(
-      show = {"settings.credits"},
-      scroll = roots.scroll("settings.credits")
-    )
 
   covers = [
     Cover(
@@ -86,25 +75,25 @@ def load():
         typeface = ui.font.title,
         size = 100,
       ),
-      display = displays.start,
+      display = presets.display.start,
     ),
     Button("start.play",
       pos = util.cord(-0.8, -0.1),
       text = "PLAY",
       root = roots.switch.state("select"),
-      display = displays.start,
+      display = presets.display.start,
     ),
     Button("start.environ",
       pos = util.cord(-0.8, 0.15),
       text = "ENVIRONMENT",
       root = roots.switch.state("environ"),
-      display = displays.start,
+      display = presets.display.start,
     ),
     Button("start.settings",
       pos = util.cord(-0.8, 0.4),
       text = "SETTINGS",
       root = roots.switch.state("settings"),
-      display = displays.start,
+      display = presets.display.start,
     ),
     Text("start.version",
       pos = [screen.x - 50, screen.y - 50],
@@ -203,6 +192,23 @@ def load():
       ],
       display = displays.credits,
     ),
+    Text("settings.credits.playtesters",
+      pos = util.cord(0, 0.5),
+      text = f"Playtesters",
+      style = Text.Style(
+        typeface = ui.font.title,
+        size = 40,
+      ),
+      display = displays.credits,
+    ),
+    Textbox("settings.credits.2",
+      pos = util.cord(0, 1.0),
+      text = [
+        "Sup#1.2",
+        "iTechnical",
+      ],
+      display = displays.credits,
+    ),
     Text("settings.credits.packages",
       pos = util.cord(0, 0.5),
       text = f"Packages",
@@ -212,7 +218,7 @@ def load():
       ),
       display = displays.credits,
     ),
-    Textbox("settings.credits.2",
+    Textbox("settings.credits.3",
       pos = util.cord(0, 1.0),
       text = [
         "Pillow",
@@ -224,7 +230,29 @@ def load():
         "test",
       ],
       display = displays.credits,
-    )
+    ),
+    Text("settings.credits.fonts",
+      pos = util.cord(0, 0.5),
+      text = f"Fonts",
+      style = Text.Style(
+        typeface = ui.font.title,
+        size = 40,
+      ),
+      display = displays.credits,
+    ),
+    Textbox("settings.credits.3",
+      pos = util.cord(0, 1.0),
+      text = [
+        "Pillow",
+        "image effects",
+        " ",
+        "Librosa",
+        "sound processing",
+        "",
+        "test",
+      ],
+      display = displays.credits,
+    ),
   ]
 
   account = [
