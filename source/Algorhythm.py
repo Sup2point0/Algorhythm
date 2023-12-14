@@ -4,7 +4,6 @@ A keyboard-based rhythm game made in pygame!
 '''
 
 import pygame as pg
-from pygame.locals import *
 
 from core import game, level, screen, sprites, config, opt
 
@@ -29,25 +28,25 @@ class main:
     game.events = pg.event.get()
     
     for event in game.events:
-      if event.type == QUIT:
+      if event.type == pg.QUIT:
         game.state = None
         return
       
-      elif event.type == KEYDOWN:
+      elif event.type == pg.KEYDOWN:
         key, mod = event.key, event.mod
         game.keys.append(key)
 
-        if mod & KMOD_CTRL:
-          if key == K_w:
+        if mod & pg.KMOD_CTRL:
+          if key == pg.K_w:
             game.state = None
             return
         
         else:
-          if key == K_ESCAPE:
+          if key == pg.K_ESCAPE:
             main.pause()
   
           ## NOTE testing
-          elif key == K_SPACE:
+          elif key == pg.K_SPACE:
             print(round(level.beat, 3)); break
             global tick, diffs
             now = time()
@@ -59,13 +58,13 @@ class main:
             tick = now
           ###
 
-      elif event.type == KEYUP:
+      elif event.type == pg.KEYUP:
         try:
           game.keys.remove(event.key)
         except ValueError:
           pass
 
-      elif event.type == MOUSEWHEEL:
+      elif event.type == pg.MOUSEWHEEL:
         if screen.state in screen.scroll:
           screen.scroll[screen.state].alt(event.y * config.rate.scroll)
 
