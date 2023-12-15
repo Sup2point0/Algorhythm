@@ -134,7 +134,7 @@ class Track:
 
     ## calculate score
     level.score = round((
-      config.score.apex * level.perfect * (config.score.hit - config.score.perfect)
+      config.score.apex * level.perfect * (config.score.perfect - config.score.hit)
     + config.score.apex * level.hits * config.score.hit
     ) / len(level.chart.notes)
     + level.apex)
