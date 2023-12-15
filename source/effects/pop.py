@@ -2,6 +2,8 @@
 Implements the `PopEffect` class for note hit visual effects.
 '''
 
+import math
+
 import pygame as pg
 
 from core import sprites, config, opt
@@ -52,23 +54,21 @@ class PopEffect(Sprite):
     self.anim.poof = util.slide(self.anim.poof, self.size, speed = 2)
     self.anim.boop = util.slide(self.anim.boop, self.anim.poof, speed = 2)
 
-    print(f"pop = {self.anim.pop}, poof = {self.anim.poof}, boop = {self.anim.boop}")
-
     ## render
     self.surf = pg.Surface([self.size * 2] * 2, pg.SRCALPHA)
     self.rect = self.surf.get_rect()
     self.rect.center = self.pos
-    # pg.draw.circle(
-    #   surface = self.surf,
-    #   color = self.col[:3] + [self.anim.alpha.value],
-    #   center = [self.size] * 2,
-    #   radius = self.anim.pop,
-    #   width = 0,
-    # )
+    pg.draw.circle(
+      surface = self.surf,
+      color = self.col[:3] + [self.anim.alpha.value],
+      center = [self.size] * 2,
+      radius = self.anim.pop,
+      width = 0,
+    )
     pg.draw.circle(
       surface = self.surf,
       color = self.col[:3] + [self.anim.alpha.value],
       center = [self.size] * 2,
       radius = self.anim.poof,
-      width = round(self.anim.poof - self.anim.boop),
+      width = math.ceil(self.anim.poof - self.anim.boop),
     )
