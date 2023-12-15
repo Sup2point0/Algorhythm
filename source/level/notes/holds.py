@@ -22,7 +22,7 @@ class HoldNote(Note):
     Other base parameters are inherited from `Note`.
     '''
 
-    super().__init__(hit, align = (0, -1), **kwargs)
+    super().__init__(hit, align = (0, 1), **kwargs)
 
     if hit[0] >= hit[1]:
       raise ValueError("hold note cannot end before it starts")
@@ -54,6 +54,9 @@ class HoldNote(Note):
     self.rect = self.surf.get_rect()
 
   def update(self):
+    self.move()
+    super().update()
+    
     if not self.popping:
       if level.beat > self.hit[0]:  # note missed
         if self.precision(level.beat, self.hit[0]) == "miss":
@@ -71,7 +74,11 @@ class HoldNote(Note):
         if prec and prec != "miss":  # popped within hit timing
           self.popped = True
 
-    super().update()
+  def move(self):
+    '''Update note position.'''
+    
+    self.x = self.lane.x
+    self.y = self.line() - self.speed * (self.hit[0] - level.beat)
 
   def pop(self, hit = False):
     '''Start popping note.'''

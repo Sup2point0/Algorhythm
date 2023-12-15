@@ -28,6 +28,8 @@ class RideNote(Note):
       config.note.size[1]
     ]
 
+    self.popped = False
+
   def spawn(self):
     '''Spawn a tap note.'''
 
@@ -60,8 +62,11 @@ class RideNote(Note):
     if keys[key]:
       prec = self.precision(level.beat, self.hit)
       if prec and prec != "miss":
-        super().pop("perfect")
-        PopEffect(pos = self.pos, prec = "perfect")
+        self.popped = True
+    
+    if level.beat >= self.hit:
+      super().pop("perfect")
+      PopEffect(pos = self.pos, prec = "perfect")
 
   def pop(self, hit = False) -> str | None:
     '''Delete the note and return precision.
