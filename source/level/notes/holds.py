@@ -22,9 +22,8 @@ class HoldNote(Note):
     Other base parameters are inherited from `Note`.
     '''
 
-    super().__init__(**kwargs)
+    super().__init__(hit, align = (0, -1), **kwargs)
 
-    self.hit = hit
     if hit[0] >= hit[1]:
       raise ValueError("hold note cannot end before it starts")
 
@@ -71,6 +70,8 @@ class HoldNote(Note):
         prec = self.precision(level.beat, self.hit[1])
         if prec and prec != "miss":  # popped within hit timing
           self.popped = True
+
+    super().update()
 
   def pop(self, hit = False):
     '''Start popping note.'''

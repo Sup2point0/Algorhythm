@@ -112,7 +112,7 @@ class Track:
 
       # chart elements are removed from the pending processing lists once processed
       for i, note in enumerate(level.data.notes):
-        if level.beat >= note.born():
+        if level.beat >= note.spawnbeat:
           note.spawn()
           level.data.notes.pop(i)
         else:

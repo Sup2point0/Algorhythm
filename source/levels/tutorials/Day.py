@@ -35,7 +35,7 @@ tutorial = Chart(
     Hint(4 * 7, 8,
       Text("Day.hint.intro.3", util.cord(0, -0.4),
         "You can pause the game at any time by pressing ESC or clicking the pause button, in the upper left."
-      ), [Hint.Highlight(150, 150, 200, 200)]
+      ), [Hint.Highlight(100, 100, 150, 150)]
     ),
     Hint(4 * 10, 8,
       Text("Day.hint.intro.4", util.cord(0, -0.4),
@@ -52,7 +52,7 @@ tutorial = Chart(
     Hint(4 * 16, 8,
       Text("Day.hint.ctx.2", util.cord(0, -0.4),
         "These are the lanes."
-      ), [Hint.Highlight(*screen.origin, config.lane.width * 4 + config.lane.space * 6, screen.y)]
+      ), [Hint.Highlight(*screen.origin, config.lane.width * 4 + config.lane.space * 5, screen.y)]
     ),
     Hint(4 * 19, 8,
       Text("Day.hint.ctx.3", util.cord(0, -0.4),
