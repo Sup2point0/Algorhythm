@@ -7,7 +7,7 @@
 <div align="center">
   <table>
     <tr>
-      <img alt="Main Menu" height="200px" src="external/home.png">
+      <td> <img alt="Main Menu" height="200px" src="external/home.png"> </td>
     </tr>
   </table>
 </div>
