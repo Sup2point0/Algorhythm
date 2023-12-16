@@ -11,7 +11,7 @@ from core import game, level, screen, sprites, config, opt
 from innate.sprite import Sprite
 import util
 
-# from level.notes import Tap, Hold, Ride, Roll
+from level.notes import Hold
 from level.lanekey import LaneKey
 
 
@@ -84,9 +84,18 @@ class Lane(Sprite):
     '''Attempt to hit the closest note in the lane.'''
 
     notes = self.notes.sprites()
+
     if notes:
-      note = sorted(notes, key = lambda note: (note.hit, -note.y))[0]
-      note.pop(hit = True)
+      notes = sorted(notes, key = lambda note: (note.hit, -note.y))
+      for note in notes:
+        if isinstance(note, Hold):
+          if not note.popping:
+            note.pop(hit = True)
+            break
+        else:
+          note.pop(hit = True)
+          break
+    
     else:
       level.slips += 1
 

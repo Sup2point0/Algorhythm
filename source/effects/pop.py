@@ -50,7 +50,7 @@ class PopEffect(Sprite):
     if self.anim.alpha.bounded():
       return self.kill()
 
-    self.anim.pop = util.slide(self.anim.pop, 2, speed = 3)
+    self.anim.pop = util.slide(self.anim.pop, 5, speed = 3)
     self.anim.poof = util.slide(self.anim.poof, self.size, speed = 3)
     self.anim.boop = util.slide(self.anim.boop, self.anim.poof, speed = 3)
 

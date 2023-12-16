@@ -22,9 +22,10 @@ class HoldNote(Note):
     Other base parameters are inherited from `Note`.
     '''
 
-    super().__init__(hit, align = (0, 1), **kwargs)
+    super().__init__(hit[0], align = (0, 1), **kwargs)
 
-    if hit[0] >= hit[1]:
+    self.end = hit[1]
+    if self.hit >= self.end:
       raise ValueError("hold note cannot end before it starts")
 
     self.popping = False  # hold key
@@ -38,7 +39,7 @@ class HoldNote(Note):
 
     self.size = (
       config.note.size[0] * opt.note.size(),
-      abs(self.hit[0] - self.hit[1]) * self.speed
+      abs(self.hit - self.end) * self.speed
     )
 
     self.surf = ...
@@ -56,10 +57,10 @@ class HoldNote(Note):
   def update(self):
     self.move()
     super().update()
-    
+
     if not self.popping:
-      if level.beat > self.hit[0]:  # note missed
-        if self.precision(level.beat, self.hit[0]) == "miss":
+      if level.beat > self.hit:  # note missed
+        if self.precision(level.beat, self.hit) == "miss":
           self.slipped = True
     
     else:
@@ -70,7 +71,7 @@ class HoldNote(Note):
         if self.poptick > 2:  # key slipped
           self.slipped = True
       else:
-        prec = self.precision(level.beat, self.hit[1])
+        prec = self.precision(level.beat, self.end)
         if prec and prec != "miss":  # popped within hit timing
           self.popped = True
 
@@ -78,7 +79,7 @@ class HoldNote(Note):
     '''Update note position.'''
     
     self.x = self.lane.x
-    self.y = self.line() - self.speed * (self.hit[0] - level.beat)
+    self.y = self.line() - self.speed * (self.hit - level.beat)
 
   def pop(self, hit = False):
     '''Start popping note.'''

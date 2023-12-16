@@ -102,8 +102,8 @@ tutorial = Chart(
     Hold((4*44, 4*45.5), lane = 2),
     Hold((4*46, 4*47.5), lane = 1),
     Hold((4*48, 4*49.5), lane = 3),
-    Hold((4*50, 4*50.5), lane = 0),
-    Hold((4*51, 4*51.5), lane = 2),
+    Hold((4*50, 4*50.75), lane = 0),
+    Hold((4*51, 4*51.75), lane = 2),
 
     Hint(4*51, 8,
       Text("Day.hint.hold.2", util.cord(0, -0.4),
