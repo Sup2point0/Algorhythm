@@ -273,11 +273,11 @@ class config:
     space = 40
 
   class note:
-    size = [120, 10]
+    size = [140, 10]
     glow = 10
 
   class effect:
-    size = 40
+    size = 60
     speed = 6
 
   sorts = {

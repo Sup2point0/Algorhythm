@@ -50,9 +50,9 @@ class PopEffect(Sprite):
     if self.anim.alpha.bounded():
       return self.kill()
 
-    self.anim.pop = util.slide(self.anim.pop, 1, speed = 2)
-    self.anim.poof = util.slide(self.anim.poof, self.size, speed = 2)
-    self.anim.boop = util.slide(self.anim.boop, self.anim.poof, speed = 2)
+    self.anim.pop = util.slide(self.anim.pop, 2, speed = 3)
+    self.anim.poof = util.slide(self.anim.poof, self.size, speed = 3)
+    self.anim.boop = util.slide(self.anim.boop, self.anim.poof, speed = 3)
 
     ## render
     self.surf = pg.Surface([self.size * 2] * 2, pg.SRCALPHA)
