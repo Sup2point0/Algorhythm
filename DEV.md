@@ -92,7 +92,8 @@ def __init__(self, id,
   text, image,
   root,
   style, display,
-)
+):
+  super().__init__(id, pos, anim = True, interact = True, display = ...)
 ```
 
 
