@@ -56,7 +56,16 @@ class Element(Sprite):
   
   class Style(Object):
     '''Base class from which all style classes derive.'''
-  
+
+    def _config_cols_(self, cols, defaults):
+      cols = cols or {}
+      self.cols = {
+        state: cols.get(state, vars(defaults)[state])
+        for state in config.states.interact
+      }
+      self.col = self.cols["idle"]
+
+  ##
   def __init__(self,
     id: str,
     pos = None,
@@ -102,7 +111,7 @@ class Element(Sprite):
     If element is clicked, call `root` if passed in, or `self.root` if available.
     '''
 
-    if self.display.lock():
+    if self.locked():
       return "lock"
 
     down = pg.mouse.get_pressed()[0]
