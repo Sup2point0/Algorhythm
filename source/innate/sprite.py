@@ -49,11 +49,10 @@ class Sprite(pg.sprite.Sprite):
     if shake:
       x -= screen.shake.x()
       y += screen.shake.y()
-    if hasattr(self, "display"):
-      if self.display:
-        if self.display.scroll:
-          self.sy = util.slide(self.sy, self.display.scroll())
-          y += self.sy
+    if getattr(self, "display", None):
+      if self.display.scroll:
+        self.sy = util.slide(self.sy, self.display.scroll())
+        y += self.sy
 
     lx, ly = self.align
 
