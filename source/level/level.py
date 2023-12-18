@@ -31,7 +31,7 @@ class Track:
     | `id` | `str` | Internal identifier for track, used for finding cover art. |
     | `name` | `str` | Track name. |
     | `artist` | `str` | Track artist. |
-    | `file` | `str` | Source file (path) to stream from. |
+    | `file` | `str` | Source file (path) to stream audio from. |
     | `bpm` | `num` | Tempo of track in beats per minute (can be scaled for easier charting). |
     | `offset` | `float` | Time offset to apply to beat calculations. |
     | `vol` | `0.0 < num < 1.0` | Internal volume of soundtrack. |

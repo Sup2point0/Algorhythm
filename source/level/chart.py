@@ -17,6 +17,7 @@ class Chart:
     difficulty,
     speed = None,
     keys = opt.keys,
+    back = None,
     data = None,
   ):  # TODO change initialiser to use lane objects
     '''Create a chart.
@@ -26,11 +27,13 @@ class Chart:
     | `difficulty` | `int` | Chart difficulty, indexed from the pre-defined game difficulties. |
     | `lanes` | `int` | Initial number of lanes. |
     | `keys` | `list[str[upper]]` | Initial lanekeys. |
+    | `back` | `splash.Asset` | Background image sprite. |
     | `data` | `list[Hitline, Note, Action]` | Chart data, in the form of a list of chart objects. |
     '''
 
     self.difficulty = difficulty
     self.speed = speed or config.difficulties[difficulty].speed
+    self.back = back or ...
     self.lanes = []
     for i, key in enumerate(keys):
       self.lanes.append(Lane(index = i, key = key))
