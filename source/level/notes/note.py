@@ -83,8 +83,8 @@ class Note(Sprite):
       return "perfect"
     elif off < window.hit:
       return "hit"
-    elif off < window.miss:
-      return "miss"
+    elif off < window.fault:
+      return "fault"
     else:
       return None
     
@@ -95,7 +95,7 @@ class Note(Sprite):
       return
     
     # First, check if it's a hit, then check if that's a perfect hit.
-    if prec != "miss":
+    if prec != "fault":
       level.hits += 1
       level.chain += 1
       if level.chain >= level.apex:
@@ -116,6 +116,6 @@ class Note(Sprite):
     hit = self.hit[0] if isinstance(self.hit, Iterable) else self.hit
     speed = self.speed or config.difficulties[level.chart.difficulty].speed
     dist = self.line() / speed
-    
+
     return hit - dist - 1
     # leave a little leeway so the note spawns slightly earlier than appearing onscreen

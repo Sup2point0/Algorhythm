@@ -60,7 +60,7 @@ class HoldNote(Note):
 
     if not self.popping:
       if level.beat > self.hit:  # note missed
-        if self.precision(level.beat, self.hit) == "miss":
+        if self.precision(level.beat, self.hit) == "fault":
           self.slipped = True
     
     else:
@@ -72,7 +72,7 @@ class HoldNote(Note):
           self.slipped = True
       else:
         prec = self.precision(level.beat, self.end)
-        if prec and prec != "miss":  # popped within hit timing
+        if prec and prec != "fault":  # popped within hit timing
           self.popped = True
 
   def move(self):

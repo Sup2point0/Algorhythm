@@ -26,7 +26,7 @@ class Difficulty(Object):
       name = name,
       perfect = leniency,
       hit = leniency * 2,
-      miss = leniency * 2.5,
+      fault = leniency * 2.5,
       speed = speed,
     )
 
@@ -46,7 +46,7 @@ class Rank(Object):
 
     super().__init__(
       name = name,
-      col = col or 0xffffff,
+      col = col or (255, 255, 255),
       req = req or (lambda: True),
     )
 

@@ -40,7 +40,7 @@ flavours = WeightedList(
   (100, "It may help to press the key with 2 fingers for roll notes."),
   (100, "Shock notes can be quite a shock."),
   (100, "Watch out for lane switcheroos."),
-  (100, "Hitting a note way off results in a miss hit and breaks your chain."),
+  (100, "Hitting a note way off results in a faults and breaks your chain."),
   
   (10, "The 4 difficulties are Standing, Advancing, Expecting and... Insecurity?"),
   (50, "Higher difficulties have stricter precision leniency and faster note speeds."),
