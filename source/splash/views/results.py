@@ -33,37 +33,34 @@ class LevelResults(Element):
 
     self.anim.x[idx] = util.slide(self.anim.x[idx], self.size[0], speed = 4)
 
+  def _style_(self, styles):
+    '''...'''
+
+    return [Text.Style(size = 25) for i in range(styles)]
+
   def reset(self):
     '''Reset animation attributes.'''
 
     self.anim.tick = 0
     self.anim.x = [0, 0, 0]
-    self.anim.text = [
-      {
-        "score": 0,
-      }, {
-        "prec": [0, 0, 0],
-        "acc": [0, 0, 0],
-        "chain": [0, 0, 0],
-      }, {
-        "hit":     [0, 0],  "early": [0, 0],
-        "perfect": [0, 0],  "late":  [0, 0],
-        "fault":   [0, 0],  "slips": [0, 0],
-        "missed":  [0, 0],  "fixed": [0, 0],
-      }
-    ]
+    '''Width of 3 backing rectangles.'''
+    
+    self.anim.styles = {
+      "score": Text.Style(typeface = "title", size = 50),
+      "...": self._style_(2),
+      "hit":     [0, 0],  "early": [0, 0],
+      "perfect": [0, 0],  "late":  [0, 0],
+      "fault":   [0, 0],  "slips": [0, 0],
+      "missed":  [0, 0],  "fixed": [0, 0],
+    }
+    '''Style settings for all text elements.'''
 
   def update(self):
-    self.render()
-
-  def render(self):
-    ''''''
-
+    self.anim.tick += 1
+    
     self.surf = pg.Surface(self.size, pg.SRCALPHA)
 
-    self.anim.tick += 1
-
-    ## background rectangles
+    ## backing rectangles
     if self.anim.tick > 15:
       self._slide_(0)
       pg.draw.rect(self.surf, ui.col.back, rect = (0, 0, self.anim.x[0], 100))
