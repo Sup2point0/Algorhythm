@@ -121,6 +121,13 @@ def load():
         layer = "backdrop",
       ),
     ),
+    LevelResults("",
+      pos = (screen.cx, screen.cy * 0.5),
+      display = Displayed(
+        show = {"env"},
+        align = (-1, -1),
+      ),
+    )
   ]
 
   settings = [

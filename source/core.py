@@ -187,10 +187,10 @@ class ui:
 
     class views:
       details = []
-      results = []
+      results = [500, 700]
 
   class col:
-    back = [0, 0, 0, 128]
+    back = [0, 0, 0, 100]
 
     class text:
       idle = (255, 255, 255, 255)

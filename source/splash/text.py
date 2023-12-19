@@ -80,7 +80,7 @@ class Text(Element):
   def render(text, style = Style()) -> tuple[pg.Surface, pg.Rect]:
     '''Generates a surface and its rect with rendered text.'''
 
-    return freetype.Font(f"assets/fonts/{style.typeface}.ttf", style.size).render(text, style.col)
+    return freetype.Font(f"assets/fonts/{style.typeface}.ttf", style.size).render(str(text), style.col)
 
 
 class Textbox(Element):
