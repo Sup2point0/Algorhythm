@@ -33,6 +33,7 @@ class game:
 
   player = None
   level = None
+  mode = None
 
   select = {
     "track": None,
@@ -101,10 +102,10 @@ class screen:
   states = {
     "start", "select",
     *{f"select.{each}" for each in game.series},
-    "environ", "environ.load", "environ.create",
-    "settings", "settings.sounds", "settings.visuals", "settings.changelog", "settings.credits",
+    "env", "env.load", "env.create",
+    "set", "set.sounds", "set.visuals", "set.changelog", "set.credits",
     "account",
-    "play", "score",
+    "play", "over",
   }
   
   fade = None
@@ -123,11 +124,11 @@ class screen:
       f"select.{each}": Val(0)
       for each in game.series
     },
-    "settings": Val(0),
-    "settings.sounds": Val(0),
-    "settings.visuals": Val(0),
-    "settings.changelog": Val(0),
-    "settings.credits": Val(0, lower = -0.8 * y, upper = 0),
+    "set": Val(0),
+    "set.sounds": Val(0),
+    "set.visuals": Val(0),
+    "set.changelog": Val(0),
+    "set.credits": Val(0, lower = -0.8 * y, upper = 0),
   }
 
   track = []
@@ -183,6 +184,10 @@ class ui:
     class select:
       series = [screen.x * 0.6, 120]
       track = [screen.x * 0.4, 120]
+
+    class views:
+      details = []
+      results = []
 
   class col:
     back = [0, 0, 0, 128]

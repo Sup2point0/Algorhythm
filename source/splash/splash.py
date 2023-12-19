@@ -15,6 +15,7 @@ from splash.asset import Asset
 from splash.text import Text, Textbox, ActiveText
 from splash.buttons import Button
 from splash.select import Select, SeriesSelect, TrackSelect
+from splash.views.results import LevelResults
 
 from levels import levels
 
@@ -63,9 +64,9 @@ def load():
       size = screen.size,
       blur = 5,
       display = Displayed(
-        show = {"start", "settings",
-          "settings.sounds", "settings.visuals",
-          "settings.changelog", "settings.credits"},
+        show = {"start", "set",
+          "set.sounds", "set.visuals",
+          "set.changelog", "set.credits"},
         layer = "backdrop",
       ),
     ),
@@ -87,13 +88,13 @@ def load():
     Button("start.environ",
       pos = util.cord(-0.8, 0.15),
       text = "ENVIRONMENT",
-      root = roots.switch.state("environ"),
+      root = roots.switch.state("env"),
       display = presets.display.start,
     ),
     Button("start.settings",
       pos = util.cord(-0.8, 0.4),
       text = "SETTINGS",
-      root = roots.switch.state("settings"),
+      root = roots.switch.state("set"),
       display = presets.display.start,
     ),
     Text("start.version",
@@ -110,63 +111,63 @@ def load():
   ]
 
   environ = [
-    Asset("environ.backdrop",
+    Asset("env.backdrop",
       pos = screen.origin,
       image = "cortex-blue.png",
       size = screen.size,
       blur = 5,
       display = Displayed(
-        show = {"environ"},
+        show = {"env"},
         layer = "backdrop",
       ),
     ),
   ]
 
   settings = [
-    Text("settings.title",
+    Text("set.title",
       pos = util.cord(0, -0.6),
       text = "ALGORHYTHM",
       style = Text.Style(
         typeface = ui.font.title,
         size = 100,
       ),
-      display = Displayed(show = {"settings"}),
+      display = Displayed(show = {"set"}),
     ),
-    Text("settings.version",
+    Text("set.version",
       pos = util.cord(0, -0.35),
       text = f"v{game.version}",
-      display = Displayed(show = {"settings"})
+      display = Displayed(show = {"set"})
     ),
-    Button("settings.sounds",
+    Button("set.sounds",
       pos = util.cord(-0.25, 0.15),
       text = "SOUNDS",
-      root = roots.switch.state("settings.sounds"),
-      display = Displayed(show = {"settings"}),
+      root = roots.switch.state("set.sounds"),
+      display = Displayed(show = {"set"}),
     ),
-    Button("settings.visuals",
+    Button("set.visuals",
       pos = util.cord(0.25, 0.15),
       text = "VISUALS",
-      root = roots.switch.state("settings.visuals"),
-      display = Displayed(show = {"settings"}),
+      root = roots.switch.state("set.visuals"),
+      display = Displayed(show = {"set"}),
     ),
-    Button("settings.changelog",
+    Button("set.changelog",
       pos = util.cord(-0.25, 0.4),
       text = "CHANGELOG",
-      root = roots.switch.state("settings.changelog"),
-      display = Displayed(show = {"settings"}),
+      root = roots.switch.state("set.changelog"),
+      display = Displayed(show = {"set"}),
     ),
-    Button("settings.credits",
+    Button("set.credits",
       pos = util.cord(0.25, 0.4),
       text = "CREDITS",
-      root = roots.switch.state("settings.credits"),
-      display = Displayed(show = {"settings"}),
+      root = roots.switch.state("set.credits"),
+      display = Displayed(show = {"set"}),
     ),
   ]
   sounds = []
   visuals = []
   changelog = []
   credits = [
-    Text("settings.credits.title",
+    Text("set.credits.title",
       pos = util.cord(0, -0.6),
       text = "ALGORHYTHM",
       style = Text.Style(
@@ -175,17 +176,17 @@ def load():
       ),
       display = presets.display.credits,
     ),
-    Text("settings.credits.version",
+    Text("set.credits.version",
       pos = util.cord(0, -0.35),
       text = f"v{game.version}",
       display = presets.display.credits,
     ),
-    Text("settings.credits.creator",
+    Text("set.credits.creator",
       pos = util.cord(0, -0.1),
       text = f"by Sup#2.0",
       display = presets.display.credits,
     ),
-    Textbox("settings.credits.1",
+    Textbox("set.credits.1",
       pos = util.cord(0, 0.2),
       text = [
         "made in Python 3.11",
@@ -193,7 +194,7 @@ def load():
       ],
       display = presets.display.credits,
     ),
-    Text("settings.credits.playtesters",
+    Text("set.credits.playtesters",
       pos = util.cord(0, 0.5),
       text = f"Playtesters",
       style = Text.Style(
@@ -202,7 +203,7 @@ def load():
       ),
       display = presets.display.credits,
     ),
-    Textbox("settings.credits.2",
+    Textbox("set.credits.2",
       pos = util.cord(0, 1.0),
       text = [
         "Sup#1.2",
@@ -210,7 +211,7 @@ def load():
       ],
       display = presets.display.credits,
     ),
-    Text("settings.credits.packages",
+    Text("set.credits.packages",
       pos = util.cord(0, 0.5),
       text = f"Packages",
       style = Text.Style(
@@ -219,7 +220,7 @@ def load():
       ),
       display = presets.display.credits,
     ),
-    Textbox("settings.credits.3",
+    Textbox("set.credits.3",
       pos = util.cord(0, 1.0),
       text = [
         "Pillow",
@@ -232,7 +233,7 @@ def load():
       ],
       display = presets.display.credits,
     ),
-    Text("settings.credits.fonts",
+    Text("set.credits.fonts",
       pos = util.cord(0, 0.5),
       text = f"Fonts",
       style = Text.Style(
@@ -241,7 +242,7 @@ def load():
       ),
       display = presets.display.credits,
     ),
-    Textbox("settings.credits.3",
+    Textbox("set.credits.3",
       pos = util.cord(0, 1.0),
       text = [
         "Pillow",
@@ -363,6 +364,7 @@ def load():
       ),
     ),
   ]
-  score = [
+
+  results = [
     ...
   ]
