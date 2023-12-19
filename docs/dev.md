@@ -9,7 +9,6 @@ Just development-related notes ^v^
 ## Tasks
 
 ### Ongoing
-- Implement ride note functionality
 - Update button styles
 
 ### Todo
@@ -23,14 +22,7 @@ Just development-related notes ^v^
 - Techy node background with floating geometric entities
   - Blue theme
   - Glow effects with Pillow
-- Notifications
 - `ColourPicker`, `KeyPicker`
-- Multiple lanekeys
-  - For easier spamming
-- Free mode
-  - Press any keys
-- Branch mode
-  - Optional Shock Notes
 
 
 <br>
@@ -96,14 +88,4 @@ def __init__(self, id,
   super().__init__(id, pos, anim = True, interact = True, display = ...)
 ```
 
-
-<br>
-
-
-## Learnings
-
-Little bits of knowledge picked up along the way, for anyone who might be looking to do the same.
-
-- Git can’t stop tracking a file already being tracked, so you’ve gotta delete it and re-create it.
-- VSCode executes code (at least for Python) with the directory open in Explorer as the current working directory.
-  - We can configure it to execute from a particular directory with the `PYTHONPATH` variable in a `.env` file.
+<!-- this file is just for me, btw -->
