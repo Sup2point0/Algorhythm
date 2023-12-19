@@ -25,9 +25,7 @@ Why have the lanes and keys be static? *Algorhythm* takes a spin on traditional 
  - ? meticulously hand-crafted charts (with more being added!)
 
 ### Upcoming Features
-- *Freestyle*
-- *Branchout*
-- Chart editor (!?)
+- Just more charts (for now)
 
 
 <br>
@@ -52,6 +50,7 @@ The following keys are used in charts:
  - 4 arrow keys
  - Space bar
  - Enter key
+ - Backspace (optional, only for Mastery Mode)
 
 
 <br>
@@ -84,4 +83,4 @@ This was entirely a solo project, with the intention of challenging myself to fi
 
 ## Charts
 
-In the unlikely scenario that you would like to create a chart... it is not easy, but would be hugely appreciated. See [charting](docs/charting.md).
+In the unlikely scenario that you would like to create a chart... it is not easy, but would be hugely appreciated. See [Charting](docs/charting.md).
