@@ -20,38 +20,31 @@ class LevelResults(Element):
     super().__init__(id, pos, anim = True, display = display)
 
     self.size = ui.size.views.results
-    self.style = Text.Style(size = 25)
-    self.stylescore = Text.Style(typeface = "title", size = 50)
+    self.style = Text.Style(size = 25,
+      col = ui.col.text.idle[:3] + (255,),
+    )
 
     self.rect = pg.Rect(pos, self.size)
 
     self.reset()
     super().position()
 
-  def _slide_(self, idx):
-    '''...'''
-
-    self.anim.x[idx] = util.slide(self.anim.x[idx], self.size[0], speed = 4)
-
-  def _style_(self, styles):
-    '''...'''
-
-    return [Text.Style(size = 25) for i in range(styles)]
-
   def reset(self):
     '''Reset animation attributes.'''
 
+    self.anim.state = True
     self.anim.tick = 0
+
     self.anim.x = [0, 0, 0]
     '''Width of 3 backing rectangles.'''
     
     self.anim.styles = {
       "score": Text.Style(typeface = "title", size = 50),
-      "...": self._style_(2),
-      "hit":     [0, 0],  "early": [0, 0],
-      "perfect": [0, 0],  "late":  [0, 0],
-      "fault":   [0, 0],  "slips": [0, 0],
-      "missed":  [0, 0],  "fixed": [0, 0],
+      "info": [
+        self.style, self.style,
+        self.style.updated(align = (1, 0)),
+      ],
+      "details": [self.style, self.style]
     }
     '''Style settings for all text elements.'''
 
@@ -75,6 +68,7 @@ class LevelResults(Element):
 
     ## score
     if self.anim.tick > 120:
+      ...
       self.surf.blit(Text.render(level.score, self.stylescore)[0], dest = (20, 20))
 
     ## ...
@@ -103,3 +97,8 @@ class LevelResults(Element):
         self.surf.blit(Text.render("SLIPS", self.style)[0], dest = (0, 200))
       if self.anim.tick > 0:
         self.surf.blit(Text.render("FIXED", self.style)[0], dest = (0, 200))
+
+  def _slide_(self, idx):
+    '''...'''
+
+    self.anim.x[idx] = util.slide(self.anim.x[idx], self.size[0], speed = 4)
