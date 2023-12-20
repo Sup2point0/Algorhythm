@@ -73,32 +73,37 @@ class LevelResults(Element):
 
     ## ...
     if self.anim.tick > 0:
-      self.surf.blit(Text.render("CHAIN", self.style)[0], dest = (0, 200))
+      self._render_("CHAIN", (0, 200))
     if self.anim.tick > 0:
-      self.surf.blit(Text.render("PRECISION", self.style)[0], dest = (0, 200))
+      self._render_("PRECISION", (0, 200))
     if self.anim.tick > 0:
-      self.surf.blit(Text.render("ACCURACY", self.style)[0], dest = (0, 200))
+      self._render_("ACCURACY", (0, 200))
 
     ## breakdown
     if self.anim.tick > 0:
-      self.surf.blit(Text.render("HIT", self.style)[0], dest = (0, 200))
+      self._render_("HIT", (0, 200))
     if self.anim.tick > 0:
-      self.surf.blit(Text.render("PERFECT", self.style)[0], dest = (0, 200))
+      self._render_("PERFECT", (0, 200))
     if self.anim.tick > 0:
-      self.surf.blit(Text.render("FAULTS", self.style)[0], dest = (0, 200))
+      self._render_("FAULTS", (0, 200))
     if self.anim.tick > 0:
-      self.surf.blit(Text.render("MISSED", self.style)[0], dest = (0, 200))
+      self._render_("MISSED", (0, 200))
     if self.anim.tick > 0:
-      self.surf.blit(Text.render("EARLY", self.style)[0], dest = (0, 200))
+      self._render_("EARLY", (0, 200))
     if self.anim.tick > 0:
-      self.surf.blit(Text.render("LATE", self.style)[0], dest = (0, 200))
+      self._render_("LATE", (0, 200))
     if game.mode == "expert":
       if self.anim.tick > 0:
-        self.surf.blit(Text.render("SLIPS", self.style)[0], dest = (0, 200))
+        self._render_("SLIPS", (0, 200))
       if self.anim.tick > 0:
-        self.surf.blit(Text.render("FIXED", self.style)[0], dest = (0, 200))
+        self._render_("FIXED", (0, 200))
 
   def _slide_(self, idx):
-    '''...'''
+    '''Utility function for animating backing rectangles.'''
 
     self.anim.x[idx] = util.slide(self.anim.x[idx], self.size[0], speed = 4)
+
+  def _render_(self, text, pos):
+    '''Utility function to render text to the sprite.'''
+
+    self.surf.blit(Text.render(text, self.style)[0], dest = pos)
