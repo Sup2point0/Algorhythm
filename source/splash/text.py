@@ -43,13 +43,10 @@ class Text(Element):
       self.size = size or ui.size.font
       self.align = align or (0, 0)
 
-      self.cols = vars(ui.col.text)
-      self.cols = {each: self.cols[each] for each in self.cols if not each.startswith("__")}
       if isinstance(col, dict):
-        for each in col:
-          self.cols[each] = col[each]
-        self.col = self.cols["idle"]
+        self._config_cols_(col, ui.col.text)
       else:
+        self._config_cols_(None, ui.col.text)
         self.col = col or self.cols["idle"]
 
   
