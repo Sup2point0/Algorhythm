@@ -69,11 +69,17 @@ class level:
 
   score = 0
   scored = 0  # displayed score
-  hits = 0
-  perfect = 0
-  slips = 0
   chain = 0  # combo
   apex = 0  # max combo
+
+  hits = 0
+  perfect = 2999
+  faults = 0
+  missed = 0
+  early = 0
+  late = 0
+  slips = 0
+  fixed = 0
 
   class lane:
     width = 0
@@ -187,10 +193,10 @@ class ui:
 
     class views:
       details = []
-      results = [500, 700]
+      results = [600, 480]
 
   class col:
-    back = [0, 0, 0, 100]
+    back = [0, 0, 0, 151]
 
     class text:
       idle = [255, 255, 255, 255]

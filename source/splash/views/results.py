@@ -23,19 +23,19 @@ class LevelResults(Element):
     super().__init__(id, pos, anim = True, display = display)
 
     self.size = ui.size.views.results
-    self.style = Text.Style(size = 25,
-      col = ui.col.text.idle[:3] + [0],
-    )
 
-    self.rect = pg.Rect(pos, self.size)
+    style = Text.Style(size = 25, col = ui.col.text.idle[:3] + [0])
+    self.style = (lambda align: style.updated(align = (align, 0)))
 
     class layout:
-      left = 50
-      space = 25
+      space = 50
+      x3 = [50, 325, 550]
+      x4 = [50, 250, 350, 550]
 
     self.layout = layout
-
     self.reset()
+    
+    self.rect = pg.Rect(pos, self.size)
     super().position()
 
   def reset(self):
@@ -45,77 +45,146 @@ class LevelResults(Element):
     self.anim.tick = 0
 
     rects = []
-    rects.append([0, 0, 0, 100])
-    rects.append([0, rects[0].h + 50, 0, 200])
-    rects.append([0, rects[1].y + rects[1].h + 50, 0, 600])
+    y = 0
+    for height in [80, 160, 600]:
+      rects.append(pg.Rect(0, y, 0, height))
+      y += height + 20
     self.anim.rects = rects
     
     self.anim.styles = {
-      "score": Text.Style(typeface = "title", size = 50),
-      "info": [
-        self.style, self.style,
-        self.style.updated(align = (1, 0)),
-      ],
-      "details": [self.style, self.style]
+      "score": Text.Style(typeface = "title", size = 50, align = (-1, 0)),
+      "info": [self.style(-1), self.style(1), self.style(1)],
+      "details": [self.style(-1), self.style(1)]
     }
-    '''Style settings for all text elements.'''
 
   def update(self):
     self.anim.tick += 1
-    styles = self.anim.styles
-    
     self.surf = pg.Surface(self.size, pg.SRCALPHA)
 
+    tick = self.anim.tick
+    styles = self.anim.styles
+
     ## backing rectangles
-    if self.anim.tick > 15:
+    if tick > 15:
       self._slide_(0)
       pg.draw.rect(self.surf, ui.col.back, rect = self.anim.rects[0])
     
-    if self.anim.tick > 30:
+    if tick > 30:
       self._slide_(1)
       pg.draw.rect(self.surf, ui.col.back, rect = self.anim.rects[1])
     
-    if self.anim.tick > 45:
+    if tick > 45:
       self._slide_(2)
       pg.draw.rect(self.surf, ui.col.back, rect = self.anim.rects[2])
       
     ## score
-    if self.anim.tick > 30:
+    if tick > 30:
       self._fade_(styles["score"])
-      self._render_((20, 20), styles["score"], level.scored)
+      self._render_(styles["score"], level.scored,
+        (self.layout.x3[0], self.anim.rects[0].h / 2))
 
     ## info
-    if self.anim.tick > 45:
+    y = self.anim.rects[1].y
+
+    if tick > 45:
       style = styles["info"][0]
       self._fade_(style)
-      self._render_((self.layout.left, 175), style, "CHAIN")
-      self._render_((self.layout.left, 200), style, "PRECISION")
-      self._render_((self.layout.left, 225), style, "ACCURACY")
-    if self.anim.tick > 60:
+      self._render_(style, "CHAIN",
+        (self.layout.x3[0], y + self._space_(1))
+      )
+      self._render_(style, "PRECISION",
+        (self.layout.x3[0], y + self._space_(2))
+      )
+      self._render_(style, "ACCURACY",
+        (self.layout.x3[0], y + self._space_(3))
+      )
+    
+    if tick > 60:
       style = styles["info"][1]
       self._fade_(style)
-      self._render_((self.layout.left, 175), style, "CHAIN")
-      self._render_((self.layout.left, 200), style, "PRECISION")
-      self._render_((self.layout.left, 225), style, "ACCURACY")
+      self._render_(style, level.apex,
+        (self.layout.x3[1], y + self._space_(1))
+      )
+      self._render_(style, "<PREC>",
+        (self.layout.x3[1], y + self._space_(2))
+      )
+      self._render_(style, "<ACC>",
+        (self.layout.x3[1], y + self._space_(3))
+      )
+    
+    if tick > 75:
+      style = styles["info"][2]
+      self._fade_(style)
+      self._render_(style, level.apex,
+        (self.layout.x3[2], y + self._space_(1))
+      )
+      self._render_(style, "<PREC>",
+        (self.layout.x3[2], y + self._space_(2))
+      )
+      self._render_(style, "<ACC>",
+        (self.layout.x3[2], y + self._space_(3))
+      )
 
     ## details
-    if self.anim.tick > 0:
-      self._render_("HIT", (0, 200))
-    if self.anim.tick > 0:
-      self._render_("PERFECT", (0, 200))
-    if self.anim.tick > 0:
-      self._render_("FAULTS", (0, 200))
-    if self.anim.tick > 0:
-      self._render_("MISSED", (0, 200))
-    if self.anim.tick > 0:
-      self._render_("EARLY", (0, 200))
-    if self.anim.tick > 0:
-      self._render_("LATE", (0, 200))
-    if game.mode == "expert":
-      if self.anim.tick > 0:
-        self._render_("SLIPS", (0, 200))
-      if self.anim.tick > 0:
-        self._render_("FIXED", (0, 200))
+    y = self.anim.rects[2].y
+
+    if tick > 60:
+      style = styles["details"][0]
+      self._fade_(style)
+      self._render_(style, "HIT",
+        (self.layout.x4[0], y + self._space_(1))
+      )
+      self._render_(style, "PERFECT",
+        (self.layout.x4[0], y + self._space_(2))
+      )
+      self._render_(style, "FAULTS",
+        (self.layout.x4[0], y + self._space_(3))
+      )
+      self._render_(style, "MISSED",
+        (self.layout.x4[0], y + self._space_(4))
+      )
+      self._render_(style, "EARLY",
+        (self.layout.x4[2], y + self._space_(1))
+      )
+      self._render_(style, "LATE",
+        (self.layout.x4[2], y + self._space_(2))
+      )
+      if game.mode == "expert":
+        self._render_(style, "SLIPS",
+          (self.layout.x4[2], y + self._space_(3))
+        )
+        self._render_(style, "FIXED",
+          (self.layout.x4[2], y + self._space_(4))
+        )
+
+    if tick > 75:
+      style = styles["details"][1]
+      self._fade_(style)
+      self._render_(style, level.hits,
+        (self.layout.x4[1], y + self._space_(1))
+      )
+      self._render_(style, level.perfect,
+        (self.layout.x4[1], y + self._space_(2))
+      )
+      self._render_(style, level.faults,
+        (self.layout.x4[1], y + self._space_(3))
+      )
+      self._render_(style, level.missed,
+        (self.layout.x4[1], y + self._space_(4))
+      )
+      self._render_(style, level.early,
+        (self.layout.x4[3], y + self._space_(1))
+      )
+      self._render_(style, level.late,
+        (self.layout.x4[3], y + self._space_(2))
+      )
+      if game.mode == "expert":
+        self._render_(style, level.slips,
+          (self.layout.x4[3], y + self._space_(3))
+        )
+        self._render_(style, level.fixed,
+          (self.layout.x4[3], y + self._space_(4))
+        )
 
   def _slide_(self, idx):
     '''Animate backing rectangle.'''
@@ -126,9 +195,18 @@ class LevelResults(Element):
   def _fade_(self, style):
     '''Increase alpha of text style for fade-in animation.'''
 
-    style.col[3] += config.fade.rate
+    if style.col[3] < 255:
+      style.col[3] += config.rate.fade
+      if style.col[3] > 255:
+        style.col[3] = 255
 
-  def _render_(self, pos, style, text):
+  def _render_(self, style, text, pos):
     '''Render text to the sprite (has a cleaner argument order).'''
 
-    self.surf.blit(Text.render(text, style)[0], dest = pos)
+    surf, rect = Text.render(text, style)
+    self.surf.blit(surf, dest = util.root(rect, *pos, align = style.align))
+
+  def _space_(self, factor):
+    '''Calculate spacing.'''
+
+    return self.layout.space * (factor - 0.4)

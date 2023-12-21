@@ -122,7 +122,7 @@ def load():
       ),
     ),
     LevelResults("",
-      pos = (screen.cx, screen.cy * 0.5),
+      pos = (screen.cx - 100, screen.cy * 0.3),
       display = Displayed(
         show = {"env"},
         align = (-1, -1),
