@@ -4,7 +4,7 @@ Implements the `LevelResults` class for viewing performance after finishing a le
 
 import pygame as pg
 
-from core import game, level, ui
+from core import game, level, ui, config
 import util
 
 from splash.elements import Element
@@ -107,5 +107,5 @@ class LevelResults(Element):
     '''Utility function to render text to the sprite.'''
 
     if self.anim.tick > tick:
-      style.col
+      style.col[3] += config.rate.fade
       self.surf.blit(Text.render(text, style)[0], dest = pos)
