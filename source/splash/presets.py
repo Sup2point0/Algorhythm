@@ -28,5 +28,6 @@ class display:
 
   credits = Displayed(
     show = {"set.credits"},
+    align = (0, -1),
     scroll = roots.scroll("set.credits"),
   )

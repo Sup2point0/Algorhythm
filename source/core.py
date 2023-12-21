@@ -134,7 +134,7 @@ class screen:
     "set.sounds": Val(0),
     "set.visuals": Val(0),
     "set.changelog": Val(0),
-    "set.credits": Val(0, lower = -0.8 * y, upper = 0),
+    "set.credits": Val(0, lower = -1.25 * y, upper = 0),
   }
 
   track = []

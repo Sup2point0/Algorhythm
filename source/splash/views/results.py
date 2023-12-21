@@ -28,7 +28,7 @@ class LevelResults(Element):
     self.style = (lambda align: style.updated(align = (align, 0)))
 
     class layout:
-      space = 50
+      space = 40
       x3 = [50, 325, 550]
       x4 = [50, 250, 350, 550]
 
