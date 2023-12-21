@@ -21,7 +21,7 @@ class LevelResults(Element):
 
     self.size = ui.size.views.results
     self.style = Text.Style(size = 25,
-      col = ui.col.text.idle[:3] + (255,),
+      col = ui.col.text.idle[:3] + (0,),
     )
 
     self.rect = pg.Rect(pos, self.size)
@@ -69,7 +69,7 @@ class LevelResults(Element):
     ## score
     if self.anim.tick > 120:
       ...
-      self.surf.blit(Text.render(level.score, self.stylescore)[0], dest = (20, 20))
+      self.surf.blit(Text.render(level.score, self.anim.styles["score"])[0], dest = (20, 20))
 
     ## ...
     if self.anim.tick > 0:
@@ -103,7 +103,9 @@ class LevelResults(Element):
 
     self.anim.x[idx] = util.slide(self.anim.x[idx], self.size[0], speed = 4)
 
-  def _render_(self, text, pos):
+  def _render_(self, tick, text, pos, style):
     '''Utility function to render text to the sprite.'''
 
-    self.surf.blit(Text.render(text, self.style)[0], dest = pos)
+    if self.anim.tick > tick:
+      style.col
+      self.surf.blit(Text.render(text, style)[0], dest = pos)
