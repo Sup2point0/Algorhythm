@@ -45,7 +45,7 @@ class Asset(Element):
 
     if dark is not None:
       self.cover = pg.Surface(self.surf.get_size())
-      self.cover.fill(((0, 0, 0))
+      self.cover.fill((0, 0, 0))
       self.cover.set_alpha(Alpha(dark)())
       self.surf.blit(self.cover, (0, 0))
 
