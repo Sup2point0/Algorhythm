@@ -211,6 +211,9 @@ class ui:
 class config:
   '''Internal non-alterable settings.'''
 
+  class states:
+    interact = ["idle", "hover", "click", "lock"]
+
   class rate:
     frames = 60
     fade = 12
