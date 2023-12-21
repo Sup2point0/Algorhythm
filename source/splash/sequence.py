@@ -31,7 +31,7 @@ def load(skip = False):
     screen.fade = "dark"
     return
 
-  from assets.__toppings__ import flavours
+  from assets.internal.__toppings__ import flavours
 
   class load:
     state = None
