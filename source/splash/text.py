@@ -117,7 +117,13 @@ class Textbox(Element):
         self.update = super().position
 
   def _render_(self):
-    self.surfs = [Text.render(each, self.style) for each in self.text]
+    keyed = (lambda x: isinstance(x[0], int) or len(x[0]) > 1)
+    self.surfs = [
+      Text.render(
+        each[1] if keyed(each) else each,
+        self.style[each[0]] if keyed(each) else self.style
+      ) for each in self.text
+    ]  # if multiple styles are in use, 
 
     # Double iteration is painful, but I can’t (yet) see a better way to do it.
     width = 0
