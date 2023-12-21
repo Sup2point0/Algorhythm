@@ -1,9 +1,10 @@
 '''
-Integrates all the different splash sprite classes into the graphical user interface.
+Integrates all the different splash sprite classes into the complete graphical user interface.
 '''
 
 import pygame as pg
 
+from Algorhythm import main
 from core import game, level, screen, sprites, ui, config
 from innate import Alpha
 import util
@@ -46,7 +47,7 @@ def load():
       text = "‹",
       root = roots.switch.back,
       style = Button.Style(
-        size = (ui.size.button[1], ui.size.button[1]),
+        size = [ui.size.button[1]] * 2,
       ),
       display = Displayed(
         hide = {"start", "play", "score"},
@@ -122,7 +123,7 @@ def load():
       ),
     ),
     LevelResults("",
-      pos = (screen.cx - 100, screen.cy * 0.3),
+      pos = [screen.cx - 100, screen.cy * 0.3],
       display = Displayed(
         show = {"env"},
         align = (-1, -1),
@@ -219,7 +220,7 @@ def load():
       display = presets.display.credits,
     ),
     Text("set.credits.packages",
-      pos = util.cord(0, 0.5),
+      pos = util.cord(0, 1.5),
       text = f"Packages",
       style = Text.Style(
         typeface = ui.font.title,
@@ -228,20 +229,15 @@ def load():
       display = presets.display.credits,
     ),
     Textbox("set.credits.3",
-      pos = util.cord(0, 1.0),
+      pos = util.cord(0, 2.0),
       text = [
-        "Pillow",
-        "image effects",
-        " ",
-        "Librosa",
-        "sound processing",
-        "",
-        "test",
+        "Pillow", "image effects", " ",
+        "Librosa", "sound processing", "", "test",
       ],
       display = presets.display.credits,
     ),
     Text("set.credits.fonts",
-      pos = util.cord(0, 0.5),
+      pos = util.cord(0, 3.5),
       text = f"Fonts",
       style = Text.Style(
         typeface = ui.font.title,
@@ -252,13 +248,8 @@ def load():
     Textbox("set.credits.3",
       pos = util.cord(0, 1.0),
       text = [
-        "Pillow",
-        "image effects",
-        " ",
-        "Librosa",
-        "sound processing",
-        "",
-        "test",
+        "Geologica",
+        "(Google Fonts)",
       ],
       display = presets.display.credits,
     ),
@@ -330,7 +321,7 @@ def load():
       dark = 32,
       display = Displayed(
         show = {"select.tutorials"},
-        layer = sprites.active.layer["backdrop"],
+        layer = "backdrop",
       ),
     ),
     # TrackSelect("select.tutorials.standard",
@@ -348,6 +339,18 @@ def load():
   ]
 
   play = [
+    Button("level.pause",
+      pos = [50, 50],
+      text = "[ ]",
+      root = main.pause,
+      style = Button.Style(
+        size = [ui.size.button[1]] * 2,
+      ),
+      display = Displayed(
+        show = {"play"},
+        align = (-1, -1),
+      ),
+    ),
     ActiveText("level.score",
       pos = [screen.x - 40, 40],
       source = lambda: util.setscore(round(level.scored)),
@@ -356,7 +359,7 @@ def load():
       ),
       display = Displayed(
         show = {"play"},
-        align = (1, -1)
+        align = (1, -1),
       ),
     ),
     ActiveText("level.chain",
