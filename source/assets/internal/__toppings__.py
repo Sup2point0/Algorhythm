@@ -16,16 +16,30 @@ toppings = {
   5: "rare for a reason",
   8: "why not",
   10: "quirkier quips,
+  15: "references",
   20: "quirky quips",
-  25: "references",
+  42: "sup",
   50: "trivial trivia",
+  69: "nice",
   100: "helpful stuff",
   200: "actual advice",
+  404: "undefined",
 }
 
 
 # I don’t know why I categorised and ordered these, but for whoever’s looking, you’re welcome.
 flavours = WeightedList(
+  
+  (100, "Note patterns can sometimes spell out words."),
+  (200, "The colours of notes and lanes correspond to which row of the keyboard their key is in."),
+  (200, "If a note’s colour is different to the lane’s, it’s probably a shock note."),
+  (200, "Hold notes do not actually have to be held for their entire duration."),
+  (200, "It may help to press the key with 2 fingers for roll notes."),
+  (100, "Shock notes can be quite a shock."),
+  (100, "Watch out for lane switcheroos."),
+  (200, "Hitting a note way off results in a faults and breaks your chain."),
+  (100, "You can create multiple accounts to save progress and settings."),
+  (200, "You can change your default lane keys in settings, though not all charts will use them.")
 
   (20, "Feel."),
   (20, "Look."),
@@ -36,27 +50,18 @@ flavours = WeightedList(
   (100, "Pro tip – do NOT play with liquid containers nearby."),
   (20, "Music is love, music is life."),
   
-  (100, "Note patterns can sometimes spell out words."),
-  (200, "The colours of notes and lanes correspond to which row of the keyboard their key is in."),
-  (200, "If a note’s colour is different to the lane’s, it’s probably a shock note."),
-  (200, "Hold notes do not actually have to be held for their entire duration."),
-  (200, "It may help to press the key with 2 fingers for roll notes."),
-  (100, "Shock notes can be quite a shock."),
-  (100, "Watch out for lane switcheroos."),
-  (200, "Hitting a note way off results in a faults and breaks your chain."),
-  
   (20, "The 4 difficulties are Standing, Advancing, Expecting and... Insecurity?"),
   (20, "You don’t have to be an expert to play an Expert chart."),
   (50, "Insane difficulty isn’t always insane. It’s just more insane than the 3 before it. Which probably makes it quite insane."),
   (50, "Remember, no matter how difficult it is, it can always be more so."),
   
-  (100, "You can create multiple accounts to save progress and settings."),
-  
   (50, "Algorhythm is highly inspired by Phigros."),
   (50, "Algorhythm features original music created by yours truly (in GarageBand)."),
   (50, "Development on Algorhythm began the day it was conceptualised."),
   (50, "This idle backing soundtrack is called ‘Dawn’."),
-  (50, "The first chart added to Algorhythm was ‘End of Time’s instrumental version, as the tutorial chart."),
+  (50, "The tutorial was originally planned to be the instrumental of ‘End of Time’ by K-391, Ahrix and Alan Walker."),
+  (50, "The Decode and Encode series were provisionally named Protos and Deutos during development."),
+  (50, "Preliminary planning for graphic design involved pen and paper, Notes and the Apple Pencil, and PowerPoint."),
   (20, "No, Algorhythm is not coded in ALGOL. It’s Python."),
   (5, "Algorhythm’s source code can be found on – wait, why would you want to see that?"),
   
@@ -96,6 +101,10 @@ flavours = WeightedList(
   (20, "If rhythm games have huge collections of soundtracks, shouldn’t their file size be huge too?"),
   (20, "Praise be to Stack Exchange, without which this project would have been mildly more difficult."),
   (20, "Just because it’s open source doesn’t mean you should peak at the code. Shoo, you."),
+  (20, "Screw PEP 8."),
+  
+  (15, "Always and forever, till the end of time."),
+  (15, "We can solve this with geometric construction."),
   
   (10, "These are called flavours, just for fun. No, not flavour text, just flavours. Yum."),
   (10, "We could get so weird with these."),
@@ -104,15 +113,13 @@ flavours = WeightedList(
   (10, "Divulging Algorhythm’s secrets through these is fun."),
   (10, "Kinda out of ideas. Flavours, anyone?"),
   (10, "One day there’ll be so many of these that seeing the same one again would itself be an achievement."),
+  (10, "We are, quite literally, creating knowledge with these."),
+  (10, "A flavour an update keeps the rhythm doctor awake~"),
   (5, "This is the 26th flavour. (not really)"),
   (10, "This is a rare flavour. Or is it?"),
   (2, "This is a rare flavour."),
   (2, "Is this load time even long enough to read all this text? Hey, what if I just write a thesis on audio analysis and automated syncing right here, then..."),
   
-  (25, "Always and forever, till the end of time."),
-  (25, "We can solve this with geometric construction."),
-  
-  (10, "Screw PEP 8."),
   (4, "sup sup’s sups sup sup’s sup sup sup sup’s sup sups"),
   (4, "I love technical redstone."),
   (4, "Hey, capitalising the S in InSane looks cool."),
