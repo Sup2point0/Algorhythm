@@ -2,6 +2,7 @@
 Implements utility functions involving linear interpolation.
 '''
 
+import functools
 import colorsys
 
 
@@ -22,3 +23,15 @@ def col(start, stop, percent: float = 0.5):
     lower[1] + percent * (upper[1] - lower[1]),
     lower[2] + percent * (upper[2] - lower[2]),
   )
+
+
+def bezier(percent, bounds = (0.0, 1.0), points = None):
+  '''Interpolate between 2 bounds with a bezier curve.'''
+  
+  lerp = functools.partial(val, percent)
+  anchors = bounds[0]) + points + bounds[1]
+
+  for i in range(len(anchors)):
+    anchors = functools.reduce(lerp, anchors)
+
+  return anchors[0]
