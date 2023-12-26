@@ -58,11 +58,16 @@ def resize(surf, size) -> pg.Surface:
   return pg.transform.scale_by(surf, scale)
 
 
-def beats(start, stop, step):
-  '''Generate a sequence of evenly spaced beats.'''
+def beatseq(start, stop, step):
+  '''Generate a sequence of evenly spaced beats between `start` and `stop`.'''
 
-  div = 1 / step
   return (
-    each / div for each in
-    range(round(start * div), round(stop * div))
+    each * step for each in
+    range(round(start / step), round(stop / step))
   )
+
+
+def beats(start, count, step):
+  '''Generate a sequence with length `count` of evenly spaced beats.'''
+
+  return (start + i * step for i in range(count))

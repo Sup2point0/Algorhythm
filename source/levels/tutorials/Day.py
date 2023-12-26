@@ -99,11 +99,11 @@ tutorial = Chart(
       ),
     ),
 
-    Hold((4*44, 4*45.5), lane = 2),
-    Hold((4*46, 4*47.5), lane = 1),
-    Hold((4*48, 4*49.5), lane = 3),
-    Hold((4*50, 4*50.75), lane = 0),
-    Hold((4*51, 4*51.75), lane = 2),
+    Hold(4*44, 4*45.5, lane = 2),
+    Hold(4*46, 4*47.5, lane = 1),
+    Hold(4*48, 4*49.5, lane = 3),
+    Hold(4*50, 4*50.75, lane = 0),
+    Hold(4*51, 4*51.75, lane = 2),
 
     Hint(4*51, 8,
       Text("Day.hint.hold.2", util.cord(0, -0.4),
@@ -123,8 +123,8 @@ tutorial = Chart(
       ),
     ),
 
-    *Rides(0, util.beats(4*64, 4*66, 0.5)),
-    *Rides(0, util.beats(4*66, 4*68, 0.5)),
+    *Rides(0, util.beatseq(4*64, 4*66, 0.5)),
+    *Rides(0, util.beatseq(4*66, 4*68, 0.5)),
 
     Hint(4*66, 8,
       Text("Day.hint.ride.3", util.cord(0, -0.4),
@@ -132,17 +132,44 @@ tutorial = Chart(
       ),
     ),
     
-    ## finish
+    ## drop
     Hint(4*75, 6,
       Text("Day.hint.final.1", util.cord(0, -0.4),
         "Now let’s mix everything together!"
       ),
     ),
+
+    Hold(4*76, 4*76 + 1, lane = 0), Tap(4*76 + 2, lane = 3),
+    Hold(4*77, 4*77 + 1, lane = 2), Tap(4*77 + 2, lane = 1),
+    Hold(4*78, 4*78 + 1, lane = 3), Tap(4*78 + 2, lane = 0),
+
+    Hold(4*79, 4*79 + 1, lane = 1),
+    Tap(4*79 + 2, lane = 3),
+    Tap(4*79 + 3, lane = 2),
+
+    ## finish
     Hint(4*88, 8,
       Text("Day.hint.final.2", util.cord(0, -0.4),
         "Your final score is determined by your precision and highest chain."
       ),
     ),
+
+    Hold(4*84, 4*84 + 1),
+    *Rides(0, util.beats(4*84.5, 3, 3/8)),
+    Hold(4*85, 4*85 + 1),
+    Hold(4*85 + 2, 4*85 + 3),
+    Hold(4*86, 4*86 + 1),
+    Tap(4*86 + 2),
+    Hold(4*87, 4*87 + 1),
+    Ride(4*87 + 1, lane = 0), Ride(4*87 + 1, lane = 3),
+    Ride(4*87 + 1.5, lane = 0), Ride(4*87 + 1.5, lane = 3),
+    Ride(4*87 + 2, lane = 0), Ride(4*87 + 2, lane = 3),
+
+    Hold(4*88, 4*88 + 1), *Rides(0, util.beats(4*88.5, 4, 1/4)),
+    Hold(4*89, 4*89 + 1), *Rides(0, util.beats(4*89.5, 4, 1/4)),
+    Hold(4*90, 4*90 + 1), *Rides(0, util.beats(4*90.5, 4, 1/4)),
+    Hold(4*91, 4*92, lane = 0), Hold(4*91, 4*92, lane = 3),
+
     Hint(4*92, 8,
       Text("Day.hint.final.3", util.cord(0, -0.4),
         "That’s it for now. Enjoy Algorhythm!"

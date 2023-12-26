@@ -19,7 +19,7 @@ def _Notes_(kind):
     | parameter | type | description |
     | :-------- | :--- | :---------- |
     | `lane` | `int` | Starting lane of notes. |
-    | `hit` | `list`, `range` | Hit beats for each note. This determines how many notes are created. |
+    | `hit` | `Iterable`, `range` | Hit beats for each note. This determines how many notes are created. |
     '''
 
     out = []

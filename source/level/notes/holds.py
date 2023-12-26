@@ -12,20 +12,21 @@ from level.notes import Note
 class HoldNote(Note):
   '''A note hit by a pressed and held key.'''
 
-  def __init__(self, hit, **kwargs):
+  def __init__(self, hit, end, **kwargs):
     '''Create a hold note.
     
     | parameter | type | description |
     | :-------- | :--- | :---------- |
-    | `hit` | `num, num` | Beat note should be hit on, and beat it should be held until. |
+    | `hit` | `num` | The beat when the note reaches the hitline. |
+    | `hold` | `num` | The beat when the note ends. |
 
     Other base parameters are inherited from `Note`.
     '''
 
-    super().__init__(hit[0], align = (0, 1), **kwargs)
+    super().__init__(hit, align = (0, 1), **kwargs)
 
-    self.end = hit[1]
-    if self.hit >= self.end:
+    self.end = end
+    if hit >= end:
       raise ValueError("hold note cannot end before it starts")
 
     self.popping = False  # hold key
@@ -42,7 +43,6 @@ class HoldNote(Note):
       abs(self.hit - self.end) * self.speed
     )
 
-    self.surf = ...
     self.surf = pg.Surface(self.size, pg.SRCALPHA)  # FIXME
 
     pg.draw.rect(self.surf,
