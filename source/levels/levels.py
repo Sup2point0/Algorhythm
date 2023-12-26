@@ -15,7 +15,7 @@ charts = {
       file = "Day.wav",
       bpm = 144,
       offset = -0.3472,
-      vol = 0.0,
+      vol = 1.0,
       charts = [Day.tutorial],
     ),
     Track("tutorial-advanced",

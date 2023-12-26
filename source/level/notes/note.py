@@ -68,7 +68,7 @@ class Note(Sprite):
     '''Handle note vanishing when missed.'''
 
     if self.y >= screen.y:
-      self.pop()
+      self.pop(hit = False)
       
     self.surf.set_alpha(255 * (
       1 - (self.y - self.line()) / (screen.y - self.line()))

@@ -149,6 +149,6 @@ class Track:
     mixer.music.unload()
     
     game.level = None
-    screen.switch = "score"
+    screen.switch = "over"
 
     pg.key.set_repeat(*config.rate.key)

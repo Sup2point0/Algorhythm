@@ -90,10 +90,10 @@ class Lane(Sprite):
       for note in notes:
         if isinstance(note, Hold):
           if not note.popping:
-            note.pop(hit = True)
+            note.pop()
             break
         else:
-          note.pop(hit = True)
+          note.pop()
           break
     
     else:

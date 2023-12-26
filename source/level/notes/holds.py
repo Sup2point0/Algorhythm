@@ -8,6 +8,8 @@ from core import level, config, opt
 
 from level.notes import Note
 
+from effects.pop import PopEffect
+
 
 class HoldNote(Note):
   '''A note hit by a pressed and held key.'''
@@ -29,6 +31,7 @@ class HoldNote(Note):
     if hit >= end:
       raise ValueError("hold note cannot end before it starts")
 
+    self.prec = None
     self.popping = False  # hold key
     self.popped = False  # key can be let go
 
@@ -43,15 +46,7 @@ class HoldNote(Note):
       abs(self.hit - self.end) * self.speed
     )
 
-    self.surf = pg.Surface(self.size, pg.SRCALPHA)  # FIXME
-
-    pg.draw.rect(self.surf,
-      color = (255, 255, 255, 255),
-      rect = (0, 0, *self.size),
-      width = 0,
-      border_radius = round(self.size[0] // 2),
-    )
-
+    self.render()
     self.rect = self.surf.get_rect()
 
   def update(self):
@@ -74,6 +69,19 @@ class HoldNote(Note):
         prec = self.precision(level.beat, self.end)
         if prec and prec != "fault":  # popped within hit timing
           self.popped = True
+          super().pop(prec)
+
+  def render(self):
+    '''Update surface of hold note.'''
+
+    self.surf = pg.Surface(self.size, pg.SRCALPHA)  # FIXME
+
+    pg.draw.rect(self.surf,
+      color = (255, 255, 255, 255),
+      rect = (0, 0, *self.size),
+      width = 0,
+      border_radius = round(self.size[0] // 2),
+    )
 
   def move(self):
     '''Update note position.'''
@@ -81,7 +89,12 @@ class HoldNote(Note):
     self.x = self.lane.x
     self.y = self.line() - self.speed * (self.hit - level.beat)
 
-  def pop(self, hit = False):
+  def pop(self):
     '''Start popping note.'''
 
     self.popping = True
+    
+    prec = self.precision(level.beat, self.hit)
+    if prec and prec != "fault":
+      self.prec = prec
+      PopEffect(pos = self.pos, prec = prec)
