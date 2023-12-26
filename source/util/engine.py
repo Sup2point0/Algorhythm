@@ -70,4 +70,4 @@ def beatseq(start, stop, step):
 def beats(start, count, step):
   '''Generate a sequence with length `count` of evenly spaced beats.'''
 
-  return (start + i * step for i in range(count))
+  return (start + step * i for i in range(count))

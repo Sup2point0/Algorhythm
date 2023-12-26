@@ -132,42 +132,58 @@ tutorial = Chart(
       ),
     ),
     
-    ## drop
+    ## drop 1
     Hint(4*75, 6,
       Text("Day.hint.final.1", util.cord(0, -0.4),
         "Now let’s mix everything together!"
       ),
     ),
 
-    Hold(4*76, 4*76 + 1, lane = 0), Tap(4*76 + 2, lane = 3),
-    Hold(4*77, 4*77 + 1, lane = 2), Tap(4*77 + 2, lane = 1),
-    Hold(4*78, 4*78 + 1, lane = 3), Tap(4*78 + 2, lane = 0),
+    Hold(4*76, 4*76 + 1.75, lane = 0), Tap(4*76 + 2, lane = 3),
+    Hold(4*77, 4*77 + 1.75, lane = 2), Tap(4*77 + 2, lane = 1),
+    Hold(4*78, 4*78 + 1.75, lane = 3), Tap(4*78 + 2, lane = 0),
 
-    Hold(4*79, 4*79 + 1, lane = 1),
-    Tap(4*79 + 2, lane = 3),
-    Tap(4*79 + 3, lane = 2),
+    Hold(4*79, 4*79 + 1.75, lane = 1), Tap(4*79 + 2, lane = 3), Tap(4*79 + 3, lane = 2),
+
+    ## drop 2
+    Hold(4*80, 4*80 + 1.75, lane = 0),
+    *Rides(0, util.beats(4*80 + 2, 4, 0.5)),
+    Tap(4*80 + 2, lane = 3),
+
+    Hold(4*81, 4*81 + 1.75, lane = 0),
+    *Rides(0, util.beats(4*81 + 2, 4, 0.5)),
+    Tap(4*81 + 2, lane = 3),
+
+    Tap(4*82, lane = 0),
+    Tap(4*82 + 1, lane = 0),
+    Tap(4*82 + 2, lane = 0),
+    Tap(4*82 + 3, lane = 0),
+
+    *Rides(0, util.beats(4*83, 4, 0.5)),
+    *Rides(3, util.beats(4*83 + 2, 4, 0.5)),
 
     ## finish
-    Hint(4*88, 8,
+    Hint(4*83, 8,
       Text("Day.hint.final.2", util.cord(0, -0.4),
         "Your final score is determined by your precision and highest chain."
       ),
     ),
 
-    Hold(4*84, 4*84 + 1),
+    Hold(4*84, 4*84 + 1.75),
     *Rides(0, util.beats(4*84.5, 3, 3/8)),
-    Hold(4*85, 4*85 + 1),
+    Hold(4*85, 4*85 + 1.75),
     Hold(4*85 + 2, 4*85 + 3),
-    Hold(4*86, 4*86 + 1),
+    Hold(4*86, 4*86 + 1.75),
     Tap(4*86 + 2),
-    Hold(4*87, 4*87 + 1),
+    Hold(4*87, 4*87 + 1.75),
     Ride(4*87 + 1, lane = 0), Ride(4*87 + 1, lane = 3),
     Ride(4*87 + 1.5, lane = 0), Ride(4*87 + 1.5, lane = 3),
     Ride(4*87 + 2, lane = 0), Ride(4*87 + 2, lane = 3),
 
-    Hold(4*88, 4*88 + 1), *Rides(0, util.beats(4*88.5, 4, 1/4)),
-    Hold(4*89, 4*89 + 1), *Rides(0, util.beats(4*89.5, 4, 1/4)),
-    Hold(4*90, 4*90 + 1), *Rides(0, util.beats(4*90.5, 4, 1/4)),
+    ## finale
+    Hold(4*88, 4*88 + 1.75), *Rides(0, util.beats(4*88.5, 4, 1/4)),
+    Hold(4*89, 4*89 + 1.75), *Rides(0, util.beats(4*89.5, 4, 1/4)),
+    Hold(4*90, 4*90 + 1.75), *Rides(0, util.beats(4*90.5, 4, 1/4)),
     Hold(4*91, 4*92, lane = 0), Hold(4*91, 4*92, lane = 3),
 
     Hint(4*92, 8,
