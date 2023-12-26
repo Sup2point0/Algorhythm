@@ -53,7 +53,7 @@ class Lane(Sprite):
     self.col = util.find.col(self.key)[:3]
     if self.anim.coltick > 0:
       self.anim.coltick -= 0.1
-    self.col.append(round(util.lerp.val(
+    self.col.append(round(util.interp.val(
       start = 64,
       stop = 255,
       percent = self.anim.coltick
