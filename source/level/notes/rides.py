@@ -68,7 +68,7 @@ class RideNote(Note):
       super().pop("perfect")
       PopEffect(pos = self.pos, prec = "perfect")
 
-  def pop(self, hit = False) -> str | None:
+  def pop(self, hit = True) -> str | None:
     '''Delete the note and return precision.
     
     `hit` determines if it was hit by the player.
