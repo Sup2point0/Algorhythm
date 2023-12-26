@@ -25,11 +25,20 @@ def col(start, stop, percent: float = 0.5):
   )
 
 
+def fluid(percent):
+  '''Find a cubic bezier curve for eased animations.'''
+
+  if percent >= 0.5:
+    return 4 * (percent - 1) ** 3 + 1
+  else:
+    return 4 * percent ** 3
+
+
 def bezier(percent, bounds = (0.0, 1.0), points = None):
   '''Interpolate between 2 bounds with a bezier curve.'''
   
   lerp = functools.partial(val, percent)
-  anchors = bounds[0]) + points + bounds[1]
+  anchors = bounds[0] + points + bounds[1]
 
   for i in range(len(anchors)):
     anchors = functools.reduce(lerp, anchors)
