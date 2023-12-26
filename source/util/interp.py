@@ -25,8 +25,18 @@ def col(start, stop, percent: float = 0.5):
   )
 
 
-def fluid(percent):
-  '''Find a cubic bezier curve for eased animations.'''
+def ease(percent, bound = True):
+  '''Find a cubic bezier curve for eased animations.
+  
+  If `bound` is `False`, `percent` can go outside of 0.0 ~ 1.0.
+  '''
+
+  # not using `util.restrict` to save a little time
+  if bound:
+    if percent > 1:
+      return 1
+    elif percent < 0:
+      return 0
 
   if percent >= 0.5:
     return 4 * (percent - 1) ** 3 + 1

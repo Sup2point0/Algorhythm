@@ -52,6 +52,7 @@ class LevelResults(Element):
     self.anim.rects = rects
     
     self.anim.styles = {
+      "rects": [0, 0, 0],
       "score": Text.Style(typeface = "title", size = 50, align = (-1, 0)),
       "info": [self.style(-1), self.style(1), self.style(1)],
       "details": [self.style(-1), self.style(1)]
@@ -189,8 +190,11 @@ class LevelResults(Element):
   def _slide_(self, idx):
     '''Animate backing rectangle.'''
 
+    rects = self.anim.styles["rects"]
+    rects[idx] += config.rate.ease
     rect = self.anim.rects[idx]
-    rect.w = util.slide(rect.w, self.size[0], speed = 4)
+    rect.w = self.size[0] * util.interp.ease(rects[idx])
+    # rect.w = util.slide(rect.w, self.size[0], speed = 4)
 
   def _fade_(self, style):
     '''Increase alpha of text style for fade-in animation.'''
