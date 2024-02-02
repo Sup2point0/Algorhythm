@@ -8,7 +8,7 @@ A slider consists of the `Slider` and `Slide` classes, where the `Slide` impleme
 
 import pygame as pg
 
-from core import screen
+from core import screen, ui
 import innate
 
 from splash.elements import Element
@@ -25,7 +25,7 @@ class Slide(innate.Sprite):
       shape = None,
       size = None,
       cols = None,
-      height = None,
+      length = None,
     ):
       '''Create a slide style.
 
@@ -89,13 +89,13 @@ class Slide(innate.Sprite):
     self.col = self.style.cols[interact]
 
     if interact == "click":
-      self.pos[ = pg.mouse.get_pos()[1]
-        util.restrict(self.rect.top, lower = self.
+      self.pos[...] = pg.mouse.get_pos()[1]
+        # util.restrict(self.rect.top, lower = self.  ## FIXME
 
     if self.style.shape == "circle":
-      py.draw.circle(self.surf, self.col, radius = self.size, ...)  # FIXME
+      pg.draw.circle(self.surf, self.col, radius = self.size)  # FIXME
     elif self.style.shape == "line":
-      py.draw.rect(self.surf, self.col, ...)  # FIXME
+      pg.draw.rect(self.surf, self.col, ...)  # FIXME
 
 
 class Slider(Element):
