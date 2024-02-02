@@ -33,24 +33,24 @@ Why have the lanes and keys be static? *Algorhythm* takes a spin on traditional 
 
 ## Installation
 
-Availble for download as an .exe file.
+Availble for download as an .exe file (soon).
 
 Alternatively, download the source code and execute it yourself!
 
 ### Dependencies
 - [Pygame 2.5](https://www.pygame.org)
-- [Pillow]()
-- [Librosa x.y]()
+- [Pillow](https://pypi.org/project/pillow)
+- [Librosa 0.10](https://librosa.org/doc/latest/index.html)
 
 ### Requirements
 QWERTY keyboard recommended. Mouse or touch required for navigation (keyboard navigation support is in development).
 
 The following keys are used in charts:
- - A–Z letters
- - 4 arrow keys
- - Space bar
- - Enter key
- - Backspace (optional, only for Mastery Mode)
+- A–Z letters
+- 4 arrow keys
+- Space bar
+- Enter key
+- Backspace (optional, only for Mastery Mode)
 
 
 <br>
