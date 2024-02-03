@@ -13,9 +13,38 @@ import util
 class Sprite(pg.sprite.Sprite):
   '''Base class from which all game sprites derive, providing inherent attributes, functionality and utility.'''
 
+  class Draggable:
+    '''Settings for allowing a sprite to be dragged by the mouse.'''
+
+    def __init__(self,
+      dir = "xy",
+      x = None,
+      y = None,
+      lock = None,
+    ):
+      '''Create a drag setting.
+
+      | parameter | type | description |
+      | :-------- | :--- | :---------- |
+      | dir | str "xy", "x", "y" | Direction(s) which sprite can be dragged in. |
+      '''
+
+      self.dir = dir
+      self.lock = lock
+
+      class lx:
+        lower, upper = x
+      class ly:
+        lower, upper = y
+
+      self.lx = lx
+      self.ly = ly
+
+  ###
   def __init__(self,
     pos = None,
     align = None,
+    drag = None,
     groups = list(),
   ):
     '''
@@ -23,6 +52,7 @@ class Sprite(pg.sprite.Sprite):
     | :-------- | :--- | :---------- |
     | `pos` | `num, num` | Coordinates of position of sprite. |
     | `align` | `int, int` | Alignment of sprite in x and y directions, respectively. Can be `-1`, `0`, `1`. |
+    | `drag` | `innate.Sprite.Draggable` | Drag settings for sprite. |
     | `groups` | `list[pg.sprite.Group]` | Groups to add element to. |
     '''
 
@@ -30,7 +60,8 @@ class Sprite(pg.sprite.Sprite):
 
     self.x, self.y = pos or screen.origin
     self.sx, self.sy = 0, 0
-    self.align: tuple[int, int] = align or (0, 0)
+    self.align = align or (0, 0)
+    self.drag = drag
 
     self.surf: pg.Surface
     self.rect: pg.Rect
@@ -71,6 +102,21 @@ class Sprite(pg.sprite.Sprite):
         self.rect.centery = y
       case 1:
         self.rect.bottom = y
+
+  def dragged(self):
+    '''Handle sprite being dragged.'''
+
+    if not self.drag:
+      return
+    if self.drag.lock():
+      return
+
+    pos = pg.mouse.get_pos()
+
+    if "x" in self.drag.dir:
+      self.x = util.restrict(pos[0], bounds = self.drag.lx)
+    if "y" in self.drag.dir:
+      self.y = util.restrict(pos[1], bounds = self.drag.ly)
 
   @ property
   def image(self):
