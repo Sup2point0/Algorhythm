@@ -132,8 +132,7 @@ class Element(Sprite):
 
       elif down and self.hover:  # clicked
         self.click = True
-        if self.draggable:
-          super().dragged()
+        super().dragged()
         return "click"
       
       return "idle"
