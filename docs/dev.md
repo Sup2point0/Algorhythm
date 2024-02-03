@@ -10,6 +10,8 @@ Just development-related notes ^v^
 
 ### Ongoing
 - Update button styles
+- Add sliders
+- Add chart details view
 
 ### Todo
 - Generate actions when loading level to avoid iteration (DONE?)
