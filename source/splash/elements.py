@@ -41,14 +41,15 @@ class Displayed(Object):
     else:
       self.show = show or set()
 
-    super().__init__(
-      align = align or (0, 0),
-      scroll = scroll or None,
-      layer = sprites.active.layer[layer] if isinstance(layer, str) else layer or sprites.active.layer["splash"],
-      fade = fade,
-      root = root or (lambda: True),
-      lock = lock or (lambda: False),
+    self.align = align or (0, 0)
+    self.scroll = scroll or None
+    self.layer = (
+      sprites.active.layer[layer] if isinstance(layer, str)
+      else layer or sprites.active.layer["splash"]
     )
+    self.fade = fade
+    self.root = root or (lambda: True)
+    self.lock = lock or (lambda: False)
 
 
 class Element(Sprite):
@@ -98,7 +99,6 @@ class Element(Sprite):
     
     if display:
       if interact:
-        self.locked = display.lock
         self.hover = False
         self.click = False
       
@@ -106,29 +106,34 @@ class Element(Sprite):
         sprites.splash[state].add(self)
 
   def interact(self, root = None) -> str:
-    '''Detect hover and click interactions with element and return state as a string.
+    '''Detect hover, click and drag interactions with element and return state as a string.
 
-    If element is clicked, call `root` if passed in, or `self.root` if available.
+    Once element is clicked, call `root` if passed in, or `self.root` if available.
     '''
 
-    if self.locked():
+    if self.display.lock():
       return "lock"
 
     down = pg.mouse.get_pressed()[0]
 
     if self.rect.collidepoint(pg.mouse.get_pos()):
+
       if not down:  # hovered
+        
         if self.click:  # clicked and released
           if root:
             root()
           elif hasattr(self, "root"):
             self.root()
+        
         self.hover = True
         self.click = False
         return "hover"
 
       elif down and self.hover:  # clicked
         self.click = True
+        if self.draggable:
+          super().dragged()
         return "click"
       
       return "idle"
