@@ -53,6 +53,7 @@ class BoundValue:
   def __call__(self):
     '''A more convenient way to get the value than `BoundValue().value`.'''
 
+    self._check_()
     return self.value
 
   def set(self, value, /):
@@ -86,14 +87,3 @@ class Alpha(BoundValue):
     '''Create an alpha value with the specified bounds.'''
 
     super().__init__(value, *bounds)
-
-  def __call__(self):
-    val = super().__call__()
-
-    # ensure alpha values are safe to use
-    if val < 0:
-      val = 0
-    elif val > 255:
-      val = 255
-    
-    return val

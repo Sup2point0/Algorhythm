@@ -7,7 +7,7 @@ import pygame as pg
 # This module is imported by almost every file. As such,
 # it should avoid importing any others, otherwise... CIRCULAR IMPORTS!
 # These are exceptions, since they are safe to import.
-from innate.value import BoundValue as Val
+from innate import Val
 from innate.innate import Difficulty, Rank
 from effects.shake import Shake
 
