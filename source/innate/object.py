@@ -2,6 +2,8 @@
 Implements the generic `Object` class.
 
 Safe to import.
+
+## NOTE pending deprecation?
 '''
 
 from copy import deepcopy

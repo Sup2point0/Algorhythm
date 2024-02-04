@@ -130,10 +130,10 @@ class screen:
       f"select.{each}": Val(0)
       for each in game.series
     },
-    "set": Val(0),
-    "set.sounds": Val(0),
-    "set.visuals": Val(0),
-    "set.changelog": Val(0),
+    "set": Val(0, lower = 0, upper = y),
+    "set.sounds": Val(0, lower = 0, upper = y),
+    "set.visuals": Val(0, lower = 0, upper = y),
+    "set.changelog": Val(0, lower = 0, upper = y),
     "set.credits": Val(0, lower = 0, upper = 1.25*y),
   }
 

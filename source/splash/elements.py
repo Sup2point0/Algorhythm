@@ -72,20 +72,23 @@ class Element(Sprite):
     pos = None,
     anim = False,
     interact = False,
+    drag = None,
     display = None,
   ):
     '''
     | parameter | type | description |
     | :-------- | :--- | :---------- |
     | `id` | `str` | Unique ID to identify element. |
-    | `interact` | `bool` | Whether element can be hovered over or clicked on. |
-    | `display` | `splash.Displayed` | Sprite display settings. |
+    | `interact` | `bool` | Interaction settings. |
+    | `drag` | `innate.Sprite.Draggable` | Draggability settings. |
+    | `display` | `splash.Displayed` | Display settings. |
 
     Other base parameters are inherited from `innate.Sprite`. `groups` is not inherited, since all splash sprites are automatically added to the suitable `sprites.splash` group.
     '''
     
     super().__init__(pos = pos,
       align = display.align if display else None,
+      drag = drag
     )
 
     self.id = id
@@ -111,8 +114,9 @@ class Element(Sprite):
     Once element is clicked, call `root` if passed in, or `self.root` if available.
     '''
 
-    if self.display.lock():
-      return "lock"
+    if self.display:
+      if self.display.lock():
+        return "lock"
 
     down = pg.mouse.get_pressed()[0]
 
