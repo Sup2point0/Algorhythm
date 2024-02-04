@@ -17,15 +17,15 @@ class Button(Element):
   class Style(Element.Style):
     '''A button style.'''
   
-    def __init__(self, *, size = None, edge = "round", col: dict = None, textstyle = None):
+    def __init__(self, *, size = None, edge = "round", col: dict = None, text = None):
       '''Create a button style.
       
       | parameter | type | description |
       | :-------- | :--- | :---------- |
     | `size` | `int, int` | Dimensions of button. |
       | `edge` | `str` | Edge style – can be `round`, `sharp` or `angular`. |
-      | `col` | `dict` | The colours for the different states of the button. |
-      | `textstyle` | `Text.Style` | Style settings for text on button. |
+      | `col` | `dict` | Colours for different states of button. |
+      | `text` | `Text.Style` | Style settings for text on button. |
       '''
   
       self.size = size or ui.size.button
@@ -37,7 +37,7 @@ class Button(Element):
         for state in ["idle", "hover", "click", "lock"]
       }
       self.col = self.cols["idle"]
-      self.text = textstyle or Text.Style()
+      self.text = text or Text.Style()
 
   
   def __init__(self, id, pos, text, root, style = None, display = None):
