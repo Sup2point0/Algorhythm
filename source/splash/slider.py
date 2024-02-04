@@ -6,24 +6,26 @@ A slider consists of the `Slider` and `Slide` classes, where the `Slide` impleme
 (This is a similar structure to `TabView`s and `Tab`s. It also leaves room open for adding multiple sliders, should that become needed or useful in the future.)
 '''
 
+import math
+
 import pygame as pg
 
 from core import screen, ui
-import innate
+from innate.sprite import Sprite
 
 from splash.elements import Element
 from splash.buttons import Button
 
 
-class Slide(innate.Sprite):
+class Slide(Element):
   '''The button-like element that controls a slider.'''
 
   class Style(Element.Style):
     '''A slide style.'''
 
     def __init__(self,
-      shape = None,
-      size = None,
+      shape,
+      size,
       cols = None,
       length = None,
     ):
@@ -31,18 +33,17 @@ class Slide(innate.Sprite):
 
       | parameter | type | notes |
       | :-------- | :--- | :---- |
-      | `shape` | `str`, `None` | `'circle'`, `'line'`
+      | `shape` | `str['circle', 'line']` | |
       | `size` | `num` | Radius or width of slider. |
       | `cols` | `dict[str, Color]` | Colours for different interaction states. |
       | `length` | `Callable -> num[0.0~1.0]` | Function called to calculate slide length (only for line). |
       '''
 
-      super().__init__(
-        shape = shape,
-        size = size,
-        length = length or (lambda: screen.y / screen.scoll[screen.state].upper),
-        # finds proportion of total space currently being viewed for page scrolling
-      )
+      self.shape = shape
+      self.size = size
+      self.length = (length or (
+        lambda: screen.y / (screen.scroll[screen.state].upper + screen.y)
+      )) # finds proportion of total space currently being viewed for page scrolling
 
       super()._config_cols_(cols, ui.col.slide)
 
@@ -52,15 +53,17 @@ class Slide(innate.Sprite):
 
     | parameter | type | notes |
     | :-------- | :--- | :---- |
-    | `root` | `innate.Value` | Value which slide alters. |
+    | `root` | `innate.BoundValue` | Value which slide alters. |
     | `style` | `Slide.Style` | Style settings for slide. |
     '''
+
+    super().__init__(id = None, interact = True, drag = True)
 
     self.root = root
     self.style = style or Slide.Style()
 
-  def _align_(self):
-    '''Utility function to find alignment of slide as a `str`.'''
+  def _align_(self) -> str:
+    '''Utility function to find alignment of slide.'''
     return "top" if self.slider.dir else "left"
 
   def update(self):
@@ -69,33 +72,41 @@ class Slide(innate.Sprite):
     ## calculate size
     if self.style.shape == "line":
       self.size = (
-        self.slider.width,
-        self.slider.height * self.style.height()
+        self.style.size or self.slider.width,
+        self.slider.length * self.style.length()
       )
-      if self.slider.dir == 0:  # flip dimensions for horizontal
-        self.size = self.size[::-1]
+      print(f"slide.size = {self.size}")
+      # flip dimensions for horizontal
+      if self.slider.dir == 0:
+        self.size = self.style.size[::-1]
+
+    elif self.style.shape == "circle":
+      self.size = (self.style.size * 2 or self.slider.width) * 2
 
     ## draw
     self.surf = pg.Surface(self.size, pg.SRCALPHA)
     self.rect = self.surf.get_rect()
+
     dist = self.root.upper - self.root()
-    upper = self.slider.height * (1 - self.style.height())
+    upper = self.slider.length * (1 - self.style.length())
+    print(f"slide.dist = {dist}, slide.upper = {upper}")
 
     self.rect.__setattr__(self._align_(), dist / upper)
 
-    ...
+    ...  ## NOTE?
 
     interact = super().interact()
     self.col = self.style.cols[interact]
 
-    if interact == "click":
-      self.pos[...] = pg.mouse.get_pos()[1]
-        # util.restrict(self.rect.top, lower = self.  ## FIXME
-
     if self.style.shape == "circle":
-      pg.draw.circle(self.surf, self.col, radius = self.size)  # FIXME
+      pg.draw.circle(self.surf, self.col,
+        center = self.size / 2,
+        radius = self.style.size,
+      )
     elif self.style.shape == "line":
-      pg.draw.rect(self.surf, self.col, ...)  # FIXME
+      pg.draw.rect(self.surf, self.col, self.rect,
+        border_radius = math.floor(self.style.size / 2)
+      )
 
 
 class Slider(Element):
@@ -113,12 +124,12 @@ class Slider(Element):
 
       | parameter | type | notes |
       | :-------- | :--- | :---- |
+      | `col` | `Color` | Colour of slider. Colour of slide is set in `Slide.Style`. |
+      | `notch` | ? | Style of notches. |
       '''
 
-      super().__init__(
-        col = col or ui.slider.col,
-        notch = notch,
-      )
+      self.col = col or ui.col.slider
+      self.notch = notch
 
   ###
   def __init__(self, id, pos,
@@ -134,7 +145,10 @@ class Slider(Element):
     | :-------- | :--- | :---- |
     | `size` | `num, num` | Dimensions of slider. Direction is automatically determined by which is longer. |
     | `slide` | `Slider.Slide` | Slide to control slider. |
+    | `values` | `Iterable[num]` / `innate.BoundValue` | Values of slider. |
     | `style` | `Slider.Style` | Style settings for slider. |
+
+    Other base parameters are inherited from `splash.Element`.
     '''
 
     super().__init__(id, pos, interact = True, display = display)
@@ -154,16 +168,13 @@ class Slider(Element):
     if len(values) < 2:
       raise ValueError("Slider must have at least 2 values")
     self.values = values
-    self.free = (len(values) == 2)
-    '''Whether slider can be freely dragged, or snaps to notches.'''
-
-    self.slide.render()
-    self.render()
-    super().position()
+    self.snap = (len(values) == 2)
+    '''Whether slider snaps to notches or can be freely dragged.'''
 
   def update(self):
     self.slide.update()
     self.render()
+    super().position()
 
   def render(self):
     '''Update surf and rect of the slider.'''
@@ -171,8 +182,8 @@ class Slider(Element):
     self.surf = pg.Surface(self.size, pg.SRCALPHA)
     self.rect = self.surf.get_rect()
 
-    pg.draw.rect(self.surf,
-      color = self.col,
+    pg.draw.rect(self.surf, self.style.col,
+      rect = (0, 0, *self.size),
     )
 
     self.surf.blit(self.slide.surf, self.slide.rect)

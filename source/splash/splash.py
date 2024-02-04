@@ -5,7 +5,7 @@ Integrates all the different splash sprite classes into the complete graphical u
 import pygame as pg
 
 from Algorhythm import main
-from core import game, level, screen, sprites, ui, config
+from core import game, level, screen, ui, config
 from innate import Alpha
 import util
 
@@ -15,6 +15,7 @@ from splash.covers import Cover
 from splash.asset import Asset
 from splash.text import Text, Textbox, ActiveText
 from splash.buttons import Button
+from splash.slider import Slider, Slide
 from splash.select import Select, SeriesSelect, TrackSelect
 from splash.views.results import LevelResults
 
@@ -52,6 +53,20 @@ def load():
       display = Displayed(
         hide = {"start", "play", "score"},
         align = (-1, -1),
+      ),
+    ),
+    Slider("general.scroll",
+      pos = [screen.x - 50, screen.cy],
+      size = [20, screen.y - 100],
+      slide = Slide(
+        root = screen.scroll["select"],
+        style = Slide.Style(
+          size = 25,
+          shape = "line",
+        ),
+      ),
+      display = Displayed(
+        hide = {"start", "play", "score"},
       ),
     ),
   ]
