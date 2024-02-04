@@ -125,7 +125,7 @@ class screen:
   '''
 
   scroll = {
-    "select": Val(0, lower = -0.8 * y, upper = 0),
+    "select": Val(0, lower = 0, upper = 0.8*y),
     **{
       f"select.{each}": Val(0)
       for each in game.series
@@ -134,7 +134,7 @@ class screen:
     "set.sounds": Val(0),
     "set.visuals": Val(0),
     "set.changelog": Val(0),
-    "set.credits": Val(0, lower = -1.25 * y, upper = 0),
+    "set.credits": Val(0, lower = 0, upper = 1.25*y),
   }
 
   track = []
@@ -209,6 +209,14 @@ class ui:
       hover = [32, 64, 128, 96]
       click = [16, 32, 64, 192]
       lock = [0, 0, 0, 32]
+
+    slider = back
+
+    class slide:
+      idle = [255, 255, 255, 255]
+      hover = [240, 240, 240, 255]
+      click = [128, 128, 128, 255]
+      lock = [128, 128, 128, 64]
 
   class space:
     text = 25

@@ -66,7 +66,7 @@ class main:
 
       elif event.type == pg.MOUSEWHEEL:
         if screen.state in screen.scroll:
-          screen.scroll[screen.state].alt(event.y * config.rate.scroll)
+          screen.scroll[screen.state].alt(-event.y * config.rate.scroll)
 
   def control():
     '''Control active game loop.'''
