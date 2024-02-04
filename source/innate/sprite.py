@@ -7,6 +7,7 @@ Unsafe to import.
 import pygame as pg
 
 from core import screen, sprites
+from innate import Val
 import util
 
 
@@ -114,9 +115,9 @@ class Sprite(pg.sprite.Sprite):
     pos = pg.mouse.get_pos()
 
     if "x" in self.drag.dir:
-      self.x = util.restrict(pos[0], bounds = self.drag.lx)
+      self.x = Val(pos[0], *self.drag.lx)
     if "y" in self.drag.dir:
-      self.y = util.restrict(pos[1], bounds = self.drag.ly)
+      self.y = Val(pos[1], *self.drag.ly)
 
   @ property
   def image(self):
