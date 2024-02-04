@@ -31,7 +31,6 @@ def ease(percent, bound = True):
   If `bound` is `False`, `percent` can go outside of 0.0 ~ 1.0.
   '''
 
-  # not using `util.restrict` to save a little time
   if bound:
     if percent > 1:
       return 1
