@@ -81,8 +81,7 @@ class LevelResults(Element):
     ## score
     if tick > 30:
       self._fade_(styles["score"])
-      self._render_(styles["score"], level.scored,
-        (self.layout.x3[0], self.anim.rects[0].h / 2))
+      self._render_(styles["score"], level.scored, (self.layout.x3[0], self.anim.rects[0].h / 2))
 
     ## info
     y = self.anim.rects[1].y
@@ -90,41 +89,23 @@ class LevelResults(Element):
     if tick > 45:
       style = styles["info"][0]
       self._fade_(style)
-      self._render_(style, "CHAIN",
-        (self.layout.x3[0], y + self._space_(1))
-      )
-      self._render_(style, "PRECISION",
-        (self.layout.x3[0], y + self._space_(2))
-      )
-      self._render_(style, "ACCURACY",
-        (self.layout.x3[0], y + self._space_(3))
-      )
+      self._render_(style, "CHAIN", (self.layout.x3[0], y + self._space_(1)))
+      self._render_(style, "PRECISION", (self.layout.x3[0], y + self._space_(2)))
+      self._render_(style, "ACCURACY", (self.layout.x3[0], y + self._space_(3)))
     
     if tick > 60:
       style = styles["info"][1]
       self._fade_(style)
-      self._render_(style, level.apex,
-        (self.layout.x3[1], y + self._space_(1))
-      )
-      self._render_(style, "<PREC>",
-        (self.layout.x3[1], y + self._space_(2))
-      )
-      self._render_(style, "<ACC>",
-        (self.layout.x3[1], y + self._space_(3))
-      )
+      self._render_(style, level.apex, (self.layout.x3[1], y + self._space_(1)))
+      self._render_(style, "<PREC>", (self.layout.x3[1], y + self._space_(2)))
+      self._render_(style, "<ACC>", (self.layout.x3[1], y + self._space_(3)))
     
     if tick > 75:
       style = styles["info"][2]
       self._fade_(style)
-      self._render_(style, level.apex,
-        (self.layout.x3[2], y + self._space_(1))
-      )
-      self._render_(style, "<PREC>",
-        (self.layout.x3[2], y + self._space_(2))
-      )
-      self._render_(style, "<ACC>",
-        (self.layout.x3[2], y + self._space_(3))
-      )
+      self._render_(style, level.apex, (self.layout.x3[2], y + self._space_(1)))
+      self._render_(style, "<PREC>", (self.layout.x3[2], y + self._space_(2)))
+      self._render_(style, "<ACC>", (self.layout.x3[2], y + self._space_(3)))
 
     ## details
     y = self.anim.rects[2].y
@@ -132,60 +113,28 @@ class LevelResults(Element):
     if tick > 60:
       style = styles["details"][0]
       self._fade_(style)
-      self._render_(style, "HIT",
-        (self.layout.x4[0], y + self._space_(1))
-      )
-      self._render_(style, "PERFECT",
-        (self.layout.x4[0], y + self._space_(2))
-      )
-      self._render_(style, "FAULTS",
-        (self.layout.x4[0], y + self._space_(3))
-      )
-      self._render_(style, "MISSED",
-        (self.layout.x4[0], y + self._space_(4))
-      )
-      self._render_(style, "EARLY",
-        (self.layout.x4[2], y + self._space_(1))
-      )
-      self._render_(style, "LATE",
-        (self.layout.x4[2], y + self._space_(2))
-      )
+      self._render_(style, "HIT", (self.layout.x4[0], y + self._space_(1)))
+      self._render_(style, "PERFECT", (self.layout.x4[0], y + self._space_(2)))
+      self._render_(style, "FAULTS", (self.layout.x4[0], y + self._space_(3)))
+      self._render_(style, "MISSED", (self.layout.x4[0], y + self._space_(4)))
+      self._render_(style, "EARLY", (self.layout.x4[2], y + self._space_(1)))
+      self._render_(style, "LATE", (self.layout.x4[2], y + self._space_(2)))
       if game.mode == "expert":
-        self._render_(style, "SLIPS",
-          (self.layout.x4[2], y + self._space_(3))
-        )
-        self._render_(style, "FIXED",
-          (self.layout.x4[2], y + self._space_(4))
-        )
+        self._render_(style, "SLIPS", (self.layout.x4[2], y + self._space_(3)))
+        self._render_(style, "FIXED", (self.layout.x4[2], y + self._space_(4)))
 
     if tick > 75:
       style = styles["details"][1]
       self._fade_(style)
-      self._render_(style, level.hits,
-        (self.layout.x4[1], y + self._space_(1))
-      )
-      self._render_(style, level.perfect,
-        (self.layout.x4[1], y + self._space_(2))
-      )
-      self._render_(style, level.faults,
-        (self.layout.x4[1], y + self._space_(3))
-      )
-      self._render_(style, level.missed,
-        (self.layout.x4[1], y + self._space_(4))
-      )
-      self._render_(style, level.early,
-        (self.layout.x4[3], y + self._space_(1))
-      )
-      self._render_(style, level.late,
-        (self.layout.x4[3], y + self._space_(2))
-      )
+      self._render_(style, level.hits, (self.layout.x4[1], y + self._space_(1)))
+      self._render_(style, level.perfect, (self.layout.x4[1], y + self._space_(2)))
+      self._render_(style, level.faults, (self.layout.x4[1], y + self._space_(3)))
+      self._render_(style, level.missed, (self.layout.x4[1], y + self._space_(4)))
+      self._render_(style, level.early, (self.layout.x4[3], y + self._space_(1)))
+      self._render_(style, level.late, (self.layout.x4[3], y + self._space_(2)))
       if game.mode == "expert":
-        self._render_(style, level.slips,
-          (self.layout.x4[3], y + self._space_(3))
-        )
-        self._render_(style, level.fixed,
-          (self.layout.x4[3], y + self._space_(4))
-        )
+        self._render_(style, level.slips, (self.layout.x4[3], y + self._space_(3)))
+        self._render_(style, level.fixed, (self.layout.x4[3], y + self._space_(4)))
 
   def _slide_(self, idx):
     '''Animate backing rectangle.'''
