@@ -93,9 +93,8 @@ class Button(Element):
       self.anim.col = self.style.cols[interaction]
     
     ## render
-    pg.draw.rect(self.surf,
-      color = pg.Color(self.anim.col),
-      rect = pg.Rect(0, 0, *self.style.size),
+    pg.draw.rect(self.surf, self.anim.col,
+      rect = (0, 0, *self.style.size),
       width = 0,
       border_radius = min(self.style.size) // 3,  # FIXME value
     )
