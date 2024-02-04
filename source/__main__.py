@@ -16,7 +16,7 @@ if __name__ == "__main__":
   from splash import splash, sequence
 
   splash.load()
-  sequence.load(skip = True)  # NOTE dev
+  sequence.load(skip = True)  ## NOTE dev
 
   # main loop
   while core.game.state is not None:
@@ -33,6 +33,6 @@ if __name__ == "__main__":
 
   pg.quit()
 
-  # keep window open in IDLE for testing
+  ## NOTE keep window open in IDLE for testing
   if "idlelib.run" not in sys.modules:
     sys.exit()
