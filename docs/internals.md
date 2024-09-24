@@ -23,3 +23,6 @@ Explaining some of the rationale and design decisions behind *Algorhythm*.
 - Git can’t stop tracking a file already being tracked, so you’ve gotta delete it and re-create it.
 - VSCode executes code (at least for Python) with the directory open in Explorer as the current working directory.
   - We can configure it to execute from a particular directory with the `PYTHONPATH` variable in a `.env` file.
+- Refactoring can be such a pain, but is likely inevitable.
+  - Being able to select all occurences or mass search and replace in your IDE is such a help.
+- Even if Python is nicer, this took so long. I cannot wait to remake this in Unity.
